@@ -1,0 +1,39 @@
+{
+  "name": "sticky",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nexters/Sticky_iOS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nexters/Sticky_iOS/issues"
+  },
+  "homepage": "https://github.com/Nexters/Sticky_iOS#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "husky": "^4.3.7",
+    "next-standard-version": "^1.0.1",
+    "standard-version": "^9.1.0"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "skipCI": false,
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "make lint && make test && make build",
+      "pre-push": "make lint"
+    }
+  }
+}
