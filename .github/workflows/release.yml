@@ -28,7 +28,7 @@ jobs:
           echo >>$GITHUB_ENV DESCRIPTION=$DESCRIPTION
           echo >>$GITHUB_ENV VERSION=$VERSION
           make release
-          git add template.xcodeproj/project.pbxproj
+          git add Sticky.xcodeproj/project.pbxproj
           git commit --no-verify -m "chore(release): ${VERSION}"
           npx standard-version
           git tag -d v$VERSION
