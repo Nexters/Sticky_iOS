@@ -9,53 +9,34 @@ import SwiftUI
 
 struct Onboarding: View {
     var body: some View {
-        VStack {
-            Spacer()
-
-            Text("Sticky")
-                .font(Font.custom("Nunito", size: 24))
-                .bold()
-                .padding(.bottom, 32)
-
-            Circle()
-                .frame(width: 264, height: 264)
-                .foregroundColor(Color.tempColor)
-
-            Text("스티키는 집에서만 이용할 수 있어요,\n주소 정보는 소중하게 지켜진답니다.".localized)
-                .frame(width: 312, height: 48)
-                .padding(.top)
-                .padding(.bottom, 40)
-
-            IndicatorView(currentIndex: 0)
-
-            Spacer()
-
-            ZStack {
-                Rectangle()
-                    .frame(width: 312, height: 48)
-                    .foregroundColor(.clear)
-                    .background(Color.gradientHorizontal)
-                Text("시작하기")
-                    .foregroundColor(.white)
+        NavigationView {
+            VStack {
+                Text("Sticky")
+                    .font(Font.custom("Nunito", size: 24))
                     .bold()
-            }.cornerRadius(24)
-        }
-    }
-}
+                    .padding(.bottom, 32)
 
-struct IndicatorView: View {
-    var currentIndex: Int
-
-    var body: some View {
-        HStack(spacing: 8) {
-            ForEach(0 ..< 3, id: \.self) { index in
                 Circle()
-                    .frame(width: index == self.currentIndex ? 10 : 8,
-                           height: index == self.currentIndex ? 10 : 8)
-                    .foregroundColor(index == self.currentIndex ? Color.blue : .gray)
-                    .overlay(Circle().stroke(Color.gray, lineWidth: 1))
-                    .padding(.bottom, 8)
-                    .animation(.spring())
+                    .frame(width: 264, height: 264)
+                    .foregroundColor(Color.gray100)
+
+                Text("스티키는 집에서만 이용할 수 있어요,\n주소 정보는 소중하게 지켜진답니다.".localized)
+                    .frame(width: 312, height: 48)
+                    .padding(.top)
+                    .padding(.bottom, 40)
+
+                Indicator(currentIndex: 0)
+                    .padding(.bottom, 56)
+
+                NavigationLink(destination: SearchAddress()) {
+                    GradientRoundedButton(
+                        content: "시작하기".localized,
+                        startColor: Color.gradientStart,
+                        endColor: Color.gradientEnd,
+                        width: 312,
+                        height: 48
+                    )
+                }
             }
         }
     }

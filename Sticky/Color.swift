@@ -9,7 +9,9 @@ import Foundation
 import SwiftUI
 
 extension Color {
-    static let tempColor = Color("tempColor")
+    static let gray100 = Color("gray100")
+    static let gray200 = Color("gray200")
+    static let grayC4 = Color("gray-c4")
     static let gradientStart = Color("gradientStart")
     static let gradientEnd = Color("gradientEnd")
     static let gradientHorizontal = LinearGradient(
