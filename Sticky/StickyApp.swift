@@ -11,7 +11,7 @@ import SwiftUI
 struct StickyApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Onboarding()
         }
     }
 }
