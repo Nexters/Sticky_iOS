@@ -111,8 +111,9 @@
 		BBB1EBF025AF3C2100F5EA37 /* Sticky */ = {
 			isa = PBXGroup;
 			children = (
-				BBB1ECC025B45BE900F5EA37 /* Component */,
-				BBB1ECBF25B45BE200F5EA37 /* Page */,
+				BBB1ECCB25B46C3800F5EA37 /* Services */,
+				BBB1ECCA25B469E700F5EA37 /* Features */,
+				BBB1ECC025B45BE900F5EA37 /* Components */,
 				BBB1EBF125AF3C2100F5EA37 /* StickyApp.swift */,
 				BBB1EBF525AF3C2100F5EA37 /* Assets.xcassets */,
 				BBB1EC5B25B079F700F5EA37 /* Localizable.strings */,
@@ -150,16 +151,7 @@
 			path = StickyUITests;
 			sourceTree = "<group>";
 		};
-		BBB1ECBF25B45BE200F5EA37 /* Page */ = {
-			isa = PBXGroup;
-			children = (
-				BBB1EC4525B0757B00F5EA37 /* Onboarding.swift */,
-				BBB1EC7125B0829500F5EA37 /* SearchAddress.swift */,
-			);
-			path = Page;
-			sourceTree = "<group>";
-		};
-		BBB1ECC025B45BE900F5EA37 /* Component */ = {
+		BBB1ECC025B45BE900F5EA37 /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				BBB1EC7625B0856C00F5EA37 /* EditText.swift */,
@@ -167,7 +159,23 @@
 				BBB1EC8D25B088EA00F5EA37 /* GradientRoundedButton.swift */,
 				BBB1ECB725B090A900F5EA37 /* BorderRoundedButton.swift */,
 			);
-			path = Component;
+			path = Components;
+			sourceTree = "<group>";
+		};
+		BBB1ECCA25B469E700F5EA37 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				BBB1EC4525B0757B00F5EA37 /* Onboarding.swift */,
+				BBB1EC7125B0829500F5EA37 /* SearchAddress.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		BBB1ECCB25B46C3800F5EA37 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
