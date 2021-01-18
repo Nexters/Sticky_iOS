@@ -8,11 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		BBB1EBF225AF3C2100F5EA37 /* StickyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EBF125AF3C2100F5EA37 /* StickyApp.swift */; };
-		BBB1EBF425AF3C2100F5EA37 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EBF325AF3C2100F5EA37 /* ContentView.swift */; };
 		BBB1EBF625AF3C2100F5EA37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB1EBF525AF3C2100F5EA37 /* Assets.xcassets */; };
 		BBB1EBF925AF3C2100F5EA37 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB1EBF825AF3C2100F5EA37 /* Preview Assets.xcassets */; };
 		BBB1EC0425AF3C2200F5EA37 /* StickyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EC0325AF3C2200F5EA37 /* StickyTests.swift */; };
 		BBB1EC0F25AF3C2200F5EA37 /* StickyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EC0E25AF3C2200F5EA37 /* StickyUITests.swift */; };
+		BBB1EC4625B0757B00F5EA37 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EC4525B0757B00F5EA37 /* Onboarding.swift */; };
+		BBB1EC4B25B077E500F5EA37 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EC4A25B077E500F5EA37 /* Color.swift */; };
+		BBB1EC5925B079F700F5EA37 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BBB1EC5B25B079F700F5EA37 /* Localizable.strings */; };
+		BBB1EC6725B07B0A00F5EA37 /* String+localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EC6625B07B0A00F5EA37 /* String+localize.swift */; };
+		BBB1EC7225B0829500F5EA37 /* SearchAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EC7125B0829500F5EA37 /* SearchAddress.swift */; };
+		BBB1EC7725B0856C00F5EA37 /* EditText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EC7625B0856C00F5EA37 /* EditText.swift */; };
+		BBB1EC8325B0887500F5EA37 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EC8225B0887500F5EA37 /* Indicator.swift */; };
+		BBB1EC8E25B088EA00F5EA37 /* GradientRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EC8D25B088EA00F5EA37 /* GradientRoundedButton.swift */; };
+		BBB1ECB825B090A900F5EA37 /* BorderRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1ECB725B090A900F5EA37 /* BorderRoundedButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +43,6 @@
 /* Begin PBXFileReference section */
 		BBB1EBEE25AF3C2100F5EA37 /* Sticky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sticky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBB1EBF125AF3C2100F5EA37 /* StickyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyApp.swift; sourceTree = "<group>"; };
-		BBB1EBF325AF3C2100F5EA37 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BBB1EBF525AF3C2100F5EA37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BBB1EBF825AF3C2100F5EA37 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BBB1EBFA25AF3C2100F5EA37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,6 +52,15 @@
 		BBB1EC0A25AF3C2200F5EA37 /* StickyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StickyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBB1EC0E25AF3C2200F5EA37 /* StickyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyUITests.swift; sourceTree = "<group>"; };
 		BBB1EC1025AF3C2200F5EA37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BBB1EC4525B0757B00F5EA37 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		BBB1EC4A25B077E500F5EA37 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		BBB1EC5F25B07A2B00F5EA37 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BBB1EC6625B07B0A00F5EA37 /* String+localize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+localize.swift"; sourceTree = "<group>"; };
+		BBB1EC7125B0829500F5EA37 /* SearchAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAddress.swift; sourceTree = "<group>"; };
+		BBB1EC7625B0856C00F5EA37 /* EditText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditText.swift; sourceTree = "<group>"; };
+		BBB1EC8225B0887500F5EA37 /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
+		BBB1EC8D25B088EA00F5EA37 /* GradientRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientRoundedButton.swift; sourceTree = "<group>"; };
+		BBB1ECB725B090A900F5EA37 /* BorderRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderRoundedButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,10 +111,15 @@
 		BBB1EBF025AF3C2100F5EA37 /* Sticky */ = {
 			isa = PBXGroup;
 			children = (
+				BBB1ECCB25B46C3800F5EA37 /* Services */,
+				BBB1ECCA25B469E700F5EA37 /* Features */,
+				BBB1ECC025B45BE900F5EA37 /* Components */,
 				BBB1EBF125AF3C2100F5EA37 /* StickyApp.swift */,
-				BBB1EBF325AF3C2100F5EA37 /* ContentView.swift */,
 				BBB1EBF525AF3C2100F5EA37 /* Assets.xcassets */,
+				BBB1EC5B25B079F700F5EA37 /* Localizable.strings */,
 				BBB1EBFA25AF3C2100F5EA37 /* Info.plist */,
+				BBB1EC6625B07B0A00F5EA37 /* String+localize.swift */,
+				BBB1EC4A25B077E500F5EA37 /* Color.swift */,
 				BBB1EBF725AF3C2100F5EA37 /* Preview Content */,
 			);
 			path = Sticky;
@@ -128,6 +149,33 @@
 				BBB1EC1025AF3C2200F5EA37 /* Info.plist */,
 			);
 			path = StickyUITests;
+			sourceTree = "<group>";
+		};
+		BBB1ECC025B45BE900F5EA37 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				BBB1EC7625B0856C00F5EA37 /* EditText.swift */,
+				BBB1EC8225B0887500F5EA37 /* Indicator.swift */,
+				BBB1EC8D25B088EA00F5EA37 /* GradientRoundedButton.swift */,
+				BBB1ECB725B090A900F5EA37 /* BorderRoundedButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		BBB1ECCA25B469E700F5EA37 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				BBB1EC4525B0757B00F5EA37 /* Onboarding.swift */,
+				BBB1EC7125B0829500F5EA37 /* SearchAddress.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		BBB1ECCB25B46C3800F5EA37 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,10 +258,11 @@
 			};
 			buildConfigurationList = BBB1EBE925AF3C2000F5EA37 /* Build configuration list for PBXProject "Sticky" */;
 			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ko,
 				Base,
 			);
 			mainGroup = BBB1EBE525AF3C2000F5EA37;
@@ -233,6 +282,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBB1EC5925B079F700F5EA37 /* Localizable.strings in Resources */,
 				BBB1EBF925AF3C2100F5EA37 /* Preview Assets.xcassets in Resources */,
 				BBB1EBF625AF3C2100F5EA37 /* Assets.xcassets in Resources */,
 			);
@@ -259,7 +309,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBB1EBF425AF3C2100F5EA37 /* ContentView.swift in Sources */,
+				BBB1EC7225B0829500F5EA37 /* SearchAddress.swift in Sources */,
+				BBB1EC8325B0887500F5EA37 /* Indicator.swift in Sources */,
+				BBB1EC6725B07B0A00F5EA37 /* String+localize.swift in Sources */,
+				BBB1EC8E25B088EA00F5EA37 /* GradientRoundedButton.swift in Sources */,
+				BBB1ECB825B090A900F5EA37 /* BorderRoundedButton.swift in Sources */,
+				BBB1EC4625B0757B00F5EA37 /* Onboarding.swift in Sources */,
+				BBB1EC7725B0856C00F5EA37 /* EditText.swift in Sources */,
+				BBB1EC4B25B077E500F5EA37 /* Color.swift in Sources */,
 				BBB1EBF225AF3C2100F5EA37 /* StickyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,11 +352,23 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		BBB1EC5B25B079F700F5EA37 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BBB1EC5F25B07A2B00F5EA37 /* ko */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		BBB1EC1125AF3C2200F5EA37 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -361,6 +430,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
