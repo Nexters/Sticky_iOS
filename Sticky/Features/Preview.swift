@@ -14,7 +14,7 @@ struct Preview<V: View>: View {
     }
 
     let source: V
-    var devices: [Device] = [.iPhone11Pro, .iPhone11ProMax, .iPhone8]
+    var devices: [Device] = [.iPhone8, .iPhone8Plus, .iPhone11, .iPhone11Pro, .iPhone11ProMax, .iPHone12, .iPHone12Pro, .iPHone12ProMax, .iPHone12Mini]
     var displayDarkMode = true
     var body: some View {
         Group {
