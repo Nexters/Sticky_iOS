@@ -85,6 +85,6 @@ struct AddressItem: View {
 
 struct SearchAddress_Previews: PreviewProvider {
     static var previews: some View {
-        SearchAddress()
+        Preview(source: SearchAddress())
     }
 }
