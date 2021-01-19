@@ -21,6 +21,8 @@
 		BBB1EC8325B0887500F5EA37 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EC8225B0887500F5EA37 /* Indicator.swift */; };
 		BBB1EC8E25B088EA00F5EA37 /* GradientRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EC8D25B088EA00F5EA37 /* GradientRoundedButton.swift */; };
 		BBB1ECB825B090A900F5EA37 /* BorderRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1ECB725B090A900F5EA37 /* BorderRoundedButton.swift */; };
+		EB77449825B6DE8700BF1103 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB77449725B6DE8700BF1103 /* Preview.swift */; };
+		EB77449E25B6E82300BF1103 /* Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB77449D25B6E82300BF1103 /* Share.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		BBB1EC8225B0887500F5EA37 /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		BBB1EC8D25B088EA00F5EA37 /* GradientRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientRoundedButton.swift; sourceTree = "<group>"; };
 		BBB1ECB725B090A900F5EA37 /* BorderRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderRoundedButton.swift; sourceTree = "<group>"; };
+		EB77449725B6DE8700BF1103 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
+		EB77449D25B6E82300BF1103 /* Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,8 +169,10 @@
 		BBB1ECCA25B469E700F5EA37 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				EB77449C25B6E81400BF1103 /* Share */,
 				BBB1EC4525B0757B00F5EA37 /* Onboarding.swift */,
 				BBB1EC7125B0829500F5EA37 /* SearchAddress.swift */,
+				EB77449725B6DE8700BF1103 /* Preview.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -176,6 +182,14 @@
 			children = (
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		EB77449C25B6E81400BF1103 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				EB77449D25B6E82300BF1103 /* Share.swift */,
+			);
+			path = Share;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,10 +325,12 @@
 			files = (
 				BBB1EC7225B0829500F5EA37 /* SearchAddress.swift in Sources */,
 				BBB1EC8325B0887500F5EA37 /* Indicator.swift in Sources */,
+				EB77449825B6DE8700BF1103 /* Preview.swift in Sources */,
 				BBB1EC6725B07B0A00F5EA37 /* String+localize.swift in Sources */,
 				BBB1EC8E25B088EA00F5EA37 /* GradientRoundedButton.swift in Sources */,
 				BBB1ECB825B090A900F5EA37 /* BorderRoundedButton.swift in Sources */,
 				BBB1EC4625B0757B00F5EA37 /* Onboarding.swift in Sources */,
+				EB77449E25B6E82300BF1103 /* Share.swift in Sources */,
 				BBB1EC7725B0856C00F5EA37 /* EditText.swift in Sources */,
 				BBB1EC4B25B077E500F5EA37 /* Color.swift in Sources */,
 				BBB1EBF225AF3C2100F5EA37 /* StickyApp.swift in Sources */,
