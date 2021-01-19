@@ -13,6 +13,7 @@ struct EditText: View {
     var width: CGFloat
     var height: CGFloat
     var radius: CGFloat
+    var accentColor: Color = .white
 
     var body: some View {
         HStack(alignment: .center) {
@@ -30,7 +31,7 @@ struct EditText: View {
         .background(
             RoundedRectangle(cornerRadius: radius)
                 .foregroundColor(
-                    Color(red: 0.0, green: 0.0, blue: 0.0, opacity: 0.05)
+                    accentColor
                 )
         )
     }
@@ -45,6 +46,7 @@ struct PlaceholderStyle: ViewModifier {
             if showPlaceHolder {
                 Text(placeholder)
                     .foregroundColor(.gray)
+                    .multilineTextAlignment(.leading)
                     .padding(.horizontal, 15)
             }
             content

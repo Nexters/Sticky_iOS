@@ -13,34 +13,43 @@ struct SearchAddress: View {
 
     var body: some View {
         VStack {
-            Text("집이 어디인가요?🏠")
-                .font(.system(size: 28))
-                .bold()
-                .frame(width: 312, height: 36, alignment: .leading)
-                .padding(.bottom, 16)
+            ZStack {
+                Color.main
+                    .ignoresSafeArea()
 
-            EditText(
-                input: $input,
-                placeholder: "도로명, 건물명 또는 지번으로 검색".localized,
-                width: 312.0,
-                height: 48.0,
-                radius: 12.0
+                VStack {
+                    Text("집 주소를 입력해주세요")
+                        .font(.system(size: 28))
+                        .bold()
+                        .frame(width: 312, height: 36, alignment: .leading)
+                        .padding(.bottom, 16)
+
+                    EditText(
+                        input: $input,
+                        placeholder: "도로명, 건물명 또는 지번으로 검색",
+                        width: 312.0,
+                        height: 48.0,
+                        radius: 12.0,
+                        accentColor: .white
+                    )
+                    .padding(.bottom, 30)
+
+                    BorderRoundedButton(
+                        text: "현재 위치로 주소 찾기",
+                        borderWidth: 2.0,
+                        borderColor: Color.gray200,
+                        fontColor: .white,
+                        icon: "ic_here"
+                    )
+                }
+            }.frame(
+                minWidth: 0,
+                maxWidth: .infinity,
+                minHeight: 0,
+                maxHeight: 257,
+                alignment: .center
             )
-            .padding(.bottom, 30)
-
-            BorderRoundedButton(
-                text: "현재 위치로 주소 찾기",
-                borderWidth: 2.0,
-                borderColor: Color.gray200,
-                fontColor: .black,
-                icon: "aim"
-            )
-            .padding(.bottom, 38)
-
-            Rectangle()
-                .fill(Color.grayC4)
-                .frame(height: 10)
-                .edgesIgnoringSafeArea(.horizontal)
+            .foregroundColor(.white)
 
             List {
                 ForEach(0 ..< 10, id: \.self) { _ in

@@ -23,10 +23,11 @@ struct BorderRoundedButton: View {
                 .stroke(borderColor, lineWidth: borderWidth)
                 .frame(width: width, height: height)
             HStack {
+                Image(icon)
+                    .foregroundColor(fontColor)
                 Text(text)
                     .fontWeight(.bold)
                     .foregroundColor(fontColor)
-                Image(icon)
             }
         }
     }
