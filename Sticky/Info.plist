@@ -19,17 +19,17 @@
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSApplicationCategoryType</key>
-    <array>
+	<array>
 		<string>en</string>
 	</array>
-    <key>NSPhotoLibraryUsageDescription</key>
-        <string></string>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>instagram-stories</string>
-    </array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>instagram-stories</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string></string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
