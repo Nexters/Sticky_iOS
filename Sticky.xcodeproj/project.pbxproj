@@ -28,6 +28,7 @@
 		BBB1EC8E25B088EA00F5EA37 /* GradientRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EC8D25B088EA00F5EA37 /* GradientRoundedButton.swift */; };
 		BBB1ECB825B090A900F5EA37 /* BorderRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1ECB725B090A900F5EA37 /* BorderRoundedButton.swift */; };
 		EB608B1425B719440061F394 /* CardSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB608B1325B719440061F394 /* CardSlide.swift */; };
+		EB63F51C25B8257C00151A05 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB63F51B25B8257C00151A05 /* Colors.xcassets */; };
 		EB77449825B6DE8700BF1103 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB77449725B6DE8700BF1103 /* Preview.swift */; };
 		EB77449E25B6E82300BF1103 /* Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB77449D25B6E82300BF1103 /* Share.swift */; };
 /* End PBXBuildFile section */
@@ -77,6 +78,7 @@
 		BBB1EC8D25B088EA00F5EA37 /* GradientRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientRoundedButton.swift; sourceTree = "<group>"; };
 		BBB1ECB725B090A900F5EA37 /* BorderRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderRoundedButton.swift; sourceTree = "<group>"; };
 		EB608B1325B719440061F394 /* CardSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSlide.swift; sourceTree = "<group>"; };
+		EB63F51B25B8257C00151A05 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		EB77449725B6DE8700BF1103 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		EB77449D25B6E82300BF1103 /* Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -165,6 +167,7 @@
 				BBB1ECC025B45BE900F5EA37 /* Components */,
 				BBB1EBF125AF3C2100F5EA37 /* StickyApp.swift */,
 				BBB1EBF525AF3C2100F5EA37 /* Assets.xcassets */,
+				EB63F51B25B8257C00151A05 /* Colors.xcassets */,
 				BBB1EC5B25B079F700F5EA37 /* Localizable.strings */,
 				BBB1EBFA25AF3C2100F5EA37 /* Info.plist */,
 				BBB1EC6625B07B0A00F5EA37 /* String+localize.swift */,
@@ -343,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBB1EC5925B079F700F5EA37 /* Localizable.strings in Resources */,
+				EB63F51C25B8257C00151A05 /* Colors.xcassets in Resources */,
 				BBB1EBF925AF3C2100F5EA37 /* Preview Assets.xcassets in Resources */,
 				BBB1EBF625AF3C2100F5EA37 /* Assets.xcassets in Resources */,
 			);
@@ -554,7 +558,6 @@
 		BBB1EC1425AF3C2200F5EA37 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -580,7 +583,6 @@
 		BBB1EC1525AF3C2200F5EA37 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;

@@ -9,6 +9,15 @@ import SwiftUI
 
 struct Share: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
+    init() {
+        let newNavAppearance = UINavigationBarAppearance()
+        newNavAppearance.configureWithTransparentBackground()
+        newNavAppearance.backgroundColor = .clear
+        UINavigationBar.appearance()
+            .standardAppearance = newNavAppearance
+    }
+
     var body: some View {
         ZStack {
             Color.purple
@@ -55,7 +64,7 @@ struct Share: View {
 
                     Button(action: {
                         // 인스타 스토리 공유
-                    }){
+                    }) {
                         Image("instagram")
                             .frame(width: 48, height: 48)
                             .foregroundColor(.white)
@@ -65,6 +74,7 @@ struct Share: View {
                 }
             }
         }
+        .edgesIgnoringSafeArea(.vertical)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: backButton, trailing: downloadButton)
     }
