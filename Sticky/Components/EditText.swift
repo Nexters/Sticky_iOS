@@ -9,6 +9,9 @@ import SwiftUI
 
 struct EditText: View {
     @Binding var input: String
+
+    @State private var isEditing = false
+
     var placeholder: String
     var width: CGFloat
     var height: CGFloat
@@ -25,6 +28,26 @@ struct EditText: View {
                         placeholder: placeholder
                     )
                 )
+                .onTapGesture {
+                    self.isEditing = true
+                }
+            if isEditing {
+                withAnimation {
+                    Button(action: {
+                        withAnimation {
+                            self.isEditing.toggle()
+                            self.input = ""
+                            // Dismiss the keyboard
+                            UIApplication.shared.sendAction(
+                                #selector(UIResponder.resignFirstResponder),
+                                to: nil, from: nil, for: nil
+                            )
+                        }
+                    }, label: {
+                        Image("ic_close_small")
+                    })
+                }
+            }
         }
         .padding()
         .frame(width: width, height: height)
@@ -61,13 +84,16 @@ struct EditTextView_Previews: PreviewProvider {
         @State var input: String = ""
 
         var body: some View {
-            EditText(
-                input: $input,
-                placeholder: "도로명, 건물명 또는 지번으로 검색",
-                width: 312.0,
-                height: 48.0,
-                radius: 12.0
-            )
+            ZStack {
+                Color.gray.ignoresSafeArea()
+                EditText(
+                    input: $input,
+                    placeholder: "도로명, 건물명 또는 지번으로 검색",
+                    width: 312.0,
+                    height: 48.0,
+                    radius: 12.0
+                )
+            }
         }
     }
 
