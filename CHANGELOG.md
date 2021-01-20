@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/Nexters/Sticky_iOS/compare/v1.1.1...v1.2.0) (2021-01-20)
+
+
+### Features
+
+* 주소 검색 UI 구현 ([6050a6d](https://github.com/Nexters/Sticky_iOS/commit/6050a6d8266e5a3236fea12cdc2fda8f30223842))
+
+
+### Bug Fixes
+
+* **on-boarding:** 화면 디자인 변경 반영 ([9a7eb29](https://github.com/Nexters/Sticky_iOS/commit/9a7eb29ad987f90ff79ad31ea2ee4eedd2822d24))
+
 ### [1.1.1](https://github.com/Nexters/Sticky_iOS/compare/v1.1.0...v1.1.1) (2021-01-19)
 
 ## [1.1.0](https://github.com/Nexters/Sticky_iOS/compare/v1.0.1...v1.1.0) (2021-01-18)
