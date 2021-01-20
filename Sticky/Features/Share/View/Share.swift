@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Share: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var UIState: UIStateModel
 
     init() {
         let newNavAppearance = UINavigationBarAppearance()
@@ -20,7 +21,7 @@ struct Share: View {
 
     var body: some View {
         ZStack {
-            Color.purple
+            Color.blue
 
             VStack {
                 HStack(spacing: 16) {
@@ -35,7 +36,9 @@ struct Share: View {
                     Button("최근 기록") {
                         print("최근 기록")
                     }.font(.title3)
-                }.padding(.bottom, 36)
+                }
+                .padding(.bottom, 36)
+                .foregroundColor(Color.white)
 
                 CardSlide()
 
@@ -72,6 +75,7 @@ struct Share: View {
                     .frame(width: 48, height: 48)
                     .cornerRadius(10)
                 }
+                .padding(.top, 37)
             }
         }
         .edgesIgnoringSafeArea(.vertical)

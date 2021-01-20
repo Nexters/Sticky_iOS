@@ -26,9 +26,9 @@ struct CardSlide: View {
 
         // 카드에 담길 모델들 데이터
         let items = [
-            Card(id: 0, name: "Hey"),
-            Card(id: 1, name: "Ho"),
-            Card(id: 2, name: "Lets")
+            Card(id: 0, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
+            Card(id: 1, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
+            Card(id: 2, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분")
         ]
 
         return Carousel(
@@ -48,10 +48,35 @@ struct CardSlide: View {
                     // 카드의 높이
                     cardHeight: cardHeight
                 ) {
-                    Text("\(item.name)")
+                    VStack {
+                        HStack {
+                            Text("LV.\(item.level)")
+                                .fontWeight(.medium)
+                            Text(item.nickname)
+                        }
+                        .foregroundColor(Color.blue)
+                        .padding(.bottom, 16)
+                        .font(.system(size: 16))
+                        .frame(width: 200, alignment: .leading)
+
+                        VStack(alignment: .leading) {
+                            Text("집에서")
+                            Text("10일\n23시간 34분")
+                                .fontWeight(.bold)
+                            Text("동안")
+                            Text("안나갔다.")
+                        }
+                        .frame(width: 200, height: 200, alignment: .leading)
+                        .font(.system(size: 32))
+                        .foregroundColor(.black)
+
+                        Image("logo")
+                            .frame(width: 60, height: 27)
+                            .padding(.top, 25)
+                    }
                 }
-                .foregroundColor(Color.white)
-                .background(Color.blue)
+                .foregroundColor(Color.black)
+                .background(Color.white)
                 .cornerRadius(8)
                 .shadow(color: Color.gray, radius: 4, x: 0, y: 4)
                 .transition(AnyTransition.slide)
