@@ -14,7 +14,7 @@ endif
 
 XCPRETTY = $(shell command -v xcpretty)
 PROJECT_NAME = Sticky
-WORKSPACE = $(shell find . -name "*.xcworkspace")
+WORKSPACE = $(shell find . -name "project.xcworkspace")
 EMULATOR = iPhone 12 mini
 
 OS_VERSION = $(shell xcodebuild -showsdks | egrep "iOS (\d)+.(\d)+" | head -1 | cut -f2 -d" ")
