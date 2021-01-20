@@ -31,9 +31,4 @@ extension View {
     func saveInPhoto(img: UIImage) {
         UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil)
     }
-
-    func sharePicture(img: UIImage) {
-        let av = UIActivityViewController(activityItems: [img], applicationActivities: nil)
-        UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
-    }
 }

@@ -51,7 +51,7 @@ struct Share: View {
                     Rectangle()
                         .overlay(
                             Button(action: {
-                                // 로컬 공유하기
+                                shareLocal()
                             }) {
                                 Image(systemName: "square.and.arrow.up")
                                     .frame(width: 48, height: 48)
@@ -66,7 +66,7 @@ struct Share: View {
                         .frame(maxWidth: 60)
 
                     Button(action: {
-                        // 인스타 스토리 공유
+                        shareInstagram()
                     }) {
                         Image("instagram")
                             .frame(width: 48, height: 48)
@@ -95,12 +95,36 @@ struct Share: View {
 
     var downloadButton: some View {
         Button(action: {
-            // 다운로드
+            saveInPhoto(img: takeCapture())
         }) {
             Image(systemName: "download")
                 .aspectRatio(contentMode: .fit)
                 .foregroundColor(.white)
         }
+    }
+}
+
+extension Share {
+    func shareInstagram() {
+        let img = takeCapture()
+        if let urlScheme = URL(string: "instagram-stories://share") {
+            if UIApplication.shared.canOpenURL(urlScheme) {
+                let pasteboardItems = [["com.instagram.sharedSticker.stickerImage": img.pngData(),"com.instagram.sharedSticker.backgroundImage": img.pngData()]]
+
+                let pasteboardOptions = [UIPasteboard.OptionsKey.expirationDate: Date().addingTimeInterval(60 * 5)]
+
+                UIPasteboard.general.setItems(pasteboardItems, options: pasteboardOptions)
+
+                UIApplication.shared.open(urlScheme as URL, options: [:], completionHandler: nil)
+            } else {
+                print("인스타 앱이 깔려있지 않습니다.")
+            }
+        }
+    }
+
+    func shareLocal() {
+        let av = UIActivityViewController(activityItems: [takeCapture()], applicationActivities: nil)
+        UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
     }
 }
 
