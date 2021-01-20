@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/Nexters/Sticky_iOS/compare/v1.2.0...v1.3.0) (2021-01-20)
+
+
+### Features
+
+* **share:** 공유 ui 구현 ([9fd77f1](https://github.com/Nexters/Sticky_iOS/commit/9fd77f1b37614ee4e44921f66a7cb6c38c6e8536))
+
 ## [1.2.0](https://github.com/Nexters/Sticky_iOS/compare/v1.1.1...v1.2.0) (2021-01-20)
 
 
