@@ -10,5 +10,7 @@ import Foundation
 // 카드 내에 정보를 담는 모델
 struct Card: Decodable, Hashable, Identifiable {
     var id: Int
-    var name: String = ""
+    var level: Int
+    var nickname: String
+    var totalTime: String
 }

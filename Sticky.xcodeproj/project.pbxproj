@@ -27,7 +27,8 @@
 		BBB1EC8325B0887500F5EA37 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EC8225B0887500F5EA37 /* Indicator.swift */; };
 		BBB1EC8E25B088EA00F5EA37 /* GradientRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EC8D25B088EA00F5EA37 /* GradientRoundedButton.swift */; };
 		BBB1ECB825B090A900F5EA37 /* BorderRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1ECB725B090A900F5EA37 /* BorderRoundedButton.swift */; };
-		EB608B1425B719440061F394 /* CardSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB608B1325B719440061F394 /* CardSlide.swift */; };
+		EB32FA5725B8414500DC3FAE /* CardSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB608B1325B719440061F394 /* CardSlide.swift */; };
+		EB32FA5D25B8466200DC3FAE /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB32FA5C25B8466200DC3FAE /* View+.swift */; };
 		EB63F51C25B8257C00151A05 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB63F51B25B8257C00151A05 /* Colors.xcassets */; };
 		EB63F52225B82C2300151A05 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB63F52125B82C2300151A05 /* Card.swift */; };
 		EB63F52B25B82CBE00151A05 /* Carousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB63F52A25B82CBE00151A05 /* Carousel.swift */; };
@@ -80,6 +81,7 @@
 		BBB1EC8225B0887500F5EA37 /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		BBB1EC8D25B088EA00F5EA37 /* GradientRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientRoundedButton.swift; sourceTree = "<group>"; };
 		BBB1ECB725B090A900F5EA37 /* BorderRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderRoundedButton.swift; sourceTree = "<group>"; };
+		EB32FA5C25B8466200DC3FAE /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		EB608B1325B719440061F394 /* CardSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSlide.swift; sourceTree = "<group>"; };
 		EB63F51B25B8257C00151A05 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		EB63F52125B82C2300151A05 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -168,6 +170,8 @@
 		BBB1EBF025AF3C2100F5EA37 /* Sticky */ = {
 			isa = PBXGroup;
 			children = (
+				EB32FA5B25B8465700DC3FAE /* Extensions */,
+				BBB1ECCB25B46C3800F5EA37 /* Services */,
 				BBB1ECCA25B469E700F5EA37 /* Features */,
 				BBB1ECCB25B46C3800F5EA37 /* Services */,
 				BBB1ECC025B45BE900F5EA37 /* Components */,
@@ -238,6 +242,22 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		EB32FA5025B840D700DC3FAE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EB77449D25B6E82300BF1103 /* Share.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EB32FA5B25B8465700DC3FAE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EB32FA5C25B8466200DC3FAE /* View+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		EB63F52025B82C0F00151A05 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +269,7 @@
 		EB63F52925B82CB000151A05 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				EB608B1325B719440061F394 /* CardSlide.swift */,
 				EB63F52A25B82CBE00151A05 /* Carousel.swift */,
 				EB63F53225B82D3900151A05 /* CardItem.swift */,
 			);
@@ -258,10 +279,9 @@
 		EB77449C25B6E81400BF1103 /* Share */ = {
 			isa = PBXGroup;
 			children = (
+				EB32FA5025B840D700DC3FAE /* View */,
 				EB63F52925B82CB000151A05 /* Component */,
 				EB63F52025B82C0F00151A05 /* Model */,
-				EB77449D25B6E82300BF1103 /* Share.swift */,
-				EB608B1325B719440061F394 /* CardSlide.swift */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -411,11 +431,14 @@
 				BBB1EC8E25B088EA00F5EA37 /* GradientRoundedButton.swift in Sources */,
 				BB1C8A2D25B875020000931A /* SearchAddress.swift in Sources */,
 				BBB1ECB825B090A900F5EA37 /* BorderRoundedButton.swift in Sources */,
+				BBB1EC4625B0757B00F5EA37 /* Onboarding.swift in Sources */,
+				EB32FA5725B8414500DC3FAE /* CardSlide.swift in Sources */,
 				EB77449E25B6E82300BF1103 /* Share.swift in Sources */,
 				BB1C8A2B25B875020000931A /* Map.swift in Sources */,
 				BBB1EC7725B0856C00F5EA37 /* EditText.swift in Sources */,
 				BB1C8A2825B875020000931A /* Tip.swift in Sources */,
 				EB608B1425B719440061F394 /* CardSlide.swift in Sources */,
+				EB32FA5D25B8466200DC3FAE /* View+.swift in Sources */,
 				EB63F52B25B82CBE00151A05 /* Carousel.swift in Sources */,
 				BBB1EC4B25B077E500F5EA37 /* Color.swift in Sources */,
 				BBB1EBF225AF3C2100F5EA37 /* StickyApp.swift in Sources */,
@@ -591,7 +614,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sticky/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 46A8TRH8G6;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Sticky/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -601,6 +624,8 @@
 				);
 				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Sticky;
+				MARKETING_VERSION = 1.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Stick;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -616,7 +641,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sticky/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 46A8TRH8G6;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Sticky/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -626,6 +651,8 @@
 				);
 				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Sticky;
+				MARKETING_VERSION = 1.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Stick;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

@@ -82,17 +82,15 @@ struct Carousel<Items: View>: View {
 struct Carousel_Previews: PreviewProvider {
     static var previews: some View {
         let items = [
-            Card(id: 0, name: "Hey"),
-            Card(id: 1, name: "Ho"),
-            Card(id: 2, name: "Lets"),
-            Card(id: 3, name: "Go")
+            Card(id: 0, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
+            Card(id: 0, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
+            Card(id: 0, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분")
         ]
         return Carousel(
             numberOfItems: CGFloat(items.count),
             spacing: 20,
             widthOfHiddenCards: 40
         ) {
-            
             return ForEach(items, id: \.self.id) { item in
                 CardItem(
                     // 카드 UI의 id
@@ -102,17 +100,40 @@ struct Carousel_Previews: PreviewProvider {
                     // 가려진 카드의 너비
                     widthOfHiddenCards: 40,
                     // 카드의 높이
-                    cardHeight: 500
+                    cardHeight: 360
                 ) {
-                    Text("\(item.name)")
+                    VStack {
+                        HStack {
+                            Text("LV.\(item.level)")
+                                .fontWeight(.medium)
+                            Text(item.nickname)
+                        }
+                        .padding(.bottom, 16)
+                        .font(.system(size: 16))
+                        .frame(width: 200, alignment: .leading)
+
+                        VStack(alignment: .leading) {
+                            Text("집에서")
+                            Text("10일\n23시간 34분")
+                                .fontWeight(.bold)
+                            Text("동안")
+                            Text("안나갔다.")
+                        }
+                        .frame(width: 200, height: 200, alignment: .leading)
+                        .font(.system(size: 32))
+                        .foregroundColor(.black)
+
+                        Image("logo")
+                            .frame(width: 60, height: 27)
+                            .padding(.top, 25)
+                    }
                 }
-                .foregroundColor(Color.white)
-                .background(Color.blue)
+                .foregroundColor(Color.blue)
+                .background(Color.white)
                 .cornerRadius(8)
                 .shadow(color: Color.gray, radius: 4, x: 0, y: 4)
                 .transition(AnyTransition.slide)
                 .animation(.spring())
-                .environmentObject(UIStateModel())
             }
         }
         .environmentObject(UIStateModel())

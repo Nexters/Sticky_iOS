@@ -37,23 +37,22 @@ struct CardItem<Content: View>: View {
 struct CardItem_Previews: PreviewProvider {
     static var previews: some View {
         let items = [
-            Card(id: 0, name: "Hey"),
-            Card(id: 1, name: "Ho"),
-            Card(id: 2, name: "Lets"),
-            Card(id: 3, name: "Go")
+            Card(id: 0, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
+            Card(id: 0, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
+            Card(id: 0, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분")
         ]
         return ForEach(items, id: \.self.id) { item in
             CardItem(
                 // 카드 UI의 id
                 id: Int(item.id),
                 // 카드 사이의 너비
-                spacing: 16,
+                spacing: 20,
                 // 가려진 카드의 너비
-                widthOfHiddenCards: 20,
+                widthOfHiddenCards: 40,
                 // 카드의 높이
-                cardHeight: 500
+                cardHeight: 360
             ) {
-                Text("\(item.name)")
+                Text("\(item.nickname)")
             }
             .foregroundColor(Color.white)
             .background(Color.blue)
