@@ -29,8 +29,8 @@ struct CardItem<Content: View>: View {
     }
 
     var body: some View {
-        //Active 카드인지 확인
-        //Active 카드가 아닌 카드들은 여기서 UI/Design 수정
+        // Active 카드인지 확인
+        // Active 카드가 아닌 카드들은 여기서 UI/Design 수정
         content
             .frame(width: cardWidth, height: id == UIState.activeCard ? cardHeight : cardHeight - 60, alignment: .center)
     }

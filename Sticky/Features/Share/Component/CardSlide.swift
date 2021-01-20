@@ -15,6 +15,7 @@ import SwiftUI
 
 struct CardSlide: View {
     @EnvironmentObject var UIState: UIStateModel
+    @Binding var items: [Card]
 
     var body: some View {
         // 각 카드 사이의 너비
@@ -23,13 +24,6 @@ struct CardSlide: View {
         let widthOfHiddenCards: CGFloat = 40 /// UIScreen.main.bounds.width - 10
         // 카드의 Height
         let cardHeight: CGFloat = 359
-
-        // 카드에 담길 모델들 데이터
-        let items = [
-            Card(id: 0, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
-            Card(id: 1, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
-            Card(id: 2, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분")
-        ]
 
         return Carousel(
             numberOfItems: CGFloat(items.count),
@@ -93,7 +87,14 @@ public class UIStateModel: ObservableObject {
 
 struct CardSlide_Previews: PreviewProvider {
     static var previews: some View {
-        CardSlide()
+        CardSlide(items: .constant(items))
             .environmentObject(UIStateModel())
     }
 }
+
+// TestItems
+let items = [
+    Card(id: 0, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
+    Card(id: 1, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
+    Card(id: 2, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분")
+]
