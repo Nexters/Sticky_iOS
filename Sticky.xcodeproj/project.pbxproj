@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB0A592425B9C99D001F529A /* MyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A592325B9C99D001F529A /* MyPage.swift */; };
+		BB0A592925BA50D8001F529A /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A592825BA50D8001F529A /* Summary.swift */; };
+		BB0A592E25BA516A001F529A /* BadgeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A592D25BA516A001F529A /* BadgeItem.swift */; };
+		BB0A593B25BA585A001F529A /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A593A25BA585A001F529A /* Badge.swift */; };
+		BB0A594025BA6EE4001F529A /* Tier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A593F25BA6EE4001F529A /* Tier.swift */; };
+		BB0A594525BA7AB4001F529A /* BadgePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A594425BA7AB4001F529A /* BadgePanel.swift */; };
+		BB0A595925BAC24B001F529A /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A595825BAC24B001F529A /* Timer.swift */; };
+		BB0A596525BAC3F2001F529A /* More.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A596425BAC3F2001F529A /* More.swift */; };
 		BB1C8A1925B874DF0000931A /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A1825B874DF0000931A /* Onboarding.swift */; };
 		BB1C8A2725B875020000931A /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A1F25B875020000931A /* SearchResult.swift */; };
 		BB1C8A2825B875020000931A /* Tip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A2125B875020000931A /* Tip.swift */; };
@@ -55,6 +63,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB0A592325B9C99D001F529A /* MyPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPage.swift; sourceTree = "<group>"; };
+		BB0A592825BA50D8001F529A /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
+		BB0A592D25BA516A001F529A /* BadgeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeItem.swift; sourceTree = "<group>"; };
+		BB0A593A25BA585A001F529A /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		BB0A593F25BA6EE4001F529A /* Tier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tier.swift; sourceTree = "<group>"; };
+		BB0A594425BA7AB4001F529A /* BadgePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgePanel.swift; sourceTree = "<group>"; };
+		BB0A595825BAC24B001F529A /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		BB0A596425BAC3F2001F529A /* More.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = More.swift; sourceTree = "<group>"; };
 		BB1C8A1825B874DF0000931A /* Onboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		BB1C8A1F25B875020000931A /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		BB1C8A2125B875020000931A /* Tip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tip.swift; sourceTree = "<group>"; };
@@ -116,6 +132,107 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BB0A591F25B9C927001F529A /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				BB0A592225B9C992001F529A /* Views */,
+				BB0A592125B9C97D001F529A /* Models */,
+				BB0A592025B9C95F001F529A /* Components */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		BB0A592025B9C95F001F529A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				BB0A592825BA50D8001F529A /* Summary.swift */,
+				BB0A592D25BA516A001F529A /* BadgeItem.swift */,
+				BB0A594425BA7AB4001F529A /* BadgePanel.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		BB0A592125B9C97D001F529A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BB0A593A25BA585A001F529A /* Badge.swift */,
+				BB0A593F25BA6EE4001F529A /* Tier.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BB0A592225B9C992001F529A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BB0A592325B9C99D001F529A /* MyPage.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BB0A595425BAC22F001F529A /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				BB0A595725BAC23E001F529A /* Components */,
+				BB0A595625BAC23A001F529A /* Models */,
+				BB0A595525BAC236001F529A /* Views */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		BB0A595525BAC236001F529A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BB0A595825BAC24B001F529A /* Timer.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BB0A595625BAC23A001F529A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BB0A595725BAC23E001F529A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		BB0A596025BAC3DA001F529A /* More */ = {
+			isa = PBXGroup;
+			children = (
+				BB0A596325BAC3E8001F529A /* Models */,
+				BB0A596225BAC3E3001F529A /* Components */,
+				BB0A596125BAC3DF001F529A /* Views */,
+			);
+			path = More;
+			sourceTree = "<group>";
+		};
+		BB0A596125BAC3DF001F529A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BB0A596425BAC3F2001F529A /* More.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BB0A596225BAC3E3001F529A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		BB0A596325BAC3E8001F529A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		BB1C8A1E25B875020000931A /* SearchAddress */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,7 +288,6 @@
 			isa = PBXGroup;
 			children = (
 				EB32FA5B25B8465700DC3FAE /* Extensions */,
-				BBB1ECCB25B46C3800F5EA37 /* Services */,
 				BBB1ECCA25B469E700F5EA37 /* Features */,
 				BBB1ECCB25B46C3800F5EA37 /* Services */,
 				BBB1ECC025B45BE900F5EA37 /* Components */,
@@ -227,6 +343,9 @@
 		BBB1ECCA25B469E700F5EA37 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				BB0A596025BAC3DA001F529A /* More */,
+				BB0A595425BAC22F001F529A /* Timer */,
+				BB0A591F25B9C927001F529A /* MyPage */,
 				BB1C8A1E25B875020000931A /* SearchAddress */,
 				BB3D4FCD25B873D100879E49 /* OnBoarding */,
 				EB77449C25B6E81400BF1103 /* Share */,
@@ -428,19 +547,25 @@
 				BB1C8A1925B874DF0000931A /* Onboarding.swift in Sources */,
 				BBB1EC6725B07B0A00F5EA37 /* String+localize.swift in Sources */,
 				EB63F52225B82C2300151A05 /* Card.swift in Sources */,
+				BB0A596525BAC3F2001F529A /* More.swift in Sources */,
+				BB0A594525BA7AB4001F529A /* BadgePanel.swift in Sources */,
 				BBB1EC8E25B088EA00F5EA37 /* GradientRoundedButton.swift in Sources */,
+				BB0A593B25BA585A001F529A /* Badge.swift in Sources */,
+				BB0A595925BAC24B001F529A /* Timer.swift in Sources */,
 				BB1C8A2D25B875020000931A /* SearchAddress.swift in Sources */,
 				BBB1ECB825B090A900F5EA37 /* BorderRoundedButton.swift in Sources */,
-				BBB1EC4625B0757B00F5EA37 /* Onboarding.swift in Sources */,
 				EB32FA5725B8414500DC3FAE /* CardSlide.swift in Sources */,
+				BB0A594025BA6EE4001F529A /* Tier.swift in Sources */,
 				EB77449E25B6E82300BF1103 /* Share.swift in Sources */,
 				BB1C8A2B25B875020000931A /* Map.swift in Sources */,
 				BBB1EC7725B0856C00F5EA37 /* EditText.swift in Sources */,
 				BB1C8A2825B875020000931A /* Tip.swift in Sources */,
-				EB608B1425B719440061F394 /* CardSlide.swift in Sources */,
+				BB0A592425B9C99D001F529A /* MyPage.swift in Sources */,
+				BB0A592E25BA516A001F529A /* BadgeItem.swift in Sources */,
 				EB32FA5D25B8466200DC3FAE /* View+.swift in Sources */,
 				EB63F52B25B82CBE00151A05 /* Carousel.swift in Sources */,
 				BBB1EC4B25B077E500F5EA37 /* Color.swift in Sources */,
+				BB0A592925BA50D8001F529A /* Summary.swift in Sources */,
 				BBB1EBF225AF3C2100F5EA37 /* StickyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -623,8 +748,6 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.3.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Sticky;
-				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Stick;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -649,8 +772,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Sticky;
 				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Stick;
 				PRODUCT_NAME = "$(TARGET_NAME)";
