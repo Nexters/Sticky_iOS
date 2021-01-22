@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/Nexters/Sticky_iOS/compare/v1.3.0...v1.4.0) (2021-01-22)
+
+
+### Features
+
+* **mypage:** 마이페이지 UI 구현 및 기본 화면 생성 및 연결 ([9422a05](https://github.com/Nexters/Sticky_iOS/commit/9422a05a9b8cde7fefad8248bc8c169fef12b53d))
+
 ## [1.3.0](https://github.com/Nexters/Sticky_iOS/compare/v1.2.0...v1.3.0) (2021-01-20)
 
 
