@@ -23,10 +23,9 @@ struct SearchResult: View {
 
                 Text("주소는 말줄임 없이 줄바꿈으로 무한대~주소는 말줄임 없이 줄바꿈으로 무한대~주소는 말줄임 없이 줄바꿈으로 무한대~주소는 말줄임 없이 줄바꿈으로 무한대~")
                     .font(.system(size: 16))
-                    .frame(width: 280, height: .infinity)
                     .padding(.bottom, 46)
 
-                NavigationLink(destination: EmptyView()) {
+                NavigationLink(destination: Timer()) {
                     GradientRoundedButton(
                         content: "집으로 설정하기".localized,
                         startColor: Color.black,
@@ -47,6 +46,7 @@ struct SearchResult: View {
             .padding(.trailing, 24)
             .foregroundColor(.white)
             .navigationBarBackButtonHidden(true)
+            .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading: backButton)
         }
     }
