@@ -77,6 +77,6 @@ struct SearchAddress: View {
 
 struct SearchAddress_Previews: PreviewProvider {
     static var previews: some View {
-        Preview(source: SearchAddress())
+        SearchAddress()
     }
 }
