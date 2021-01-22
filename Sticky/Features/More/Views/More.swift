@@ -9,14 +9,56 @@ import SwiftUI
 
 struct More: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State private var selection: String?
+
     var body: some View {
         VStack {
-            NavigationLink(destination: SearchAddress()) {
-                Text("주소 변경")
+            List {
+                Button(action: { self.selection="address" }) {
+                    LinkItem(text: "주소 변경")
+                }
+                Button(action: { self.selection="about" }) {
+                    LinkItem(text: "스티키에 대해서")
+                }
+                Button(action: { self.selection="version" }) {
+                    LinkItem(text: "버전 정보")
+                }
+                Button(action: { self.selection="license" }) {
+                    LinkItem(text: "오픈소스 라이센스")
+                }
             }
+            .foregroundColor(.black)
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: backButton)
             .navigationBarTitle("더보기", displayMode: .inline)
+        }
+        NavigationLink(
+            destination: SearchAddress(),
+            tag: "address",
+            selection: $selection
+        ) {
+            EmptyView()
+        }
+        NavigationLink(
+            destination: Text("Sticky"),
+            tag: "about",
+            selection: $selection
+        ) {
+            EmptyView()
+        }
+        NavigationLink(
+            destination: Text("version"),
+            tag: "version",
+            selection: $selection
+        ) {
+            EmptyView()
+        }
+        NavigationLink(
+            destination: Text("license"),
+            tag: "license",
+            selection: $selection
+        ) {
+            EmptyView()
         }
     }
 

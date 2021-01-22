@@ -33,8 +33,7 @@ struct BadgePanel: View {
             }
 
             LazyVGrid(columns: columns) {
-                ForEach(badges!, id: \.self) {
-                    badge in
+                ForEach(badges!, id: \.self) { badge in
                     BadgeItem(title: badge.name, date: badge.updated.toString())
                 }
             }
