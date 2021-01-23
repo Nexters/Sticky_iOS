@@ -29,6 +29,7 @@ struct Share: View {
         ZStack {
             // 배경 Color
             Color.blue
+                .edgesIgnoringSafeArea(.vertical)
 
             VStack {
                 HStack(spacing: 16) {
@@ -96,9 +97,10 @@ struct Share: View {
                 .padding(.top, 37)
             }
         }
-        .edgesIgnoringSafeArea(.vertical)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: backButton, trailing: downloadButton)
+        .modifier(Popup(title: "챌린지 종료하기", description: "챌린지가 00때문에 종료되었습니다.\n최종기록을 공유할까요", confirmString: "공유하기", rejectString: "취소하기"))
+        .edgesIgnoringSafeArea(.all)
     }
 
     private var backButton: some View {
