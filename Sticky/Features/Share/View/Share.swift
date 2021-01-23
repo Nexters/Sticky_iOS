@@ -99,7 +99,7 @@ struct Share: View {
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: backButton, trailing: downloadButton)
-        .modifier(Popup(rateOfWidth: 0.4, rateOfHeight: 0.43, title: "챌린지 종료하기", description: "챌린지가 00때문에 종료되었습니다.\n최종기록을 공유할까요", confirmString: "공유하기", rejectString: "취소하기"))
+        .modifier(Popup(rateOfWidth: 0.4, title: "챌린지 종료하기", description: "챌린지가 00때문에 종료되었습니다.\n최종기록을 공유할까요", confirmString: "공유하기", rejectString: "취소하기"))
         .edgesIgnoringSafeArea(.all)
     }
 
