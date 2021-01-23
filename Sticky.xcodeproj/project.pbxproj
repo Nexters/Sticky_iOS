@@ -16,12 +16,13 @@
 		BB0A595925BAC24B001F529A /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A595825BAC24B001F529A /* Timer.swift */; };
 		BB0A596525BAC3F2001F529A /* More.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A596425BAC3F2001F529A /* More.swift */; };
 		BB0A596D25BAD2CF001F529A /* LinkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A596C25BAD2CF001F529A /* LinkItem.swift */; };
+		BB0A597F25BBB1BC001F529A /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A597E25BBB1BC001F529A /* LocationViewModel.swift */; };
 		BB1C8A1925B874DF0000931A /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A1825B874DF0000931A /* Onboarding.swift */; };
 		BB1C8A2725B875020000931A /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A1F25B875020000931A /* SearchResult.swift */; };
 		BB1C8A2825B875020000931A /* Tip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A2125B875020000931A /* Tip.swift */; };
 		BB1C8A2925B875020000931A /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A2225B875020000931A /* Result.swift */; };
 		BB1C8A2A25B875020000931A /* NotFound.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A2325B875020000931A /* NotFound.swift */; };
-		BB1C8A2B25B875020000931A /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A2425B875020000931A /* Map.swift */; };
+		BB1C8A2B25B875020000931A /* MapCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A2425B875020000931A /* MapCard.swift */; };
 		BB1C8A2C25B875020000931A /* AddressItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A2525B875020000931A /* AddressItem.swift */; };
 		BB1C8A2D25B875020000931A /* SearchAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A2625B875020000931A /* SearchAddress.swift */; };
 		BBB1EBF225AF3C2100F5EA37 /* StickyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EBF125AF3C2100F5EA37 /* StickyApp.swift */; };
@@ -77,12 +78,13 @@
 		BB0A595825BAC24B001F529A /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		BB0A596425BAC3F2001F529A /* More.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = More.swift; sourceTree = "<group>"; };
 		BB0A596C25BAD2CF001F529A /* LinkItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkItem.swift; sourceTree = "<group>"; };
+		BB0A597E25BBB1BC001F529A /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		BB1C8A1825B874DF0000931A /* Onboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		BB1C8A1F25B875020000931A /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		BB1C8A2125B875020000931A /* Tip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tip.swift; sourceTree = "<group>"; };
 		BB1C8A2225B875020000931A /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		BB1C8A2325B875020000931A /* NotFound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotFound.swift; sourceTree = "<group>"; };
-		BB1C8A2425B875020000931A /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		BB1C8A2425B875020000931A /* MapCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCard.swift; sourceTree = "<group>"; };
 		BB1C8A2525B875020000931A /* AddressItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressItem.swift; sourceTree = "<group>"; };
 		BB1C8A2625B875020000931A /* SearchAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAddress.swift; sourceTree = "<group>"; };
 		BBB1EBEE25AF3C2100F5EA37 /* Sticky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sticky.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -244,9 +246,18 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		BB0A597D25BBB18C001F529A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BB0A597E25BBB1BC001F529A /* LocationViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		BB1C8A1E25B875020000931A /* SearchAddress */ = {
 			isa = PBXGroup;
 			children = (
+				BB0A597D25BBB18C001F529A /* Model */,
 				BB1C8A2025B875020000931A /* Components */,
 				BB1C8A1F25B875020000931A /* SearchResult.swift */,
 				BB1C8A2625B875020000931A /* SearchAddress.swift */,
@@ -260,7 +271,7 @@
 				BB1C8A2125B875020000931A /* Tip.swift */,
 				BB1C8A2225B875020000931A /* Result.swift */,
 				BB1C8A2325B875020000931A /* NotFound.swift */,
-				BB1C8A2425B875020000931A /* Map.swift */,
+				BB1C8A2425B875020000931A /* MapCard.swift */,
 				BB1C8A2525B875020000931A /* AddressItem.swift */,
 			);
 			path = Components;
@@ -575,8 +586,9 @@
 				EB32FA5725B8414500DC3FAE /* CardSlide.swift in Sources */,
 				BB0A594025BA6EE4001F529A /* Tier.swift in Sources */,
 				EB77449E25B6E82300BF1103 /* Share.swift in Sources */,
-				BB1C8A2B25B875020000931A /* Map.swift in Sources */,
+				BB1C8A2B25B875020000931A /* MapCard.swift in Sources */,
 				BBB1EC7725B0856C00F5EA37 /* EditText.swift in Sources */,
+				BB0A597F25BBB1BC001F529A /* LocationViewModel.swift in Sources */,
 				BB1C8A2825B875020000931A /* Tip.swift in Sources */,
 				BB0A592425B9C99D001F529A /* MyPage.swift in Sources */,
 				C202D59525BD365F0033B450 /* PopupMessage.swift in Sources */,
@@ -759,7 +771,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sticky/Preview Content\"";
-				DEVELOPMENT_TEAM = 46A8TRH8G6;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Sticky/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -784,7 +796,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sticky/Preview Content\"";
-				DEVELOPMENT_TEAM = 46A8TRH8G6;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Sticky/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

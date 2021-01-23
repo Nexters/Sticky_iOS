@@ -13,7 +13,7 @@ struct SearchResult: View {
         ZStack {
             Color.main.ignoresSafeArea()
             VStack {
-                Map()
+                MapCard()
                     .padding(.bottom, 30)
 
                 Text("반포 자이아파트")
