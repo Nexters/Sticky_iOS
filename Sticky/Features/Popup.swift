@@ -8,20 +8,23 @@
 import SwiftUI
 
 struct Popup: ViewModifier {
-    let size: CGSize?
+    let rateOfWidth: CGFloat
+    let rateOfHeight: CGFloat
     let title: String
     let description: String
     let confirmString: String
     let rejectString: String
 
     init(
-        size: CGSize? = nil,
+        rateOfWidth: CGFloat,
+        rateOfHeight: CGFloat,
         title: String,
         description: String,
         confirmString: String,
         rejectString: String
     ) {
-        self.size = size
+        self.rateOfWidth = rateOfWidth
+        self.rateOfHeight = rateOfHeight
         self.title = title
         self.description = description
         self.confirmString = confirmString
@@ -81,7 +84,7 @@ struct Popup: ViewModifier {
                 })
                 .padding(.top, 5)
             }
-            .frame(width: gr.size.width * 0.4, height: gr.size.height * 0.43)
+            .frame(width: gr.size.width * self.rateOfWidth, height: gr.size.height * self.rateOfHeight)
             .background(Color.primary.colorInvert())
             .cornerRadius(20)
             .shadow(color: .gray, radius: 15, x: 5, y: 5)
