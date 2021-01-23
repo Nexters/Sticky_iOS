@@ -36,6 +36,7 @@
 		BBB1EC8325B0887500F5EA37 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EC8225B0887500F5EA37 /* Indicator.swift */; };
 		BBB1EC8E25B088EA00F5EA37 /* GradientRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EC8D25B088EA00F5EA37 /* GradientRoundedButton.swift */; };
 		BBB1ECB825B090A900F5EA37 /* BorderRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1ECB725B090A900F5EA37 /* BorderRoundedButton.swift */; };
+		C23A05A625BBE3F3007339BD /* Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23A05A525BBE3F3007339BD /* Popup.swift */; };
 		EB32FA5725B8414500DC3FAE /* CardSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB608B1325B719440061F394 /* CardSlide.swift */; };
 		EB32FA5D25B8466200DC3FAE /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB32FA5C25B8466200DC3FAE /* View+.swift */; };
 		EB63F51C25B8257C00151A05 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB63F51B25B8257C00151A05 /* Colors.xcassets */; };
@@ -99,6 +100,7 @@
 		BBB1EC8225B0887500F5EA37 /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		BBB1EC8D25B088EA00F5EA37 /* GradientRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientRoundedButton.swift; sourceTree = "<group>"; };
 		BBB1ECB725B090A900F5EA37 /* BorderRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderRoundedButton.swift; sourceTree = "<group>"; };
+		C23A05A525BBE3F3007339BD /* Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popup.swift; sourceTree = "<group>"; };
 		EB32FA5C25B8466200DC3FAE /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		EB608B1325B719440061F394 /* CardSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSlide.swift; sourceTree = "<group>"; };
 		EB63F51B25B8257C00151A05 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -353,6 +355,7 @@
 				BB3D4FCD25B873D100879E49 /* OnBoarding */,
 				EB77449C25B6E81400BF1103 /* Share */,
 				EB77449725B6DE8700BF1103 /* Preview.swift */,
+				C23A05A525BBE3F3007339BD /* Popup.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -570,6 +573,7 @@
 				EB63F52B25B82CBE00151A05 /* Carousel.swift in Sources */,
 				BBB1EC4B25B077E500F5EA37 /* Color.swift in Sources */,
 				BB0A592925BA50D8001F529A /* Summary.swift in Sources */,
+				C23A05A625BBE3F3007339BD /* Popup.swift in Sources */,
 				BBB1EBF225AF3C2100F5EA37 /* StickyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
