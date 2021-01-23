@@ -11,9 +11,7 @@ import SwiftUI
 struct StickyApp: App {
     var body: some Scene {
         WindowGroup {
-//            Onboarding()
-            Share()
-                .environmentObject(UIStateModel())
+            Onboarding()
         }
     }
 }
