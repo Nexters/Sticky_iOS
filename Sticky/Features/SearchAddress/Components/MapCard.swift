@@ -9,17 +9,20 @@ import MapKit
 import SwiftUI
 
 struct MapCard: View {
-    @EnvironmentObject var model: LocationViewModel
+    @EnvironmentObject var searchService: LocationSearchService
 
     var body: some View {
-        Map(coordinateRegion: $model.region)
-            .frame(width: 280, height: 210)
-            .cornerRadius(24)
+        Map(
+            coordinateRegion: $searchService.region,
+            showsUserLocation: true
+        )
+        .frame(width: 280, height: 210)
+        .cornerRadius(24)
     }
 }
 
 struct Map_Previews: PreviewProvider {
     static var previews: some View {
-        MapCard()
+        MapCard().environmentObject(LocationManager())
     }
 }

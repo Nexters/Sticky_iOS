@@ -9,7 +9,8 @@ import SwiftUI
 
 struct SearchAddress: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @State var input: String = ""
+    @EnvironmentObject var locationSearchService: LocationSearchService
+    @State private var isActive = false
 
     var body: some View {
         VStack {
@@ -21,19 +22,20 @@ struct SearchAddress: View {
                     Text("집 주소를 입력해주세요")
                         .font(.system(size: 28))
                         .bold()
-                        .frame(width: 312, height: 36, alignment: .leading)
+                        .frame(
+                            maxWidth: .infinity,
+                            maxHeight: 36,
+                            alignment: .leading
+                        )
                         .padding(.bottom, 16)
-
                     EditText(
-                        input: $input,
+                        input: $locationSearchService.searchQuery,
                         placeholder: "도로명, 건물명 또는 지번으로 검색",
-                        width: 312.0,
-                        height: 48.0,
-                        radius: 12.0,
                         accentColor: .white
                     )
                     .padding(.bottom, 30)
-                    NavigationLink(destination: SearchResult()) {
+                    NavigationLink("", destination: SearchResult(), isActive: self.$isActive)
+                    Button(action: { self.isActive = true }) {
                         BorderRoundedButton(
                             text: "현재 위치로 주소 찾기",
                             borderWidth: 2.0,
@@ -43,17 +45,40 @@ struct SearchAddress: View {
                         )
                     }
                 }
+                .padding(.leading, 16)
+                .padding(.trailing, 16)
             }.frame(
                 minWidth: 0,
                 maxWidth: .infinity,
-                minHeight: 0,
+                minHeight: 257,
                 maxHeight: 257,
                 alignment: .center
             )
             .foregroundColor(.white)
-            Tip().padding(.top, 20)
-//            NotFound().padding(.top, 20)
-//            Result()
+
+            if locationSearchService.searchQuery.count == 0 {
+                Tip().padding(.top, 20)
+            } else {
+                if locationSearchService.completions.count > 0 {
+                    List(locationSearchService.completions) { completion in
+                        Button(action: {
+                            locationSearchService.getLocation(completion: completion)
+                            self.isActive = true
+                        }) {
+                            VStack(alignment: .leading) {
+                                Text(completion.title)
+                                Text(completion.subtitle)
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                            }
+                        }
+                    }
+                    .frame(minHeight: 100)
+                    .padding(.top, 20)
+                } else {
+                    NotFound().padding(.top, 20)
+                }
+            }
             Spacer()
         }
         .navigationBarBackButtonHidden(true)
