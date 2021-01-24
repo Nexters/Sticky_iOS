@@ -36,6 +36,9 @@
 		BBB1EC8325B0887500F5EA37 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EC8225B0887500F5EA37 /* Indicator.swift */; };
 		BBB1EC8E25B088EA00F5EA37 /* GradientRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EC8D25B088EA00F5EA37 /* GradientRoundedButton.swift */; };
 		BBB1ECB825B090A900F5EA37 /* BorderRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1ECB725B090A900F5EA37 /* BorderRoundedButton.swift */; };
+		C202D59525BD365F0033B450 /* PopupMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C202D59425BD365F0033B450 /* PopupMessage.swift */; };
+		C202D5A025BD38CC0033B450 /* PopupStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C202D59F25BD38CC0033B450 /* PopupStateModel.swift */; };
+		C2296FF325BD41D300278E61 /* Notification.Name+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2296FF225BD41D300278E61 /* Notification.Name+.swift */; };
 		C23A05A625BBE3F3007339BD /* Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23A05A525BBE3F3007339BD /* Popup.swift */; };
 		EB32FA5725B8414500DC3FAE /* CardSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB608B1325B719440061F394 /* CardSlide.swift */; };
 		EB32FA5D25B8466200DC3FAE /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB32FA5C25B8466200DC3FAE /* View+.swift */; };
@@ -100,6 +103,9 @@
 		BBB1EC8225B0887500F5EA37 /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		BBB1EC8D25B088EA00F5EA37 /* GradientRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientRoundedButton.swift; sourceTree = "<group>"; };
 		BBB1ECB725B090A900F5EA37 /* BorderRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderRoundedButton.swift; sourceTree = "<group>"; };
+		C202D59425BD365F0033B450 /* PopupMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupMessage.swift; sourceTree = "<group>"; };
+		C202D59F25BD38CC0033B450 /* PopupStateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupStateModel.swift; sourceTree = "<group>"; };
+		C2296FF225BD41D300278E61 /* Notification.Name+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+.swift"; sourceTree = "<group>"; };
 		C23A05A525BBE3F3007339BD /* Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popup.swift; sourceTree = "<group>"; };
 		EB32FA5C25B8466200DC3FAE /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		EB608B1325B719440061F394 /* CardSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSlide.swift; sourceTree = "<group>"; };
@@ -356,6 +362,8 @@
 				EB77449C25B6E81400BF1103 /* Share */,
 				EB77449725B6DE8700BF1103 /* Preview.swift */,
 				C23A05A525BBE3F3007339BD /* Popup.swift */,
+				C202D59425BD365F0033B450 /* PopupMessage.swift */,
+				C202D59F25BD38CC0033B450 /* PopupStateModel.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -379,6 +387,7 @@
 			isa = PBXGroup;
 			children = (
 				EB32FA5C25B8466200DC3FAE /* View+.swift */,
+				C2296FF225BD41D300278E61 /* Notification.Name+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -547,8 +556,10 @@
 				BB1C8A2C25B875020000931A /* AddressItem.swift in Sources */,
 				BB1C8A2925B875020000931A /* Result.swift in Sources */,
 				BB1C8A2A25B875020000931A /* NotFound.swift in Sources */,
+				C202D5A025BD38CC0033B450 /* PopupStateModel.swift in Sources */,
 				BB0A596D25BAD2CF001F529A /* LinkItem.swift in Sources */,
 				BBB1EC8325B0887500F5EA37 /* Indicator.swift in Sources */,
+				C2296FF325BD41D300278E61 /* Notification.Name+.swift in Sources */,
 				EB63F53325B82D3900151A05 /* CardItem.swift in Sources */,
 				EB77449825B6DE8700BF1103 /* Preview.swift in Sources */,
 				BB1C8A1925B874DF0000931A /* Onboarding.swift in Sources */,
@@ -568,6 +579,7 @@
 				BBB1EC7725B0856C00F5EA37 /* EditText.swift in Sources */,
 				BB1C8A2825B875020000931A /* Tip.swift in Sources */,
 				BB0A592425B9C99D001F529A /* MyPage.swift in Sources */,
+				C202D59525BD365F0033B450 /* PopupMessage.swift in Sources */,
 				BB0A592E25BA516A001F529A /* BadgeItem.swift in Sources */,
 				EB32FA5D25B8466200DC3FAE /* View+.swift in Sources */,
 				EB63F52B25B82CBE00151A05 /* Carousel.swift in Sources */,
