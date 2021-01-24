@@ -7,25 +7,16 @@
 
 import SwiftUI
 
-struct Popup: ViewModifier {
+struct Popup<Message: View>: ViewModifier {
     let rateOfWidth: CGFloat?
-    let title: String
-    let description: String
-    let confirmString: String
-    let rejectString: String
+    let message: Message
 
     init(
         rateOfWidth: CGFloat?,
-        title: String,
-        description: String,
-        confirmString: String,
-        rejectString: String
+        message: Message
     ) {
         self.rateOfWidth = rateOfWidth
-        self.title = title
-        self.description = description
-        self.confirmString = confirmString
-        self.rejectString = rejectString
+        self.message = message
     }
 
     func body(content: Content) -> some View {
@@ -34,58 +25,39 @@ struct Popup: ViewModifier {
             .overlay(Rectangle()
                 .fill(Color.black.opacity(0.7)))
             .overlay(popupContent)
+            .animation(.easeIn)
     }
 
     private var popupContent: some View {
         GeometryReader { gr in
-            VStack(alignment: .center) {
-                Text(self.title)
-                    .font(.system(size: 22))
-                    .bold()
-                    .padding(.bottom, 16)
-
-                Text(self.description)
-                    .lineSpacing(2)
-                    .font(.system(size: 20))
-                    .padding(.horizontal, 20)
-                    .multilineTextAlignment(.center)
-
-                Button(action: {
-                    // 확인 클릭
-                }, label: {
-                    Rectangle()
-                        .overlay(Text(self.confirmString)
-                            .font(.system(size: 20))
-                            .bold()
-                            .foregroundColor(.white))
-                        .cornerRadius(30)
-                        .frame(maxHeight: 60)
-                        .foregroundColor(.blue)
-                        .padding(.horizontal, 32)
-
-                })
-                    .padding(.top, 20)
-
-                Button(action: {
-                    // 취소 클릭
-                }, label: {
-                    Rectangle()
-                        .overlay(Text(self.rejectString)
-                            .font(.system(size: 20))
-                            .bold()
-                            .foregroundColor(.black))
-                        .cornerRadius(30)
-                        .frame(maxHeight: 60)
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 32)
-                })
-                .padding(.top, 5)
-            }
+           message
             .frame(width: gr.size.width * (self.rateOfWidth ?? CGFloat(0.8)), height: gr.size.height * 0.43)
             .background(Color.primary.colorInvert())
             .cornerRadius(20)
             .shadow(color: .gray, radius: 15, x: 5, y: 5)
             .position(x: gr.frame(in: .local).midX, y: gr.frame(in: .local).midY)
+        }
+    }
+}
+
+fileprivate struct PopupToggle: ViewModifier{
+    @Binding var isPresented: Bool
+    func body(content: Content) -> some View {
+        content
+    }
+}
+
+extension View{
+    func popup<Content:View>(isPresented: Binding<Bool>,
+                             rateOfWidth: CGFloat?,
+                             @ViewBuilder content: () -> Content) -> some View{
+        if isPresented.wrappedValue{
+            let popup = Popup(rateOfWidth: rateOfWidth ?? 0.8, message: content())
+            let popupToggle = PopupToggle(isPresented: isPresented)
+            let modifiedContent = self.modifier(popup).modifier(popupToggle)
+            return AnyView(modifiedContent)
+        }else{
+            return AnyView(self)
         }
     }
 }
