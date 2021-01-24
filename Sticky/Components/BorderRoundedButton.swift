@@ -13,15 +13,15 @@ struct BorderRoundedButton: View {
     var borderColor: Color
     var fontColor: Color
     var icon: String = ""
-    var width: CGFloat = 312.0
-    var height: CGFloat = 48.0
-    var cornerRadius: CGFloat = 24.0
+    var width: CGFloat?
+    var height: CGFloat?
+    var cornerRadius: CGFloat?
 
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: cornerRadius)
+            RoundedRectangle(cornerRadius: cornerRadius ?? 24.0)
                 .stroke(borderColor, lineWidth: borderWidth)
-                .frame(width: width, height: height)
+                .frame(maxWidth: width ?? .infinity, maxHeight: height ?? 48.0)
             HStack {
                 Image(icon)
                     .foregroundColor(fontColor)
