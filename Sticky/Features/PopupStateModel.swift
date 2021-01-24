@@ -8,6 +8,5 @@
 import Foundation
 
 public class PopupStateModel: ObservableObject {
-            @Published var isPresented: Bool = false
+    @Published var isPresented: Bool = false
 }
-

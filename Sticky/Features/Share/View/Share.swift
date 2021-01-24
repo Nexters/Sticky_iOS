@@ -14,7 +14,7 @@ struct Share: View {
     @State private var items = [
         Card(id: 0, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
         Card(id: 1, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
-        Card(id: 2, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분")
+        Card(id: 2, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
     ]
 
     init() {

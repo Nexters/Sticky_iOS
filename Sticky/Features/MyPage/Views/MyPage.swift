@@ -41,7 +41,8 @@ struct MyPage: View {
                     Image("more")
                         .aspectRatio(contentMode: .fit)
                         .foregroundColor(.black)
-                })
+                }
+            )
         }
         .navigationBarHidden(true)
     }
@@ -57,7 +58,7 @@ struct MyPage: View {
     }
 
     func focusRelease() {
-        self.presentationMode.wrappedValue.dismiss()
+        presentationMode.wrappedValue.dismiss()
     }
 }
 

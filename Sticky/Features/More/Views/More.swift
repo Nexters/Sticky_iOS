@@ -14,16 +14,16 @@ struct More: View {
     var body: some View {
         VStack {
             List {
-                Button(action: { self.selection="address" }) {
+                Button(action: { self.selection = "address" }) {
                     LinkItem(text: "주소 변경")
                 }
-                Button(action: { self.selection="about" }) {
+                Button(action: { self.selection = "about" }) {
                     LinkItem(text: "스티키에 대해서")
                 }
-                Button(action: { self.selection="version" }) {
+                Button(action: { self.selection = "version" }) {
                     LinkItem(text: "버전 정보")
                 }
-                Button(action: { self.selection="license" }) {
+                Button(action: { self.selection = "license" }) {
                     LinkItem(text: "오픈소스 라이센스")
                 }
             }
@@ -73,7 +73,7 @@ struct More: View {
     }
 
     func focusRelease() {
-        self.presentationMode.wrappedValue.dismiss()
+        presentationMode.wrappedValue.dismiss()
     }
 }
 
