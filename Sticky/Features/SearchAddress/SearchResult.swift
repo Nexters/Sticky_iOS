@@ -62,7 +62,7 @@ struct SearchResult: View {
     }
 
     func focusRelease() {
-        self.presentationMode.wrappedValue.dismiss()
+        presentationMode.wrappedValue.dismiss()
     }
 }
 

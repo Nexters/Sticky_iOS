@@ -32,23 +32,23 @@ extension Tier {
      */
     static func of(hours: Int) -> Tier {
         switch hours {
-        case 0..<11:
+        case 0 ..< 11:
             return Tier(major: 1, minor: 0)
-        case 11..<21:
+        case 11 ..< 21:
             return Tier(major: 1, minor: 1)
-        case 21..<31:
+        case 21 ..< 31:
             return Tier(major: 1, minor: 2)
-        case 31..<61:
+        case 31 ..< 61:
             return Tier(major: 2, minor: 0)
-        case 61..<91:
+        case 61 ..< 91:
             return Tier(major: 2, minor: 1)
-        case 91..<121:
+        case 91 ..< 121:
             return Tier(major: 2, minor: 2)
-        case 121..<201:
+        case 121 ..< 201:
             return Tier(major: 3, minor: 0)
-        case 201..<281:
+        case 201 ..< 281:
             return Tier(major: 3, minor: 1)
-        case 281..<361:
+        case 281 ..< 361:
             return Tier(major: 3, minor: 2)
         default:
             return Tier(major: 4, minor: 4)

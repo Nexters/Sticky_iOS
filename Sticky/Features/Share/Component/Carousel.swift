@@ -30,8 +30,8 @@ struct Carousel<Items: View>: View {
         self.numberOfItems = numberOfItems
         self.spacing = spacing
         self.widthOfHiddenCards = widthOfHiddenCards
-        self.totalSpacing = (numberOfItems - 1) * spacing
-        self.cardWidth = UIScreen.main.bounds.width - (widthOfHiddenCards * 2) - (spacing * 2) // 279
+        totalSpacing = (numberOfItems - 1) * spacing
+        cardWidth = UIScreen.main.bounds.width - (widthOfHiddenCards * 2) - (spacing * 2) // 279
     }
 
     var body: some View {
@@ -84,7 +84,7 @@ struct Carousel_Previews: PreviewProvider {
         let items = [
             Card(id: 0, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
             Card(id: 0, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
-            Card(id: 0, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분")
+            Card(id: 0, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
         ]
         return Carousel(
             numberOfItems: CGFloat(items.count),

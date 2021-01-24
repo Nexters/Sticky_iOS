@@ -7,6 +7,6 @@
 
 import Foundation
 
-extension NSNotification{
-    static let confirmPopup = NSNotification.Name.init("confirmPopup")
+extension NSNotification {
+    static let confirmPopup = NSNotification.Name("confirmPopup")
 }
