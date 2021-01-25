@@ -54,7 +54,6 @@ struct TimerOff: View {
                     )
                     .padding(.bottom, 170)
             })
-            
         }
     }
 }
