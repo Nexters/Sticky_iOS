@@ -47,9 +47,8 @@ struct TimerRunning: View {
                                 .foregroundColor(.black)
                         )
                         .padding(.bottom, 170)
-                        .padding(.trailing,20)
+                        .padding(.trailing, 20)
                 })
-                
 
                 Button(action: {
                     self.popupState.isPresented = true
@@ -65,10 +64,8 @@ struct TimerRunning: View {
                                 .foregroundColor(.white)
                         )
                         .padding(.bottom, 170)
-                        .padding(.leading,20)
+                        .padding(.leading, 20)
                 })
-                
-                
             }
         }
     }
