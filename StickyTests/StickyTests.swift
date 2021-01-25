@@ -29,6 +29,6 @@ class StickyTests: XCTestCase {
     }
 
     func testPerformanceExample() throws {
-        measure {}
+        self.measure {}
     }
 }
