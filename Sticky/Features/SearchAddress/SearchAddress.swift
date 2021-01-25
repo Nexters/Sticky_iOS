@@ -71,7 +71,7 @@ struct SearchAddress: View {
     }
 
     func focusRelease() {
-        presentationMode.wrappedValue.dismiss()
+        self.presentationMode.wrappedValue.dismiss()
     }
 }
 
