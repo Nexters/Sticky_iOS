@@ -19,7 +19,7 @@ struct SearchResult: View {
     var body: some View {
         ZStack {
             Color.main.ignoresSafeArea()
-            NavigationLink(destination: Timer(), tag: "timer", selection: $selection) { EmptyView() }
+            NavigationLink(destination: Main(), tag: "main", selection: $selection) { EmptyView() }
             VStack {
                 MapCard()
                     .padding(.bottom, 30)
@@ -34,7 +34,7 @@ struct SearchResult: View {
                     .padding(.bottom, 46)
                 Button(action: {
                     model.setGeofenceMyHome(region: locationSearchService.region)
-                    self.selection = "timer"
+                    self.selection = "main"
                 }) {
                     GradientRoundedButton(
                         content: "집으로 설정하기".localized,

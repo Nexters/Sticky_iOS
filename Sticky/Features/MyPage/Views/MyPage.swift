@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// MARK: - MyPage
+
 struct MyPage: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var level: Int = 0
@@ -60,6 +62,8 @@ struct MyPage: View {
         self.presentationMode.wrappedValue.dismiss()
     }
 }
+
+// MARK: - MyPage_Previews
 
 struct MyPage_Previews: PreviewProvider {
     static var previews: some View {
