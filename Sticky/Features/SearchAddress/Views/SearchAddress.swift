@@ -7,10 +7,13 @@
 
 import SwiftUI
 
+// MARK: - SearchAddress
+
 struct SearchAddress: View {
+    // MARK: Internal
+
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var locationSearchService: LocationSearchService
-    @State private var isActive = false
 
     var body: some View {
         VStack {
@@ -98,7 +101,13 @@ struct SearchAddress: View {
     func focusRelease() {
         self.presentationMode.wrappedValue.dismiss()
     }
+
+    // MARK: Private
+
+    @State private var isActive = false
 }
+
+// MARK: - SearchAddress_Previews
 
 struct SearchAddress_Previews: PreviewProvider {
     static var previews: some View {

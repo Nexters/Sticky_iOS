@@ -7,20 +7,26 @@
 
 import SwiftUI
 
-struct SearchBar: UIViewRepresentable {
-    @Binding var text: String
+// MARK: - SearchBar
 
+struct SearchBar: UIViewRepresentable {
     class Coordinator: NSObject, UISearchBarDelegate {
-        @Binding var text: String
+        // MARK: Lifecycle
 
         init(text: Binding<String>) {
             _text = text
         }
 
+        // MARK: Internal
+
+        @Binding var text: String
+
         func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
             text = searchText
         }
     }
+
+    @Binding var text: String
 
     func makeCoordinator() -> SearchBar.Coordinator {
         return Coordinator(text: $text)
@@ -37,6 +43,8 @@ struct SearchBar: UIViewRepresentable {
         uiView.text = text
     }
 }
+
+// MARK: - SearchBar_Previews
 
 struct SearchBar_Previews: PreviewProvider {
     static var previews: some View {
