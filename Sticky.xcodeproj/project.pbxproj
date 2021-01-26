@@ -13,7 +13,7 @@
 		BB0A593B25BA585A001F529A /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A593A25BA585A001F529A /* Badge.swift */; };
 		BB0A594025BA6EE4001F529A /* Tier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A593F25BA6EE4001F529A /* Tier.swift */; };
 		BB0A594525BA7AB4001F529A /* BadgePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A594425BA7AB4001F529A /* BadgePanel.swift */; };
-		BB0A595925BAC24B001F529A /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A595825BAC24B001F529A /* Timer.swift */; };
+		BB0A595925BAC24B001F529A /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A595825BAC24B001F529A /* Main.swift */; };
 		BB0A596525BAC3F2001F529A /* More.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A596425BAC3F2001F529A /* More.swift */; };
 		BB0A596D25BAD2CF001F529A /* LinkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A596C25BAD2CF001F529A /* LinkItem.swift */; };
 		BB0A597F25BBB1BC001F529A /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A597E25BBB1BC001F529A /* LocationManager.swift */; };
@@ -39,8 +39,13 @@
 		BBB1ECB825B090A900F5EA37 /* BorderRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1ECB725B090A900F5EA37 /* BorderRoundedButton.swift */; };
 		C202D59525BD365F0033B450 /* PopupMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C202D59425BD365F0033B450 /* PopupMessage.swift */; };
 		C202D5A025BD38CC0033B450 /* PopupStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C202D59F25BD38CC0033B450 /* PopupStateModel.swift */; };
+		C2228FCC25BD5EAD00C4DF0B /* MyOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2228FCB25BD5EAD00C4DF0B /* MyOperation.swift */; };
 		C2296FF325BD41D300278E61 /* Notification.Name+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2296FF225BD41D300278E61 /* Notification.Name+.swift */; };
 		C23A05A625BBE3F3007339BD /* Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23A05A525BBE3F3007339BD /* Popup.swift */; };
+		C277C53825BEF98500ADD2EC /* TimerNotRunning.swift in Sources */ = {isa = PBXBuildFile; fileRef = C277C53725BEF98500ADD2EC /* TimerNotRunning.swift */; };
+		C277C53D25BEF9B500ADD2EC /* TimerOff.swift in Sources */ = {isa = PBXBuildFile; fileRef = C277C53C25BEF9B500ADD2EC /* TimerOff.swift */; };
+		C277C54525BEFC4100ADD2EC /* TimerRunning.swift in Sources */ = {isa = PBXBuildFile; fileRef = C277C54425BEFC4100ADD2EC /* TimerRunning.swift */; };
+		C277C5DD25BFFF7100ADD2EC /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = C277C5DC25BFFF7100ADD2EC /* Time.swift */; };
 		EB32FA5725B8414500DC3FAE /* CardSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB608B1325B719440061F394 /* CardSlide.swift */; };
 		EB32FA5D25B8466200DC3FAE /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB32FA5C25B8466200DC3FAE /* View+.swift */; };
 		EB63F51C25B8257C00151A05 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB63F51B25B8257C00151A05 /* Colors.xcassets */; };
@@ -75,7 +80,7 @@
 		BB0A593A25BA585A001F529A /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		BB0A593F25BA6EE4001F529A /* Tier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tier.swift; sourceTree = "<group>"; };
 		BB0A594425BA7AB4001F529A /* BadgePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgePanel.swift; sourceTree = "<group>"; };
-		BB0A595825BAC24B001F529A /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		BB0A595825BAC24B001F529A /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		BB0A596425BAC3F2001F529A /* More.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = More.swift; sourceTree = "<group>"; };
 		BB0A596C25BAD2CF001F529A /* LinkItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkItem.swift; sourceTree = "<group>"; };
 		BB0A597E25BBB1BC001F529A /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -107,8 +112,13 @@
 		BBB1ECB725B090A900F5EA37 /* BorderRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderRoundedButton.swift; sourceTree = "<group>"; };
 		C202D59425BD365F0033B450 /* PopupMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupMessage.swift; sourceTree = "<group>"; };
 		C202D59F25BD38CC0033B450 /* PopupStateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupStateModel.swift; sourceTree = "<group>"; };
+		C2228FCB25BD5EAD00C4DF0B /* MyOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOperation.swift; sourceTree = "<group>"; };
 		C2296FF225BD41D300278E61 /* Notification.Name+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+.swift"; sourceTree = "<group>"; };
 		C23A05A525BBE3F3007339BD /* Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popup.swift; sourceTree = "<group>"; };
+		C277C53725BEF98500ADD2EC /* TimerNotRunning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerNotRunning.swift; sourceTree = "<group>"; };
+		C277C53C25BEF9B500ADD2EC /* TimerOff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerOff.swift; sourceTree = "<group>"; };
+		C277C54425BEFC4100ADD2EC /* TimerRunning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRunning.swift; sourceTree = "<group>"; };
+		C277C5DC25BFFF7100ADD2EC /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		EB32FA5C25B8466200DC3FAE /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		EB608B1325B719440061F394 /* CardSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSlide.swift; sourceTree = "<group>"; };
 		EB63F51B25B8257C00151A05 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -187,6 +197,7 @@
 				BB0A595725BAC23E001F529A /* Components */,
 				BB0A595625BAC23A001F529A /* Models */,
 				BB0A595525BAC236001F529A /* Views */,
+				C277C5DC25BFFF7100ADD2EC /* Time.swift */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
@@ -194,7 +205,10 @@
 		BB0A595525BAC236001F529A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				BB0A595825BAC24B001F529A /* Timer.swift */,
+				BB0A595825BAC24B001F529A /* Main.swift */,
+				C277C53725BEF98500ADD2EC /* TimerNotRunning.swift */,
+				C277C53C25BEF9B500ADD2EC /* TimerOff.swift */,
+				C277C54425BEFC4100ADD2EC /* TimerRunning.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -390,6 +404,7 @@
 		BBB1ECCB25B46C3800F5EA37 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C2228FCB25BD5EAD00C4DF0B /* MyOperation.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -581,6 +596,7 @@
 				EB77449825B6DE8700BF1103 /* Preview.swift in Sources */,
 				BB1C8A1925B874DF0000931A /* Onboarding.swift in Sources */,
 				BBB1EC6725B07B0A00F5EA37 /* String+localize.swift in Sources */,
+				C277C5DD25BFFF7100ADD2EC /* Time.swift in Sources */,
 				EB63F52225B82C2300151A05 /* Card.swift in Sources */,
 				BB0A596525BAC3F2001F529A /* More.swift in Sources */,
 				BB0A594525BA7AB4001F529A /* BadgePanel.swift in Sources */,
@@ -589,6 +605,7 @@
 				BB0A593B25BA585A001F529A /* Badge.swift in Sources */,
 				BB8292CE25BD597200077D8C /* SearchBar.swift in Sources */,
 				BB0A595925BAC24B001F529A /* Timer.swift in Sources */,
+				BB0A595925BAC24B001F529A /* Main.swift in Sources */,
 				BB1C8A2D25B875020000931A /* SearchAddress.swift in Sources */,
 				BBB1ECB825B090A900F5EA37 /* BorderRoundedButton.swift in Sources */,
 				EB32FA5725B8414500DC3FAE /* CardSlide.swift in Sources */,
@@ -597,6 +614,12 @@
 				BB1C8A2B25B875020000931A /* MapCard.swift in Sources */,
 				BBB1EC7725B0856C00F5EA37 /* EditText.swift in Sources */,
 				BB0A597F25BBB1BC001F529A /* LocationManager.swift in Sources */,
+				C2228FCC25BD5EAD00C4DF0B /* MyOperation.swift in Sources */,
+				BB1C8A2B25B875020000931A /* Map.swift in Sources */,
+				BBB1EC7725B0856C00F5EA37 /* EditText.swift in Sources */,
+				C277C54525BEFC4100ADD2EC /* TimerRunning.swift in Sources */,
+				C277C53825BEF98500ADD2EC /* TimerNotRunning.swift in Sources */,
+				C277C53D25BEF9B500ADD2EC /* TimerOff.swift in Sources */,
 				BB1C8A2825B875020000931A /* Tip.swift in Sources */,
 				BB0A592425B9C99D001F529A /* MyPage.swift in Sources */,
 				C202D59525BD365F0033B450 /* PopupMessage.swift in Sources */,
