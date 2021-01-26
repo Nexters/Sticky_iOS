@@ -23,7 +23,7 @@ struct CardItem<Content: View>: View {
         @ViewBuilder _ content: () -> Content
     ) {
         self.content = content()
-        self.cardWidth = UIScreen.main.bounds.width - (widthOfHiddenCards * 2) - (spacing * 2)
+        cardWidth = UIScreen.main.bounds.width - (widthOfHiddenCards * 2) - (spacing * 2)
         self.cardHeight = cardHeight
         self.id = id
     }
@@ -41,7 +41,7 @@ struct CardItem_Previews: PreviewProvider {
         let items = [
             Card(id: 0, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
             Card(id: 0, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
-            Card(id: 0, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분")
+            Card(id: 0, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
         ]
         return ForEach(items, id: \.self.id) { item in
             CardItem(
