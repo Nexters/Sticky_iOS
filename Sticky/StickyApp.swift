@@ -12,6 +12,8 @@ struct StickyApp: App {
     var body: some Scene {
         WindowGroup {
             Onboarding()
+                .environmentObject(LocationManager())
+                .environmentObject(LocationSearchService())
         }
     }
 }

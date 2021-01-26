@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// MARK: - NotFound
+
 struct NotFound: View {
     var body: some View {
         VStack {
@@ -20,6 +22,8 @@ struct NotFound: View {
         }
     }
 }
+
+// MARK: - NotFound_Previews
 
 struct NotFound_Previews: PreviewProvider {
     static var previews: some View {

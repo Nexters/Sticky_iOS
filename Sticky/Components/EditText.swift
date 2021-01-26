@@ -9,13 +9,12 @@ import SwiftUI
 
 struct EditText: View {
     @Binding var input: String
-
     @State private var isEditing = false
+    @State var placeholder: String
 
-    var placeholder: String
-    var width: CGFloat
-    var height: CGFloat
-    var radius: CGFloat
+    var width: CGFloat?
+    var height: CGFloat?
+    var radius: CGFloat?
     var accentColor: Color = .white
 
     var body: some View {
@@ -28,15 +27,14 @@ struct EditText: View {
                         placeholder: placeholder
                     )
                 )
-                .onTapGesture {
-                    self.isEditing = true
-                }
+
             if isEditing {
                 withAnimation {
                     Button(action: {
                         withAnimation {
                             self.isEditing.toggle()
                             self.input = ""
+                            self.placeholder = "도로명, 건물명 또는 지번으로 검색"
                             // Dismiss the keyboard
                             UIApplication.shared.sendAction(
                                 #selector(UIResponder.resignFirstResponder),
@@ -48,11 +46,17 @@ struct EditText: View {
                     })
                 }
             }
+        }.onTapGesture {
+            self.isEditing = true
+            self.placeholder = ""
         }
         .padding()
-        .frame(width: width, height: height)
+        .frame(
+            maxWidth: self.width ?? .infinity,
+            maxHeight: self.height ?? 48
+        )
         .background(
-            RoundedRectangle(cornerRadius: radius)
+            RoundedRectangle(cornerRadius: self.radius ?? 12)
                 .foregroundColor(
                     accentColor
                 )
@@ -70,7 +74,6 @@ struct PlaceholderStyle: ViewModifier {
                 Text(placeholder)
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.leading)
-                    .padding(.horizontal, 15)
             }
             content
                 .foregroundColor(Color.black)
