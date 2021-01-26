@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/Nexters/Sticky_iOS/compare/v1.6.0...v1.7.0) (2021-01-26)
+
+
+### Features
+
+* **timer:** 타이머 ui 구현 ([0bf67a6](https://github.com/Nexters/Sticky_iOS/commit/0bf67a651d626da87d87e69ca3cee2cf11a6d09a))
+* **timer:** 타이머 기능 구현, 백그라운드 및 종료 시에도 시간 복구 기능 구현, 환경객체를 app 단위에서 관리 ([18fb54f](https://github.com/Nexters/Sticky_iOS/commit/18fb54fb23dd5ea03a1af21ed09e048ede42229a))
+
+
+### Bug Fixes
+
+* fix error ([c930ddd](https://github.com/Nexters/Sticky_iOS/commit/c930ddd75f75cea5aef8f3e0ac2e46ab0e46a58b))
+
 ## [1.6.0](https://github.com/Nexters/Sticky_iOS/compare/v1.5.0...v1.6.0) (2021-01-26)
 
 
