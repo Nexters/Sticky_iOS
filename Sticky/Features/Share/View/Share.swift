@@ -14,7 +14,7 @@ struct Share: View {
     @State private var items = [
         Card(id: 0, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
         Card(id: 1, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
-        Card(id: 2, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분")
+        Card(id: 2, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
     ]
 
     init() {
@@ -29,6 +29,7 @@ struct Share: View {
         ZStack {
             // 배경 Color
             Color.blue
+                .edgesIgnoringSafeArea(.vertical)
 
             VStack {
                 HStack(spacing: 16) {
@@ -96,7 +97,6 @@ struct Share: View {
                 .padding(.top, 37)
             }
         }
-        .edgesIgnoringSafeArea(.vertical)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: backButton, trailing: downloadButton)
     }
