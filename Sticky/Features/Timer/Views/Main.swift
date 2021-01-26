@@ -35,7 +35,7 @@ struct Main: View {
     var body: some View {
         ZStack {
             NavigationLink(
-                destination: Share().environmentObject(UIStateModel()),
+                destination: Share(),
                 isActive: $sharePresented
             ) { EmptyView() }
 
