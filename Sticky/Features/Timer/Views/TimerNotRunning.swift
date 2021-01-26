@@ -7,8 +7,13 @@
 
 import SwiftUI
 
+// MARK: - TimerNotRunning
+
 struct TimerNotRunning: View {
-    @Binding var isTimerOn: Timer.TimerType
+    // MARK: Internal
+
+    @EnvironmentObject var time: Time
+
     var body: some View {
         VStack {
 //                NavigationLink(destination: MyPage()) {
@@ -20,27 +25,9 @@ struct TimerNotRunning: View {
 //                }, label: {
 //                    Text("팝업")
 //                })
-            Spacer()
-
-            VStack {
-                Text("0일")
-                    .font(.system(size: 40))
-                    .foregroundColor(.white)
-
-                Text("00:00")
-                    .font(.system(size: 80))
-                    .bold()
-                    .foregroundColor(.white)
-
-                Text("00")
-                    .font(.system(size: 30))
-                    .foregroundColor(.white)
-            }
-            .padding()
-            Spacer()
 
             Button(action: {
-                self.isTimerOn = .running
+                timerClass.type = .running
             }, label: {
                 Circle()
                     .frame(width: 92, height: 92)
@@ -52,14 +39,19 @@ struct TimerNotRunning: View {
                             .frame(width: 30, height: 30)
                             .padding(.leading, 10)
                     )
-                    .padding(.bottom, 170)
             })
         }
     }
+
+    // MARK: Private
+
+    @EnvironmentObject private var timerClass: TimerClass
 }
+
+// MARK: - TimerNotRunning_Previews
 
 struct TimerNotRunning_Previews: PreviewProvider {
     static var previews: some View {
-        TimerNotRunning(isTimerOn: .constant(Timer.TimerType.notRunning))
+        TimerNotRunning()
     }
 }
