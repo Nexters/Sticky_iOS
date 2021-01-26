@@ -7,25 +7,35 @@
 
 import SwiftUI
 
+// MARK: - SearchResult
+
 struct SearchResult: View {
+    // MARK: Internal
+
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var model: LocationManager
+    @EnvironmentObject var locationSearchService: LocationSearchService
+
     var body: some View {
         ZStack {
             Color.main.ignoresSafeArea()
+            NavigationLink(destination: Timer(), tag: "timer", selection: $selection) { EmptyView() }
             VStack {
-                Map()
+                MapCard()
                     .padding(.bottom, 30)
 
-                Text("반포 자이아파트")
+                Text("\(locationSearchService.placemark?.name ?? "알 수 없음")")
                     .font(.system(size: 24))
                     .bold()
                     .padding(.bottom, 8)
 
-                Text("주소는 말줄임 없이 줄바꿈으로 무한대~주소는 말줄임 없이 줄바꿈으로 무한대~주소는 말줄임 없이 줄바꿈으로 무한대~주소는 말줄임 없이 줄바꿈으로 무한대~")
+                Text("\(locationSearchService.placemark?.thoroughfare ?? "알 수 없음")")
                     .font(.system(size: 16))
                     .padding(.bottom, 46)
-
-                NavigationLink(destination: Timer()) {
+                Button(action: {
+                    model.setGeofenceMyHome(region: locationSearchService.region)
+                    self.selection = "timer"
+                }) {
                     GradientRoundedButton(
                         content: "집으로 설정하기".localized,
                         startColor: Color.black,
@@ -64,10 +74,17 @@ struct SearchResult: View {
     func focusRelease() {
         self.presentationMode.wrappedValue.dismiss()
     }
+
+    // MARK: Private
+
+    @State private var selection: String?
 }
+
+// MARK: - SearchResult_Previews
 
 struct SearchResult_Previews: PreviewProvider {
     static var previews: some View {
         SearchResult()
+            .environmentObject(LocationManager())
     }
 }

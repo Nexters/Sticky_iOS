@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// MARK: - Tip
+
 struct Tip: View {
     var body: some View {
         VStack(alignment: .leading) {
@@ -39,6 +41,8 @@ struct Tip: View {
         }.frame(width: 340)
     }
 }
+
+// MARK: - Tip_Previews
 
 struct Tip_Previews: PreviewProvider {
     static var previews: some View {
