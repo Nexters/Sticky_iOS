@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/Nexters/Sticky_iOS/compare/v1.4.1...v1.5.0) (2021-01-26)
+
+
+### Features
+
+* **popup:** popup 화면 구현 ([cb3ec40](https://github.com/Nexters/Sticky_iOS/commit/cb3ec40e7055ff83af3dfc655b9392221d64d9bd))
+
+
+### Bug Fixes
+
+* fix ([73d5bf3](https://github.com/Nexters/Sticky_iOS/commit/73d5bf392987d853600cf6bcb0ad3b6edaa9c4af))
+* fix conflict ([1258a87](https://github.com/Nexters/Sticky_iOS/commit/1258a876d3cf15c35fafc1bb152b594311df97b8))
+* fix conflict ([6c640b5](https://github.com/Nexters/Sticky_iOS/commit/6c640b5cae4e230239dc90b7a293cd899a379de8))
+
 ### [1.4.1](https://github.com/Nexters/Sticky_iOS/compare/v1.4.0...v1.4.1) (2021-01-22)
 
 ## [1.4.0](https://github.com/Nexters/Sticky_iOS/compare/v1.3.0...v1.4.0) (2021-01-22)
