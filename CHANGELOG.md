@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/Nexters/Sticky_iOS/compare/v1.5.0...v1.6.0) (2021-01-26)
+
+
+### Features
+
+* **location:** 주소 검색, 나의 집 설정 구현 ([e5fb536](https://github.com/Nexters/Sticky_iOS/commit/e5fb53650699818f9733c5b17892f70946290fdb))
+* **location:** 현재 위치 표시를 위한 viewmodel 추가 ([4b33a6c](https://github.com/Nexters/Sticky_iOS/commit/4b33a6c4e6fc6c0da0a90c9e1869631da2d94cfb))
+
 ## [1.5.0](https://github.com/Nexters/Sticky_iOS/compare/v1.4.1...v1.5.0) (2021-01-26)
 
 
