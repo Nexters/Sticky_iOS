@@ -8,6 +8,8 @@
 import MapKit
 import SwiftUI
 
+// MARK: - MapCard
+
 struct MapCard: View {
     @EnvironmentObject var searchService: LocationSearchService
 
@@ -20,6 +22,8 @@ struct MapCard: View {
         .cornerRadius(24)
     }
 }
+
+// MARK: - Map_Previews
 
 struct Map_Previews: PreviewProvider {
     static var previews: some View {

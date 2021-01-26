@@ -10,17 +10,10 @@ import Foundation
 import MapKit
 import SwiftUI
 
-class LocationSearchService: NSObject, ObservableObject {
-    @Published var searchQuery: String = ""
-    @Published var completions: [MKLocalSearchCompletion] = []
-    @Published var placemark: CLPlacemark?
-    @Published var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 37.5173209, longitude: 127.0473887),
-        span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
-    )
+// MARK: - LocationSearchService
 
-    var cancellable: AnyCancellable?
-    var completer: MKLocalSearchCompleter
+class LocationSearchService: NSObject, ObservableObject {
+    // MARK: Lifecycle
 
     override init() {
         self.completer = MKLocalSearchCompleter()
@@ -31,7 +24,22 @@ class LocationSearchService: NSObject, ObservableObject {
         )
         self.completer.delegate = self
     }
+
+    // MARK: Internal
+
+    @Published var searchQuery: String = ""
+    @Published var completions: [MKLocalSearchCompletion] = []
+    @Published var placemark: CLPlacemark?
+    @Published var region = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 37.5173209, longitude: 127.0473887),
+        span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+    )
+
+    var cancellable: AnyCancellable?
+    var completer: MKLocalSearchCompleter
 }
+
+// MARK: MKLocalSearchCompleterDelegate
 
 extension LocationSearchService: MKLocalSearchCompleterDelegate {
     func getLocation(completion: MKLocalSearchCompletion) {
@@ -55,5 +63,7 @@ extension LocationSearchService: MKLocalSearchCompleterDelegate {
         self.completions = completer.results
     }
 }
+
+// MARK: - MKLocalSearchCompletion + Identifiable
 
 extension MKLocalSearchCompletion: Identifiable {}

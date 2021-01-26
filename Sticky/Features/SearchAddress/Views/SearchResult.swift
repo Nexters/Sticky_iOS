@@ -7,11 +7,15 @@
 
 import SwiftUI
 
+// MARK: - SearchResult
+
 struct SearchResult: View {
+    // MARK: Internal
+
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var model: LocationManager
     @EnvironmentObject var locationSearchService: LocationSearchService
-    @State private var selection: String?
+
     var body: some View {
         ZStack {
             Color.main.ignoresSafeArea()
@@ -70,7 +74,13 @@ struct SearchResult: View {
     func focusRelease() {
         self.presentationMode.wrappedValue.dismiss()
     }
+
+    // MARK: Private
+
+    @State private var selection: String?
 }
+
+// MARK: - SearchResult_Previews
 
 struct SearchResult_Previews: PreviewProvider {
     static var previews: some View {

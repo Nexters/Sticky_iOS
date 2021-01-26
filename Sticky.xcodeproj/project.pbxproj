@@ -20,14 +20,11 @@
 		BB1C8A1925B874DF0000931A /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A1825B874DF0000931A /* Onboarding.swift */; };
 		BB1C8A2725B875020000931A /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A1F25B875020000931A /* SearchResult.swift */; };
 		BB1C8A2825B875020000931A /* Tip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A2125B875020000931A /* Tip.swift */; };
-		BB1C8A2925B875020000931A /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A2225B875020000931A /* Result.swift */; };
 		BB1C8A2A25B875020000931A /* NotFound.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A2325B875020000931A /* NotFound.swift */; };
 		BB1C8A2B25B875020000931A /* MapCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A2425B875020000931A /* MapCard.swift */; };
-		BB1C8A2C25B875020000931A /* AddressItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A2525B875020000931A /* AddressItem.swift */; };
 		BB1C8A2D25B875020000931A /* SearchAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A2625B875020000931A /* SearchAddress.swift */; };
 		BB8292CE25BD597200077D8C /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8292CD25BD597200077D8C /* SearchBar.swift */; };
 		BB8292D425BD59A200077D8C /* LocationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8292D325BD59A200077D8C /* LocationSearchService.swift */; };
-		BB8292DA25BD59D000077D8C /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8292D925BD59D000077D8C /* Search.swift */; };
 		BBB1EBF225AF3C2100F5EA37 /* StickyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EBF125AF3C2100F5EA37 /* StickyApp.swift */; };
 		BBB1EBF625AF3C2100F5EA37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB1EBF525AF3C2100F5EA37 /* Assets.xcassets */; };
 		BBB1EBF925AF3C2100F5EA37 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB1EBF825AF3C2100F5EA37 /* Preview Assets.xcassets */; };
@@ -85,14 +82,11 @@
 		BB1C8A1825B874DF0000931A /* Onboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		BB1C8A1F25B875020000931A /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		BB1C8A2125B875020000931A /* Tip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tip.swift; sourceTree = "<group>"; };
-		BB1C8A2225B875020000931A /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		BB1C8A2325B875020000931A /* NotFound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotFound.swift; sourceTree = "<group>"; };
 		BB1C8A2425B875020000931A /* MapCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCard.swift; sourceTree = "<group>"; };
-		BB1C8A2525B875020000931A /* AddressItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressItem.swift; sourceTree = "<group>"; };
 		BB1C8A2625B875020000931A /* SearchAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAddress.swift; sourceTree = "<group>"; };
 		BB8292CD25BD597200077D8C /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		BB8292D325BD59A200077D8C /* LocationSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
-		BB8292D925BD59D000077D8C /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		BBB1EBEE25AF3C2100F5EA37 /* Sticky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sticky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBB1EBF125AF3C2100F5EA37 /* StickyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyApp.swift; sourceTree = "<group>"; };
 		BBB1EBF525AF3C2100F5EA37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -275,10 +269,8 @@
 			isa = PBXGroup;
 			children = (
 				BB1C8A2125B875020000931A /* Tip.swift */,
-				BB1C8A2225B875020000931A /* Result.swift */,
 				BB1C8A2325B875020000931A /* NotFound.swift */,
 				BB1C8A2425B875020000931A /* MapCard.swift */,
-				BB1C8A2525B875020000931A /* AddressItem.swift */,
 				BB8292CD25BD597200077D8C /* SearchBar.swift */,
 			);
 			path = Components;
@@ -297,7 +289,6 @@
 			isa = PBXGroup;
 			children = (
 				BB1C8A1F25B875020000931A /* SearchResult.swift */,
-				BB8292D925BD59D000077D8C /* Search.swift */,
 				BB1C8A2625B875020000931A /* SearchAddress.swift */,
 			);
 			path = Views;
@@ -581,8 +572,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB1C8A2725B875020000931A /* SearchResult.swift in Sources */,
-				BB1C8A2C25B875020000931A /* AddressItem.swift in Sources */,
-				BB1C8A2925B875020000931A /* Result.swift in Sources */,
 				BB1C8A2A25B875020000931A /* NotFound.swift in Sources */,
 				C202D5A025BD38CC0033B450 /* PopupStateModel.swift in Sources */,
 				BB0A596D25BAD2CF001F529A /* LinkItem.swift in Sources */,
@@ -591,7 +580,6 @@
 				EB63F53325B82D3900151A05 /* CardItem.swift in Sources */,
 				EB77449825B6DE8700BF1103 /* Preview.swift in Sources */,
 				BB1C8A1925B874DF0000931A /* Onboarding.swift in Sources */,
-				BB8292DA25BD59D000077D8C /* Search.swift in Sources */,
 				BBB1EC6725B07B0A00F5EA37 /* String+localize.swift in Sources */,
 				EB63F52225B82C2300151A05 /* Card.swift in Sources */,
 				BB0A596525BAC3F2001F529A /* More.swift in Sources */,
@@ -799,8 +787,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Stick;
 				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Sticky;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -826,8 +812,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Stick;
 				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Sticky;
 				PRODUCT_NAME = "$(TARGET_NAME)";

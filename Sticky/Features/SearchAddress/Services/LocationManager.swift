@@ -10,27 +10,10 @@ import CoreLocation
 import Foundation
 import MapKit
 
+// MARK: - LocationManager
+
 class LocationManager: NSObject, ObservableObject {
-    private let locationManager = CLLocationManager()
-    let objectWillChange = PassthroughSubject<Void, Never>()
-    private let geocoder = CLGeocoder()
-
-    @Published var status: CLAuthorizationStatus? {
-        willSet { self.objectWillChange.send() }
-    }
-
-    @Published var location: CLLocation? {
-        willSet { self.objectWillChange.send() }
-    }
-
-    @Published var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 37.5173209, longitude: 127.0473887),
-        span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
-    )
-
-    @Published var placemark: CLPlacemark? {
-        willSet { self.objectWillChange.send() }
-    }
+    // MARK: Lifecycle
 
     override init() {
         super.init()
@@ -44,7 +27,34 @@ class LocationManager: NSObject, ObservableObject {
         self.locationManager.activityType = .otherNavigation
         self.locationManager.showsBackgroundLocationIndicator = true
     }
+
+    // MARK: Internal
+
+    let objectWillChange = PassthroughSubject<Void, Never>()
+    @Published var region = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 37.5173209, longitude: 127.0473887),
+        span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+    )
+
+    @Published var status: CLAuthorizationStatus? {
+        willSet { self.objectWillChange.send() }
+    }
+
+    @Published var location: CLLocation? {
+        willSet { self.objectWillChange.send() }
+    }
+
+    @Published var placemark: CLPlacemark? {
+        willSet { self.objectWillChange.send() }
+    }
+
+    // MARK: Private
+
+    private let locationManager = CLLocationManager()
+    private let geocoder = CLGeocoder()
 }
+
+// MARK: CLLocationManagerDelegate
 
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(
