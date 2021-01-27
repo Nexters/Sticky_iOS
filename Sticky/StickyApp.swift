@@ -15,6 +15,7 @@ struct StickyApp: App {
         WindowGroup {
             Onboarding()
                 .environmentObject(PopupStateModel())
+                .environmentObject(UIStateModel())
                 .environmentObject(time)
                 .environmentObject(timerClass)
                 .environmentObject(LocationManager())
