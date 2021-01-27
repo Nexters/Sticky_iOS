@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.7.1](https://github.com/Nexters/Sticky_iOS/compare/v1.7.0...v1.7.1) (2021-01-27)
+
+
+### Bug Fixes
+
+* **carousel:** 카드슬라이더 애니메이션 누락 버그 수정 ([f5b55cc](https://github.com/Nexters/Sticky_iOS/commit/f5b55cc61751ae12b47c1200086e39435d55282d))
+
 ## [1.7.0](https://github.com/Nexters/Sticky_iOS/compare/v1.6.0...v1.7.0) (2021-01-26)
 
 
