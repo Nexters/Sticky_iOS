@@ -26,6 +26,7 @@ class LocationManager: NSObject, ObservableObject {
         self.locationManager.allowsBackgroundLocationUpdates = true
         self.locationManager.activityType = .otherNavigation
         self.locationManager.showsBackgroundLocationIndicator = true
+        self.locationManager.requestLocation()
     }
 
     // MARK: Internal
@@ -40,7 +41,7 @@ class LocationManager: NSObject, ObservableObject {
         willSet { self.objectWillChange.send() }
     }
 
-    @Published var location: CLLocation? {
+    @Published var location = CLLocation() {
         willSet { self.objectWillChange.send() }
     }
 
@@ -73,25 +74,14 @@ extension LocationManager: CLLocationManagerDelegate {
             return
         }
         self.location = location
-        self.geocode()
         self.region.center = CLLocationCoordinate2D(
             latitude: location.coordinate.latitude,
             longitude: location.coordinate.longitude
         )
     }
 
-    private func geocode() {
-        guard let location = self.location else { return }
-        self.geocoder.reverseGeocodeLocation(
-            location,
-            completionHandler: { places, error in
-                if error == nil {
-                    self.placemark = places?[0]
-                } else {
-                    self.placemark = nil
-                }
-            }
-        )
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error: \(error)")
     }
 
     /// 영역 모니터링 시작할 때
