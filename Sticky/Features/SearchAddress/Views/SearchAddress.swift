@@ -5,6 +5,7 @@
 //  Created by deo on 2021/01/14.
 //
 
+import MapKit
 import SwiftUI
 
 // MARK: - SearchAddress
@@ -14,6 +15,7 @@ struct SearchAddress: View {
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var locationSearchService: LocationSearchService
+    @EnvironmentObject var locationManager: LocationManager
 
     var body: some View {
         VStack {
@@ -38,7 +40,15 @@ struct SearchAddress: View {
                     )
                     .padding(.bottom, 30)
                     NavigationLink("", destination: SearchResult(), isActive: self.$isActive)
-                    Button(action: { self.isActive = true }) {
+                    Button(action: {
+                        self.isActive = true
+
+                        let coordinate = self.locationManager.location.coordinate
+                        self.locationSearchService.region = MKCoordinateRegion(
+                            center: CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude),
+                            span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+                        )
+                    }) {
                         BorderRoundedButton(
                             text: "현재 위치로 주소 찾기",
                             borderWidth: 2.0,
