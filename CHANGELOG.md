@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/Nexters/Sticky_iOS/compare/v1.7.1...v1.8.0) (2021-01-29)
+
+
+### Features
+
+* **location:** 현재 위치 저장 및 불러오기 ([c0935bd](https://github.com/Nexters/Sticky_iOS/commit/c0935bdbd180cf830ab2ad87622a9e9105bcf4db))
+* **location:** 현재위치 지오펜스 처리 ([4530a49](https://github.com/Nexters/Sticky_iOS/commit/4530a49673ee1cf4a259f125cbc7256bf8617b71))
+
 ### [1.7.1](https://github.com/Nexters/Sticky_iOS/compare/v1.7.0...v1.7.1) (2021-01-27)
 
 
