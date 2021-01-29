@@ -22,11 +22,10 @@ class LocationManager: NSObject, ObservableObject {
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.startUpdatingLocation()
-        self.locationManager.pausesLocationUpdatesAutomatically = false
+//        self.locationManager.pausesLocationUpdatesAutomatically = false
         self.locationManager.allowsBackgroundLocationUpdates = true
         self.locationManager.activityType = .otherNavigation
         self.locationManager.showsBackgroundLocationIndicator = true
-        self.locationManager.requestLocation()
     }
 
     // MARK: Internal
@@ -36,6 +35,8 @@ class LocationManager: NSObject, ObservableObject {
         center: CLLocationCoordinate2D(latitude: 37.5173209, longitude: 127.0473887),
         span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
     )
+
+    var geofence: CLCircularRegion?
 
     @Published var status: CLAuthorizationStatus? {
         willSet { self.objectWillChange.send() }
@@ -52,7 +53,6 @@ class LocationManager: NSObject, ObservableObject {
     // MARK: Private
 
     private let locationManager = CLLocationManager()
-    private let geocoder = CLGeocoder()
 }
 
 // MARK: CLLocationManagerDelegate
@@ -107,13 +107,14 @@ extension LocationManager: CLLocationManagerDelegate {
     /** 현재 위치를 지오펜싱으로 영역 처리
      */
     func setGeofenceMyHome(region: MKCoordinateRegion) {
-        let geofence = CLCircularRegion(
+        let _geofence = CLCircularRegion(
             center: region.center,
             radius: 100, // 100m
             identifier: "MyHomeRegion"
         )
-        geofence.notifyOnExit = true
-        geofence.notifyOnEntry = true
-        self.locationManager.startMonitoring(for: geofence)
+        _geofence.notifyOnExit = true
+        _geofence.notifyOnEntry = true
+        self.geofence = _geofence
+        self.locationManager.startMonitoring(for: _geofence)
     }
 }
