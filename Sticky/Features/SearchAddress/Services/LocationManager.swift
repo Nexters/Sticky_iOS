@@ -22,7 +22,7 @@ class LocationManager: NSObject, ObservableObject {
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.startUpdatingLocation()
-        self.locationManager.pausesLocationUpdatesAutomatically = false
+//        self.locationManager.pausesLocationUpdatesAutomatically = false
         self.locationManager.allowsBackgroundLocationUpdates = true
         self.locationManager.activityType = .otherNavigation
         self.locationManager.showsBackgroundLocationIndicator = true
@@ -36,11 +36,13 @@ class LocationManager: NSObject, ObservableObject {
         span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
     )
 
+    var geofence: CLCircularRegion?
+
     @Published var status: CLAuthorizationStatus? {
         willSet { self.objectWillChange.send() }
     }
 
-    @Published var location: CLLocation? {
+    @Published var location = CLLocation() {
         willSet { self.objectWillChange.send() }
     }
 
@@ -51,7 +53,6 @@ class LocationManager: NSObject, ObservableObject {
     // MARK: Private
 
     private let locationManager = CLLocationManager()
-    private let geocoder = CLGeocoder()
 }
 
 // MARK: CLLocationManagerDelegate
@@ -73,25 +74,14 @@ extension LocationManager: CLLocationManagerDelegate {
             return
         }
         self.location = location
-        self.geocode()
         self.region.center = CLLocationCoordinate2D(
             latitude: location.coordinate.latitude,
             longitude: location.coordinate.longitude
         )
     }
 
-    private func geocode() {
-        guard let location = self.location else { return }
-        self.geocoder.reverseGeocodeLocation(
-            location,
-            completionHandler: { places, error in
-                if error == nil {
-                    self.placemark = places?[0]
-                } else {
-                    self.placemark = nil
-                }
-            }
-        )
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error: \(error)")
     }
 
     /// 영역 모니터링 시작할 때
@@ -117,13 +107,14 @@ extension LocationManager: CLLocationManagerDelegate {
     /** 현재 위치를 지오펜싱으로 영역 처리
      */
     func setGeofenceMyHome(region: MKCoordinateRegion) {
-        let geofence = CLCircularRegion(
+        let _geofence = CLCircularRegion(
             center: region.center,
             radius: 100, // 100m
             identifier: "MyHomeRegion"
         )
-        geofence.notifyOnExit = true
-        geofence.notifyOnEntry = true
-        self.locationManager.startMonitoring(for: geofence)
+        _geofence.notifyOnExit = true
+        _geofence.notifyOnEntry = true
+        self.geofence = _geofence
+        self.locationManager.startMonitoring(for: _geofence)
     }
 }

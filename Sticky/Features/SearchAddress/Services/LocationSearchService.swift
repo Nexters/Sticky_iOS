@@ -51,8 +51,14 @@ extension LocationSearchService: MKLocalSearchCompleterDelegate {
                 if let location = item.placemark.location {
                     self.placemark = item.placemark
                     self.region = MKCoordinateRegion(
-                        center: CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude),
-                        span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+                        center: CLLocationCoordinate2D(
+                            latitude: location.coordinate.latitude,
+                            longitude: location.coordinate.longitude
+                        ),
+                        span: MKCoordinateSpan(
+                            latitudeDelta: 0.005,
+                            longitudeDelta: 0.005
+                        )
                     )
                 }
             }
