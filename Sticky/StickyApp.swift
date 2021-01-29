@@ -5,7 +5,10 @@
 //  Created by deo on 2021/01/13.
 //
 
+import MapKit
 import SwiftUI
+
+// MARK: - StickyApp
 
 @main
 struct StickyApp: App {
@@ -18,7 +21,7 @@ struct StickyApp: App {
                 .environmentObject(UIStateModel())
                 .environmentObject(time)
                 .environmentObject(timerClass)
-                .environmentObject(LocationManager())
+                .environmentObject(locationManager)
                 .environmentObject(LocationSearchService())
         }
         .onChange(of: scenePhase) { newScenePhase in
@@ -37,6 +40,19 @@ struct StickyApp: App {
                         time.timeData.second = components?.second ?? 0
                     }
                 }
+                let latitude = UserDefaults.standard.double(forKey: "latitude")
+                let longitude = UserDefaults.standard.double(forKey: "longitude")
+                print("latitude: \(latitude)")
+                print("longitude: \(longitude)")
+                locationManager.geofence = CLCircularRegion(
+                    center: CLLocationCoordinate2D(
+                        latitude: latitude,
+                        longitude: longitude
+                    ),
+                    radius: CLLocationDistance(),
+                    identifier: "Myhome"
+                )
+
             case .inactive:
                 print("inActive")
             case .background:
@@ -44,6 +60,12 @@ struct StickyApp: App {
                 if let data = try? PropertyListEncoder().encode(time.timeData) {
                     UserDefaults.standard.set(data, forKey: key_time)
                     UserDefaults.standard.setValue(Date(), forKey: key_date)
+                }
+                if let geofence = locationManager.geofence {
+                    print("latitude: \(geofence.center.latitude)")
+                    print("longitude: \(geofence.center.longitude)")
+                    UserDefaults.standard.set(geofence.center.latitude, forKey: "latitude")
+                    UserDefaults.standard.set(geofence.center.longitude, forKey: "longitude")
                 }
 
             @unknown default:
@@ -57,6 +79,7 @@ struct StickyApp: App {
     @Environment(\.scenePhase) private var scenePhase
     private var time = Time()
     private var timerClass = TimerClass()
+    private var locationManager = LocationManager()
     private let key_time = "time"
     private let key_date = "date"
 
