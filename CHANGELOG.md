@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.1](https://github.com/Nexters/Sticky_iOS/compare/v1.8.0...v1.8.1) (2021-01-30)
+
+
+### Bug Fixes
+
+* **root-view:** 집 주소 설정 시 main 시작, 주소 재설정 시 화면 처리 ([f938b46](https://github.com/Nexters/Sticky_iOS/commit/f938b4636961d7b1595c8061221980e2e4dffe47))
+
 ## [1.8.0](https://github.com/Nexters/Sticky_iOS/compare/v1.7.1...v1.8.0) (2021-01-29)
 
 
