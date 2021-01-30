@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UserNotifications
+import CoreLocation
 
 // MARK: - TimerClass
 
@@ -74,6 +75,21 @@ struct Main: View {
                 }
                 time.timeData.second += 1
             }
+        }
+        //항상이 아닌 경우 표시
+        .onAppear{
+            let manager = CLLocationManager()
+            switch manager.authorizationStatus {
+            case .authorizedAlways:
+                print("항상")
+            default:
+                if let appSettings = URL(string: UIApplication.openSettingsURLString){
+                    print("불러와")
+                    UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+                }
+                print("뭐야")
+            }
+            
         }
         .popup(isPresented: $popupState.isPresented, rateOfWidth: 0.8) {
             PopupMessage(

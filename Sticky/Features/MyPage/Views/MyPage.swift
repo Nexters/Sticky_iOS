@@ -11,11 +11,15 @@ import SwiftUI
 
 struct MyPage: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State private var more = false
     var level: Int = 0
     var camulate: Int = 0
 
     var body: some View {
         ScrollView {
+            NavigationLink(destination: More(more: $more), isActive: $more) {
+                EmptyView()
+            }
             VStack(alignment: .leading, spacing: 20) {
                 Summary()
                     .padding(.bottom, 15)
@@ -37,12 +41,7 @@ struct MyPage: View {
         .navigationBarTitle("마이페이지", displayMode: .inline)
         .navigationBarItems(
             leading: backButton,
-            trailing:
-            NavigationLink(destination: More()) {
-                Image("more")
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(.black)
-            })
+            trailing: moreButton)
     }
 
     var backButton: some View {
@@ -52,6 +51,18 @@ struct MyPage: View {
                     .aspectRatio(contentMode: .fit)
                     .foregroundColor(.black)
             }
+        }
+    }
+
+    var moreButton: some View {
+        Button(action: {
+            self.more = true
+        }) {
+                HStack {
+                    Image("more")
+                        .aspectRatio(contentMode: .fit)
+                        .foregroundColor(.black)
+                }
         }
     }
 

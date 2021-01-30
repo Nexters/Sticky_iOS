@@ -10,6 +10,7 @@ import SwiftUI
 struct More: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var selection: String?
+    @Binding var more: Bool
 
     var body: some View {
         VStack {
@@ -73,12 +74,14 @@ struct More: View {
     }
 
     func focusRelease() {
-        self.presentationMode.wrappedValue.dismiss()
+        print("pop")
+        more = false
+//        self.presentationMode.wrappedValue.dismiss()
     }
 }
 
 struct More_Previews: PreviewProvider {
     static var previews: some View {
-        More()
+        More(more: .constant(true))
     }
 }
