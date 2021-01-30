@@ -9,6 +9,7 @@ import Foundation
 
 // MARK: - Location
 
+/// 집 위치 설정에 사용
 class Location: ObservableObject {
     // MARK: Internal
 
@@ -21,7 +22,7 @@ class Location: ObservableObject {
         let location = CLLocation(latitude: latitude, longitude: longitude)
         self.geocoder.reverseGeocodeLocation(location) { placemarks, error in
             if error != nil {
-                print("something went horribly wrong")
+                print("주소 정보를 가져오지 못했습니다: \(String(describing: error))")
             }
 
             if let placemarks = placemarks {

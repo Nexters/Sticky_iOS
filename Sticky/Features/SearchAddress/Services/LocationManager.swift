@@ -68,8 +68,6 @@ class LocationManager: NSObject, ObservableObject {
 
     // MARK: Private
 
-    private let geocoder = CLGeocoder()
-
     private var flag: Int = 0
     private let locationManager = CLLocationManager()
 }
@@ -77,24 +75,6 @@ class LocationManager: NSObject, ObservableObject {
 // MARK: CLLocationManagerDelegate
 
 extension LocationManager: CLLocationManagerDelegate {
-    func geocode(location: CLLocation) {
-        if !self.geocoder.isGeocoding {
-            self.geocoder.reverseGeocodeLocation(
-                location,
-                completionHandler: { placemarks, error in
-                    if error != nil {
-                        print("something went horribly wrong")
-                    }
-
-                    if let placemarks = placemarks {
-                        self.placemark = placemarks.first
-                        print(placemarks)
-                    }
-                }
-            )
-        }
-    }
-
     func locationManager(
         _ manager: CLLocationManager,
         didChangeAuthorization status: CLAuthorizationStatus
