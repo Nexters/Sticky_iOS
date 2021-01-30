@@ -24,7 +24,7 @@ struct AppMain: View {
 
     var body: some View {
         let rootView = UserDefaults.standard.bool(forKey: "hasGeofence") ?
-            AnyView(Main()) : AnyView(Onboarding())
+            AnyView(Onboarding()) : AnyView(Onboarding())
 
         NavigationView {
             VStack {

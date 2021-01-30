@@ -30,12 +30,10 @@ class LocationManager: NSObject, ObservableObject {
         self.locationManager.activityType = .other
 //        self.locationManager.showsBackgroundLocationIndicator = false
         self.notificationCenter.delegate = self
-        
-        
-        
+
         self.notificationCenter.requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
-            if granted{
-                //항상인지 체크해야함
+            if granted {
+                // 항상인지 체크해야함
                 print("NotificationCenter Authorization Granted!")
             }
         }
@@ -70,6 +68,8 @@ class LocationManager: NSObject, ObservableObject {
 
     // MARK: Private
 
+    private let geocoder = CLGeocoder()
+
     private var flag: Int = 0
     private let locationManager = CLLocationManager()
 }
@@ -77,6 +77,24 @@ class LocationManager: NSObject, ObservableObject {
 // MARK: CLLocationManagerDelegate
 
 extension LocationManager: CLLocationManagerDelegate {
+    func geocode(location: CLLocation) {
+        if !self.geocoder.isGeocoding {
+            self.geocoder.reverseGeocodeLocation(
+                location,
+                completionHandler: { placemarks, error in
+                    if error != nil {
+                        print("something went horribly wrong")
+                    }
+
+                    if let placemarks = placemarks {
+                        self.placemark = placemarks.first
+                        print(placemarks)
+                    }
+                }
+            )
+        }
+    }
+
     func locationManager(
         _ manager: CLLocationManager,
         didChangeAuthorization status: CLAuthorizationStatus
@@ -139,11 +157,11 @@ extension LocationManager: CLLocationManagerDelegate {
             radius: 100, // 100m
             identifier: "MyHomeRegion1"
         )
-        
+
         print(_geofenceExit.hash, _geofenceEnter.hash)
         _geofenceEnter.notifyOnEntry = true
         _geofenceEnter.notifyOnExit = true
-        
+
         _geofenceExit.notifyOnExit = true
         _geofenceExit.notifyOnEntry = true
         self.geofence = _geofenceEnter
