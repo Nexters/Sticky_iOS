@@ -24,12 +24,12 @@ struct AppMain: View {
 
     var body: some View {
         let rootView = UserDefaults.standard.bool(forKey: "hasGeofence") ?
-            AnyView(Onboarding()) : AnyView(Onboarding())
+            AnyView(Main()) : AnyView(Onboarding())
 
         NavigationView {
             VStack {
                 NavigationLink(destination: rootView, isActive: self.$isActive) { EmptyView() }
-
+                    
                 rootView
             }
         }.environment(\.rootPresentationMode, self.$isActive)
