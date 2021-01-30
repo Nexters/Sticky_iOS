@@ -128,29 +128,16 @@ extension LocationManager: CLLocationManagerDelegate {
     /** 현재 위치를 지오펜싱으로 영역 처리
      */
     func setGeofenceMyHome(region: MKCoordinateRegion) {
-        let _geofenceEnter = CLCircularRegion(
+        let _geofence = CLCircularRegion(
             center: region.center,
             radius: 100, // 100m
             identifier: "MyHomeRegion"
         )
-
-        let _geofenceExit = CLCircularRegion(
-            center: region.center,
-            radius: 100, // 100m
-            identifier: "MyHomeRegion1"
-        )
-        
-        print(_geofenceExit.hash, _geofenceEnter.hash)
-        _geofenceEnter.notifyOnEntry = true
-        _geofenceEnter.notifyOnExit = true
-        
-        _geofenceExit.notifyOnExit = true
-        _geofenceExit.notifyOnEntry = true
-        self.geofence = _geofenceEnter
-        scheduleNotification_enter(region: _geofenceEnter)
-        scheduleNotification_exit(region: _geofenceExit)
-        self.locationManager.startMonitoring(for: _geofenceEnter)
-        self.locationManager.startMonitoring(for: _geofenceExit)
+        _geofence.notifyOnExit = true
+        _geofence.notifyOnEntry = false
+        self.geofence = _geofence
+        scheduleNotification_exit(region: _geofence)
+        self.locationManager.startMonitoring(for: _geofence)
     }
 }
 
@@ -159,29 +146,7 @@ extension LocationManager: CLLocationManagerDelegate {
 extension LocationManager: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, openSettingsFor notification: UNNotification?) {}
 
-    func scheduleNotification_enter(region: CLCircularRegion) {
-        print("asd")
-        let center = UNUserNotificationCenter.current()
-
-        center.removeAllPendingNotificationRequests() // deletes pending scheduled notifications, there is a schedule limit qty
-
-        let content = UNMutableNotificationContent()
-        content.title = "들어감"
-        content.body = "Run! This zone is dangerous! :o"
-        content.categoryIdentifier = "alarm"
-        content.sound = UNNotificationSound.default
-
-        // Ex. Trigger within a timeInterval
-        // let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-
-        let trigger = UNLocationNotificationTrigger(region: region, repeats: true)
-
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        self.notificationCenter.add(request)
-    }
-
     func scheduleNotification_exit(region: CLCircularRegion) {
-        print("asd")
         let center = UNUserNotificationCenter.current()
 
         center.removeAllPendingNotificationRequests() // deletes pending scheduled notifications, there is a schedule limit qty
@@ -206,6 +171,6 @@ extension LocationManager: UNUserNotificationCenterDelegate {
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
-        completionHandler([.list, .badge, .sound])
+        completionHandler([.banner, .list, .badge, .sound])
     }
 }
