@@ -5,6 +5,7 @@
 //  Created by deo on 2021/01/20.
 //
 
+import MapKit
 import SwiftUI
 
 // MARK: - SearchResult
@@ -14,7 +15,8 @@ struct SearchResult: View {
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.rootPresentationMode) private var rootPresentationMode: Binding<RootPresentationMode>
-    @EnvironmentObject var model: LocationManager
+    @EnvironmentObject var location: Location
+    @EnvironmentObject var locationManager: LocationManager
     @EnvironmentObject var locationSearchService: LocationSearchService
 
     var body: some View {
@@ -25,16 +27,19 @@ struct SearchResult: View {
                 MapCard()
                     .padding(.bottom, 30)
 
-                Text("\(locationSearchService.placemark?.name ?? "알 수 없음")")
+                Text("\(location.title)")
                     .font(.system(size: 24))
                     .bold()
                     .padding(.bottom, 8)
 
-                Text("\(locationSearchService.placemark?.thoroughfare ?? "알 수 없음")")
+                Text("\(location.subtitle)")
                     .font(.system(size: 16))
                     .padding(.bottom, 46)
                 Button(action: {
-                    model.setGeofenceMyHome(region: locationSearchService.region)
+                    locationManager.setGeofenceMyHome(region: MKCoordinateRegion(
+                        center: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude),
+                        span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+                    ))
                     let hasGeofence = UserDefaults.standard.bool(forKey: "hasGeofence")
                     UserDefaults.standard.setValue(true, forKey: "hasGeofence")
 
