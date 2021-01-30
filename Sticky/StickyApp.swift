@@ -16,7 +16,7 @@ struct StickyApp: App {
 
     var body: some Scene {
         WindowGroup {
-            Onboarding()
+            AppMain()
                 .environmentObject(PopupStateModel())
                 .environmentObject(UIStateModel())
                 .environmentObject(time)
@@ -75,6 +75,9 @@ struct StickyApp: App {
     }
 
     // MARK: Private
+
+    private var latitude = UserDefaults.standard.double(forKey: "latitude")
+    private var longitude = UserDefaults.standard.double(forKey: "longitude")
 
     @Environment(\.scenePhase) private var scenePhase
     private var time = Time()

@@ -37,6 +37,9 @@
 		BBB1EC8325B0887500F5EA37 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EC8225B0887500F5EA37 /* Indicator.swift */; };
 		BBB1EC8E25B088EA00F5EA37 /* GradientRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EC8D25B088EA00F5EA37 /* GradientRoundedButton.swift */; };
 		BBB1ECB825B090A900F5EA37 /* BorderRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1ECB725B090A900F5EA37 /* BorderRoundedButton.swift */; };
+		BBC66EBD25C4E965007687D7 /* AppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC66EBC25C4E965007687D7 /* AppMain.swift */; };
+		BBC66EC825C4F99E007687D7 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC66EC725C4F99E007687D7 /* TimerView.swift */; };
+		BBC66EDE25C5197A007687D7 /* RootPresentationMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC66EDD25C5197A007687D7 /* RootPresentationMode.swift */; };
 		C202D59525BD365F0033B450 /* PopupMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C202D59425BD365F0033B450 /* PopupMessage.swift */; };
 		C202D5A025BD38CC0033B450 /* PopupStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C202D59F25BD38CC0033B450 /* PopupStateModel.swift */; };
 		C2228FCC25BD5EAD00C4DF0B /* MyOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2228FCB25BD5EAD00C4DF0B /* MyOperation.swift */; };
@@ -110,6 +113,9 @@
 		BBB1EC8225B0887500F5EA37 /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		BBB1EC8D25B088EA00F5EA37 /* GradientRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientRoundedButton.swift; sourceTree = "<group>"; };
 		BBB1ECB725B090A900F5EA37 /* BorderRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderRoundedButton.swift; sourceTree = "<group>"; };
+		BBC66EBC25C4E965007687D7 /* AppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMain.swift; sourceTree = "<group>"; };
+		BBC66EC725C4F99E007687D7 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		BBC66EDD25C5197A007687D7 /* RootPresentationMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootPresentationMode.swift; sourceTree = "<group>"; };
 		C202D59425BD365F0033B450 /* PopupMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupMessage.swift; sourceTree = "<group>"; };
 		C202D59F25BD38CC0033B450 /* PopupStateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupStateModel.swift; sourceTree = "<group>"; };
 		C2228FCB25BD5EAD00C4DF0B /* MyOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOperation.swift; sourceTree = "<group>"; };
@@ -223,6 +229,7 @@
 		BB0A595725BAC23E001F529A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				BBC66EC725C4F99E007687D7 /* TimerView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -397,6 +404,8 @@
 				C23A05A525BBE3F3007339BD /* Popup.swift */,
 				C202D59425BD365F0033B450 /* PopupMessage.swift */,
 				C202D59F25BD38CC0033B450 /* PopupStateModel.swift */,
+				BBC66EBC25C4E965007687D7 /* AppMain.swift */,
+				BBC66EDD25C5197A007687D7 /* RootPresentationMode.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -588,6 +597,7 @@
 			files = (
 				BB1C8A2725B875020000931A /* SearchResult.swift in Sources */,
 				BB1C8A2A25B875020000931A /* NotFound.swift in Sources */,
+				BBC66EDE25C5197A007687D7 /* RootPresentationMode.swift in Sources */,
 				C202D5A025BD38CC0033B450 /* PopupStateModel.swift in Sources */,
 				BB0A596D25BAD2CF001F529A /* LinkItem.swift in Sources */,
 				BBB1EC8325B0887500F5EA37 /* Indicator.swift in Sources */,
@@ -620,6 +630,8 @@
 				C277C54525BEFC4100ADD2EC /* TimerRunning.swift in Sources */,
 				C277C53825BEF98500ADD2EC /* TimerNotRunning.swift in Sources */,
 				C277C53D25BEF9B500ADD2EC /* TimerOff.swift in Sources */,
+				BBC66EC825C4F99E007687D7 /* TimerView.swift in Sources */,
+				BBC66EBD25C4E965007687D7 /* AppMain.swift in Sources */,
 				BB1C8A2825B875020000931A /* Tip.swift in Sources */,
 				BB0A592425B9C99D001F529A /* MyPage.swift in Sources */,
 				C202D59525BD365F0033B450 /* PopupMessage.swift in Sources */,

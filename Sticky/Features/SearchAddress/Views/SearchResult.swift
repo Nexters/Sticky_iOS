@@ -13,6 +13,7 @@ struct SearchResult: View {
     // MARK: Internal
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.rootPresentationMode) private var rootPresentationMode: Binding<RootPresentationMode>
     @EnvironmentObject var model: LocationManager
     @EnvironmentObject var locationSearchService: LocationSearchService
 
@@ -34,7 +35,17 @@ struct SearchResult: View {
                     .padding(.bottom, 46)
                 Button(action: {
                     model.setGeofenceMyHome(region: locationSearchService.region)
-                    self.selection = "main"
+                    let hasGeofence = UserDefaults.standard.bool(forKey: "hasGeofence")
+                    UserDefaults.standard.setValue(true, forKey: "hasGeofence")
+
+                    if hasGeofence {
+                        print("집 주소를 변경했습니다")
+                        self.rootPresentationMode.wrappedValue.dismiss()
+                    } else {
+                        print("집 주소를 등록했습니다")
+                        self.selection = "main"
+                    }
+
                 }) {
                     GradientRoundedButton(
                         content: "집으로 설정하기".localized,
