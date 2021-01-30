@@ -1,5 +1,5 @@
 //
-//  Timer.swift
+//  Main.swift
 //  Sticky
 //
 //  Created by deo on 2021/01/22.
@@ -30,7 +30,7 @@ struct Main: View {
     @State var color = Color.main
 
     // 매 초 간격으로 main 쓰레드에서 공통 실행 루프에서 실행
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
         ZStack {
@@ -43,21 +43,9 @@ struct Main: View {
                 .ignoresSafeArea()
             VStack {
                 Spacer()
-                VStack {
-                    Text("\(time.timeData.day)일")
-                        .font(.system(size: 40))
-                        .foregroundColor(.white)
+                TimerView(time: $time.timeData)
+                    .padding(.bottom, 87)
 
-                    Text(String(format: "%02d:%02d", time.timeData.hour, time.timeData.minute))
-                        .font(.system(size: 80))
-                        .bold()
-                        .foregroundColor(.white)
-
-                    Text(String(format: "%02d", time.timeData.second))
-                        .font(.system(size: 30))
-                        .foregroundColor(.white)
-                }
-                .padding(.bottom, 87)
                 setView()
                 Spacer().frame(height: 100)
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -73,6 +61,7 @@ struct Main: View {
                 .padding(.leading, 16)
                 .padding(.bottom, 20)
             }
+            .navigationBarBackButtonHidden(true)
         }
         .onReceive(timer) { _ in
             if timerClass.type == .running {
@@ -86,8 +75,6 @@ struct Main: View {
                 time.timeData.second += 1
             }
         }
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: mypageButton)
         .popup(isPresented: $popupState.isPresented, rateOfWidth: 0.8) {
             PopupMessage(
                 isPresented: $popupState.isPresented,
@@ -98,7 +85,9 @@ struct Main: View {
             ) {
                 self.sharePresented = true
             }
-        }.ignoresSafeArea(.all)
+        }
+        .ignoresSafeArea(.all)
+        .navigationBarItems(leading: mypageButton)
     }
 
     private var mypageButton: some View {
