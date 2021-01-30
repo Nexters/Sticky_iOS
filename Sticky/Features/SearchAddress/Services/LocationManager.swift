@@ -9,6 +9,7 @@ import Combine
 import CoreLocation
 import Foundation
 import MapKit
+import UserNotifications
 
 // MARK: - LocationManager
 
@@ -17,19 +18,32 @@ class LocationManager: NSObject, ObservableObject {
 
     override init() {
         super.init()
+
         self.locationManager.delegate = self
+        self.locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.startUpdatingLocation()
-//        self.locationManager.pausesLocationUpdatesAutomatically = false
         self.locationManager.allowsBackgroundLocationUpdates = true
-        self.locationManager.activityType = .otherNavigation
-        self.locationManager.showsBackgroundLocationIndicator = true
+//        self.locationManager.pausesLocationUpdatesAutomatically = false
+        self.locationManager.activityType = .other
+//        self.locationManager.showsBackgroundLocationIndicator = false
+        self.notificationCenter.delegate = self
+        
+        
+        
+        self.notificationCenter.requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
+            if granted{
+                //항상인지 체크해야함
+                print("NotificationCenter Authorization Granted!")
+            }
+        }
     }
 
     // MARK: Internal
 
+    let notificationCenter = UNUserNotificationCenter.current()
     let objectWillChange = PassthroughSubject<Void, Never>()
     @Published var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 37.5173209, longitude: 127.0473887),
@@ -50,8 +64,13 @@ class LocationManager: NSObject, ObservableObject {
         willSet { self.objectWillChange.send() }
     }
 
+    func setNotPause() {
+        self.locationManager.pausesLocationUpdatesAutomatically = false
+    }
+
     // MARK: Private
 
+    private var flag: Int = 0
     private let locationManager = CLLocationManager()
 }
 
@@ -94,6 +113,7 @@ extension LocationManager: CLLocationManagerDelegate {
      */
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         print("Enter: \(self.region.center)")
+        self.flag = 1
     }
 
     /** 영역을 벗어났을 때
@@ -102,19 +122,90 @@ extension LocationManager: CLLocationManagerDelegate {
      */
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         print("Exit: \(self.region.center)")
+        self.flag = 2
     }
 
     /** 현재 위치를 지오펜싱으로 영역 처리
      */
     func setGeofenceMyHome(region: MKCoordinateRegion) {
-        let _geofence = CLCircularRegion(
+        let _geofenceEnter = CLCircularRegion(
             center: region.center,
             radius: 100, // 100m
             identifier: "MyHomeRegion"
         )
-        _geofence.notifyOnExit = true
-        _geofence.notifyOnEntry = true
-        self.geofence = _geofence
-        self.locationManager.startMonitoring(for: _geofence)
+
+        let _geofenceExit = CLCircularRegion(
+            center: region.center,
+            radius: 100, // 100m
+            identifier: "MyHomeRegion1"
+        )
+        
+        print(_geofenceExit.hash, _geofenceEnter.hash)
+        _geofenceEnter.notifyOnEntry = true
+        _geofenceEnter.notifyOnExit = true
+        
+        _geofenceExit.notifyOnExit = true
+        _geofenceExit.notifyOnEntry = true
+        self.geofence = _geofenceEnter
+        scheduleNotification_enter(region: _geofenceEnter)
+        scheduleNotification_exit(region: _geofenceExit)
+        self.locationManager.startMonitoring(for: _geofenceEnter)
+        self.locationManager.startMonitoring(for: _geofenceExit)
+    }
+}
+
+// MARK: UNUserNotificationCenterDelegate
+
+extension LocationManager: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, openSettingsFor notification: UNNotification?) {}
+
+    func scheduleNotification_enter(region: CLCircularRegion) {
+        print("asd")
+        let center = UNUserNotificationCenter.current()
+
+        center.removeAllPendingNotificationRequests() // deletes pending scheduled notifications, there is a schedule limit qty
+
+        let content = UNMutableNotificationContent()
+        content.title = "들어감"
+        content.body = "Run! This zone is dangerous! :o"
+        content.categoryIdentifier = "alarm"
+        content.sound = UNNotificationSound.default
+
+        // Ex. Trigger within a timeInterval
+        // let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+
+        let trigger = UNLocationNotificationTrigger(region: region, repeats: true)
+
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        self.notificationCenter.add(request)
+    }
+
+    func scheduleNotification_exit(region: CLCircularRegion) {
+        print("asd")
+        let center = UNUserNotificationCenter.current()
+
+        center.removeAllPendingNotificationRequests() // deletes pending scheduled notifications, there is a schedule limit qty
+
+        let content = UNMutableNotificationContent()
+        content.title = "나가기"
+        content.body = "Run! This zone is dangerous! :o"
+        content.categoryIdentifier = "alarm"
+        content.sound = UNNotificationSound.default
+
+        // Ex. Trigger within a timeInterval
+        // let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+
+        let trigger = UNLocationNotificationTrigger(region: region, repeats: true)
+
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        self.notificationCenter.add(request)
+    }
+
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
+        completionHandler([.list, .badge, .sound])
     }
 }
