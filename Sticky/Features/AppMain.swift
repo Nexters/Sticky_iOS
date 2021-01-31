@@ -24,13 +24,12 @@ struct AppMain: View {
         let rootView = UserDefaults.standard.bool(forKey: "hasGeofence") ?
             AnyView(Main()) : AnyView(LocationPermission())
 
-        NavigationView {
-            VStack {
-                NavigationLink(destination: rootView, isActive: self.$isActive) { EmptyView() }
+        VStack {
+            NavigationLink(destination: rootView, isActive: self.$isActive) { EmptyView() }
 
-                rootView
-            }
-        }.environment(\.rootPresentationMode, self.$isActive)
+            rootView
+        }
+        .environment(\.rootPresentationMode, self.$isActive)
     }
 
     // MARK: Private

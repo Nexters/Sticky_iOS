@@ -30,64 +30,66 @@ struct Main: View {
     @State var sharePresented: Bool = false
     @State var color = Color.Palette.primary
     @State var selection: String? = ""
+    @State var timer: Timer? = nil
+    @State static var firstAppear: Bool = true
 
     // 매 초 간격으로 main 쓰레드에서 공통 실행 루프에서 실행
-    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        ZStack {
-            NavigationLink(
-                destination: Share(),
-                isActive: $sharePresented
-            ) { EmptyView() }
-            NavigationLink(destination: MyPage(), tag: "mypage", selection: self.$selection) { EmptyView() }
-            NavigationLink(destination: MyPage(), tag: "exit", selection: self.$selection) { EmptyView() }
-            setColor()
-                .ignoresSafeArea()
-            Image("blue_sticky")
-            VStack {
-                Spacer()
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        Button(action: {}) {
-                            RoundedRectangle(cornerRadius: 20)
-                                .frame(width: 172, height: 60)
-                                .foregroundColor(Color.TextIconColor.secondary)
-                                .overlay(
-                                    HStack {
-                                        Text("hi")
-                                    }
-                                )
-                        }
-                        Button(action: {}) {
-                            RoundedRectangle(cornerRadius: 20)
-                                .frame(width: 172, height: 60)
-                                .foregroundColor(Color.TextIconColor.secondary)
-                                .overlay(
-                                    HStack {
-                                        Text("hi")
-                                    }
-                                )
-                        }
-                        Button(action: {}) {
-                            RoundedRectangle(cornerRadius: 20)
-                                .frame(width: 96, height: 60)
-                                .foregroundColor(Color.TextIconColor.secondary)
-                                .overlay(
-                                    HStack {
-                                        Text("더보기")
-                                        Image("arrow_right")
-                                    }
-                                )
+        NavigationView {
+            ZStack {
+                NavigationLink(
+                    destination: Share(),
+                    isActive: $sharePresented
+                ) { EmptyView() }
+                NavigationLink(destination: MyPage(), tag: "mypage", selection: self.$selection) { EmptyView() }
+                NavigationLink(destination: MyPage(), tag: "exit", selection: self.$selection) { EmptyView() }
+                setColor()
+                    .ignoresSafeArea()
+                Image("blue_sticky")
+                VStack {
+                    Spacer()
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            Button(action: {}) {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .frame(width: 172, height: 60)
+                                    .foregroundColor(Color.TextIconColor.secondary)
+                                    .overlay(
+                                        HStack {
+                                            Text("hi")
+                                        }
+                                    )
+                            }
+                            Button(action: {}) {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .frame(width: 172, height: 60)
+                                    .foregroundColor(Color.TextIconColor.secondary)
+                                    .overlay(
+                                        HStack {
+                                            Text("hi")
+                                        }
+                                    )
+                            }
+                            Button(action: {}) {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .frame(width: 96, height: 60)
+                                    .foregroundColor(Color.TextIconColor.secondary)
+                                    .overlay(
+                                        HStack {
+                                            Text("더보기")
+                                            Image("arrow_right")
+                                        }
+                                    )
+                            }
                         }
                     }
-                }
-                .foregroundColor(.black)
-                .padding(.leading, 16)
+                    .foregroundColor(.black)
+                    .padding(.leading, 16)
 
-                Spacer()
-                TimerView(time: $time.timeData)
-                    .padding(.bottom, 87)
+                    Spacer()
+                    TimerView(time: $time.timeData)
+                        .padding(.bottom, 87)
 
 //                setView()
 //                GradientRoundedButton(
@@ -108,46 +110,57 @@ struct Main: View {
 //                    cornerRadius: 16.0,
 //                    fontColor: Color.black
 //                )
-                Spacer().frame(height: 100)
-                Button(action: {}) {
-                    GradientRoundedButton(
-                        content: "시작하기".localized,
-                        startColor: Color.black,
-                        endColor: Color.black,
-                        width: 328,
-                        height: 60,
-                        cornerRadius: 16.0,
-                        fontColor: Color.white
-                    ).padding(.bottom, 24)
+                    Spacer().frame(height: 100)
+                    Button(action: {}) {
+                        GradientRoundedButton(
+                            content: "시작하기".localized,
+                            startColor: Color.black,
+                            endColor: Color.black,
+                            width: 328,
+                            height: 60,
+                            cornerRadius: 16.0,
+                            fontColor: Color.white
+                        ).padding(.bottom, 24)
+                    }
                 }
             }
             .navigationBarBackButtonHidden(true)
         }
-        .onReceive(timer) { _ in
-            if timerClass.type == .running {
-                if time.timeData.minute == 60 {
-                    time.timeData.hour += 1
-                    time.timeData.minute = 0
-                } else if time.timeData.second == 60 {
-                    time.timeData.minute += 1
-                    time.timeData.second = 0
-                }
-                time.timeData.second += 1
-            }
-        }
+//        .onReceive(timer) { _ in
+//            if timerClass.type == .running {
+//                if time.timeData.minute == 60 {
+//                    time.timeData.hour += 1
+//                    time.timeData.minute = 0
+//                } else if time.timeData.second == 60 {
+//                    time.timeData.minute += 1
+//                    time.timeData.second = 0
+//                }
+//                time.timeData.second += 1
+//            }
+//        }
         // 항상이 아닌 경우 표시
         .onAppear {
-            let manager = CLLocationManager()
-            switch manager.authorizationStatus {
-            case .authorizedAlways:
-                print("항상")
-            default:
-                if let appSettings = URL(string: UIApplication.openSettingsURLString) {
-                    print("불러와")
-                    UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+            if Main.firstAppear {
+                Main.firstAppear = false
+                print("appear")
+                startTimer()
+                let manager = CLLocationManager()
+                switch manager.authorizationStatus {
+                case .authorizedAlways:
+                    print("항상")
+                default:
+                    if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                        print("불러와")
+                        UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+                    }
+                    print("뭐야")
                 }
-                print("뭐야")
+            } else {
+                print("not FIrst")
             }
+        }
+        .onDisappear {
+            print("disappear")
         }
         .popup(isPresented: $popupState.isPresented, rateOfWidth: 0.8) {
             PopupMessage(
@@ -169,6 +182,26 @@ struct Main: View {
             Image("menu")
                 .aspectRatio(contentMode: .fit)
                 .foregroundColor(.black)
+        }
+    }
+
+    func startTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
+            addSecond()
+        })
+    }
+
+    func addSecond() {
+        print("add")
+        if timerClass.type == .running {
+            if time.timeData.minute == 60 {
+                time.timeData.hour += 1
+                time.timeData.minute = 0
+            } else if time.timeData.second == 60 {
+                time.timeData.minute += 1
+                time.timeData.second = 0
+            }
+            time.timeData.second += 1
         }
     }
 
