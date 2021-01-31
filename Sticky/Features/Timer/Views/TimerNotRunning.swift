@@ -27,19 +27,18 @@ struct TimerNotRunning: View {
 //                })
 
             Button(action: {
-                timerClass.type = .running
-            }, label: {
-                Circle()
-                    .frame(width: 92, height: 92)
-                    .foregroundColor(.white)
-                    .shadow(color: .black, radius: 10, x: 2, y: 2)
-                    .overlay(
-                        Image(systemName: "play.fill")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                            .padding(.leading, 10)
-                    )
-            })
+                self.timerClass.type = .running
+            }) {
+                GradientRoundedButton(
+                    content: "시작하기".localized,
+                    startColor: Color.black,
+                    endColor: Color.black,
+                    width: 328,
+                    height: 60,
+                    cornerRadius: 16.0,
+                    fontColor: Color.white
+                ).padding(.bottom, 24)
+            }
         }
     }
 
