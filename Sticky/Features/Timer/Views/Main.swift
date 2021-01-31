@@ -126,6 +126,8 @@ struct Main: View {
                 }
             }
             .navigationBarBackButtonHidden(true)
+            .ignoresSafeArea(.all)
+            .navigationBarItems(leading: mypageButton, trailing: stopButton)
         }
 //        .onReceive(timer) { _ in
 //            if timerClass.type == .running {
@@ -141,12 +143,8 @@ struct Main: View {
 //        }
         // 항상이 아닌 경우 표시
         .onAppear {
-                print("appear")
                 startTimer()
 
-        }
-        .onDisappear {
-            print("disappear")
         }
         .popup(isPresented: $popupState.isPresented, rateOfWidth: 0.8) {
             PopupMessage(
@@ -159,8 +157,6 @@ struct Main: View {
                 self.sharePresented = true
             }
         }
-        .ignoresSafeArea(.all)
-        .navigationBarItems(leading: mypageButton, trailing: stopButton)
     }
 
     private var mypageButton: some View {
@@ -178,7 +174,6 @@ struct Main: View {
     }
 
     func addSecond() {
-        print("add")
         if timerClass.type == .running {
             if time.timeData.minute == 60 {
                 time.timeData.hour += 1
