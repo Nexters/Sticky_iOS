@@ -19,13 +19,14 @@ struct SearchAddress: View {
     @EnvironmentObject var location: Location
 
     var body: some View {
-        VStack {
-            ZStack {
-                Color.main
-                    .ignoresSafeArea()
-
+        ZStack {
+            NavigationLink(destination: SearchResult(), isActive: self.$isActive) { EmptyView() }
+            Color.white
+                .ignoresSafeArea()
+            VStack {
                 VStack {
                     Text("집 주소를 입력해주세요")
+                        .foregroundColor(Color.black)
                         .font(.system(size: 28))
                         .bold()
                         .frame(
@@ -33,14 +34,15 @@ struct SearchAddress: View {
                             maxHeight: 36,
                             alignment: .leading
                         )
-                        .padding(.bottom, 16)
+                        .padding(.vertical, 16)
+
                     EditText(
                         input: $locationSearchService.searchQuery,
                         placeholder: "도로명, 건물명 또는 지번으로 검색",
                         accentColor: .white
                     )
-                    .padding(.bottom, 30)
-                    NavigationLink("", destination: SearchResult(), isActive: self.$isActive)
+                    .padding(.bottom, 8)
+
                     Button(action: {
                         self.isActive = true
                         let coordinate = self.locationManager.location.coordinate
@@ -50,64 +52,69 @@ struct SearchAddress: View {
                         BorderRoundedButton(
                             text: "현재 위치로 주소 찾기",
                             borderWidth: 2.0,
-                            borderColor: Color.gray200,
-                            fontColor: .white,
-                            icon: "ic_here"
+                            borderColor: Color.Border.primary,
+                            fontColor: Color.TextIconLight.primary,
+                            icon: "here",
+                            cornerRadius: 16.0
                         )
                     }
-                }
-                .padding(.horizontal, 16)
-            }.frame(
-                minWidth: 0,
-                maxWidth: .infinity,
-                minHeight: 257,
-                maxHeight: 257,
-                alignment: .center
-            )
-            .foregroundColor(.white)
+                }.padding(.horizontal, 16)
 
-            if locationSearchService.searchQuery.count == 0 {
-                Tip().padding(.top, 20)
-            } else {
-                if locationSearchService.completions.count > 0 {
-                    List(locationSearchService.completions) { completion in
-                        Button(action: {
-                            locationSearchService.getLocation(completion: completion)
-                            let coordinate = locationSearchService.region.center
-                            self.location.latitude = coordinate.latitude
-                            self.location.longitude = coordinate.longitude
-                            self.location.title = completion.title
-                            self.location.subtitle = completion.subtitle
-                            self.isActive = true
-                        }) {
-                            VStack(alignment: .leading) {
-                                Text(completion.title)
-                                Text(completion.subtitle)
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                            }
+                Divider().padding(.vertical, 16)
+
+                VStack {
+                    if locationSearchService.searchQuery.count == 0 {
+                        Tip()
+                    } else {
+                        if locationSearchService.completions.count > 0 {
+                            List {
+                                // List에서는 RowInsets로 좌우 패딩이 안지워지므로 ForEach 사용
+                                ForEach(locationSearchService.completions) {
+                                    completion in
+                                    Button(action: { searchByCompletion(completion: completion) }) {
+                                        VStack(alignment: .leading) {
+                                            Text(completion.title)
+                                            Text(completion.subtitle)
+                                                .font(.subheadline)
+                                                .foregroundColor(.gray)
+                                        }
+                                    }
+                                    .listRowInsets(
+                                        EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0)
+                                    )
+                                }
+                            }.frame(minHeight: 100)
+                        } else {
+                            NotFound()
                         }
                     }
-                    .frame(minHeight: 100)
-                    .padding(.top, 20)
-                } else {
-                    NotFound().padding(.top, 20)
-                }
+                }.padding(.horizontal, 16)
+                Spacer()
             }
-            Spacer()
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: backButton)
+        .navigationBarTitle("", displayMode: .inline)
     }
 
     var backButton: some View {
         Button(action: focusRelease) {
             HStack {
-                Image("left-arrow")
+                Image("back")
                     .aspectRatio(contentMode: .fit)
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
             }
         }
+    }
+
+    func searchByCompletion(completion: MKLocalSearchCompletion) {
+        self.locationSearchService.getLocation(completion: completion)
+        let coordinate = self.locationSearchService.region.center
+        self.location.latitude = coordinate.latitude
+        self.location.longitude = coordinate.longitude
+        self.location.title = completion.title
+        self.location.subtitle = completion.subtitle
+        self.isActive = true
     }
 
     func focusRelease() {
@@ -124,5 +131,8 @@ struct SearchAddress: View {
 struct SearchAddress_Previews: PreviewProvider {
     static var previews: some View {
         SearchAddress()
+            .environmentObject(LocationSearchService())
+            .environmentObject(Location())
+            .environmentObject(LocationManager())
     }
 }
