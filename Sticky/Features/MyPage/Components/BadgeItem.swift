@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// MARK: - BadgeItem
+
 struct BadgeItem: View {
     var title: String
     var date: String
@@ -16,16 +18,18 @@ struct BadgeItem: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 20)
                     .frame(width: 79, height: 79)
-                    .foregroundColor(Color.pink64)
+                    .foregroundColor(Color.Palette.negative)
             }
             .frame(width: 99, height: 99)
 
             Text("\(title)")
             Text("\(date)")
-                .foregroundColor(Color.gray88)
+                .foregroundColor(Color.GrayScale._500)
         }
     }
 }
+
+// MARK: - BadgeItem_Previews
 
 struct BadgeItem_Previews: PreviewProvider {
     static var previews: some View {
