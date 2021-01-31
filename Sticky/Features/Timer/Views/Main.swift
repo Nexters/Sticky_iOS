@@ -5,9 +5,9 @@
 //  Created by deo on 2021/01/22.
 //
 
+import CoreLocation
 import SwiftUI
 import UserNotifications
-import CoreLocation
 
 // MARK: - TimerClass
 
@@ -28,7 +28,8 @@ struct Main: View {
     @EnvironmentObject private var time: Time
     @EnvironmentObject private var timerClass: TimerClass
     @State var sharePresented: Bool = false
-    @State var color = Color.main
+    @State var color = Color.Palette.primary
+    @State var selection: String? = ""
 
     // 매 초 간격으로 main 쓰레드에서 공통 실행 루프에서 실행
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -39,28 +40,86 @@ struct Main: View {
                 destination: Share(),
                 isActive: $sharePresented
             ) { EmptyView() }
-
+            NavigationLink(destination: MyPage(), tag: "mypage", selection: self.$selection) { EmptyView() }
+            NavigationLink(destination: MyPage(), tag: "exit", selection: self.$selection) { EmptyView() }
             setColor()
                 .ignoresSafeArea()
+            Image("blue_sticky")
             VStack {
+                Spacer()
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        Button(action: {}) {
+                            RoundedRectangle(cornerRadius: 20)
+                                .frame(width: 172, height: 60)
+                                .foregroundColor(Color.TextIconColor.secondary)
+                                .overlay(
+                                    HStack {
+                                        Text("hi")
+                                    }
+                                )
+                        }
+                        Button(action: {}) {
+                            RoundedRectangle(cornerRadius: 20)
+                                .frame(width: 172, height: 60)
+                                .foregroundColor(Color.TextIconColor.secondary)
+                                .overlay(
+                                    HStack {
+                                        Text("hi")
+                                    }
+                                )
+                        }
+                        Button(action: {}) {
+                            RoundedRectangle(cornerRadius: 20)
+                                .frame(width: 96, height: 60)
+                                .foregroundColor(Color.TextIconColor.secondary)
+                                .overlay(
+                                    HStack {
+                                        Text("더보기")
+                                        Image("arrow_right")
+                                    }
+                                )
+                        }
+                    }
+                }
+                .foregroundColor(.black)
+                .padding(.leading, 16)
+
                 Spacer()
                 TimerView(time: $time.timeData)
                     .padding(.bottom, 87)
 
-                setView()
+//                setView()
+//                GradientRoundedButton(
+//                    content: "집에서만 시작할 수 있어요".localized,
+//                    startColor: Color.GrayScale._600,
+//                    endColor: Color.GrayScale._600,
+//                    width: 328,
+//                    height: 60,
+//                    cornerRadius: 16.0,
+//                    fontColor: Color.black
+//                )
+//                GradientRoundedButton(
+//                    content: "집에서만 시작할 수 있어요".localized,
+//                    startColor: Color.GrayScale._600,
+//                    endColor: Color.GrayScale._600,
+//                    width: 328,
+//                    height: 60,
+//                    cornerRadius: 16.0,
+//                    fontColor: Color.black
+//                )
                 Spacer().frame(height: 100)
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        RoundedRectangle(cornerRadius: 20)
-                            .frame(width: 252, height: 74)
-                        RoundedRectangle(cornerRadius: 20)
-                            .frame(width: 252, height: 74)
-                        RoundedRectangle(cornerRadius: 20)
-                            .frame(width: 252, height: 74)
-                    }
+                Button(action: {}) {
+                    GradientRoundedButton(
+                        content: "시작하기".localized,
+                        startColor: Color.black,
+                        endColor: Color.black,
+                        width: 328,
+                        height: 60,
+                        cornerRadius: 16.0,
+                        fontColor: Color.white
+                    ).padding(.bottom, 24)
                 }
-                .padding(.leading, 16)
-                .padding(.bottom, 20)
             }
             .navigationBarBackButtonHidden(true)
         }
@@ -76,20 +135,19 @@ struct Main: View {
                 time.timeData.second += 1
             }
         }
-        //항상이 아닌 경우 표시
-        .onAppear{
+        // 항상이 아닌 경우 표시
+        .onAppear {
             let manager = CLLocationManager()
             switch manager.authorizationStatus {
             case .authorizedAlways:
                 print("항상")
             default:
-                if let appSettings = URL(string: UIApplication.openSettingsURLString){
+                if let appSettings = URL(string: UIApplication.openSettingsURLString) {
                     print("불러와")
                     UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
                 }
                 print("뭐야")
             }
-            
         }
         .popup(isPresented: $popupState.isPresented, rateOfWidth: 0.8) {
             PopupMessage(
@@ -103,16 +161,22 @@ struct Main: View {
             }
         }
         .ignoresSafeArea(.all)
-        .navigationBarItems(leading: mypageButton)
+        .navigationBarItems(leading: mypageButton, trailing: stopButton)
     }
 
     private var mypageButton: some View {
-        NavigationLink(destination: MyPage()) {
-            HStack {
-                Image("menu")
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(.black)
-            }
+        Button(action: { self.selection = "mypage" }) {
+            Image("menu")
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(.black)
+        }
+    }
+
+    private var stopButton: some View {
+        Button(action: {}) {
+            Image("exit")
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(.black)
         }
     }
 
@@ -123,11 +187,13 @@ struct Main: View {
     private func setColor() -> Color {
         var color: Color
         switch timerClass.type {
+        case .notRunning:
+            fallthrough
         case .stop:
             color = Color.gray
 
         default:
-            color = Color.main
+            color = Color.Palette.primary
         }
 
         return color
@@ -156,5 +222,7 @@ struct Timer_Previews: PreviewProvider {
     static var previews: some View {
         return Main()
             .environmentObject(PopupStateModel())
+            .environmentObject(Time())
+            .environmentObject(TimerClass())
     }
 }
