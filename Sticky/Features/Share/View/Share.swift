@@ -26,7 +26,8 @@ struct Share: View {
     var body: some View {
         ZStack {
             // 배경 Color
-            Color.blue
+            Color.Sticky.blue_end
+                .opacity(0.2)
                 .edgesIgnoringSafeArea(.vertical)
 
             VStack {
@@ -34,22 +35,16 @@ struct Share: View {
                     Button("현재 기록") {
                         print("현재 기록")
                     }
-                    .font(.title3)
-                    .foregroundColor(UIState.activeCard == 0 ? .white : .gray)
+                    .font(.system(size: 17, weight: .heavy, design: .default))
+                    .foregroundColor(UIState.activeCard == 0 ? .black : .gray)
 
-                    Button("누적 기록") {
-                        print("누적 기록")
+                    Button("받은 배지") {
+                        print("받은 배지")
                     }
-                    .font(.title3)
-                    .foregroundColor(UIState.activeCard == 1 ? .white : .gray)
-
-                    Button("최근 뱃지") {
-                        print("최근 뱃지")
-                    }
-                    .font(.title3)
-                    .foregroundColor(UIState.activeCard == 2 ? .white : .gray)
+                    .font(.system(size: 17, weight: .heavy, design: .default))
+                    .foregroundColor(UIState.activeCard == 1 ? .black : .gray)
                 }
-                .padding(.bottom, 36)
+                .padding(.bottom, 16)
                 .foregroundColor(Color.white)
 
                 // 카드 슬라이드 뷰
@@ -61,10 +56,10 @@ struct Share: View {
                     Text("공유합니다")
                 }
                 .font(.title3)
-                .foregroundColor(.white)
+                .foregroundColor(.black)
                 .padding(.top, 20)
 
-                HStack {
+                HStack(spacing: 48) {
                     Rectangle()
                         .overlay(
                             Button(action: {
@@ -77,10 +72,7 @@ struct Share: View {
                         )
                         .frame(width: 48, height: 48)
                         .cornerRadius(10)
-                        .foregroundColor(Color("lightPurple"))
-
-                    Spacer()
-                        .frame(maxWidth: 60)
+                        .foregroundColor(Color.black)
 
                     Button(action: {
                         shareInstagram()
@@ -91,12 +83,27 @@ struct Share: View {
                     }
                     .frame(width: 48, height: 48)
                     .cornerRadius(10)
+
+                    Button(action: {
+                        shareInstagram()
+                    }) {
+                        Image("twitter")
+                            .resizable()
+                            .frame(width: 48, height: 48)
+                            .foregroundColor(.white)
+                    }
+                    .frame(width: 48, height: 48)
+                    .cornerRadius(10)
                 }
                 .padding(.top, 37)
+                Spacer()
             }
         }
         .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: backButton, trailing: downloadButton)
+        .navigationBarItems(
+            leading: backButton,
+            trailing: downloadButton
+        )
     }
 
     // MARK: Private
@@ -105,16 +112,14 @@ struct Share: View {
     @State private var items = [
         Card(id: 0, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
         Card(id: 1, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
-        Card(id: 2, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
     ]
 
     private var backButton: some View {
         Button(action: {
             self.presentationMode.wrappedValue.dismiss()
         }) {
-            Image("left-arrow")
+            Image("back")
                 .aspectRatio(contentMode: .fit)
-                .foregroundColor(.white)
         }
     }
 
@@ -122,9 +127,8 @@ struct Share: View {
         Button(action: {
             saveInPhoto(img: takeCapture())
         }) {
-            Image(systemName: "download")
+            Image("download")
                 .aspectRatio(contentMode: .fit)
-                .foregroundColor(.white)
         }
     }
 
