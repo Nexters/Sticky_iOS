@@ -24,6 +24,7 @@ struct StickyApp: App {
                 .environmentObject(locationManager)
                 .environmentObject(LocationSearchService())
                 .environmentObject(Location())
+                .environmentObject(RootViewManager())
         }
         .onChange(of: scenePhase) { newScenePhase in
             switch newScenePhase {

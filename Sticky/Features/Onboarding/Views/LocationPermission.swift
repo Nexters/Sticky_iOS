@@ -44,7 +44,8 @@ struct LocationPermission: View {
                     Spacer()
                 }.padding(.horizontal, 48)
             }
-        }.edgesIgnoringSafeArea(.all)
+        }
+        .edgesIgnoringSafeArea(.all)
             .navigationBarHidden(true)
     }
 }
