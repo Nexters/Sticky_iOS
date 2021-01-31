@@ -26,7 +26,6 @@
 		BB1C8A2D25B875020000931A /* SearchAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A2625B875020000931A /* SearchAddress.swift */; };
 		BB8292CE25BD597200077D8C /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8292CD25BD597200077D8C /* SearchBar.swift */; };
 		BB8292D425BD59A200077D8C /* LocationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8292D325BD59A200077D8C /* LocationSearchService.swift */; };
-		BBAC0F2B25C65F1A00FB81D7 /* Modak.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BBAC0F2A25C65F1A00FB81D7 /* Modak.ttf */; };
 		BBAC0F3125C696B900FB81D7 /* LocationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC0F3025C696B800FB81D7 /* LocationPermission.swift */; };
 		BBB1EBF225AF3C2100F5EA37 /* StickyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EBF125AF3C2100F5EA37 /* StickyApp.swift */; };
 		BBB1EBF625AF3C2100F5EA37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB1EBF525AF3C2100F5EA37 /* Assets.xcassets */; };
@@ -84,6 +83,7 @@
 
 /* Begin PBXFileReference section */
 		BB05AB6E25C6C22D00E34717 /* BannerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerItem.swift; sourceTree = "<group>"; };
+		BB05AB7325C6CBB000E34717 /* Modak.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Modak.ttf; sourceTree = "<group>"; };
 		BB0A592325B9C99D001F529A /* MyPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPage.swift; sourceTree = "<group>"; };
 		BB0A592825BA50D8001F529A /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		BB0A592D25BA516A001F529A /* BadgeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeItem.swift; sourceTree = "<group>"; };
@@ -102,7 +102,6 @@
 		BB1C8A2625B875020000931A /* SearchAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAddress.swift; sourceTree = "<group>"; };
 		BB8292CD25BD597200077D8C /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		BB8292D325BD59A200077D8C /* LocationSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
-		BBAC0F2A25C65F1A00FB81D7 /* Modak.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Modak.ttf; path = ../../../../../../../Downloads/Modak.1.155/Modak.ttf; sourceTree = "<group>"; };
 		BBAC0F3025C696B800FB81D7 /* LocationPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermission.swift; sourceTree = "<group>"; };
 		BBB1EBEE25AF3C2100F5EA37 /* Sticky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sticky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBB1EBF125AF3C2100F5EA37 /* StickyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyApp.swift; sourceTree = "<group>"; };
@@ -334,7 +333,7 @@
 		BBAC0F2925C65EF600FB81D7 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				BBAC0F2A25C65F1A00FB81D7 /* Modak.ttf */,
+				BB05AB7325C6CBB000E34717 /* Modak.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -611,7 +610,6 @@
 			files = (
 				BBB1EC5925B079F700F5EA37 /* Localizable.strings in Resources */,
 				EB63F51C25B8257C00151A05 /* Colors.xcassets in Resources */,
-				BBAC0F2B25C65F1A00FB81D7 /* Modak.ttf in Resources */,
 				BBB1EBF925AF3C2100F5EA37 /* Preview Assets.xcassets in Resources */,
 				BBB1EBF625AF3C2100F5EA37 /* Assets.xcassets in Resources */,
 			);
