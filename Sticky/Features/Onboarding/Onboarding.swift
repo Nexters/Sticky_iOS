@@ -35,7 +35,7 @@ struct Onboarding: View {
                 }
             }.frame(width: 280, height: 290)
         }
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarHidden(true)
     }
 }
 

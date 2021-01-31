@@ -16,6 +16,7 @@ struct SearchAddress: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var locationSearchService: LocationSearchService
     @EnvironmentObject var locationManager: LocationManager
+    @EnvironmentObject var location: Location
 
     var body: some View {
         VStack {
@@ -42,12 +43,9 @@ struct SearchAddress: View {
                     NavigationLink("", destination: SearchResult(), isActive: self.$isActive)
                     Button(action: {
                         self.isActive = true
-
                         let coordinate = self.locationManager.location.coordinate
-                        self.locationSearchService.region = MKCoordinateRegion(
-                            center: CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude),
-                            span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
-                        )
+                        self.location.latitude = coordinate.latitude
+                        self.location.longitude = coordinate.longitude
                     }) {
                         BorderRoundedButton(
                             text: "현재 위치로 주소 찾기",
@@ -58,8 +56,7 @@ struct SearchAddress: View {
                         )
                     }
                 }
-                .padding(.leading, 16)
-                .padding(.trailing, 16)
+                .padding(.horizontal, 16)
             }.frame(
                 minWidth: 0,
                 maxWidth: .infinity,
@@ -76,6 +73,11 @@ struct SearchAddress: View {
                     List(locationSearchService.completions) { completion in
                         Button(action: {
                             locationSearchService.getLocation(completion: completion)
+                            let coordinate = locationSearchService.region.center
+                            self.location.latitude = coordinate.latitude
+                            self.location.longitude = coordinate.longitude
+                            self.location.title = completion.title
+                            self.location.subtitle = completion.subtitle
                             self.isActive = true
                         }) {
                             VStack(alignment: .leading) {

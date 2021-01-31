@@ -30,12 +30,10 @@ class LocationManager: NSObject, ObservableObject {
         self.locationManager.activityType = .other
 //        self.locationManager.showsBackgroundLocationIndicator = false
         self.notificationCenter.delegate = self
-        
-        
-        
+
         self.notificationCenter.requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
-            if granted{
-                //항상인지 체크해야함
+            if granted {
+                // 항상인지 체크해야함
                 print("NotificationCenter Authorization Granted!")
             }
         }
@@ -139,11 +137,11 @@ extension LocationManager: CLLocationManagerDelegate {
             radius: 100, // 100m
             identifier: "MyHomeRegion1"
         )
-        
+
         print(_geofenceExit.hash, _geofenceEnter.hash)
         _geofenceEnter.notifyOnEntry = true
         _geofenceEnter.notifyOnExit = true
-        
+
         _geofenceExit.notifyOnExit = true
         _geofenceExit.notifyOnEntry = true
         self.geofence = _geofenceEnter

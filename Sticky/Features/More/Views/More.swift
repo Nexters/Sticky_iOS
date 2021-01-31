@@ -73,10 +73,8 @@ struct More: View {
         }
     }
 
-    func focusRelease() {
-        print("pop")
-        more = false
-//        self.presentationMode.wrappedValue.dismiss()
+    func focusRelease() {   
+       self.presentationMode.wrappedValue.dismiss()
     }
 }
 

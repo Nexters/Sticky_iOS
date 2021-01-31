@@ -29,7 +29,7 @@ struct AppMain: View {
         NavigationView {
             VStack {
                 NavigationLink(destination: rootView, isActive: self.$isActive) { EmptyView() }
-
+                    
                 rootView
             }
         }.environment(\.rootPresentationMode, self.$isActive)
