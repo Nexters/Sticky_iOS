@@ -63,10 +63,10 @@ struct SearchAddress: View {
                 Divider().padding(.vertical, 16)
 
                 VStack {
-                    if locationSearchService.searchQuery.count == 0 {
+                    if locationSearchService.searchQuery.isEmpty {
                         Tip()
                     } else {
-                        if locationSearchService.completions.count > 0 {
+                        if !locationSearchService.completions.isEmpty {
                             List {
                                 // List에서는 RowInsets로 좌우 패딩이 안지워지므로 ForEach 사용
                                 ForEach(locationSearchService.completions) {
@@ -90,6 +90,19 @@ struct SearchAddress: View {
                     }
                 }.padding(.horizontal, 16)
                 Spacer()
+            }
+        }
+        .onAppear {
+            let manager = CLLocationManager()
+            switch manager.authorizationStatus {
+            case .authorizedAlways:
+                print("항상")
+            default:
+                if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                    print("불러와")
+                    UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+                }
+                print("뭐야")
             }
         }
         .navigationBarBackButtonHidden(true)

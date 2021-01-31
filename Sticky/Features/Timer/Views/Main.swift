@@ -31,7 +31,6 @@ struct Main: View {
     @State var color = Color.Palette.primary
     @State var selection: String? = ""
     @State var timer: Timer? = nil
-    @State static var firstAppear: Bool = true
 
     // 매 초 간격으로 main 쓰레드에서 공통 실행 루프에서 실행
 
@@ -111,7 +110,9 @@ struct Main: View {
 //                    fontColor: Color.black
 //                )
                     Spacer().frame(height: 100)
-                    Button(action: {}) {
+                    Button(action: {
+                        self.timerClass.type = .running
+                    }) {
                         GradientRoundedButton(
                             content: "시작하기".localized,
                             startColor: Color.black,
@@ -140,24 +141,9 @@ struct Main: View {
 //        }
         // 항상이 아닌 경우 표시
         .onAppear {
-            if Main.firstAppear {
-                Main.firstAppear = false
                 print("appear")
                 startTimer()
-                let manager = CLLocationManager()
-                switch manager.authorizationStatus {
-                case .authorizedAlways:
-                    print("항상")
-                default:
-                    if let appSettings = URL(string: UIApplication.openSettingsURLString) {
-                        print("불러와")
-                        UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
-                    }
-                    print("뭐야")
-                }
-            } else {
-                print("not FIrst")
-            }
+
         }
         .onDisappear {
             print("disappear")
