@@ -49,7 +49,6 @@
 		C202D5A025BD38CC0033B450 /* PopupStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C202D59F25BD38CC0033B450 /* PopupStateModel.swift */; };
 		C2228FCC25BD5EAD00C4DF0B /* MyOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2228FCB25BD5EAD00C4DF0B /* MyOperation.swift */; };
 		C2296FF325BD41D300278E61 /* Notification.Name+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2296FF225BD41D300278E61 /* Notification.Name+.swift */; };
-		C23A05A625BBE3F3007339BD /* Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23A05A525BBE3F3007339BD /* Popup.swift */; };
 		C277C53825BEF98500ADD2EC /* TimerNotRunning.swift in Sources */ = {isa = PBXBuildFile; fileRef = C277C53725BEF98500ADD2EC /* TimerNotRunning.swift */; };
 		C277C53D25BEF9B500ADD2EC /* TimerOff.swift in Sources */ = {isa = PBXBuildFile; fileRef = C277C53C25BEF9B500ADD2EC /* TimerOff.swift */; };
 		C277C54525BEFC4100ADD2EC /* TimerRunning.swift in Sources */ = {isa = PBXBuildFile; fileRef = C277C54425BEFC4100ADD2EC /* TimerRunning.swift */; };
@@ -132,7 +131,6 @@
 		C202D59F25BD38CC0033B450 /* PopupStateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupStateModel.swift; sourceTree = "<group>"; };
 		C2228FCB25BD5EAD00C4DF0B /* MyOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOperation.swift; sourceTree = "<group>"; };
 		C2296FF225BD41D300278E61 /* Notification.Name+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+.swift"; sourceTree = "<group>"; };
-		C23A05A525BBE3F3007339BD /* Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popup.swift; sourceTree = "<group>"; };
 		C277C53725BEF98500ADD2EC /* TimerNotRunning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerNotRunning.swift; sourceTree = "<group>"; };
 		C277C53C25BEF9B500ADD2EC /* TimerOff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerOff.swift; sourceTree = "<group>"; };
 		C277C54425BEFC4100ADD2EC /* TimerRunning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRunning.swift; sourceTree = "<group>"; };
@@ -435,7 +433,6 @@
 				BB3D4FCD25B873D100879E49 /* OnBoarding */,
 				EB77449C25B6E81400BF1103 /* Share */,
 				EB77449725B6DE8700BF1103 /* Preview.swift */,
-				C23A05A525BBE3F3007339BD /* Popup.swift */,
 				C202D59425BD365F0033B450 /* PopupMessage.swift */,
 				C202D59F25BD38CC0033B450 /* PopupStateModel.swift */,
 				BBC66EBC25C4E965007687D7 /* AppMain.swift */,
@@ -689,7 +686,6 @@
 				EB63F52B25B82CBE00151A05 /* Carousel.swift in Sources */,
 				BBB1EC4B25B077E500F5EA37 /* Color.swift in Sources */,
 				BB0A592925BA50D8001F529A /* Summary.swift in Sources */,
-				C23A05A625BBE3F3007339BD /* Popup.swift in Sources */,
 				BBB1EBF225AF3C2100F5EA37 /* StickyApp.swift in Sources */,
 				BBC66F3225C578B6007687D7 /* Location.swift in Sources */,
 			);
