@@ -18,39 +18,26 @@ struct TimerRunning: View {
 
     var body: some View {
         VStack {
-            HStack {
-                // pause button
-                Button(action: {
-                    timerClass.type = .stop
-                }, label: {
-                    Circle()
-                        .frame(width: 92, height: 92)
-                        .foregroundColor(.white)
-                        .shadow(color: .black, radius: 10, x: 2, y: 2)
-                        .overlay(
-                            Image(systemName: "pause.fill")
-                                .resizable()
-                                .frame(width: 30, height: 30)
-                                .foregroundColor(.black)
-                        ).padding(.trailing, 60)
-                })
-
-                // share button
-                Button(action: {
-                    self.popupState.isPresented = true
-                }, label: {
-                    Circle()
-                        .frame(width: 92, height: 92)
-                        .foregroundColor(.black)
-                        .shadow(color: .black, radius: 10, x: 2, y: 2)
-                        .overlay(
-                            Image(systemName: "square.and.arrow.up")
-                                .resizable()
-                                .frame(width: 30, height: 30)
-                                .foregroundColor(.white)
-                        )
-                })
-            }
+            // share button
+            Button(action: {
+                self.popupState.isPresented = true
+            }, label: {
+                GradientRoundedButton(
+                    content: "공유하기".localized,
+                    startColor: Color.black,
+                    endColor: Color.black,
+                    width: 328,
+                    height: 60,
+                    cornerRadius: 16.0,
+                    fontColor: Color.white
+                )
+            })
+            // pause button
+            Button(action: {
+                timerClass.type = .stop
+            }, label: {
+                BorderRoundedButton(text: "외출하기".localized, borderWidth: 1, borderColor: .black, fontColor: .black, width: 328, height: 60, cornerRadius: 16.0)
+            })
         }
     }
 }

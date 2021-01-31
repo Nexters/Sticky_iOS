@@ -31,6 +31,7 @@ struct Main: View {
     @State var color = Color.Palette.primary
     @State var selection: String? = ""
     @State var timer: Timer? = nil
+    @State static var isFirst: Bool = true
 
     // 매 초 간격으로 main 쓰레드에서 공통 실행 루프에서 실행
 
@@ -89,41 +90,16 @@ struct Main: View {
                     Spacer()
                     TimerView(time: $time.timeData)
                         .padding(.bottom, 87)
+                    
 
-//                setView()
-//                GradientRoundedButton(
-//                    content: "집에서만 시작할 수 있어요".localized,
-//                    startColor: Color.GrayScale._600,
-//                    endColor: Color.GrayScale._600,
-//                    width: 328,
-//                    height: 60,
-//                    cornerRadius: 16.0,
-//                    fontColor: Color.black
-//                )
-//                GradientRoundedButton(
-//                    content: "집에서만 시작할 수 있어요".localized,
-//                    startColor: Color.GrayScale._600,
-//                    endColor: Color.GrayScale._600,
-//                    width: 328,
-//                    height: 60,
-//                    cornerRadius: 16.0,
-//                    fontColor: Color.black
-//                )
+
                     Spacer().frame(height: 100)
-                    Button(action: {
-                        self.timerClass.type = .running
-                    }) {
-                        GradientRoundedButton(
-                            content: "시작하기".localized,
-                            startColor: Color.black,
-                            endColor: Color.black,
-                            width: 328,
-                            height: 60,
-                            cornerRadius: 16.0,
-                            fontColor: Color.white
-                        ).padding(.bottom, 24)
-                    }
+
+                    setBottomView()
+                        .padding(.bottom, 24)
                 }
+                PopupMessage(isPresented: $popupState.isPresented, title: "타이틀", description: "설명", confirmString: "컨펌", rejectString: "리젝", confirmHandler: confirmInPopup, rateOfWidth: 0.8)
+                    .opacity(popupState.isPresented ? 1 : 0)
             }
             .navigationBarBackButtonHidden(true)
             .ignoresSafeArea(.all)
@@ -143,18 +119,10 @@ struct Main: View {
 //        }
         // 항상이 아닌 경우 표시
         .onAppear {
+            print("appear")
+            if Main.isFirst {
+                Main.isFirst = false
                 startTimer()
-
-        }
-        .popup(isPresented: $popupState.isPresented, rateOfWidth: 0.8) {
-            PopupMessage(
-                isPresented: $popupState.isPresented,
-                title: "챌린지 종료하기",
-                description: "챌린지가 00때문에 종료되었습니다.\n최종기록을 공유할까요",
-                confirmString: "공유하기",
-                rejectString: "취소하기"
-            ) {
-                self.sharePresented = true
             }
         }
     }
@@ -168,12 +136,14 @@ struct Main: View {
     }
 
     func startTimer() {
+        print("setTimer")
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
             addSecond()
         })
     }
 
     func addSecond() {
+        print("add")
         if timerClass.type == .running {
             if time.timeData.minute == 60 {
                 time.timeData.hour += 1
@@ -213,7 +183,7 @@ struct Main: View {
         return color
     }
 
-    private func setView() -> AnyView {
+    private func setBottomView() -> AnyView {
         var view: AnyView
         switch timerClass.type {
         case .stop:

@@ -25,7 +25,6 @@ struct Popup<Message: View>: ViewModifier {
             .overlay(Rectangle()
                 .fill(Color.black.opacity(0.7)))
             .overlay(popupContent)
-            .animation(.easeIn)
     }
 
     private var popupContent: some View {
