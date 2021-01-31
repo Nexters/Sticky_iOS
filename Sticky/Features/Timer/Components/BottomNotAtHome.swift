@@ -1,5 +1,5 @@
 //
-//  TimerOn.swift
+//  TimerOff.swift
 //  Sticky
 //
 //  Created by 지현우 on 2021/01/25.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-// MARK: - TimerNotRunning
+// MARK: - TimerOff
 
-struct TimerNotRunning: View {
+struct BottomNotAtHome: View {
     // MARK: Internal
 
     @EnvironmentObject var time: Time
@@ -26,19 +26,17 @@ struct TimerNotRunning: View {
 //                    Text("팝업")
 //                })
 
-            Button(action: {
-                self.timerClass.type = .running
-            }) {
+            Button(action: {}, label: {
                 GradientRoundedButton(
-                    content: "시작하기".localized,
-                    startColor: Color.black,
-                    endColor: Color.black,
+                    content: "집에서만 시작할 수 있어요".localized,
+                    startColor: Color.gray,
+                    endColor: Color.gray,
                     width: 328,
                     height: 60,
                     cornerRadius: 16.0,
-                    fontColor: Color.white
-                ).padding(.bottom, 24)
-            }
+                    fontColor: Color.black
+                )
+            })
         }
     }
 
@@ -47,10 +45,10 @@ struct TimerNotRunning: View {
     @EnvironmentObject private var timerClass: TimerClass
 }
 
-// MARK: - TimerNotRunning_Previews
+// MARK: - TimerOff_Previews
 
-struct TimerNotRunning_Previews: PreviewProvider {
+struct TimerOff_Previews: PreviewProvider {
     static var previews: some View {
-        TimerNotRunning()
+        BottomNotAtHome()
     }
 }

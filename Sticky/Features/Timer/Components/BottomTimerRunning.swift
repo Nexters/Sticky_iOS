@@ -10,7 +10,7 @@ import UserNotifications
 
 // MARK: - TimerRunning
 
-struct TimerRunning: View {
+struct BottomTimerRunning: View {
     @EnvironmentObject private var popupState: PopupStateModel
     @EnvironmentObject var time: Time
     @EnvironmentObject private var timerClass: TimerClass
@@ -32,9 +32,9 @@ struct TimerRunning: View {
                     fontColor: Color.white
                 )
             })
-            // pause button
+            // 외출하기 button
             Button(action: {
-                timerClass.type = .stop
+                timerClass.type = .outing
             }, label: {
                 BorderRoundedButton(text: "외출하기".localized, borderWidth: 1, borderColor: .black, fontColor: .black, width: 328, height: 60, cornerRadius: 16.0)
             })
@@ -46,7 +46,7 @@ struct TimerRunning: View {
 
 struct TimerRunning_Previews: PreviewProvider {
     static var previews: some View {
-        TimerRunning(sharePresented: .constant(true))
+        BottomTimerRunning(sharePresented: .constant(true))
             .environmentObject(PopupStateModel())
             .environmentObject(Time())
     }
