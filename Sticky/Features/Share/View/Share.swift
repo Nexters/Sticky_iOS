@@ -7,23 +7,21 @@
 
 import SwiftUI
 
+// MARK: - Share
+
 struct Share: View {
+    // MARK: Internal
+
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var UIState: UIStateModel
-    // 카드에 담길 모델들 데이터
-    @State private var items = [
-        Card(id: 0, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
-        Card(id: 1, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
-        Card(id: 2, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
-    ]
 
-    init() {
-        let newNavAppearance = UINavigationBarAppearance()
-        newNavAppearance.configureWithTransparentBackground()
-        newNavAppearance.backgroundColor = .clear
-        UINavigationBar.appearance()
-            .standardAppearance = newNavAppearance
-    }
+//    init() {
+//        let newNavAppearance = UINavigationBarAppearance()
+//        newNavAppearance.configureWithTransparentBackground()
+//        newNavAppearance.backgroundColor = .clear
+//        UINavigationBar.appearance()
+//            .standardAppearance = newNavAppearance
+//    }
 
     var body: some View {
         ZStack {
@@ -101,6 +99,15 @@ struct Share: View {
         .navigationBarItems(leading: backButton, trailing: downloadButton)
     }
 
+    // MARK: Private
+
+    // 카드에 담길 모델들 데이터
+    @State private var items = [
+        Card(id: 0, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
+        Card(id: 1, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
+        Card(id: 2, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
+    ]
+
     private var backButton: some View {
         Button(action: {
             self.presentationMode.wrappedValue.dismiss()
@@ -158,6 +165,8 @@ extension Share {
         UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
     }
 }
+
+// MARK: - Share_Previews
 
 struct Share_Previews: PreviewProvider {
     static var previews: some View {

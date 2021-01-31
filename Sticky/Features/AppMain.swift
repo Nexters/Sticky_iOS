@@ -10,26 +10,24 @@ import SwiftUI
 // MARK: - AppMain
 
 struct AppMain: View {
-    // MARK: Lifecycle
-
-    init() {
-        let newNavAppearance = UINavigationBarAppearance()
-        newNavAppearance.configureWithTransparentBackground()
-        newNavAppearance.backgroundColor = .clear
-        UINavigationBar.appearance()
-            .standardAppearance = newNavAppearance
-    }
-
     // MARK: Internal
+
+//    init() {
+//        let newNavAppearance = UINavigationBarAppearance()
+//        newNavAppearance.configureWithTransparentBackground()
+//        newNavAppearance.backgroundColor = .clear
+//        UINavigationBar.appearance()
+//            .standardAppearance = newNavAppearance
+//    }
 
     var body: some View {
         let rootView = UserDefaults.standard.bool(forKey: "hasGeofence") ?
-            AnyView(Main()) : AnyView(Onboarding())
+            AnyView(Main()) : AnyView(LocationPermission())
 
         NavigationView {
             VStack {
                 NavigationLink(destination: rootView, isActive: self.$isActive) { EmptyView() }
-                    
+
                 rootView
             }
         }.environment(\.rootPresentationMode, self.$isActive)
