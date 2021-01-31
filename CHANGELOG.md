@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/Nexters/Sticky_iOS/compare/v1.8.2...v1.9.0) (2021-01-31)
+
+
+### Features
+
+* **location:** 지도 드래그 위치 설정기능 구현 ([3263348](https://github.com/Nexters/Sticky_iOS/commit/3263348f6be03b907fa3a5580e4252cb9c589fa2))
+* **mapview:** 지도 핀 업다운 처리 ([0da1540](https://github.com/Nexters/Sticky_iOS/commit/0da1540cb3c28281b3f019fd975fef2804087e68))
+
+
+### Bug Fixes
+
+* 더보기, 온보딩 뒤로버튼 버그 수정 ([6aef287](https://github.com/Nexters/Sticky_iOS/commit/6aef2871112ff48b2d77fc558674760f2354cbfe))
+
 ### [1.8.2](https://github.com/Nexters/Sticky_iOS/compare/v1.8.1...v1.8.2) (2021-01-30)
 
 
