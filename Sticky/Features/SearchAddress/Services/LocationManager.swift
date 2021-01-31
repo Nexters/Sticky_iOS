@@ -111,7 +111,6 @@ extension LocationManager: CLLocationManagerDelegate {
      */
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         print("Enter: \(self.region.center)")
-        self.flag = 1
     }
 
     /** 영역을 벗어났을 때
@@ -120,7 +119,6 @@ extension LocationManager: CLLocationManagerDelegate {
      */
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         print("Exit: \(self.region.center)")
-        self.flag = 2
     }
 
     /** 현재 위치를 지오펜싱으로 영역 처리
