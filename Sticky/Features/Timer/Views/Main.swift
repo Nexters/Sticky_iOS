@@ -12,16 +12,17 @@ import UserNotifications
 // MARK: - TimerClass
 
 class TimerClass: ObservableObject {
-    @Published var type: Main.TimerType = .notRunning
+    @Published var type: Main.TimerType = .notAtHome
 }
 
 // MARK: - Main
 
 struct Main: View {
     enum TimerType: Int {
-        case stop
+        case outing
         case notRunning
         case running
+        case notAtHome
     }
 
     @EnvironmentObject private var popupState: PopupStateModel
@@ -49,61 +50,28 @@ struct Main: View {
                 Image("blue_sticky")
                 VStack {
                     Spacer()
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
-                            Button(action: {}) {
-                                RoundedRectangle(cornerRadius: 20)
-                                    .frame(width: 172, height: 60)
-                                    .foregroundColor(Color.TextIconColor.secondary)
-                                    .overlay(
-                                        HStack {
-                                            Text("hi")
-                                        }
-                                    )
-                            }
-                            Button(action: {}) {
-                                RoundedRectangle(cornerRadius: 20)
-                                    .frame(width: 172, height: 60)
-                                    .foregroundColor(Color.TextIconColor.secondary)
-                                    .overlay(
-                                        HStack {
-                                            Text("hi")
-                                        }
-                                    )
-                            }
-                            Button(action: {}) {
-                                RoundedRectangle(cornerRadius: 20)
-                                    .frame(width: 96, height: 60)
-                                    .foregroundColor(Color.TextIconColor.secondary)
-                                    .overlay(
-                                        HStack {
-                                            Text("더보기")
-                                            Image("arrow_right")
-                                        }
-                                    )
-                            }
-                        }
-                    }
-                    .foregroundColor(.black)
-                    .padding(.leading, 16)
+
+                    scrollCardView
 
                     Spacer()
                     TimerView(time: $time.timeData)
                         .padding(.bottom, 87)
-                    
-
 
                     Spacer().frame(height: 100)
 
                     setBottomView()
                         .padding(.bottom, 24)
                 }
+
+                Outing(timer: $timer)
+                    .isHidden(!(timerClass.type == .outing))
+
                 PopupMessage(isPresented: $popupState.isPresented, title: "타이틀", description: "설명", confirmString: "컨펌", rejectString: "리젝", confirmHandler: confirmInPopup, rateOfWidth: 0.8)
-                    .opacity(popupState.isPresented ? 1 : 0)
+                    .isHidden(!popupState.isPresented)
             }
             .navigationBarBackButtonHidden(true)
             .ignoresSafeArea(.all)
-            .navigationBarItems(leading: mypageButton, trailing: stopButton)
+            .navigationBarItems(leading: mypageButton, trailing: stopButton.isHidden(!(timerClass.type == .running)))
         }
         .onAppear {
             print("appear")
@@ -130,7 +98,6 @@ struct Main: View {
     }
 
     func addSecond() {
-        print("add")
         if timerClass.type == .running {
             if time.timeData.minute == 60 {
                 time.timeData.hour += 1
@@ -144,7 +111,9 @@ struct Main: View {
     }
 
     private var stopButton: some View {
-        Button(action: {}) {
+        Button(action: {
+            // TODO: 챌린지 종료하기
+        }) {
             Image("exit")
                 .aspectRatio(contentMode: .fit)
                 .foregroundColor(.black)
@@ -155,12 +124,53 @@ struct Main: View {
         sharePresented = true
     }
 
+    private var scrollCardView: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack {
+                Button(action: {}) {
+                    RoundedRectangle(cornerRadius: 20)
+                        .frame(width: 172, height: 60)
+                        .foregroundColor(Color.TextIconColor.secondary)
+                        .overlay(
+                            HStack {
+                                Text("hi")
+                            }
+                        )
+                }
+                Button(action: {}) {
+                    RoundedRectangle(cornerRadius: 20)
+                        .frame(width: 172, height: 60)
+                        .foregroundColor(Color.TextIconColor.secondary)
+                        .overlay(
+                            HStack {
+                                Text("hi")
+                            }
+                        )
+                }
+                Button(action: {}) {
+                    RoundedRectangle(cornerRadius: 20)
+                        .frame(width: 96, height: 60)
+                        .foregroundColor(Color.TextIconColor.secondary)
+                        .overlay(
+                            HStack {
+                                Text("더보기")
+                                Image("arrow_right")
+                            }
+                        )
+                }
+            }
+        }
+        .foregroundColor(.black)
+        .padding(.leading, 16)
+    }
+
     private func setColor() -> Color {
         var color: Color
         switch timerClass.type {
-        case .notRunning:
-            fallthrough
-        case .stop:
+        case .outing:
+
+            color = Color.gray
+        case .notAtHome:
             color = Color.gray
 
         default:
@@ -173,14 +183,16 @@ struct Main: View {
     private func setBottomView() -> AnyView {
         var view: AnyView
         switch timerClass.type {
-        case .stop:
-            view = AnyView(TimerOff())
+        case .notAtHome:
+            view = AnyView(BottomNotAtHome())
 
         case .running:
-            view = AnyView(TimerRunning(sharePresented: $sharePresented))
+            view = AnyView(BottomTimerRunning(sharePresented: $sharePresented))
 
         case .notRunning:
-            view = AnyView(TimerNotRunning())
+            view = AnyView(BottomTimerNotRunning())
+        case .outing:
+            view = AnyView(BottomOuting())
         }
 
         return view
