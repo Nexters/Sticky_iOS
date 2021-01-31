@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB05AB6F25C6C22D00E34717 /* BannerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB05AB6E25C6C22D00E34717 /* BannerItem.swift */; };
 		BB0A592425B9C99D001F529A /* MyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A592325B9C99D001F529A /* MyPage.swift */; };
 		BB0A592925BA50D8001F529A /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A592825BA50D8001F529A /* Summary.swift */; };
 		BB0A592E25BA516A001F529A /* BadgeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A592D25BA516A001F529A /* BadgeItem.swift */; };
@@ -25,6 +26,8 @@
 		BB1C8A2D25B875020000931A /* SearchAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A2625B875020000931A /* SearchAddress.swift */; };
 		BB8292CE25BD597200077D8C /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8292CD25BD597200077D8C /* SearchBar.swift */; };
 		BB8292D425BD59A200077D8C /* LocationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8292D325BD59A200077D8C /* LocationSearchService.swift */; };
+		BBAC0F2B25C65F1A00FB81D7 /* Modak.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BBAC0F2A25C65F1A00FB81D7 /* Modak.ttf */; };
+		BBAC0F3125C696B900FB81D7 /* LocationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC0F3025C696B800FB81D7 /* LocationPermission.swift */; };
 		BBB1EBF225AF3C2100F5EA37 /* StickyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EBF125AF3C2100F5EA37 /* StickyApp.swift */; };
 		BBB1EBF625AF3C2100F5EA37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB1EBF525AF3C2100F5EA37 /* Assets.xcassets */; };
 		BBB1EBF925AF3C2100F5EA37 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB1EBF825AF3C2100F5EA37 /* Preview Assets.xcassets */; };
@@ -80,6 +83,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB05AB6E25C6C22D00E34717 /* BannerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerItem.swift; sourceTree = "<group>"; };
 		BB0A592325B9C99D001F529A /* MyPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPage.swift; sourceTree = "<group>"; };
 		BB0A592825BA50D8001F529A /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		BB0A592D25BA516A001F529A /* BadgeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeItem.swift; sourceTree = "<group>"; };
@@ -98,6 +102,8 @@
 		BB1C8A2625B875020000931A /* SearchAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAddress.swift; sourceTree = "<group>"; };
 		BB8292CD25BD597200077D8C /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		BB8292D325BD59A200077D8C /* LocationSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
+		BBAC0F2A25C65F1A00FB81D7 /* Modak.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Modak.ttf; path = ../../../../../../../Downloads/Modak.1.155/Modak.ttf; sourceTree = "<group>"; };
+		BBAC0F3025C696B800FB81D7 /* LocationPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermission.swift; sourceTree = "<group>"; };
 		BBB1EBEE25AF3C2100F5EA37 /* Sticky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sticky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBB1EBF125AF3C2100F5EA37 /* StickyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyApp.swift; sourceTree = "<group>"; };
 		BBB1EBF525AF3C2100F5EA37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -207,7 +213,6 @@
 			isa = PBXGroup;
 			children = (
 				BB0A595725BAC23E001F529A /* Components */,
-				BB0A595625BAC23A001F529A /* Models */,
 				BB0A595525BAC236001F529A /* Views */,
 				C277C5DC25BFFF7100ADD2EC /* Time.swift */,
 			);
@@ -225,17 +230,11 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		BB0A595625BAC23A001F529A /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		BB0A595725BAC23E001F529A /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				BBC66EC725C4F99E007687D7 /* TimerView.swift */,
+				BB05AB6E25C6C22D00E34717 /* BannerItem.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -308,6 +307,7 @@
 		BB3D4FCD25B873D100879E49 /* OnBoarding */ = {
 			isa = PBXGroup;
 			children = (
+				BBAC0F2F25C6968E00FB81D7 /* Views */,
 				BB1C8A1825B874DF0000931A /* Onboarding.swift */,
 			);
 			name = OnBoarding;
@@ -319,6 +319,30 @@
 			children = (
 				BB1C8A1F25B875020000931A /* SearchResult.swift */,
 				BB1C8A2625B875020000931A /* SearchAddress.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BBAC0F2825C65EEC00FB81D7 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				BBAC0F2925C65EF600FB81D7 /* Fonts */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		BBAC0F2925C65EF600FB81D7 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				BBAC0F2A25C65F1A00FB81D7 /* Modak.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		BBAC0F2F25C6968E00FB81D7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BBAC0F3025C696B800FB81D7 /* LocationPermission.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -346,6 +370,7 @@
 		BBB1EBF025AF3C2100F5EA37 /* Sticky */ = {
 			isa = PBXGroup;
 			children = (
+				BBAC0F2825C65EEC00FB81D7 /* Shared */,
 				EB32FA5B25B8465700DC3FAE /* Extensions */,
 				BBB1ECCA25B469E700F5EA37 /* Features */,
 				BBB1ECCB25B46C3800F5EA37 /* Services */,
@@ -586,6 +611,7 @@
 			files = (
 				BBB1EC5925B079F700F5EA37 /* Localizable.strings in Resources */,
 				EB63F51C25B8257C00151A05 /* Colors.xcassets in Resources */,
+				BBAC0F2B25C65F1A00FB81D7 /* Modak.ttf in Resources */,
 				BBB1EBF925AF3C2100F5EA37 /* Preview Assets.xcassets in Resources */,
 				BBB1EBF625AF3C2100F5EA37 /* Assets.xcassets in Resources */,
 			);
@@ -644,6 +670,7 @@
 				BBB1EC7725B0856C00F5EA37 /* EditText.swift in Sources */,
 				BB0A597F25BBB1BC001F529A /* LocationManager.swift in Sources */,
 				C2228FCC25BD5EAD00C4DF0B /* MyOperation.swift in Sources */,
+				BBAC0F3125C696B900FB81D7 /* LocationPermission.swift in Sources */,
 				BB1C8A2B25B875020000931A /* MapCard.swift in Sources */,
 				BBB1EC7725B0856C00F5EA37 /* EditText.swift in Sources */,
 				C277C54525BEFC4100ADD2EC /* TimerRunning.swift in Sources */,
@@ -655,6 +682,7 @@
 				BB0A592425B9C99D001F529A /* MyPage.swift in Sources */,
 				C202D59525BD365F0033B450 /* PopupMessage.swift in Sources */,
 				BB0A592E25BA516A001F529A /* BadgeItem.swift in Sources */,
+				BB05AB6F25C6C22D00E34717 /* BannerItem.swift in Sources */,
 				EB32FA5D25B8466200DC3FAE /* View+.swift in Sources */,
 				EB63F52B25B82CBE00151A05 /* Carousel.swift in Sources */,
 				BBB1EC4B25B077E500F5EA37 /* Color.swift in Sources */,
