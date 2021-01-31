@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// MARK: - BorderRoundedButton
+
 struct BorderRoundedButton: View {
     var text: String
     var borderWidth: CGFloat
@@ -33,12 +35,14 @@ struct BorderRoundedButton: View {
     }
 }
 
+// MARK: - BorderRoundedButton_Previews
+
 struct BorderRoundedButton_Previews: PreviewProvider {
     static var previews: some View {
         BorderRoundedButton(
             text: "현재 위치로 주소 찾기",
             borderWidth: 2.0,
-            borderColor: Color.gray200,
+            borderColor: Color.GrayScale._200,
             fontColor: .black,
             icon: "aim"
         )

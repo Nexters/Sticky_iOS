@@ -14,16 +14,18 @@ struct MapCard: View {
     // MARK: Internal
 
     @State var pinUp: Bool = false
+    var width: CGFloat
+    var height: CGFloat
 
     var body: some View {
         let mapView = MapView(centerCoordinate: $centerCoordinate, pinUp: $pinUp)
         mapView
-            .frame(width: 280, height: 210)
+            .frame(width: width, height: height)
             .cornerRadius(24)
             .overlay(
                 ZStack {
                     Circle()
-                        .fill(Color.main)
+                        .fill(Color.Palette.primary)
                         .opacity(0.3)
                         .frame(width: 32, height: 32)
                     Image(systemName: "pin.fill")
@@ -43,7 +45,7 @@ struct MapCard: View {
 
 struct Map_Previews: PreviewProvider {
     static var previews: some View {
-        MapCard()
+        MapCard(width: 296, height: 216)
             .environmentObject(Location())
             .environmentObject(LocationManager())
     }

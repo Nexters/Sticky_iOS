@@ -38,7 +38,7 @@ struct Tip: View {
                         .foregroundColor(.gray)
                 }
             }
-        }.frame(width: 340)
+        }
     }
 }
 

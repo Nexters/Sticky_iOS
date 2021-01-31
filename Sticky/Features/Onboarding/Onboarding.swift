@@ -12,7 +12,7 @@ import SwiftUI
 struct Onboarding: View {
     var body: some View {
         ZStack {
-            Color.main
+            Color.Palette.primary
                 .ignoresSafeArea()
             VStack {
                 Image("logo_sticky")

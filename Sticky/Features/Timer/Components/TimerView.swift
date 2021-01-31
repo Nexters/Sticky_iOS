@@ -14,18 +14,26 @@ struct TimerView: View {
 
     var body: some View {
         VStack {
-            Text("\(time.day)일")
-                .font(.system(size: 40))
-                .foregroundColor(.white)
+            Text("\(time.day) day")
+                .font(.custom("Modak", size: 40))
 
-            Text(String(format: "%02d:%02d", time.hour, time.minute))
-                .font(.system(size: 80))
-                .bold()
-                .foregroundColor(.white)
+            HStack {
+                Text(String(format: "%02d", time.hour))
+                    .font(.custom("Modak", size: 96))
+                    .bold()
+                VStack {
+                    Circle().frame(width: 8, height: 8)
+                    Circle().frame(width: 8, height: 8)
+                }.padding(.horizontal, 8)
+                Text(String(format: "%02d", time.minute))
+                    .font(.custom("Modak", size: 96))
+                    .bold()
+            }
+            .frame(height: 80)
+            .padding(.vertical, 16)
 
             Text(String(format: "%02d", time.second))
-                .font(.system(size: 30))
-                .foregroundColor(.white)
+                .font(.custom("Modak", size: 40))
         }
     }
 }

@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// MARK: - EditText
+
 struct EditText: View {
     @Binding var input: String
     @State private var isEditing = false
@@ -57,6 +59,7 @@ struct EditText: View {
         )
         .background(
             RoundedRectangle(cornerRadius: self.radius ?? 12)
+                .stroke(Color.black, lineWidth: 1)
                 .foregroundColor(
                     accentColor
                 )
@@ -64,9 +67,10 @@ struct EditText: View {
     }
 }
 
+// MARK: - PlaceholderStyle
+
 struct PlaceholderStyle: ViewModifier {
-    var showPlaceHolder: Bool
-    var placeholder: String
+    // MARK: Public
 
     public func body(content: Content) -> some View {
         ZStack(alignment: .center) {
@@ -80,7 +84,14 @@ struct PlaceholderStyle: ViewModifier {
                 .padding(5.0)
         }
     }
+
+    // MARK: Internal
+
+    var showPlaceHolder: Bool
+    var placeholder: String
 }
+
+// MARK: - EditTextView_Previews
 
 struct EditTextView_Previews: PreviewProvider {
     struct PreviewWrapper: View {
@@ -88,7 +99,6 @@ struct EditTextView_Previews: PreviewProvider {
 
         var body: some View {
             ZStack {
-                Color.gray.ignoresSafeArea()
                 EditText(
                     input: $input,
                     placeholder: "도로명, 건물명 또는 지번으로 검색",
