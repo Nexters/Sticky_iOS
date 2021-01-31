@@ -7,12 +7,16 @@
 
 import SwiftUI
 
+// MARK: - GradientRoundedButton
+
 struct GradientRoundedButton: View {
     var content: String
     var startColor: Color
     var endColor: Color
     var width: CGFloat
     var height: CGFloat
+    var cornerRadius: CGFloat = 24
+    var fontColor: Color = .white
 
     var body: some View {
         ZStack {
@@ -27,18 +31,20 @@ struct GradientRoundedButton: View {
                     endPoint: .trailing
                 ))
             Text(content)
-                .foregroundColor(.white)
+                .foregroundColor(fontColor)
                 .bold()
-        }.cornerRadius(24)
+        }.cornerRadius(cornerRadius)
     }
 }
+
+// MARK: - GradientRoundedButton_Previews
 
 struct GradientRoundedButton_Previews: PreviewProvider {
     static var previews: some View {
         GradientRoundedButton(
             content: "시작하기".localized,
-            startColor: Color.gradientStart,
-            endColor: Color.gradientEnd,
+            startColor: Color.Palette.primary,
+            endColor: Color.Palette.secondary,
             width: 312,
             height: 48
         )

@@ -7,8 +7,11 @@
 
 import SwiftUI
 
+// MARK: - Summary
+
 struct Summary: View {
     var level: Int = 0
+
     var body: some View {
         VStack(alignment: .trailing) {
             Text("등급정보")
@@ -31,7 +34,7 @@ struct Summary: View {
 
                     // 다음 레벨 계산
                     Text("다음 레벨까지 40시간 남았습니다")
-                        .foregroundColor(Color.gray600)
+                        .foregroundColor(Color.GrayScale._600)
                 }
                 Spacer()
             }
@@ -39,12 +42,14 @@ struct Summary: View {
     }
 }
 
+// MARK: - Summary_Previews
+
 struct Summary_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
-            Color.gray100.ignoresSafeArea()
+            Color.GrayScale._100.ignoresSafeArea()
             Summary(level: 3)
-                .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
+                .border(Color.black)
         }
     }
 }
