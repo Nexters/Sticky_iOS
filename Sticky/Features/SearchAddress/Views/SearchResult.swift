@@ -21,10 +21,9 @@ struct SearchResult: View {
 
     var body: some View {
         ZStack {
-            Color.main.ignoresSafeArea()
             NavigationLink(destination: Main(), tag: "main", selection: $selection) { EmptyView() }
             VStack {
-                MapCard()
+                MapCard(width: 296, height: 216)
                     .padding(.bottom, 30)
 
                 Text("\(location.title)")
@@ -35,60 +34,64 @@ struct SearchResult: View {
                 Text("\(location.subtitle)")
                     .font(.system(size: 16))
                     .padding(.bottom, 46)
-                Button(action: {
-                    locationManager.setGeofenceMyHome(region: MKCoordinateRegion(
-                        center: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude),
-                        span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
-                    ))
-                    let hasGeofence = UserDefaults.standard.bool(forKey: "hasGeofence")
-                    UserDefaults.standard.setValue(true, forKey: "hasGeofence")
-
-                    if hasGeofence {
-                        print("집 주소를 변경했습니다")
-                        self.rootPresentationMode.wrappedValue.dismiss()
-                    } else {
-                        print("집 주소를 등록했습니다")
-                        self.selection = "main"
-                    }
-
-                }) {
+                Text("이후에 주소를 수정하면 모든 기록이 초기화됩니다.")
+                    .font(.system(size: 14))
+                    .foregroundColor(Color.GrayScale._500)
+                    .padding(.bottom, 8)
+                Button(action: setHome) {
                     GradientRoundedButton(
                         content: "집으로 설정하기".localized,
-                        startColor: Color.black,
-                        endColor: Color.black,
-                        width: 202,
-                        height: 48
+                        startColor: Color.Palette.primary,
+                        endColor: Color.Palette.primary,
+                        width: 296,
+                        height: 60,
+                        cornerRadius: 24
                     )
-                    .padding(.bottom, 20)
-                }
+                }.padding(.bottom, 16)
 
                 Button(action: focusRelease) {
                     Text("여기가 아닌가요?")
-                        .foregroundColor(.white)
+                        .font(.system(size: 17))
                         .underline()
+                        .foregroundColor(Color.Palette.primary)
                 }
             }
-            .padding(.leading, 24)
-            .padding(.trailing, 24)
-            .foregroundColor(.white)
+            .padding(.horizontal, 32)
+            .foregroundColor(.black)
             .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading: backButton)
         }
     }
 
+    func setHome() {
+        locationManager.setGeofenceMyHome(region: MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude),
+            span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+        ))
+        let hasGeofence = UserDefaults.standard.bool(forKey: "hasGeofence")
+        UserDefaults.standard.setValue(true, forKey: "hasGeofence")
+
+        if hasGeofence {
+            print("집 주소를 변경했습니다")
+            rootPresentationMode.wrappedValue.dismiss()
+        } else {
+            print("집 주소를 등록했습니다")
+            selection = "main"
+        }
+    }
+
     var backButton: some View {
         Button(action: focusRelease) {
             HStack {
-                Image("left-arrow")
+                Image("back")
                     .aspectRatio(contentMode: .fit)
-                    .foregroundColor(.white)
             }
         }
     }
 
     func focusRelease() {
-        self.presentationMode.wrappedValue.dismiss()
+        presentationMode.wrappedValue.dismiss()
     }
 
     // MARK: Private
@@ -102,5 +105,7 @@ struct SearchResult_Previews: PreviewProvider {
     static var previews: some View {
         SearchResult()
             .environmentObject(LocationManager())
+            .environmentObject(Location())
+            .environmentObject(LocationSearchService())
     }
 }
