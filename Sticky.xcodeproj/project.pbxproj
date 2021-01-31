@@ -40,6 +40,9 @@
 		BBC66EBD25C4E965007687D7 /* AppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC66EBC25C4E965007687D7 /* AppMain.swift */; };
 		BBC66EC825C4F99E007687D7 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC66EC725C4F99E007687D7 /* TimerView.swift */; };
 		BBC66EDE25C5197A007687D7 /* RootPresentationMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC66EDD25C5197A007687D7 /* RootPresentationMode.swift */; };
+		BBC66F2C25C55BA6007687D7 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC66F2B25C55BA6007687D7 /* MapView.swift */; };
+		BBC66F3225C578B6007687D7 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC66F3125C578B6007687D7 /* Location.swift */; };
+		BBC66F3725C57FF2007687D7 /* CLPlacemark+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC66F3625C57FF2007687D7 /* CLPlacemark+.swift */; };
 		C202D59525BD365F0033B450 /* PopupMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C202D59425BD365F0033B450 /* PopupMessage.swift */; };
 		C202D5A025BD38CC0033B450 /* PopupStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C202D59F25BD38CC0033B450 /* PopupStateModel.swift */; };
 		C2228FCC25BD5EAD00C4DF0B /* MyOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2228FCB25BD5EAD00C4DF0B /* MyOperation.swift */; };
@@ -116,6 +119,9 @@
 		BBC66EBC25C4E965007687D7 /* AppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMain.swift; sourceTree = "<group>"; };
 		BBC66EC725C4F99E007687D7 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		BBC66EDD25C5197A007687D7 /* RootPresentationMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootPresentationMode.swift; sourceTree = "<group>"; };
+		BBC66F2B25C55BA6007687D7 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		BBC66F3125C578B6007687D7 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		BBC66F3625C57FF2007687D7 /* CLPlacemark+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLPlacemark+.swift"; sourceTree = "<group>"; };
 		C202D59425BD365F0033B450 /* PopupMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupMessage.swift; sourceTree = "<group>"; };
 		C202D59F25BD38CC0033B450 /* PopupStateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupStateModel.swift; sourceTree = "<group>"; };
 		C2228FCB25BD5EAD00C4DF0B /* MyOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOperation.swift; sourceTree = "<group>"; };
@@ -279,6 +285,7 @@
 		BB1C8A1E25B875020000931A /* SearchAddress */ = {
 			isa = PBXGroup;
 			children = (
+				BBC66F3025C578AA007687D7 /* Models */,
 				BB8292D825BD59BA00077D8C /* Views */,
 				BB0A597D25BBB18C001F529A /* Services */,
 				BB1C8A2025B875020000931A /* Components */,
@@ -293,6 +300,7 @@
 				BB1C8A2325B875020000931A /* NotFound.swift */,
 				BB1C8A2425B875020000931A /* MapCard.swift */,
 				BB8292CD25BD597200077D8C /* SearchBar.swift */,
+				BBC66F2B25C55BA6007687D7 /* MapView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -418,6 +426,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		BBC66F3025C578AA007687D7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BBC66F3125C578B6007687D7 /* Location.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		EB32FA5025B840D700DC3FAE /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -431,6 +447,7 @@
 			children = (
 				EB32FA5C25B8466200DC3FAE /* View+.swift */,
 				C2296FF225BD41D300278E61 /* Notification.Name+.swift */,
+				BBC66F3625C57FF2007687D7 /* CLPlacemark+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -596,11 +613,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB1C8A2725B875020000931A /* SearchResult.swift in Sources */,
+				BBC66F2C25C55BA6007687D7 /* MapView.swift in Sources */,
 				BB1C8A2A25B875020000931A /* NotFound.swift in Sources */,
 				BBC66EDE25C5197A007687D7 /* RootPresentationMode.swift in Sources */,
 				C202D5A025BD38CC0033B450 /* PopupStateModel.swift in Sources */,
 				BB0A596D25BAD2CF001F529A /* LinkItem.swift in Sources */,
 				BBB1EC8325B0887500F5EA37 /* Indicator.swift in Sources */,
+				BBC66F3725C57FF2007687D7 /* CLPlacemark+.swift in Sources */,
 				C2296FF325BD41D300278E61 /* Notification.Name+.swift in Sources */,
 				EB63F53325B82D3900151A05 /* CardItem.swift in Sources */,
 				EB77449825B6DE8700BF1103 /* Preview.swift in Sources */,
@@ -642,6 +661,7 @@
 				BB0A592925BA50D8001F529A /* Summary.swift in Sources */,
 				C23A05A625BBE3F3007339BD /* Popup.swift in Sources */,
 				BBB1EBF225AF3C2100F5EA37 /* StickyApp.swift in Sources */,
+				BBC66F3225C578B6007687D7 /* Location.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
