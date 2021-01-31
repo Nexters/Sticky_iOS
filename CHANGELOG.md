@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.1](https://github.com/Nexters/Sticky_iOS/compare/v1.9.0...v1.9.1) (2021-01-31)
+
+
+### Bug Fixes
+
+* 디자인 시스템 코드반영, 2차 디자인 일부 반영 ([93f8a77](https://github.com/Nexters/Sticky_iOS/commit/93f8a775a430d1397c77ff3925d00473f3dfe6dc))
+* **onboarding:** 위치설정항상 화면 수정 ([7abce8a](https://github.com/Nexters/Sticky_iOS/commit/7abce8acdbe15ee41aa13cea1cb97268ba0a98da))
+* **search-address:** 집 설정 화면 변경 ([3f1e71e](https://github.com/Nexters/Sticky_iOS/commit/3f1e71ee563ec11a890f9730c5d79bf6ea7fa51f))
+* **timer:** 2차 디자인 화면 일부 반영 ([64cf4c8](https://github.com/Nexters/Sticky_iOS/commit/64cf4c84be7fe562e08010ac7b4108648bbbe5cf))
+
 ## [1.9.0](https://github.com/Nexters/Sticky_iOS/compare/v1.8.2...v1.9.0) (2021-01-31)
 
 
