@@ -105,19 +105,6 @@ struct Main: View {
             .ignoresSafeArea(.all)
             .navigationBarItems(leading: mypageButton, trailing: stopButton)
         }
-//        .onReceive(timer) { _ in
-//            if timerClass.type == .running {
-//                if time.timeData.minute == 60 {
-//                    time.timeData.hour += 1
-//                    time.timeData.minute = 0
-//                } else if time.timeData.second == 60 {
-//                    time.timeData.minute += 1
-//                    time.timeData.second = 0
-//                }
-//                time.timeData.second += 1
-//            }
-//        }
-        // 항상이 아닌 경우 표시
         .onAppear {
             print("appear")
             if Main.isFirst {
