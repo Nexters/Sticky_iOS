@@ -10,6 +10,16 @@ import SwiftUI
 // MARK: - Share
 
 struct Share: View {
+    // MARK: Lifecycle
+
+    init() {
+        let newNavAppearance = UINavigationBarAppearance()
+        newNavAppearance.configureWithTransparentBackground()
+        newNavAppearance.backgroundColor = .clear
+        UINavigationBar.appearance()
+            .standardAppearance = newNavAppearance
+    }
+
     // MARK: Internal
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -91,6 +101,7 @@ struct Share: View {
                 Spacer()
             }
         }
+        .navigationBarTitle("", displayMode: .inline)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(
             leading: backButton,
