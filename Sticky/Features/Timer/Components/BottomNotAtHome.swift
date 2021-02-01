@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - TimerOff
 
-struct TimerOff: View {
+struct BottomNotAtHome: View {
     // MARK: Internal
 
     @EnvironmentObject var time: Time
@@ -26,21 +26,16 @@ struct TimerOff: View {
 //                    Text("팝업")
 //                })
 
-            Button(action: {
-                timerClass.type = .running
-
-                UserDefaults.standard.set(Date(), forKey: "startDate")
-            }, label: {
-                Circle()
-                    .frame(width: 92, height: 92)
-                    .foregroundColor(.white)
-                    .shadow(color: .black, radius: 10, x: 2, y: 2)
-                    .overlay(
-                        Image(systemName: "play.fill")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                            .padding(.leading, 10)
-                    )
+            Button(action: {}, label: {
+                GradientRoundedButton(
+                    content: "집에서만 시작할 수 있어요".localized,
+                    startColor: Color.gray,
+                    endColor: Color.gray,
+                    width: 328,
+                    height: 60,
+                    cornerRadius: 16.0,
+                    fontColor: Color.black
+                )
             })
         }
     }
@@ -54,6 +49,6 @@ struct TimerOff: View {
 
 struct TimerOff_Previews: PreviewProvider {
     static var previews: some View {
-        TimerOff()
+        BottomNotAtHome()
     }
 }

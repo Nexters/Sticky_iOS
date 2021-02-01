@@ -18,10 +18,10 @@ struct SearchResult: View {
     @EnvironmentObject var location: Location
     @EnvironmentObject var locationManager: LocationManager
     @EnvironmentObject var locationSearchService: LocationSearchService
+    @EnvironmentObject var rootViewManager: RootViewManager
 
     var body: some View {
         ZStack {
-            NavigationLink(destination: Main(), tag: "main", selection: $selection) { EmptyView() }
             VStack {
                 MapCard(width: 296, height: 216)
                     .padding(.bottom, 30)
@@ -69,16 +69,7 @@ struct SearchResult: View {
             center: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude),
             span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
         ))
-        let hasGeofence = UserDefaults.standard.bool(forKey: "hasGeofence")
-        UserDefaults.standard.setValue(true, forKey: "hasGeofence")
-
-        if hasGeofence {
-            print("집 주소를 변경했습니다")
-            rootPresentationMode.wrappedValue.dismiss()
-        } else {
-            print("집 주소를 등록했습니다")
-            selection = "main"
-        }
+        rootViewManager.setGeofence()
     }
 
     var backButton: some View {
