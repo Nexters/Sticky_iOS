@@ -24,6 +24,7 @@ struct StickyApp: App {
                 .environmentObject(locationManager)
                 .environmentObject(LocationSearchService())
                 .environmentObject(Location())
+                .environmentObject(RootViewManager())
         }
         .onChange(of: scenePhase) { newScenePhase in
             switch newScenePhase {
@@ -57,8 +58,6 @@ struct StickyApp: App {
 
             case .inactive:
                 print("inActive")
-            case .background:
-                print("Background")
                 if let data = try? PropertyListEncoder().encode(time.timeData) {
                     UserDefaults.standard.set(data, forKey: key_time)
                     UserDefaults.standard.setValue(Date(), forKey: key_date)
@@ -69,6 +68,9 @@ struct StickyApp: App {
                     UserDefaults.standard.set(geofence.center.latitude, forKey: "latitude")
                     UserDefaults.standard.set(geofence.center.longitude, forKey: "longitude")
                 }
+            case .background:
+                print("Background")
+                
 
             @unknown default:
                 print("다른 상태 구현 필요")

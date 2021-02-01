@@ -12,16 +12,17 @@ import UserNotifications
 // MARK: - TimerClass
 
 class TimerClass: ObservableObject {
-    @Published var type: Main.TimerType = .notRunning
+    @Published var type: Main.TimerType = .notAtHome
 }
 
 // MARK: - Main
 
 struct Main: View {
     enum TimerType: Int {
-        case stop
+        case outing
         case notRunning
         case running
+        case notAtHome
     }
 
     @EnvironmentObject private var popupState: PopupStateModel
@@ -30,138 +31,55 @@ struct Main: View {
     @State var sharePresented: Bool = false
     @State var color = Color.Palette.primary
     @State var selection: String? = ""
+    @State var timer: Timer? = nil
+    @State static var isFirst: Bool = true
 
     // 매 초 간격으로 main 쓰레드에서 공통 실행 루프에서 실행
-    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        ZStack {
-            NavigationLink(
-                destination: Share(),
-                isActive: $sharePresented
-            ) { EmptyView() }
-            NavigationLink(destination: MyPage(), tag: "mypage", selection: self.$selection) { EmptyView() }
-            NavigationLink(destination: MyPage(), tag: "exit", selection: self.$selection) { EmptyView() }
-            setColor()
-                .ignoresSafeArea()
-            Image("blue_sticky")
-            VStack {
-                Spacer()
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        Button(action: {}) {
-                            RoundedRectangle(cornerRadius: 20)
-                                .frame(width: 172, height: 60)
-                                .foregroundColor(Color.TextIconColor.secondary)
-                                .overlay(
-                                    HStack {
-                                        Text("hi")
-                                    }
-                                )
-                        }
-                        Button(action: {}) {
-                            RoundedRectangle(cornerRadius: 20)
-                                .frame(width: 172, height: 60)
-                                .foregroundColor(Color.TextIconColor.secondary)
-                                .overlay(
-                                    HStack {
-                                        Text("hi")
-                                    }
-                                )
-                        }
-                        Button(action: {}) {
-                            RoundedRectangle(cornerRadius: 20)
-                                .frame(width: 96, height: 60)
-                                .foregroundColor(Color.TextIconColor.secondary)
-                                .overlay(
-                                    HStack {
-                                        Text("더보기")
-                                        Image("arrow_right")
-                                    }
-                                )
-                        }
-                    }
-                }
-                .foregroundColor(.black)
-                .padding(.leading, 16)
+        NavigationView {
+            ZStack {
+                NavigationLink(
+                    destination: Share(),
+                    isActive: $sharePresented
+                ) { EmptyView() }
+                NavigationLink(destination: MyPage(), tag: "mypage", selection: self.$selection) { EmptyView() }
+                NavigationLink(destination: MyPage(), tag: "exit", selection: self.$selection) { EmptyView() }
+                setColor()
+                    .ignoresSafeArea()
+                Image("blue_sticky")
+                VStack {
+                    Spacer()
 
-                Spacer()
-                TimerView(time: $time.timeData)
-                    .padding(.bottom, 87)
+                    scrollCardView
 
-//                setView()
-//                GradientRoundedButton(
-//                    content: "집에서만 시작할 수 있어요".localized,
-//                    startColor: Color.GrayScale._600,
-//                    endColor: Color.GrayScale._600,
-//                    width: 328,
-//                    height: 60,
-//                    cornerRadius: 16.0,
-//                    fontColor: Color.black
-//                )
-//                GradientRoundedButton(
-//                    content: "집에서만 시작할 수 있어요".localized,
-//                    startColor: Color.GrayScale._600,
-//                    endColor: Color.GrayScale._600,
-//                    width: 328,
-//                    height: 60,
-//                    cornerRadius: 16.0,
-//                    fontColor: Color.black
-//                )
-                Spacer().frame(height: 100)
-                Button(action: {}) {
-                    GradientRoundedButton(
-                        content: "시작하기".localized,
-                        startColor: Color.black,
-                        endColor: Color.black,
-                        width: 328,
-                        height: 60,
-                        cornerRadius: 16.0,
-                        fontColor: Color.white
-                    ).padding(.bottom, 24)
+                    Spacer()
+                    TimerView(time: $time.timeData)
+                        .padding(.bottom, 87)
+
+                    Spacer().frame(height: 100)
+
+                    setBottomView()
+                        .padding(.bottom, 24)
                 }
+
+                Outing(timer: $timer)
+                    .isHidden(!(timerClass.type == .outing))
+
+                PopupMessage(isPresented: $popupState.isPresented, title: "타이틀", description: "설명", confirmString: "컨펌", rejectString: "리젝", confirmHandler: confirmInPopup, rateOfWidth: 0.8)
+                    .isHidden(!popupState.isPresented)
             }
             .navigationBarBackButtonHidden(true)
+            .ignoresSafeArea(.all)
+            .navigationBarItems(leading: mypageButton, trailing: stopButton.isHidden(!(timerClass.type == .running)))
         }
-        .onReceive(timer) { _ in
-            if timerClass.type == .running {
-                if time.timeData.minute == 60 {
-                    time.timeData.hour += 1
-                    time.timeData.minute = 0
-                } else if time.timeData.second == 60 {
-                    time.timeData.minute += 1
-                    time.timeData.second = 0
-                }
-                time.timeData.second += 1
-            }
-        }
-        // 항상이 아닌 경우 표시
         .onAppear {
-            let manager = CLLocationManager()
-            switch manager.authorizationStatus {
-            case .authorizedAlways:
-                print("항상")
-            default:
-                if let appSettings = URL(string: UIApplication.openSettingsURLString) {
-                    print("불러와")
-                    UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
-                }
-                print("뭐야")
+            print("appear")
+            if Main.isFirst {
+                Main.isFirst = false
+                startTimer()
             }
         }
-        .popup(isPresented: $popupState.isPresented, rateOfWidth: 0.8) {
-            PopupMessage(
-                isPresented: $popupState.isPresented,
-                title: "챌린지 종료하기",
-                description: "챌린지가 00때문에 종료되었습니다.\n최종기록을 공유할까요",
-                confirmString: "공유하기",
-                rejectString: "취소하기"
-            ) {
-                self.sharePresented = true
-            }
-        }
-        .ignoresSafeArea(.all)
-        .navigationBarItems(leading: mypageButton, trailing: stopButton)
     }
 
     private var mypageButton: some View {
@@ -172,8 +90,30 @@ struct Main: View {
         }
     }
 
+    func startTimer() {
+        print("setTimer")
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
+            addSecond()
+        })
+    }
+
+    func addSecond() {
+        if timerClass.type == .running {
+            if time.timeData.minute == 60 {
+                time.timeData.hour += 1
+                time.timeData.minute = 0
+            } else if time.timeData.second == 60 {
+                time.timeData.minute += 1
+                time.timeData.second = 0
+            }
+            time.timeData.second += 1
+        }
+    }
+
     private var stopButton: some View {
-        Button(action: {}) {
+        Button(action: {
+            // TODO: 챌린지 종료하기
+        }) {
             Image("exit")
                 .aspectRatio(contentMode: .fit)
                 .foregroundColor(.black)
@@ -184,12 +124,53 @@ struct Main: View {
         sharePresented = true
     }
 
+    private var scrollCardView: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack {
+                Button(action: {}) {
+                    RoundedRectangle(cornerRadius: 20)
+                        .frame(width: 172, height: 60)
+                        .foregroundColor(Color.TextIconColor.secondary)
+                        .overlay(
+                            HStack {
+                                Text("hi")
+                            }
+                        )
+                }
+                Button(action: {}) {
+                    RoundedRectangle(cornerRadius: 20)
+                        .frame(width: 172, height: 60)
+                        .foregroundColor(Color.TextIconColor.secondary)
+                        .overlay(
+                            HStack {
+                                Text("hi")
+                            }
+                        )
+                }
+                Button(action: {}) {
+                    RoundedRectangle(cornerRadius: 20)
+                        .frame(width: 96, height: 60)
+                        .foregroundColor(Color.TextIconColor.secondary)
+                        .overlay(
+                            HStack {
+                                Text("더보기")
+                                Image("arrow_right")
+                            }
+                        )
+                }
+            }
+        }
+        .foregroundColor(.black)
+        .padding(.leading, 16)
+    }
+
     private func setColor() -> Color {
         var color: Color
         switch timerClass.type {
-        case .notRunning:
-            fallthrough
-        case .stop:
+        case .outing:
+
+            color = Color.gray
+        case .notAtHome:
             color = Color.gray
 
         default:
@@ -199,17 +180,19 @@ struct Main: View {
         return color
     }
 
-    private func setView() -> AnyView {
+    private func setBottomView() -> AnyView {
         var view: AnyView
         switch timerClass.type {
-        case .stop:
-            view = AnyView(TimerOff())
+        case .notAtHome:
+            view = AnyView(BottomNotAtHome())
 
         case .running:
-            view = AnyView(TimerRunning(sharePresented: $sharePresented))
+            view = AnyView(BottomTimerRunning(sharePresented: $sharePresented))
 
         case .notRunning:
-            view = AnyView(TimerNotRunning())
+            view = AnyView(BottomTimerNotRunning())
+        case .outing:
+            view = AnyView(BottomOuting())
         }
 
         return view

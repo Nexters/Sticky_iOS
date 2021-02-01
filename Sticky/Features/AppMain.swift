@@ -12,6 +12,8 @@ import SwiftUI
 struct AppMain: View {
     // MARK: Internal
 
+    @EnvironmentObject var rootViewManager: RootViewManager
+
 //    init() {
 //        let newNavAppearance = UINavigationBarAppearance()
 //        newNavAppearance.configureWithTransparentBackground()
@@ -21,21 +23,17 @@ struct AppMain: View {
 //    }
 
     var body: some View {
-        let rootView = UserDefaults.standard.bool(forKey: "hasGeofence") ?
-            AnyView(Main()) : AnyView(LocationPermission())
-
-        NavigationView {
-            VStack {
-                NavigationLink(destination: rootView, isActive: self.$isActive) { EmptyView() }
-
-                rootView
-            }
-        }.environment(\.rootPresentationMode, self.$isActive)
+        getRootView()
+            .environment(\.rootPresentationMode, self.$isActive)
     }
 
     // MARK: Private
 
     @State private var isActive: Bool = true
+
+    private func getRootView() -> AnyView {
+        rootViewManager.hasGeofence ? AnyView(Main()) : AnyView(LocationPermission())
+    }
 }
 
 // MARK: - AppMain_Previews
@@ -43,5 +41,6 @@ struct AppMain: View {
 struct AppMain_Previews: PreviewProvider {
     static var previews: some View {
         AppMain()
+            .environmentObject(RootViewManager())
     }
 }
