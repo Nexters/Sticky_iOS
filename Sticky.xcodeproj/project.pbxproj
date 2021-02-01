@@ -59,6 +59,7 @@
 		C27893DB25C6F3E8001319BE /* BottomOuting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27893DA25C6F3E8001319BE /* BottomOuting.swift */; };
 		C27893EC25C6F5A7001319BE /* Outing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27893EB25C6F5A7001319BE /* Outing.swift */; };
 		C278951025C82ACE001319BE /* OutingCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C278950F25C82ACE001319BE /* OutingCount.swift */; };
+		C278951825C833D6001319BE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C278951725C833D6001319BE /* Message.swift */; };
 		EB32FA5725B8414500DC3FAE /* CardSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB608B1325B719440061F394 /* CardSlide.swift */; };
 		EB32FA5D25B8466200DC3FAE /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB32FA5C25B8466200DC3FAE /* View+.swift */; };
 		EB63F51C25B8257C00151A05 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB63F51B25B8257C00151A05 /* Colors.xcassets */; };
@@ -145,6 +146,7 @@
 		C27893DA25C6F3E8001319BE /* BottomOuting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomOuting.swift; sourceTree = "<group>"; };
 		C27893EB25C6F5A7001319BE /* Outing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outing.swift; sourceTree = "<group>"; };
 		C278950F25C82ACE001319BE /* OutingCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutingCount.swift; sourceTree = "<group>"; };
+		C278951725C833D6001319BE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		EB32FA5C25B8466200DC3FAE /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		EB608B1325B719440061F394 /* CardSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSlide.swift; sourceTree = "<group>"; };
 		EB63F51B25B8257C00151A05 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -451,6 +453,7 @@
 				BBC66EBC25C4E965007687D7 /* AppMain.swift */,
 				BBC66EDD25C5197A007687D7 /* RootPresentationMode.swift */,
 				C27893CF25C6E1EC001319BE /* RootViewManager.swift */,
+				C278951725C833D6001319BE /* Message.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -695,6 +698,7 @@
 				BBC66EBD25C4E965007687D7 /* AppMain.swift in Sources */,
 				BB1C8A2825B875020000931A /* Tip.swift in Sources */,
 				BB0A592425B9C99D001F529A /* MyPage.swift in Sources */,
+				C278951825C833D6001319BE /* Message.swift in Sources */,
 				C202D59525BD365F0033B450 /* PopupMessage.swift in Sources */,
 				BB0A592E25BA516A001F529A /* BadgeItem.swift in Sources */,
 				BB05AB6F25C6C22D00E34717 /* BannerItem.swift in Sources */,

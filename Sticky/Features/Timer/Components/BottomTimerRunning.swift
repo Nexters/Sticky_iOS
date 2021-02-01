@@ -15,6 +15,7 @@ struct BottomTimerRunning: View {
     @EnvironmentObject var time: Time
     @EnvironmentObject private var timerClass: TimerClass
     @Binding var sharePresented: Bool
+    @Binding var message: Message
 
     var body: some View {
         VStack {
@@ -34,6 +35,7 @@ struct BottomTimerRunning: View {
             })
             // 외출하기 button
             Button(action: {
+                self.message = PopupStyle.outing
                 timerClass.type = .outing
             }, label: {
                 BorderRoundedButton(text: "외출하기".localized, borderWidth: 1, borderColor: .black, fontColor: .black, width: 328, height: 60, cornerRadius: 16.0)
@@ -46,7 +48,7 @@ struct BottomTimerRunning: View {
 
 struct TimerRunning_Previews: PreviewProvider {
     static var previews: some View {
-        BottomTimerRunning(sharePresented: .constant(true))
+        BottomTimerRunning(sharePresented: .constant(true), message: .constant(PopupStyle.exit))
             .environmentObject(PopupStateModel())
             .environmentObject(Time())
     }

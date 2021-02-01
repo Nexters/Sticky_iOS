@@ -11,10 +11,7 @@ import SwiftUI
 
 struct PopupMessage: View {
     @Binding var isPresented: Bool
-    let title: String
-    let description: String
-    let confirmString: String
-    let rejectString: String
+    let message: Message
     let confirmHandler: () -> Void
     let rateOfWidth: CGFloat
 
@@ -22,14 +19,14 @@ struct PopupMessage: View {
         ZStack {
             Rectangle()
                 .fill(Color.black.opacity(0.7)).blur(radius: 1)
-        GeometryReader { gr in
+            GeometryReader { gr in
                 VStack(alignment: .center) {
-                    Text(self.title)
+                    Text(self.message.title)
                         .font(.system(size: 22))
                         .bold()
                         .padding(.bottom, 16)
 
-                    Text(self.description)
+                    Text(self.message.description)
                         .lineSpacing(2)
                         .font(.system(size: 20))
                         .padding(.horizontal, 20)
@@ -40,7 +37,7 @@ struct PopupMessage: View {
                         self.confirmHandler()
                     }, label: {
                         Rectangle()
-                            .overlay(Text(self.confirmString)
+                            .overlay(Text(self.message.confirmString)
                                 .font(.system(size: 20))
                                 .bold()
                                 .foregroundColor(.white))
@@ -56,7 +53,7 @@ struct PopupMessage: View {
                         self.isPresented = false
                     }, label: {
                         Rectangle()
-                            .overlay(Text(self.rejectString)
+                            .overlay(Text(self.message.rejectString)
                                 .font(.system(size: 20))
                                 .bold()
                                 .foregroundColor(.black))
@@ -67,7 +64,7 @@ struct PopupMessage: View {
                     })
                         .padding(.top, 5)
                 }
-                .frame(width: gr.size.width * (self.rateOfWidth ?? CGFloat(0.8)), height: gr.size.height * 0.43)
+                .frame(width: gr.size.width * (self.rateOfWidth ), height: gr.size.height * 0.43)
                 .background(Color.primary.colorInvert())
                 .cornerRadius(20)
                 .shadow(color: .gray, radius: 15, x: 5, y: 5)
@@ -81,6 +78,6 @@ struct PopupMessage: View {
 
 struct PopupMessage_Previews: PreviewProvider {
     static var previews: some View {
-        PopupMessage(isPresented: .constant(false), title: "타이틀", description: "설명\n설명", confirmString: "확인", rejectString: "취소", confirmHandler: {}, rateOfWidth: 0.8)
+        PopupMessage(isPresented: .constant(false), message: Message(title: "타이틀", description: "설명\n설명", confirmString: "확인", rejectString: "취소"), confirmHandler: {}, rateOfWidth: 0.8)
     }
 }

@@ -13,6 +13,8 @@ struct Outing: View {
     // MARK: Internal
 
     @Binding var timer: Timer?
+    @State var minute: Int = 0
+    @State var second: Int = 10
 
     var body: some View {
         ZStack {
@@ -25,7 +27,7 @@ struct Outing: View {
                         .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.width * 0.8)
                     VStack {
                         HStack {
-                            Text("22")
+                            Text("\(minute)")
                                 .font(.custom("Modak", size: 80))
                                 .foregroundColor(.white)
                                 .bold()
@@ -34,7 +36,7 @@ struct Outing: View {
                                 Circle().frame(width: 8, height: 8)
                             }.padding(.horizontal, 8)
                                 .foregroundColor(.white)
-                            Text("11")
+                            Text("\(String(format: "%02d", self.second))")
                                 .font(.custom("Modak", size: 80))
                                 .foregroundColor(.white)
                                 .bold()
@@ -66,12 +68,27 @@ struct Outing: View {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
             timer in
 
-            self.countTime -= 1
-            if self.countTime == 0 {
-                timer.invalidate()
-                self.timer = nil
-                self.flag = false
-                print("nil")
+            if self.flag {
+                // 애니메이션 진입
+                self.countTime -= 1
+                if self.countTime == 0 {
+                    self.flag = false
+                }
+            } else {
+                // 애니메이션 종료 후
+                if self.second == 0 {
+                    if self.minute == 0 {
+                        // 외출하기 종료
+                        // MARK: 위치 확인 후에 챌린지 종료 or 유지
+                        timer.invalidate()
+                        self.timer = nil
+                    } else {
+                        self.minute -= 1
+                        self.second = 59
+                    }
+                } else {
+                    self.second -= 1
+                }
             }
         }
     }
