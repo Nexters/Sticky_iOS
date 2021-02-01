@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.10.1](https://github.com/Nexters/Sticky_iOS/compare/v1.10.0...v1.10.1) (2021-02-01)
+
+
+### Bug Fixes
+
+* **share:** 2차 디자인 화면 적용 ([5010da1](https://github.com/Nexters/Sticky_iOS/commit/5010da139a6016c77d8e17586a887a2a1eeb8ee3))
+* **share:** 공유 카드 높이, 스티키 위치 위치 비율 처리 ([77ef19f](https://github.com/Nexters/Sticky_iOS/commit/77ef19fda1ff58cf3656d124ba89f166ddb0a9db))
+
 ## [1.10.0](https://github.com/Nexters/Sticky_iOS/compare/v1.9.1...v1.10.0) (2021-02-01)
 
 
