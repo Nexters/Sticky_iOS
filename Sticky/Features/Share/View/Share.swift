@@ -23,7 +23,6 @@ struct Share: View {
     // MARK: Internal
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @EnvironmentObject var UIState: UIStateModel
 
     var body: some View {
         ZStack {
@@ -34,32 +33,10 @@ struct Share: View {
 
             VStack {
                 Spacer()
-                HStack(spacing: 16) {
-                    Button("현재 기록", action: { UIState.activeCard = 0 })
-                        .font(.system(size: 17, weight: .heavy, design: .default))
-                        .foregroundColor(UIState.activeCard == 0 ? .black : .gray)
-
-                    Button("받은 배지", action: { UIState.activeCard = 1 })
-                        .font(.system(size: 17, weight: .heavy, design: .default))
-                        .foregroundColor(UIState.activeCard == 1 ? .black : .gray)
-                }
-                .padding(.bottom, 16)
-                .foregroundColor(Color.white)
-                // 카드 슬라이드 뷰
-                CardSlide(items: $items)
+                CardSlideView()
                 Spacer()
-                HStack {
-                    Text("나의")
-                    Text(getBottomString()).bold()
-                    Text("공유합니다")
-                }
-                .font(.title3)
-                .foregroundColor(.black)
-                .padding(.top, 20)
-
                 ShareButtons()
-                    .padding(.top, 32)
-                Spacer()
+                    .padding(.bottom, 36)
             }
         }
         .navigationBarTitle("", displayMode: .inline)
@@ -93,19 +70,6 @@ struct Share: View {
         }) {
             Image("download")
                 .aspectRatio(contentMode: .fit)
-        }
-    }
-
-    private func getBottomString() -> String {
-        switch UIState.activeCard {
-        case 0:
-            return "현재 기록을"
-        case 1:
-            return "누적 기록을"
-        case 2:
-            return "최근 뱃지를"
-        default:
-            return "알수없음"
         }
     }
 }
