@@ -12,13 +12,12 @@ import SwiftUI
 struct Share: View {
     // MARK: Lifecycle
 
-    init(shareType: ShareType) {
+    init() {
         let newNavAppearance = UINavigationBarAppearance()
         newNavAppearance.configureWithTransparentBackground()
         newNavAppearance.backgroundColor = .clear
         UINavigationBar.appearance()
             .standardAppearance = newNavAppearance
-        self.shareType = shareType
     }
 
     // MARK: Internal
@@ -102,7 +101,7 @@ struct Share: View {
 
 struct Share_Previews: PreviewProvider {
     static var previews: some View {
-        Share(shareType: ShareType.slide)
+        Share()
             .environmentObject(UIStateModel())
     }
 }
