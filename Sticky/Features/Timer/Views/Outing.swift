@@ -13,8 +13,8 @@ struct Outing: View {
     // MARK: Internal
 
     @Binding var timer: Timer?
-    @State var minute: Int = 0
-    @State var second: Int = 10
+    @State var minute: Int = 30
+    @State var second: Int = 0
 
     var body: some View {
         ZStack {
