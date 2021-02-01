@@ -32,6 +32,14 @@ struct PopupMessage: View {
                         .padding(.horizontal, 20)
                         .multilineTextAlignment(.center)
 
+                    HStack {
+                        Image("heart")
+                            .foregroundColor(.red)
+                        Text("보유갯수/3")
+                            .foregroundColor(.red)
+                            .font(.system(size: 32))
+                    }.isHidden(message.style != .outing, remove: message.style != .outing)
+
                     Button(action: {
                         self.isPresented = false
                         self.confirmHandler()
@@ -64,7 +72,7 @@ struct PopupMessage: View {
                     })
                         .padding(.top, 5)
                 }
-                .frame(width: gr.size.width * (self.rateOfWidth ), height: gr.size.height * 0.43)
+                .frame(width: gr.size.width * self.rateOfWidth, height: gr.size.height * 0.43)
                 .background(Color.primary.colorInvert())
                 .cornerRadius(20)
                 .shadow(color: .gray, radius: 15, x: 5, y: 5)
@@ -78,6 +86,6 @@ struct PopupMessage: View {
 
 struct PopupMessage_Previews: PreviewProvider {
     static var previews: some View {
-        PopupMessage(isPresented: .constant(false), message: Message(title: "타이틀", description: "설명\n설명", confirmString: "확인", rejectString: "취소"), confirmHandler: {}, rateOfWidth: 0.8)
+        PopupMessage(isPresented: .constant(false), message: Message(style: .exit, title: "타이틀", description: "설명\n설명", confirmString: "확인", rejectString: "취소"), confirmHandler: {}, rateOfWidth: 0.8)
     }
 }

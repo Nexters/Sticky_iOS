@@ -8,20 +8,20 @@
 import SwiftUI
 import UserNotifications
 
-// MARK: - TimerRunning
+// MARK: - BottomTimerRunning
 
 struct BottomTimerRunning: View {
     @EnvironmentObject private var popupState: PopupStateModel
     @EnvironmentObject var time: Time
     @EnvironmentObject private var timerClass: TimerClass
     @Binding var sharePresented: Bool
-    @Binding var message: Message
+    @Binding var popupStyle: PopupStyle
 
     var body: some View {
         VStack {
             // share button
             Button(action: {
-                self.popupState.isPresented = true
+                sharePresented = true
             }, label: {
                 GradientRoundedButton(
                     content: "공유하기".localized,
@@ -35,8 +35,8 @@ struct BottomTimerRunning: View {
             })
             // 외출하기 button
             Button(action: {
-                self.message = PopupStyle.outing
-                timerClass.type = .outing
+                self.popupStyle = .outing
+                self.popupState.isPresented = true
             }, label: {
                 BorderRoundedButton(text: "외출하기".localized, borderWidth: 1, borderColor: .black, fontColor: .black, width: 328, height: 60, cornerRadius: 16.0)
             })
@@ -48,7 +48,7 @@ struct BottomTimerRunning: View {
 
 struct TimerRunning_Previews: PreviewProvider {
     static var previews: some View {
-        BottomTimerRunning(sharePresented: .constant(true), message: .constant(PopupStyle.exit))
+        BottomTimerRunning(sharePresented: .constant(true), popupStyle: .constant(.exit))
             .environmentObject(PopupStateModel())
             .environmentObject(Time())
     }
