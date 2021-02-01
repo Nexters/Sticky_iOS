@@ -25,7 +25,7 @@ struct CardSlide: View {
         // 숨겨진 카드의 보여질 width
         let widthOfHiddenCards: CGFloat = 40 /// UIScreen.main.bounds.width - 10
         // 카드의 Height
-        let cardHeight: CGFloat = 368
+        let cardHeight: CGFloat = UIScreen.main.bounds.height * 0.5
 
         return Carousel(
             numberOfItems: CGFloat(items.count),
@@ -82,7 +82,7 @@ struct CardSlide: View {
                         }
                         Image("blue_sticky")
                             .aspectRatio(contentMode: .fit)
-                            .offset(y: 170)
+                            .offset(y: UIScreen.main.bounds.height * 0.23)
                     }
                 }
                 .foregroundColor(Color.white)
