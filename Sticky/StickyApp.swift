@@ -30,7 +30,6 @@ struct StickyApp: App {
             switch newScenePhase {
             case .active:
                 print("Active")
-
                 // TODO: 현재 챌린지가 진행중인 상태라면 조건문 필요
                 if let date = UserDefaults.standard.object(forKey: "startDate") {
                     if let date = date as? Date {
@@ -70,7 +69,6 @@ struct StickyApp: App {
                 }
             case .background:
                 print("Background")
-                
 
             @unknown default:
                 print("다른 상태 구현 필요")
