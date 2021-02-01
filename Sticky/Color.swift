@@ -9,6 +9,18 @@ import Foundation
 import SwiftUI
 
 extension Color {
+    enum Sticky {
+        static let blue_start = Color("sticky-blue-start")
+        static let blue_end = Color("sticky-blue-end")
+        static let blue = LinearGradient(
+            gradient: Gradient(
+                colors: [blue_start, blue_end]
+            ),
+            startPoint: .top,
+            endPoint: .bottom
+        )
+    }
+
     enum Palette {
         static let primary = Color("palette-primary")
         static let secondary = Color("palette-primary")

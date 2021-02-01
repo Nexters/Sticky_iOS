@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		BB05AB6F25C6C22D00E34717 /* BannerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB05AB6E25C6C22D00E34717 /* BannerItem.swift */; };
+		BB05AB7E25C6EE2400E34717 /* Modak.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB05AB7D25C6EE2400E34717 /* Modak.ttf */; };
+		BB05AB8325C6EF3500E34717 /* StrokeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB05AB8225C6EF3500E34717 /* StrokeText.swift */; };
 		BB0A592425B9C99D001F529A /* MyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A592325B9C99D001F529A /* MyPage.swift */; };
 		BB0A592925BA50D8001F529A /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A592825BA50D8001F529A /* Summary.swift */; };
 		BB0A592E25BA516A001F529A /* BadgeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A592D25BA516A001F529A /* BadgeItem.swift */; };
@@ -85,7 +87,8 @@
 
 /* Begin PBXFileReference section */
 		BB05AB6E25C6C22D00E34717 /* BannerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerItem.swift; sourceTree = "<group>"; };
-		BB05AB7325C6CBB000E34717 /* Modak.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Modak.ttf; sourceTree = "<group>"; };
+		BB05AB7D25C6EE2400E34717 /* Modak.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Modak.ttf; sourceTree = "<group>"; };
+		BB05AB8225C6EF3500E34717 /* StrokeText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeText.swift; sourceTree = "<group>"; };
 		BB0A592325B9C99D001F529A /* MyPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPage.swift; sourceTree = "<group>"; };
 		BB0A592825BA50D8001F529A /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		BB0A592D25BA516A001F529A /* BadgeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeItem.swift; sourceTree = "<group>"; };
@@ -339,7 +342,7 @@
 		BBAC0F2925C65EF600FB81D7 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				BB05AB7325C6CBB000E34717 /* Modak.ttf */,
+				BB05AB7D25C6EE2400E34717 /* Modak.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				BBB1EC8225B0887500F5EA37 /* Indicator.swift */,
 				BBB1EC8D25B088EA00F5EA37 /* GradientRoundedButton.swift */,
 				BBB1ECB725B090A900F5EA37 /* BorderRoundedButton.swift */,
+				BB05AB8225C6EF3500E34717 /* StrokeText.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -616,6 +620,7 @@
 			files = (
 				BBB1EC5925B079F700F5EA37 /* Localizable.strings in Resources */,
 				EB63F51C25B8257C00151A05 /* Colors.xcassets in Resources */,
+				BB05AB7E25C6EE2400E34717 /* Modak.ttf in Resources */,
 				BBB1EBF925AF3C2100F5EA37 /* Preview Assets.xcassets in Resources */,
 				BBB1EBF625AF3C2100F5EA37 /* Assets.xcassets in Resources */,
 			);
@@ -690,6 +695,7 @@
 				BB0A592E25BA516A001F529A /* BadgeItem.swift in Sources */,
 				BB05AB6F25C6C22D00E34717 /* BannerItem.swift in Sources */,
 				EB32FA5D25B8466200DC3FAE /* View+.swift in Sources */,
+				BB05AB8325C6EF3500E34717 /* StrokeText.swift in Sources */,
 				EB63F52B25B82CBE00151A05 /* Carousel.swift in Sources */,
 				C27893EC25C6F5A7001319BE /* Outing.swift in Sources */,
 				BBB1EC4B25B077E500F5EA37 /* Color.swift in Sources */,
