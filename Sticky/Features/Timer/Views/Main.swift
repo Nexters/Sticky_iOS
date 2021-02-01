@@ -33,6 +33,7 @@ struct Main: View {
     @State var selection: String? = ""
     @State var timer: Timer? = nil
     @State static var isFirst: Bool = true
+    @State var message: Message = PopupStyle.outing
 
     // 매 초 간격으로 main 쓰레드에서 공통 실행 루프에서 실행
 
@@ -66,7 +67,10 @@ struct Main: View {
                 Outing(timer: $timer)
                     .isHidden(!(timerClass.type == .outing))
 
-                PopupMessage(isPresented: $popupState.isPresented, title: "타이틀", description: "설명", confirmString: "컨펌", rejectString: "리젝", confirmHandler: confirmInPopup, rateOfWidth: 0.8)
+                PopupMessage(isPresented: $popupState.isPresented,
+                             message: self.message ,
+                             confirmHandler: confirmInPopup,
+                             rateOfWidth: 0.8)
                     .isHidden(!popupState.isPresented)
             }
             .navigationBarBackButtonHidden(true)
@@ -91,7 +95,6 @@ struct Main: View {
     }
 
     func startTimer() {
-        print("setTimer")
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
             addSecond()
         })
@@ -112,7 +115,8 @@ struct Main: View {
 
     private var stopButton: some View {
         Button(action: {
-            // TODO: 챌린지 종료하기
+            self.message = PopupStyle.exit
+            self.popupState.isPresented = true
         }) {
             Image("exit")
                 .aspectRatio(contentMode: .fit)
@@ -187,7 +191,7 @@ struct Main: View {
             view = AnyView(BottomNotAtHome())
 
         case .running:
-            view = AnyView(BottomTimerRunning(sharePresented: $sharePresented))
+            view = AnyView(BottomTimerRunning(sharePresented: $sharePresented, message: $message))
 
         case .notRunning:
             view = AnyView(BottomTimerNotRunning())
