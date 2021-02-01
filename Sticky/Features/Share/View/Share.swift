@@ -15,14 +15,6 @@ struct Share: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var UIState: UIStateModel
 
-//    init() {
-//        let newNavAppearance = UINavigationBarAppearance()
-//        newNavAppearance.configureWithTransparentBackground()
-//        newNavAppearance.backgroundColor = .clear
-//        UINavigationBar.appearance()
-//            .standardAppearance = newNavAppearance
-//    }
-
     var body: some View {
         ZStack {
             // 배경 Color
