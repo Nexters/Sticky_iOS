@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.10.0](https://github.com/Nexters/Sticky_iOS/compare/v1.9.1...v1.10.0) (2021-02-01)
+
+
+### Features
+
+* **outing:** 외출하기 화면 UI 구성 ([14e6fb1](https://github.com/Nexters/Sticky_iOS/commit/14e6fb10585c9505431676e71bf1c624dce3975a))
+
+
+### Bug Fixes
+
+* 네이게비션바아이템 보이게 수정 ([6e06e14](https://github.com/Nexters/Sticky_iOS/commit/6e06e1444c90073d03e2227e2fc7085f4858fc56))
+* 타이머 2초씩 가는 버그 수정 ([41715e7](https://github.com/Nexters/Sticky_iOS/commit/41715e765aa89aef9fa051df79aa11615ef2678f))
+
 ### [1.9.1](https://github.com/Nexters/Sticky_iOS/compare/v1.9.0...v1.9.1) (2021-01-31)
 
 
