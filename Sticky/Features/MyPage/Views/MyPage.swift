@@ -23,7 +23,7 @@ struct MyPage: View {
             NavigationLink(destination: More(more: $more), isActive: $more) {
                 EmptyView()
             }
-            NavigationLink(destination: Share(shareType: shareType), tag: "share", selection: $navSelection) { EmptyView() }
+            NavigationLink(destination: Share(), tag: "share", selection: $navSelection) { EmptyView() }
 
             VStack(alignment: .leading, spacing: 20) {
                 Summary()
