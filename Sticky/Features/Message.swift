@@ -8,6 +8,7 @@
 import Foundation
 
 struct Message{
+    var style: PopupStyle
     var title: String
     var description: String
     var confirmString: String
