@@ -12,6 +12,9 @@ import SwiftUI
 struct MyPage: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var more = false
+    @State private var shareType = ShareType.level
+    @State private var navSelection: String?
+
     var level: Int = 0
     var camulate: Int = 0
 
@@ -20,6 +23,8 @@ struct MyPage: View {
             NavigationLink(destination: More(more: $more), isActive: $more) {
                 EmptyView()
             }
+            NavigationLink(destination: Share(shareType: shareType), tag: "share", selection: $navSelection) { EmptyView() }
+
             VStack(alignment: .leading, spacing: 20) {
                 Summary()
                     .padding(.bottom, 15)
@@ -29,9 +34,9 @@ struct MyPage: View {
                     .font(.system(size: 18))
                     .bold()
 
-                BadgePanel(leading: "누적 달성", trailing: "이번 달", badges: badgeMocks)
-                BadgePanel(leading: "연속 달성", badges: badgeMocks)
-                BadgePanel(leading: "스페셜 달성", badges: badgeMocks)
+                BadgePanel(leading: "누적 달성", trailing: "이번 달", badges: badgeMocks, selection: $navSelection)
+                BadgePanel(leading: "연속 달성", badges: badgeMocks, selection: $navSelection)
+                BadgePanel(leading: "스페셜 달성", badges: badgeMocks, selection: $navSelection)
                 Spacer()
             }
             .padding(.leading, 16)

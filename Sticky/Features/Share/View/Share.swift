@@ -12,15 +12,18 @@ import SwiftUI
 struct Share: View {
     // MARK: Lifecycle
 
-    init() {
+    init(shareType: ShareType) {
         let newNavAppearance = UINavigationBarAppearance()
         newNavAppearance.configureWithTransparentBackground()
         newNavAppearance.backgroundColor = .clear
         UINavigationBar.appearance()
             .standardAppearance = newNavAppearance
+        self.shareType = shareType
     }
 
     // MARK: Internal
+
+    var shareType = ShareType.slide
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
@@ -33,7 +36,9 @@ struct Share: View {
 
             VStack {
                 Spacer()
-                CardSlideView()
+
+                setCardView(shareType: shareType)
+
                 Spacer()
                 ShareButtons()
                     .padding(.bottom, 36)
@@ -72,13 +77,32 @@ struct Share: View {
                 .aspectRatio(contentMode: .fit)
         }
     }
+
+    private func setCardView(shareType: ShareType) -> AnyView {
+        var view: AnyView
+        switch shareType {
+        case .slide:
+            view = AnyView(CardSlideView())
+
+        case .level:
+            view = AnyView(LevelView(
+                level: 3,
+                grade: "Yellow Sticky",
+                total_time: TimeData(day: 4, hour: 20)
+            ))
+        default:
+            view = AnyView(Text("지원하지 않는 타입"))
+        }
+
+        return view
+    }
 }
 
 // MARK: - Share_Previews
 
 struct Share_Previews: PreviewProvider {
     static var previews: some View {
-        Share()
+        Share(shareType: ShareType.slide)
             .environmentObject(UIStateModel())
     }
 }

@@ -19,6 +19,13 @@ extension Color {
             startPoint: .top,
             endPoint: .bottom
         )
+        static let blue_bg_start = Color("sticky-blue-bg-start")
+        static let blue_bg_end = Color("sticky-blue-bg-end")
+        static let blue_bg = LinearGradient(
+            gradient: Gradient(colors: [blue_bg_start, blue_bg_end]),
+            startPoint: .top,
+            endPoint: .bottom
+        )
     }
 
     enum Palette {
