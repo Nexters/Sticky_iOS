@@ -10,10 +10,21 @@ import SwiftUI
 // MARK: - Share
 
 struct Share: View {
+    // MARK: Lifecycle
+
+    init() {
+        let newNavAppearance = UINavigationBarAppearance()
+        newNavAppearance.configureWithTransparentBackground()
+        newNavAppearance.backgroundColor = .clear
+        UINavigationBar.appearance()
+            .standardAppearance = newNavAppearance
+    }
+
     // MARK: Internal
 
+    var shareType = ShareType.slide
+
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @EnvironmentObject var UIState: UIStateModel
 
     var body: some View {
         ZStack {
@@ -23,74 +34,16 @@ struct Share: View {
                 .edgesIgnoringSafeArea(.vertical)
 
             VStack {
-                HStack(spacing: 16) {
-                    Button("현재 기록") {
-                        print("현재 기록")
-                    }
-                    .font(.system(size: 17, weight: .heavy, design: .default))
-                    .foregroundColor(UIState.activeCard == 0 ? .black : .gray)
-
-                    Button("받은 배지") {
-                        print("받은 배지")
-                    }
-                    .font(.system(size: 17, weight: .heavy, design: .default))
-                    .foregroundColor(UIState.activeCard == 1 ? .black : .gray)
-                }
-                .padding(.bottom, 16)
-                .foregroundColor(Color.white)
-
-                // 카드 슬라이드 뷰
-                CardSlide(items: $items)
-
-                HStack {
-                    Text("나의")
-                    Text(getBottomString()).bold()
-                    Text("공유합니다")
-                }
-                .font(.title3)
-                .foregroundColor(.black)
-                .padding(.top, 20)
-
-                HStack(spacing: 48) {
-                    Rectangle()
-                        .overlay(
-                            Button(action: {
-                                shareLocal()
-                            }) {
-                                Image(systemName: "square.and.arrow.up")
-                                    .frame(width: 48, height: 48)
-                                    .foregroundColor(.white)
-                            }
-                        )
-                        .frame(width: 48, height: 48)
-                        .cornerRadius(10)
-                        .foregroundColor(Color.black)
-
-                    Button(action: {
-                        shareInstagram()
-                    }) {
-                        Image("instagram")
-                            .frame(width: 48, height: 48)
-                            .foregroundColor(.white)
-                    }
-                    .frame(width: 48, height: 48)
-                    .cornerRadius(10)
-
-                    Button(action: {
-                        shareInstagram()
-                    }) {
-                        Image("twitter")
-                            .resizable()
-                            .frame(width: 48, height: 48)
-                            .foregroundColor(.white)
-                    }
-                    .frame(width: 48, height: 48)
-                    .cornerRadius(10)
-                }
-                .padding(.top, 37)
                 Spacer()
+
+                setCardView(shareType: shareType)
+
+                Spacer()
+                ShareButtons()
+                    .padding(.bottom, 36)
             }
         }
+        .navigationBarTitle("", displayMode: .inline)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(
             leading: backButton,
@@ -124,41 +77,23 @@ struct Share: View {
         }
     }
 
-    private func getBottomString() -> String {
-        switch UIState.activeCard {
-        case 0:
-            return "현재 기록을"
-        case 1:
-            return "누적 기록을"
-        case 2:
-            return "최근 뱃지를"
+    private func setCardView(shareType: ShareType) -> AnyView {
+        var view: AnyView
+        switch shareType {
+        case .slide:
+            view = AnyView(CardSlideView())
+
+        case .level:
+            view = AnyView(LevelView(
+                level: 3,
+                grade: "Yellow Sticky",
+                total_time: TimeData(day: 4, hour: 20)
+            ))
         default:
-            return "알수없음"
+            view = AnyView(Text("지원하지 않는 타입"))
         }
-    }
-}
 
-extension Share {
-    func shareInstagram() {
-        let img = takeCapture()
-        if let urlScheme = URL(string: "instagram-stories://share") {
-            if UIApplication.shared.canOpenURL(urlScheme) {
-                let pasteboardItems = [["com.instagram.sharedSticker.stickerImage": img.pngData(), "com.instagram.sharedSticker.backgroundImage": img.pngData()]]
-
-                let pasteboardOptions = [UIPasteboard.OptionsKey.expirationDate: Date().addingTimeInterval(60 * 5)]
-
-                UIPasteboard.general.setItems(pasteboardItems, options: pasteboardOptions)
-
-                UIApplication.shared.open(urlScheme as URL, options: [:], completionHandler: nil)
-            } else {
-                print("인스타 앱이 깔려있지 않습니다.")
-            }
-        }
-    }
-
-    func shareLocal() {
-        let av = UIActivityViewController(activityItems: [takeCapture()], applicationActivities: nil)
-        UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
+        return view
     }
 }
 
