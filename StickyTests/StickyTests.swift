@@ -17,12 +17,25 @@ class StickyTests: XCTestCase {
         let hours = 100
         let tier = Tier.of(hours: hours)
         print(tier)
-        assert(tier.major == 2 && tier.minor == 2)
+        assert(tier.level == 6)
+    }
+
+    func testSecondsToTimeString() throws {
+        let seconds = 90440
+        var calendar = Calendar.current
+        calendar.locale = Locale(identifier: "ko")
+        let formatter = DateComponentsFormatter()
+        formatter.calendar = calendar
+        formatter.allowedUnits = [.day, .hour, .minute]
+        formatter.unitsStyle = .full
+
+        let formattedString = formatter.string(from: TimeInterval(seconds))!
+        print(formattedString)
     }
 
     func testBadgeMock() throws {
         let badges = Array(1 ... 99).map { num in
-            Badge(badgeType: BadgeType.accumulation, name: "Badge Name \(num)", updated: Date(), count: 0)
+            Badge(badgeType: BadgeType.monthly, badgeValue: 10, name: "Badge Name \(num)", updated: Date(), count: 0)
         }
         print(badges)
         assert(badges.count == 99)

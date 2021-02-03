@@ -15,8 +15,7 @@ struct MyPage: View {
     @State private var shareType = ShareType.level
     @State private var navSelection: String?
 
-    var level: Int = 0
-    var camulate: Int = 0
+    var total_seconds: Int = 200000
 
     var body: some View {
         ScrollView {
@@ -26,27 +25,41 @@ struct MyPage: View {
             NavigationLink(destination: Share(), tag: "share", selection: $navSelection) { EmptyView() }
 
             VStack(alignment: .leading, spacing: 20) {
-                Summary()
+                Summary(seconds: total_seconds)
                     .padding(.bottom, 15)
                 Divider()
                     .padding(.bottom, 15)
-                Text("나의 달성 기록")
-                    .font(.system(size: 18))
-                    .bold()
+                BadgePanel(
+                    title: "스페셜 달성",
+                    subtitle: "특별한 기록을 달성하면 받을 수 있어요.",
+                    badges: badgeMocks(count: 6),
+                    selection: $navSelection
+                )
+                BadgePanel(
+                    title: "월간 달성",
+                    subtitle: "한달 내에 쌓은 시간을 기준으로 합니다.",
+                    trailing: "이번 달",
+                    badges: badgeMocks(count: 9),
+                    selection: $navSelection
+                )
+                BadgePanel(
+                    title: "연속 달성",
+                    subtitle: "멈추지 않고 이어서 기록된 시간을 기준으로 합니다.",
+                    badges: badgeMocks(count: 9),
+                    selection: $navSelection
+                )
 
-                BadgePanel(leading: "누적 달성", trailing: "이번 달", badges: badgeMocks, selection: $navSelection)
-                BadgePanel(leading: "연속 달성", badges: badgeMocks, selection: $navSelection)
-                BadgePanel(leading: "스페셜 달성", badges: badgeMocks, selection: $navSelection)
                 Spacer()
             }
-            .padding(.leading, 16)
-            .padding(.trailing, 16)
+            .padding(.horizontal, 16)
+            .padding(.top, 24)
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarTitle("마이페이지", displayMode: .inline)
         .navigationBarItems(
             leading: backButton,
-            trailing: moreButton)
+            trailing: moreButton
+        )
     }
 
     var backButton: some View {
@@ -63,11 +76,11 @@ struct MyPage: View {
         Button(action: {
             self.more = true
         }) {
-                HStack {
-                    Image("more")
-                        .aspectRatio(contentMode: .fit)
-                        .foregroundColor(.black)
-                }
+            HStack {
+                Image("more")
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundColor(.black)
+            }
         }
     }
 
@@ -80,6 +93,6 @@ struct MyPage: View {
 
 struct MyPage_Previews: PreviewProvider {
     static var previews: some View {
-        MyPage(level: 3)
+        MyPage(total_seconds: 100)
     }
 }
