@@ -15,6 +15,8 @@ struct BottomOuting: View {
     var body: some View {
         VStack {
             Button(action: {
+                count = 3
+                flag = true
                 challengeState.type = .running
             }, label: {
                 GradientRoundedButton(
@@ -40,12 +42,15 @@ struct BottomOuting: View {
     // MARK: Private
 
     @EnvironmentObject private var challengeState: ChallengeState
+    @Binding var count: Int
+    @Binding var flag: Bool
 }
 
 // MARK: - BottomOuting_Previews
 
 struct BottomOuting_Previews: PreviewProvider {
     static var previews: some View {
-        BottomOuting()
+        BottomOuting(count: .constant(1), flag: .constant(false))
+            .environmentObject(ChallengeState())
     }
 }

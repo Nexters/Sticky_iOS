@@ -31,12 +31,14 @@ struct AppMain: View {
                 locationManager.restartManager()
             }
             .onReceive(NotificationCenter.default.publisher(for: .enterGeofence), perform: { _ in
-                if challengeState.type != .running {
+                if challengeState.type == .notAtHome {
+                    print("집 밖에 있다가 들어감")
                     challengeState.type = .notRunning
                 }
             })
             .onReceive(NotificationCenter.default.publisher(for: .exitGeofence), perform: { _ in
-                if challengeState.type != .running {
+                if challengeState.type == .running || challengeState.type == .outing {
+                    print("챌린지/외출 진행 중 나감")
                     challengeState.type = .notAtHome
                 }
             })

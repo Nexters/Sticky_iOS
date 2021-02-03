@@ -108,7 +108,7 @@ struct SearchAddress: View {
                 }
             }
         }
-        .allowsHitTesting(locationManager.checkLocationStatus())
+        .allowsHitTesting(locationManager.checkLocationStatus()) // 항상 처리 확인
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: backButton)
         .navigationBarTitle("", displayMode: .inline)

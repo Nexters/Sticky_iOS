@@ -9,16 +9,10 @@ import CoreLocation
 import SwiftUI
 import UserNotifications
 
-// MARK: - TimerClass
-
-class ChallengeState: ObservableObject {
-    @Published var type: Main.ChallengeType = .notAtHome
-}
-
 // MARK: - Main
 
 struct Main: View {
-    enum ChallengeType: Int {
+    enum ChallengeType: Int, Codable {
         case outing
         case notRunning
         case running
@@ -26,7 +20,6 @@ struct Main: View {
     }
 
     @EnvironmentObject private var popupState: PopupStateModel
-    @EnvironmentObject private var time: Time
     @EnvironmentObject private var challengeState: ChallengeState
     @State var sharePresented: Bool = false
     @State var color = Color.Palette.primary
@@ -34,6 +27,8 @@ struct Main: View {
     @State var timer: Timer? = nil
     @State static var isFirst: Bool = true
     @State var popupStyle: PopupStyle = .exit
+    @State var flag = true
+    @State var countTime = 3
 
     // 매 초 간격으로 main 쓰레드에서 공통 실행 루프에서 실행
 
@@ -55,7 +50,7 @@ struct Main: View {
                     scrollCardView
 
                     Spacer()
-                    TimerView(time: $time.timeData)
+                    TimerView(time: $challengeState.timeData)
                         .padding(.bottom, 87)
 
                     Spacer().frame(height: 100)
@@ -64,7 +59,7 @@ struct Main: View {
                         .padding(.bottom, 24)
                 }
 
-                Outing(timer: $timer)
+                outingView
                     .isHidden(!(challengeState.type == .outing))
 
                 PopupMessage(isPresented: $popupState.isPresented,
@@ -79,6 +74,7 @@ struct Main: View {
         }
         .onAppear {
             // 처음 불릴 때, 타이머 동작
+            print(challengeState.type)
             if Main.isFirst {
                 Main.isFirst = false
                 startTimer()
@@ -102,15 +98,44 @@ struct Main: View {
 
     func addSecond() {
         if challengeState.type == .running {
-            if time.timeData.minute == 60 {
-                time.timeData.hour += 1
-                time.timeData.minute = 0
-            } else if time.timeData.second == 60 {
-                time.timeData.minute += 1
-                time.timeData.second = 0
+            if challengeState.timeData.minute >= 60 {
+                challengeState.timeData.hour += 1
+                challengeState.timeData.minute = 0
+            } else if challengeState.timeData.second >= 60 {
+                challengeState.timeData.minute += 1
+                challengeState.timeData.second = 0
             }
-            time.timeData.second += 1
+            challengeState.timeData.second += 1
+        } else if challengeState.type == .outing {
+            if flag {
+                // 애니메이션 진입
+                countTime -= 1
+                if countTime == 0 {
+                    flag = false
+                }
+            } else {
+                print(2)
+                // 애니메이션 종료 후
+                if challengeState.outingTimeDate.second <= 0 {
+                    if challengeState.outingTimeDate.minute <= 0 {
+                        // 외출하기 시간 지남
+                        // 이 로직을 돈다면 시간동안 범위 밖을 나가지 않음
+                        flag = true
+                        countTime = 3
+                        challengeState.type = .running
+                    } else {
+                        challengeState.outingTimeDate.minute -= 1
+                        challengeState.outingTimeDate.second = 59
+                    }
+                } else {
+                    challengeState.outingTimeDate.second -= 1
+                }
+            }
         }
+    }
+
+    private var outingView: Outing {
+        Outing(timer: $timer, flag: $flag, countTime: $countTime)
     }
 
     private var stopButton: some View {
@@ -136,7 +161,9 @@ struct Main: View {
         case .outing:
 
             // MARK: 챌린지 종료하기
-
+            flag = true
+            challengeState.outingTimeDate.minute = 20
+            challengeState.outingTimeDate.second = 0
             challengeState.type = .outing
             print("외출하기")
         }
@@ -207,7 +234,7 @@ struct Main: View {
         case .notRunning:
             view = AnyView(BottomTimerNotRunning())
         case .outing:
-            view = AnyView(BottomOuting())
+            view = AnyView(BottomOuting(count: $countTime, flag: $flag))
         }
 
         return view
@@ -220,7 +247,6 @@ struct Timer_Previews: PreviewProvider {
     static var previews: some View {
         return Main()
             .environmentObject(PopupStateModel())
-            .environmentObject(Time())
             .environmentObject(ChallengeState())
     }
 }
