@@ -25,7 +25,9 @@ jobs:
           git config --local user.name "GitHub Action"
           export VERSION=$(npx next-standard-version)
           export DESCRIPTION=$(npx standard-version --dry-run --silent | grep -v yarn | grep -v Done | grep -v "\-\-\-" | grep -v standard-version)
-          echo "DESCRIPTION=$DESCRIPTION" >> $GITHUB_ENV 
+          echo "DESCRIPTION<<EOF" >> $GITHUB_ENV
+          echo "$DESCRIPTION" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
           echo "VERSION=$VERSION" >> $GITHUB_ENV 
           make release
           git add Sticky.xcodeproj/project.pbxproj
