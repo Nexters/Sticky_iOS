@@ -47,6 +47,7 @@ class LocationManager: NSObject, ObservableObject {
         center: CLLocationCoordinate2D(latitude: 37.5173209, longitude: 127.0473887),
         span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
     )
+    @Published var isAlways: Bool = false
 
     var geofence: CLCircularRegion? {
         willSet {
@@ -84,6 +85,16 @@ class LocationManager: NSObject, ObservableObject {
 
     private var flag: Int = 0
     private let locationManager = CLLocationManager()
+    
+    //위치 권한이 항상인지 체크
+    func checkLocationStatus() -> Bool{
+        if locationManager.authorizationStatus == .authorizedAlways{
+            isAlways = true
+        }else{
+            isAlways = false
+        }
+        return isAlways
+    }
 }
 
 // MARK: CLLocationManagerDelegate

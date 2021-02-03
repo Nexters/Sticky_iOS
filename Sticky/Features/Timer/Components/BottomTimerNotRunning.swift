@@ -27,7 +27,7 @@ struct BottomTimerNotRunning: View {
 //                })
 
             Button(action: {
-                self.timerClass.type = .running
+                self.challengeState.type = .running
             }) {
                 GradientRoundedButton(
                     content: "시작하기".localized,
@@ -44,7 +44,7 @@ struct BottomTimerNotRunning: View {
 
     // MARK: Private
 
-    @EnvironmentObject private var timerClass: TimerClass
+    @EnvironmentObject private var challengeState: ChallengeState
 }
 
 // MARK: - TimerNotRunning_Previews

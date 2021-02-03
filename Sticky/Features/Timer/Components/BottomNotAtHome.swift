@@ -39,10 +39,6 @@ struct BottomNotAtHome: View {
             })
         }
     }
-
-    // MARK: Private
-
-    @EnvironmentObject private var timerClass: TimerClass
 }
 
 // MARK: - TimerOff_Previews
