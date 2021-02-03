@@ -13,6 +13,8 @@ struct AppMain: View {
     // MARK: Internal
 
     @EnvironmentObject var rootViewManager: RootViewManager
+    @EnvironmentObject var timerClass: TimerClass
+    @EnvironmentObject var locationManager: LocationManager
 
 //    init() {
 //        let newNavAppearance = UINavigationBarAppearance()
@@ -25,6 +27,19 @@ struct AppMain: View {
     var body: some View {
         getRootView()
             .environment(\.rootPresentationMode, self.$isActive)
+            .onAppear{
+                locationManager.restartManager()
+            }
+            .onReceive(NotificationCenter.default.publisher(for: .enterGeofence), perform: { _ in
+                if timerClass.type != .running {
+                    timerClass.type = .notRunning
+                }
+            })
+            .onReceive(NotificationCenter.default.publisher(for: .exitGeofence), perform: { _ in
+                if timerClass.type != .running {
+                    timerClass.type = .notAtHome
+                }
+            })
     }
 
     // MARK: Private

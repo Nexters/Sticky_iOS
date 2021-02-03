@@ -33,6 +33,7 @@ struct Main: View {
     @State var selection: String? = ""
     @State var timer: Timer? = nil
     @State static var isFirst: Bool = true
+    @State var popupStyle: PopupStyle = .exit
 
     // 매 초 간격으로 main 쓰레드에서 공통 실행 루프에서 실행
 
@@ -66,7 +67,10 @@ struct Main: View {
                 Outing(timer: $timer)
                     .isHidden(!(timerClass.type == .outing))
 
-                PopupMessage(isPresented: $popupState.isPresented, title: "타이틀", description: "설명", confirmString: "컨펌", rejectString: "리젝", confirmHandler: confirmInPopup, rateOfWidth: 0.8)
+                PopupMessage(isPresented: $popupState.isPresented,
+                             message: self.popupStyle.getMessage(),
+                             confirmHandler: confirmInPopup,
+                             rateOfWidth: 0.8)
                     .isHidden(!popupState.isPresented)
             }
             .navigationBarBackButtonHidden(true)
@@ -74,7 +78,7 @@ struct Main: View {
             .navigationBarItems(leading: mypageButton, trailing: stopButton.isHidden(!(timerClass.type == .running)))
         }
         .onAppear {
-            print("appear")
+            // 처음 불릴 때, 타이머 동작
             if Main.isFirst {
                 Main.isFirst = false
                 startTimer()
@@ -91,7 +95,6 @@ struct Main: View {
     }
 
     func startTimer() {
-        print("setTimer")
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
             addSecond()
         })
@@ -112,7 +115,8 @@ struct Main: View {
 
     private var stopButton: some View {
         Button(action: {
-            // TODO: 챌린지 종료하기
+            self.popupStyle = .exit
+            self.popupState.isPresented = true
         }) {
             Image("exit")
                 .aspectRatio(contentMode: .fit)
@@ -121,7 +125,21 @@ struct Main: View {
     }
 
     func confirmInPopup() {
-        sharePresented = true
+        switch popupStyle {
+        case .exit:
+
+            // MARK: 챌린지 종료하기
+
+            print("종료하기")
+        case .fail:
+            sharePresented = true
+        case .outing:
+
+            // MARK: 챌린지 종료하기
+
+            timerClass.type = .outing
+            print("외출하기")
+        }
     }
 
     private var scrollCardView: some View {
@@ -168,7 +186,6 @@ struct Main: View {
         var color: Color
         switch timerClass.type {
         case .outing:
-
             color = Color.gray
         case .notAtHome:
             color = Color.gray
@@ -185,10 +202,8 @@ struct Main: View {
         switch timerClass.type {
         case .notAtHome:
             view = AnyView(BottomNotAtHome())
-
         case .running:
-            view = AnyView(BottomTimerRunning(sharePresented: $sharePresented))
-
+            view = AnyView(BottomTimerRunning(sharePresented: $sharePresented, popupStyle: $popupStyle))
         case .notRunning:
             view = AnyView(BottomTimerNotRunning())
         case .outing:

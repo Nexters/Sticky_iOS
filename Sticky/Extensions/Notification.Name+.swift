@@ -7,6 +7,7 @@
 
 import Foundation
 
-extension NSNotification {
-    static let confirmPopup = NSNotification.Name("confirmPopup")
+extension Notification.Name {
+    static let enterGeofence = Notification.Name("enterGeofence")
+    static let exitGeofence = Notification.Name("exitGeofence")
 }
