@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.10.3](https://github.com/Nexters/Sticky_iOS/compare/v1.10.2...v1.10.3) (2021-02-03)
+
+
+### Bug Fixes
+
+* **share:** 공유화면 분기 처리, 마이페이지 뱃지 공유 화면 연동 ([9e8197c](https://github.com/Nexters/Sticky_iOS/commit/9e8197c30bb709f086cef160de34b77ab6ad8ec8))
+* **share:** 상단 네비게이션 영역 inline 처리 ([591dfd6](https://github.com/Nexters/Sticky_iOS/commit/591dfd696e4ff2b63246b4a2104396c3ebab7fa6))
+* **share:** 화면 개선, 컴포넌트 분리, 미지원 sns 보류 ([6b44496](https://github.com/Nexters/Sticky_iOS/commit/6b4449638968cab15db1e555a160e91fcf45a8ae))
+* **share:** 화면 개선, 컴포넌트 분리, 미지원 sns 보류 ([27c7870](https://github.com/Nexters/Sticky_iOS/commit/27c78703ed3622cb863194722d01832b686acc6f))
+
 ### [1.10.2](https://github.com/Nexters/Sticky_iOS/compare/v1.10.1...v1.10.2) (2021-02-03)
 
 ### [1.10.1](https://github.com/Nexters/Sticky_iOS/compare/v1.10.0...v1.10.1) (2021-02-01)
