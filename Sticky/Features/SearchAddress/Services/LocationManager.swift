@@ -48,7 +48,15 @@ class LocationManager: NSObject, ObservableObject {
         span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
     )
 
-    var geofence: CLCircularRegion?
+    var geofence: CLCircularRegion? {
+        willSet {
+            if newValue!.contains(self.location.coordinate) {
+                NotificationCenter.default.post(name: .enterGeofence, object: nil)
+            } else {
+                NotificationCenter.default.post(name: .exitGeofence, object: nil)
+            }
+        }
+    }
 
     @Published var status: CLAuthorizationStatus? {
         willSet { self.objectWillChange.send() }
@@ -64,6 +72,12 @@ class LocationManager: NSObject, ObservableObject {
 
     func setNotPause() {
         self.locationManager.pausesLocationUpdatesAutomatically = false
+    }
+
+    func restartManager() {
+        guard let geofence = self.geofence else { return }
+        self.locationManager.stopMonitoring(for: geofence)
+        self.locationManager.startMonitoring(for: geofence)
     }
 
     // MARK: Private
@@ -104,6 +118,7 @@ extension LocationManager: CLLocationManagerDelegate {
     /// 영역 모니터링 시작할 때
     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
         print("Start monitoring: \(self.region.center)")
+        self.setGeofenceMyHome(region: self.region)
     }
 
     /** 영역을 들어갔을 때
@@ -111,6 +126,7 @@ extension LocationManager: CLLocationManagerDelegate {
      */
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         print("Enter: \(self.region.center)")
+        NotificationCenter.default.post(name: .enterGeofence, object: nil)
     }
 
     /** 영역을 벗어났을 때
@@ -119,34 +135,23 @@ extension LocationManager: CLLocationManagerDelegate {
      */
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         print("Exit: \(self.region.center)")
+        NotificationCenter.default.post(name: .exitGeofence, object: nil)
     }
 
     /** 현재 위치를 지오펜싱으로 영역 처리
      */
     func setGeofenceMyHome(region: MKCoordinateRegion) {
-        let _geofenceEnter = CLCircularRegion(
-            center: region.center,
-            radius: 100, // 100m
-            identifier: "MyHomeRegion"
-        )
-
         let _geofenceExit = CLCircularRegion(
             center: region.center,
             radius: 100, // 100m
             identifier: "MyHomeRegion1"
         )
 
-        print(_geofenceExit.hash, _geofenceEnter.hash)
-        _geofenceEnter.notifyOnEntry = true
-        _geofenceEnter.notifyOnExit = true
-
         _geofenceExit.notifyOnExit = true
         _geofenceExit.notifyOnEntry = true
-        self.geofence = _geofenceEnter
-        scheduleNotification_enter(region: _geofenceEnter)
+        self.geofence = _geofenceExit
         scheduleNotification_exit(region: _geofenceExit)
-        self.locationManager.startMonitoring(for: _geofenceEnter)
-        self.locationManager.startMonitoring(for: _geofenceExit)
+//        self.locationManager.startMonitoring(for: _geofenceExit)
     }
 }
 
