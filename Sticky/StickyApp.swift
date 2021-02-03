@@ -19,7 +19,6 @@ struct StickyApp: App {
             AppMain()
                 .environmentObject(PopupStateModel())
                 .environmentObject(UIStateModel())
-                .environmentObject(time)
                 .environmentObject(challengeState)
                 .environmentObject(locationManager)
                 .environmentObject(LocationSearchService())
@@ -40,17 +39,17 @@ struct StickyApp: App {
                 }
                 
                 // TODO: 현재 챌린지가 진행중인 상태라면 조건문 필요
-                if let date = UserDefaults.standard.object(forKey: "startDate") {
-                    if let date = date as? Date {
-                        // 우선은 앱에 다시 들어오면 재시작하게끔 설정
-                        challengeState.type = .running
-                        let components = dateCompareToNow(date: date)
-                        time.timeData.day = components?.day ?? 0
-                        time.timeData.hour = components?.hour ?? 0
-                        time.timeData.minute = components?.minute ?? 0
-                        time.timeData.second = components?.second ?? 0
-                    }
-                }
+//                if let date = UserDefaults.standard.object(forKey: "startDate") {
+//                    if let date = date as? Date {
+//                        // 우선은 앱에 다시 들어오면 재시작하게끔 설정
+//                        challengeState.type = .running
+//                        let components = dateCompareToNow(date: date)
+//                        challengeState.timeData.day = components?.day ?? 0
+//                        challengeState.timeData.hour = components?.hour ?? 0
+//                        challengeState.timeData.minute = components?.minute ?? 0
+//                        challengeState.timeData.second = components?.second ?? 0
+//                    }
+//                }
                 let latitude = UserDefaults.standard.double(forKey: "latitude")
                 let longitude = UserDefaults.standard.double(forKey: "longitude")
                 print("latitude: \(latitude)")
@@ -66,9 +65,9 @@ struct StickyApp: App {
 
             case .inactive:
                 print("inActive")
-                if let data = try? PropertyListEncoder().encode(time.timeData) {
-                    UserDefaults.standard.set(data, forKey: key_time)
-                    UserDefaults.standard.setValue(Date(), forKey: key_date)
+                if let data = try? PropertyListEncoder().encode(challengeState.timeData) {
+//                    UserDefaults.standard.set(data, forKey: key_time)
+//                    UserDefaults.standard.setValue(Date(), forKey: key_date)
                 }
                 if let geofence = locationManager.geofence {
                     print("latitude: \(geofence.center.latitude)")
@@ -91,20 +90,10 @@ struct StickyApp: App {
     private var longitude = UserDefaults.standard.double(forKey: "longitude")
 
     @Environment(\.scenePhase) private var scenePhase
-    private var time = Time()
     private var challengeState = ChallengeState()
     private var locationManager = LocationManager()
     private let key_time = "time"
     private let key_date = "date"
 
-    private func dateCompareToNow(date: Date) -> DateComponents? {
-        var calendar = Calendar.current
-        if let timeZone = TimeZone(identifier: "UTC") {
-            calendar.timeZone = timeZone
-        }
-
-        let now = Date()
-
-        return Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date, to: now)
-    }
+    
 }

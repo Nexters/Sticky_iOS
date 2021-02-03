@@ -12,8 +12,6 @@ import SwiftUI
 struct BottomNotAtHome: View {
     // MARK: Internal
 
-    @EnvironmentObject var time: Time
-
     var body: some View {
         VStack {
 //                NavigationLink(destination: MyPage()) {
