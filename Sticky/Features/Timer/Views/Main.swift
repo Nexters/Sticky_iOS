@@ -68,6 +68,7 @@ struct Main: View {
                     .isHidden(!popupState.isPresented)
             }
             .navigationBarBackButtonHidden(true)
+            .navigationBarTitle("", displayMode: .inline)
             .ignoresSafeArea(.all)
             .navigationBarItems(leading: mypageButton, trailing: stopButton.isHidden(!(challengeState.type == .running)))
         }
