@@ -13,6 +13,7 @@ struct Outing: View {
     // MARK: Internal
 
     @Binding var timer: Timer?
+    @EnvironmentObject var challengeState: ChallengeState
     @State var minute: Int = 30
     @State var second: Int = 0
 
@@ -78,8 +79,8 @@ struct Outing: View {
                 // 애니메이션 종료 후
                 if self.second == 0 {
                     if self.minute == 0 {
-                        // 외출하기 종료
-                        // MARK: 위치 확인 후에 챌린지 종료 or 유지
+                        // 외출하기 시간 지남
+                        challengeState.type = .notRunning
                         timer.invalidate()
                         self.timer = nil
                     } else {
@@ -99,5 +100,6 @@ struct Outing: View {
 struct Outing_Previews: PreviewProvider {
     static var previews: some View {
         Outing(timer: .constant(Timer()))
+            .environmentObject(ChallengeState())
     }
 }

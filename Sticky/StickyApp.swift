@@ -20,7 +20,7 @@ struct StickyApp: App {
                 .environmentObject(PopupStateModel())
                 .environmentObject(UIStateModel())
                 .environmentObject(time)
-                .environmentObject(timerClass)
+                .environmentObject(challengeState)
                 .environmentObject(locationManager)
                 .environmentObject(LocationSearchService())
                 .environmentObject(Location())
@@ -30,11 +30,20 @@ struct StickyApp: App {
             switch newScenePhase {
             case .active:
                 print("Active")
+                //위치 권한 확인
+                if locationManager.checkLocationStatus(){
+                    //위치 권한이 항상일 때
+                    print("Active - 항상O")
+                }else{
+                    //위치 권한이 항상 아닐 때
+                    print("Active - 항상X")
+                }
+                
                 // TODO: 현재 챌린지가 진행중인 상태라면 조건문 필요
                 if let date = UserDefaults.standard.object(forKey: "startDate") {
                     if let date = date as? Date {
                         // 우선은 앱에 다시 들어오면 재시작하게끔 설정
-                        timerClass.type = .running
+                        challengeState.type = .running
                         let components = dateCompareToNow(date: date)
                         time.timeData.day = components?.day ?? 0
                         time.timeData.hour = components?.hour ?? 0
@@ -83,7 +92,7 @@ struct StickyApp: App {
 
     @Environment(\.scenePhase) private var scenePhase
     private var time = Time()
-    private var timerClass = TimerClass()
+    private var challengeState = ChallengeState()
     private var locationManager = LocationManager()
     private let key_time = "time"
     private let key_date = "date"

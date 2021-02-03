@@ -17,6 +17,7 @@ struct SearchAddress: View {
     @EnvironmentObject var locationSearchService: LocationSearchService
     @EnvironmentObject var locationManager: LocationManager
     @EnvironmentObject var location: Location
+    @State var isAlways: Bool = false
 
     var body: some View {
         ZStack {
@@ -38,7 +39,8 @@ struct SearchAddress: View {
 
                     EditText(
                         input: $locationSearchService.searchQuery,
-                        placeholder: "도로명, 건물명 또는 지번으로 검색",
+                        placeholder:
+                            locationManager.checkLocationStatus() ? "도로명, 건물명 또는 지번으로 검색" : "위치 정보를 항상으로 체크해주세요.",
                         accentColor: .white
                     )
                     .padding(.bottom, 8)
@@ -53,7 +55,7 @@ struct SearchAddress: View {
                             text: "현재 위치로 주소 찾기",
                             borderWidth: 2.0,
                             borderColor: Color.Border.primary,
-                            fontColor: Color.TextIconLight.primary,
+                            fontColor: locationManager.checkLocationStatus() ? Color.TextIconLight.primary : Color.GrayScale._300,
                             icon: "here",
                             cornerRadius: 16.0
                         )
@@ -93,18 +95,20 @@ struct SearchAddress: View {
             }
         }
         .onAppear {
-            let manager = CLLocationManager()
-            switch manager.authorizationStatus {
-            case .authorizedAlways:
-                print("항상")
-            default:
+            //always가 아니면 설정으로 이동
+            if !locationManager.checkLocationStatus() {
                 if let appSettings = URL(string: UIApplication.openSettingsURLString) {
-                    print("불러와")
-                    UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+                    UIApplication.shared.open(appSettings, options: [:], completionHandler: { _ in
+                        if locationManager.checkLocationStatus() {
+                            isAlways = true
+                        } else {
+                            isAlways = false
+                        }
+                    })
                 }
-                print("뭐야")
             }
         }
+        .allowsHitTesting(locationManager.checkLocationStatus())
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: backButton)
         .navigationBarTitle("", displayMode: .inline)

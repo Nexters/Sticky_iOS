@@ -11,14 +11,14 @@ import UserNotifications
 
 // MARK: - TimerClass
 
-class TimerClass: ObservableObject {
-    @Published var type: Main.TimerType = .notAtHome
+class ChallengeState: ObservableObject {
+    @Published var type: Main.ChallengeType = .notAtHome
 }
 
 // MARK: - Main
 
 struct Main: View {
-    enum TimerType: Int {
+    enum ChallengeType: Int {
         case outing
         case notRunning
         case running
@@ -27,7 +27,7 @@ struct Main: View {
 
     @EnvironmentObject private var popupState: PopupStateModel
     @EnvironmentObject private var time: Time
-    @EnvironmentObject private var timerClass: TimerClass
+    @EnvironmentObject private var challengeState: ChallengeState
     @State var sharePresented: Bool = false
     @State var color = Color.Palette.primary
     @State var selection: String? = ""
@@ -65,7 +65,7 @@ struct Main: View {
                 }
 
                 Outing(timer: $timer)
-                    .isHidden(!(timerClass.type == .outing))
+                    .isHidden(!(challengeState.type == .outing))
 
                 PopupMessage(isPresented: $popupState.isPresented,
                              message: self.popupStyle.getMessage(),
@@ -75,7 +75,7 @@ struct Main: View {
             }
             .navigationBarBackButtonHidden(true)
             .ignoresSafeArea(.all)
-            .navigationBarItems(leading: mypageButton, trailing: stopButton.isHidden(!(timerClass.type == .running)))
+            .navigationBarItems(leading: mypageButton, trailing: stopButton.isHidden(!(challengeState.type == .running)))
         }
         .onAppear {
             // 처음 불릴 때, 타이머 동작
@@ -101,7 +101,7 @@ struct Main: View {
     }
 
     func addSecond() {
-        if timerClass.type == .running {
+        if challengeState.type == .running {
             if time.timeData.minute == 60 {
                 time.timeData.hour += 1
                 time.timeData.minute = 0
@@ -137,7 +137,7 @@ struct Main: View {
 
             // MARK: 챌린지 종료하기
 
-            timerClass.type = .outing
+            challengeState.type = .outing
             print("외출하기")
         }
     }
@@ -184,7 +184,7 @@ struct Main: View {
 
     private func setColor() -> Color {
         var color: Color
-        switch timerClass.type {
+        switch challengeState.type {
         case .outing:
             color = Color.gray
         case .notAtHome:
@@ -199,7 +199,7 @@ struct Main: View {
 
     private func setBottomView() -> AnyView {
         var view: AnyView
-        switch timerClass.type {
+        switch challengeState.type {
         case .notAtHome:
             view = AnyView(BottomNotAtHome())
         case .running:
@@ -221,6 +221,6 @@ struct Timer_Previews: PreviewProvider {
         return Main()
             .environmentObject(PopupStateModel())
             .environmentObject(Time())
-            .environmentObject(TimerClass())
+            .environmentObject(ChallengeState())
     }
 }

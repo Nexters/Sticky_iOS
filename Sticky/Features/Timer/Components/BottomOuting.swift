@@ -15,7 +15,7 @@ struct BottomOuting: View {
     var body: some View {
         VStack {
             Button(action: {
-                timerClass.type = .running
+                challengeState.type = .running
             }, label: {
                 GradientRoundedButton(
                     content: "귀가완료".localized,
@@ -39,7 +39,7 @@ struct BottomOuting: View {
 
     // MARK: Private
 
-    @EnvironmentObject private var timerClass: TimerClass
+    @EnvironmentObject private var challengeState: ChallengeState
 }
 
 // MARK: - BottomOuting_Previews
