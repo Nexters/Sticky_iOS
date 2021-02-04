@@ -11,7 +11,7 @@ import Foundation
 extension CLPlacemark {
     func getAddress() -> String {
         return [subThoroughfare, thoroughfare, locality, administrativeArea, postalCode, country]
-            .flatMap { $0 }
+            .compactMap { $0 }
             .joined(separator: " ")
     }
 }
