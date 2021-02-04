@@ -10,12 +10,17 @@ import SwiftUI
 // MARK: - MyPage
 
 struct MyPage: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @State private var more = false
-    @State private var shareType = ShareType.level
-    @State private var navSelection: String?
+    // MARK: Internal
 
+//    var monthlyBadges: [Badge]
+
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var badgeViewModel: BadgeViewModel
     var total_seconds: Int = 200000
+    var monthlyButton = AnyView(Button(action: {}) {
+        Image("slice")
+            .aspectRatio(contentMode: .fit)
+    })
 
     var body: some View {
         ScrollView {
@@ -38,14 +43,14 @@ struct MyPage: View {
                 BadgePanel(
                     title: "월간 달성",
                     subtitle: "한달 내에 쌓은 시간을 기준으로 합니다.",
-                    trailing: "이번 달",
-                    badges: badgeMocks(count: 9),
+                    trailing: monthlyButton,
+                    badges: monthlyBadges,
                     selection: $navSelection
                 )
                 BadgePanel(
                     title: "연속 달성",
                     subtitle: "멈추지 않고 이어서 기록된 시간을 기준으로 합니다.",
-                    badges: badgeMocks(count: 9),
+                    badges: continuousBadges,
                     selection: $navSelection
                 )
 
@@ -60,6 +65,11 @@ struct MyPage: View {
             leading: backButton,
             trailing: moreButton
         )
+        .onAppear {
+            print("Special: \(badgeViewModel.specials)")
+            print("Monthly: \(badgeViewModel.monthly)")
+            print("Continuous: \(badgeViewModel.continuous)")
+        }
     }
 
     var backButton: some View {
@@ -85,8 +95,14 @@ struct MyPage: View {
     }
 
     func focusRelease() {
-        self.presentationMode.wrappedValue.dismiss()
+        presentationMode.wrappedValue.dismiss()
     }
+
+    // MARK: Private
+
+    @State private var more = false
+    @State private var shareType = ShareType.level
+    @State private var navSelection: String?
 }
 
 // MARK: - MyPage_Previews
@@ -94,5 +110,6 @@ struct MyPage: View {
 struct MyPage_Previews: PreviewProvider {
     static var previews: some View {
         MyPage(total_seconds: 100)
+            .environmentObject(BadgeViewModel())
     }
 }

@@ -14,7 +14,7 @@ struct BadgePanel: View {
 
     var title: String = ""
     var subtitle: String = ""
-    var trailing: String = ""
+    var trailing: AnyView?
     var badges: [Badge]?
     @Binding var selection: String?
 
@@ -34,10 +34,7 @@ struct BadgePanel: View {
                     }
                 }
                 Spacer()
-                if !trailing.isEmpty {
-                    Text("\(trailing)")
-                        .font(.system(size: 16))
-                }
+                trailing
             }
 
             LazyVGrid(columns: columns) {
@@ -69,7 +66,7 @@ struct BadgePanel: View {
 
 struct BadgePanel_Previews: PreviewProvider {
     static var previews: some View {
-        BadgePanel(title: "누적 달성", subtitle: "누적주적", trailing: "이번 달", badges: badgeMocks(count: 6), selection: .constant("share"))
+        BadgePanel(title: "누적 달성", subtitle: "누적주적", trailing: AnyView(Text("이번 달")), badges: badgeMocks(count: 6), selection: .constant("share"))
             .padding()
     }
 }

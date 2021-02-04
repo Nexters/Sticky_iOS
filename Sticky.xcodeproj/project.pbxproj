@@ -31,6 +31,7 @@
 		BB546BE625C8329800241DF3 /* CardSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB546BE525C8329800241DF3 /* CardSlideView.swift */; };
 		BB546BEB25C8352F00241DF3 /* LevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB546BEA25C8352F00241DF3 /* LevelView.swift */; };
 		BB546BF025C83E8F00241DF3 /* ShareType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB546BEF25C83E8F00241DF3 /* ShareType.swift */; };
+		BB546C0925CC29C600241DF3 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB546C0825CC29C600241DF3 /* Array+.swift */; };
 		BB8292CE25BD597200077D8C /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8292CD25BD597200077D8C /* SearchBar.swift */; };
 		BB8292D425BD59A200077D8C /* LocationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8292D325BD59A200077D8C /* LocationSearchService.swift */; };
 		BBAC0F3125C696B900FB81D7 /* LocationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC0F3025C696B800FB81D7 /* LocationPermission.swift */; };
@@ -117,6 +118,7 @@
 		BB546BE525C8329800241DF3 /* CardSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSlideView.swift; sourceTree = "<group>"; };
 		BB546BEA25C8352F00241DF3 /* LevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelView.swift; sourceTree = "<group>"; };
 		BB546BEF25C83E8F00241DF3 /* ShareType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareType.swift; sourceTree = "<group>"; };
+		BB546C0825CC29C600241DF3 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 		BB8292CD25BD597200077D8C /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		BB8292D325BD59A200077D8C /* LocationSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
 		BBAC0F3025C696B800FB81D7 /* LocationPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermission.swift; sourceTree = "<group>"; };
@@ -506,6 +508,7 @@
 				EB32FA5C25B8466200DC3FAE /* View+.swift */,
 				C2296FF225BD41D300278E61 /* Notification.Name+.swift */,
 				BBC66F3625C57FF2007687D7 /* CLPlacemark+.swift */,
+				BB546C0825CC29C600241DF3 /* Array+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -689,6 +692,7 @@
 				C2296FF325BD41D300278E61 /* Notification.Name+.swift in Sources */,
 				EB63F53325B82D3900151A05 /* CardItem.swift in Sources */,
 				EB77449825B6DE8700BF1103 /* Preview.swift in Sources */,
+				BB546C0925CC29C600241DF3 /* Array+.swift in Sources */,
 				BB1C8A1925B874DF0000931A /* Onboarding.swift in Sources */,
 				BBB1EC6725B07B0A00F5EA37 /* String+localize.swift in Sources */,
 				EB63F52225B82C2300151A05 /* Card.swift in Sources */,
@@ -920,6 +924,9 @@
 				);
 				MARKETING_VERSION = 1.10.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Sticky;
+				MARKETING_VERSION = 1.10.3;
+				MARKETING_VERSION = 1.9.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nexters.18th.adng.Sticky-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -945,6 +952,9 @@
 				);
 				MARKETING_VERSION = 1.10.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Sticky;
+				MARKETING_VERSION = 1.10.3;
+				MARKETING_VERSION = 1.9.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nexters.18th.adng.Sticky-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
