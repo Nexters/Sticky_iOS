@@ -33,14 +33,6 @@ class StickyTests: XCTestCase {
         print(formattedString)
     }
 
-    func testBadgeMock() throws {
-        let badges = Array(1 ... 99).map { num in
-            Badge(badgeType: BadgeType.monthly, badgeValue: "10", name: "Badge Name \(num)", updated: Date(), count: 0)
-        }
-        print(badges)
-        assert(badges.count == 99)
-    }
-
     func testPerformanceExample() throws {
         self.measure {}
     }
