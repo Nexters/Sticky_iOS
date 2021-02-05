@@ -12,6 +12,8 @@ import SwiftUI
 struct Summary: View {
     /// 누적 시간
     var seconds: Int
+    @Binding var selection: ShareType?
+    @EnvironmentObject var shareViewModel: ShareViewModel
 
     var body: some View {
         let tier = Tier.of(hours: seconds / 3600)
@@ -22,9 +24,18 @@ struct Summary: View {
             HStack(alignment: .top) {
                 Spacer()
                 VStack {
-                    Image("level\(tier.level)")
-                        .frame(width: 140, height: 140)
-                        .padding(.bottom, 16)
+                    Button(action: {
+                        selection = ShareType.card
+                        shareViewModel.badge = Badge(
+                            badgeType: BadgeType.level,
+                            badgeValue: String(tier.level),
+                            name: "LV\(tier.level) \(tier.name())"
+                        )
+                    }) {
+                        Image("level\(tier.level)")
+                            .frame(width: 140, height: 140)
+                            .padding(.bottom, 16)
+                    }
                     // 레벨 변환
                     HStack {
                         Text("Lv\(tier.level)")
@@ -59,7 +70,8 @@ struct Summary_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Color.GrayScale._100.ignoresSafeArea()
-            Summary(seconds: 10)
+            Summary(seconds: 10, selection: .constant(ShareType.card))
+                .environmentObject(ShareViewModel())
                 .border(Color.black)
         }
     }

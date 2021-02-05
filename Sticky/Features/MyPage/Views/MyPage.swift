@@ -14,7 +14,7 @@ struct MyPage: View {
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var badgeViewModel: BadgeViewModel
-    var total_seconds: Int = 200000
+    var total_seconds: Int = 300000
     var monthlyButton = AnyView(Button(action: {}) {
         Image("slice")
             .aspectRatio(contentMode: .fit)
@@ -32,7 +32,7 @@ struct MyPage: View {
             ) { EmptyView() }
 
             VStack(alignment: .leading, spacing: 20) {
-                Summary(seconds: total_seconds)
+                Summary(seconds: total_seconds, selection: $navSelection)
                     .padding(.bottom, 15)
                 Divider()
                     .padding(.bottom, 15)

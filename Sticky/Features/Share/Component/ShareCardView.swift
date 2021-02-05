@@ -27,6 +27,8 @@ struct ShareCardView: View {
                         .padding(.top, 28)
                     Text(title)
                         .font(.custom("Modak", size: 28))
+                        .frame(width: 232, height: 32)
+                        .padding(.horizontal, 8)
                     Text(description)
                         .font(.system(size: 14))
                         .multilineTextAlignment(.center)

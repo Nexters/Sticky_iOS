@@ -28,9 +28,11 @@ class ShareViewModel: ObservableObject {
 
     init() {
         badge = Badge(badgeType: BadgeType.monthly, badgeValue: "10", name: "")
+        seconds = 0
     }
 
     // MARK: Internal
 
     @Published var badge: Badge
+    @Published var seconds: Int
 }

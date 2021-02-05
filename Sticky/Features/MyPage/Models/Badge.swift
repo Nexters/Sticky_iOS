@@ -30,7 +30,14 @@ struct Badge: Hashable, Identifiable {
     }
 
     var image: String {
-        "\(badgeType)_\(badgeValue)\(active ? "" : "_locked")"
+        switch badgeType {
+        case .continuous,
+             .monthly,
+             .special:
+            return "\(badgeType)_\(badgeValue)\(active ? "" : "_locked")"
+        case .level:
+            return "level\(badgeValue)"
+        }
     }
 }
 
@@ -51,12 +58,13 @@ extension Date {
  - accumulate: 누적
  - continuous: 연속
  - special: 스페셜
+ - level: 레벨
  */
 enum BadgeType: String {
-    /// 누적
     case special
     case monthly
     case continuous
+    case level
 }
 
 extension BadgeType {
@@ -68,6 +76,8 @@ extension BadgeType {
             return "한달 동안 집에서 보낸 시간\n\(value)을 달성했습니다!"
         case .continuous:
             return "연속으로 집에서 보낸 시간\n\(value)을 달성했습니다!"
+        case .level:
+            return "총 누적시간은\n\(value)입니다."
         }
     }
 }
@@ -88,6 +98,8 @@ func makeBadges(badgeType: BadgeType, dict: [String: CountAndDate]) -> [Badge] {
             return "Hours"
         case BadgeType.continuous:
             return "Days"
+        case BadgeType.level:
+            return ""
         }
     }
     return dict.sorted { Double($0.0)! < Double($1.0)! }.map { key, value in
@@ -121,7 +133,7 @@ class BadgeViewModel: ObservableObject {
             Special.first.rawValue: (0, nil),
         ]
         self.monthly = UserDefaults.standard.object(forKey: "monthly") as? [String: CountAndDate] ?? [
-            "10": (1, Date()), "30": (0, nil), "50": (0, nil),
+            "10": (0, nil), "30": (0, nil), "50": (0, nil),
             "100": (0, nil), "150": (0, nil), "300": (0, nil),
             "500": (0, nil), "700": (0, nil), "720": (0, nil),
         ]
