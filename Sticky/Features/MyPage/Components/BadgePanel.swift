@@ -42,7 +42,7 @@ struct BadgePanel: View {
                     BadgeItem(
                         badge: badge.image,
                         title: badge.name,
-                        date: badge.updated.toString(),
+                        date: badge.updated?.toString() ?? "",
                         selection: $selection
                     )
                 }
