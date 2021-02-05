@@ -20,6 +20,7 @@ enum PopupStyle {
     case exit
     case fail
     case outing
+    case failDuringOuting
 
     // MARK: Internal
 
@@ -40,6 +41,11 @@ enum PopupStyle {
             하트 1개당 20분 외출할 수 있어요.
             시간을 넘기면 챌린지가 종료됩니다.
             """, confirmString: "하트 사용해서 외출하기", rejectString: "취소하기")
+        case .failDuringOuting:
+            return Message(style: .outing, title: "외출 실패", description: """
+            20분의 외출 시간동안 집으로 들어오지 못했어요.
+            최종 기록을 공유할까요?
+            """, confirmString: "네! 공유할래요", rejectString: "안할래요")
         }
     }
 }
