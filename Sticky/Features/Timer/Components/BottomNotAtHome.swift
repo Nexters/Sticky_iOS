@@ -12,8 +12,6 @@ import SwiftUI
 struct BottomNotAtHome: View {
     // MARK: Internal
 
-    @EnvironmentObject var time: Time
-
     var body: some View {
         VStack {
 //                NavigationLink(destination: MyPage()) {
@@ -39,10 +37,6 @@ struct BottomNotAtHome: View {
             })
         }
     }
-
-    // MARK: Private
-
-    @EnvironmentObject private var timerClass: TimerClass
 }
 
 // MARK: - TimerOff_Previews

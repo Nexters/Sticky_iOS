@@ -9,33 +9,27 @@ import CoreLocation
 import SwiftUI
 import UserNotifications
 
-// MARK: - TimerClass
-
-class TimerClass: ObservableObject {
-    @Published var type: Main.TimerType = .notAtHome
-}
-
 // MARK: - Main
 
 struct Main: View {
-    enum TimerType: Int {
-        case outing
+    enum ChallengeType: Int, Codable {
         case notRunning
         case running
         case notAtHome
+        case outing
     }
 
     @EnvironmentObject private var popupState: PopupStateModel
-    @EnvironmentObject private var time: Time
-    @EnvironmentObject private var timerClass: TimerClass
+    @EnvironmentObject private var challengeState: ChallengeState
+    @EnvironmentObject private var locationManager: LocationManager
     @State var sharePresented: Bool = false
     @State var color = Color.Palette.primary
     @State var selection: String? = ""
     @State var timer: Timer? = nil
     @State static var isFirst: Bool = true
     @State var popupStyle: PopupStyle = .exit
-
-    // 매 초 간격으로 main 쓰레드에서 공통 실행 루프에서 실행
+    @State var flag = true
+    @State var countTime = 3
 
     var body: some View {
         NavigationView {
@@ -55,7 +49,7 @@ struct Main: View {
                     scrollCardView
 
                     Spacer()
-                    TimerView(time: $time.timeData)
+                    TimerView(time: $challengeState.timeData)
                         .padding(.bottom, 87)
 
                     Spacer().frame(height: 100)
@@ -64,8 +58,8 @@ struct Main: View {
                         .padding(.bottom, 24)
                 }
 
-                Outing(timer: $timer)
-                    .isHidden(!(timerClass.type == .outing))
+                outingView
+                    .isHidden(!(challengeState.type == .outing))
 
                 PopupMessage(isPresented: $popupState.isPresented,
                              message: self.popupStyle.getMessage(),
@@ -75,10 +69,11 @@ struct Main: View {
             }
             .navigationBarBackButtonHidden(true)
             .ignoresSafeArea(.all)
-            .navigationBarItems(leading: mypageButton, trailing: stopButton.isHidden(!(timerClass.type == .running)))
+            .navigationBarItems(leading: mypageButton, trailing: stopButton.isHidden(!(challengeState.type == .running)))
         }
         .onAppear {
             // 처음 불릴 때, 타이머 동작
+            print(challengeState.type)
             if Main.isFirst {
                 Main.isFirst = false
                 startTimer()
@@ -101,16 +96,51 @@ struct Main: View {
     }
 
     func addSecond() {
-        if timerClass.type == .running {
-            if time.timeData.minute == 60 {
-                time.timeData.hour += 1
-                time.timeData.minute = 0
-            } else if time.timeData.second == 60 {
-                time.timeData.minute += 1
-                time.timeData.second = 0
+        if challengeState.type == .running {
+            if challengeState.timeData.minute >= 60 {
+                challengeState.timeData.hour += 1
+                challengeState.timeData.minute = 0
+            } else if challengeState.timeData.second >= 60 {
+                challengeState.timeData.minute += 1
+                challengeState.timeData.second = 0
             }
-            time.timeData.second += 1
+            challengeState.timeData.second += 1
+        } else if challengeState.type == .outing {
+            if flag {
+                // 애니메이션 진입
+                countTime -= 1
+                if countTime == 0 {
+                    flag = false
+                }
+            } else {
+                // 애니메이션 종료 후
+                if challengeState.outingTimeDate.second <= 0 {
+                    if challengeState.outingTimeDate.minute <= 0 {
+                        // 외출하기 시간 지남
+                        // 이 로직을 돈다면 시간동안 범위 밖을 나가지 않음
+                        flag = true
+                        countTime = 3
+                        if locationManager.isContains() {
+                            print("위치가 맞음")
+                            challengeState.type = .running
+                        } else {
+                            print("위치가 틀림")
+                            challengeState.type = .notAtHome
+                        }
+
+                    } else {
+                        challengeState.outingTimeDate.minute -= 1
+                        challengeState.outingTimeDate.second = 59
+                    }
+                } else {
+                    challengeState.outingTimeDate.second -= 1
+                }
+            }
         }
+    }
+
+    private var outingView: Outing {
+        Outing(timer: $timer, flag: $flag, countTime: $countTime)
     }
 
     private var stopButton: some View {
@@ -137,8 +167,13 @@ struct Main: View {
 
             // MARK: 챌린지 종료하기
 
-            timerClass.type = .outing
+            flag = true
+            challengeState.outingTimeDate.minute = 0
+            challengeState.outingTimeDate.second = 9
+            challengeState.type = .outing
             print("외출하기")
+        case .failDuringOuting:
+            sharePresented = true
         }
     }
 
@@ -184,7 +219,7 @@ struct Main: View {
 
     private func setColor() -> Color {
         var color: Color
-        switch timerClass.type {
+        switch challengeState.type {
         case .outing:
             color = Color.gray
         case .notAtHome:
@@ -199,7 +234,7 @@ struct Main: View {
 
     private func setBottomView() -> AnyView {
         var view: AnyView
-        switch timerClass.type {
+        switch challengeState.type {
         case .notAtHome:
             view = AnyView(BottomNotAtHome())
         case .running:
@@ -207,7 +242,7 @@ struct Main: View {
         case .notRunning:
             view = AnyView(BottomTimerNotRunning())
         case .outing:
-            view = AnyView(BottomOuting())
+            view = AnyView(BottomOuting(count: $countTime, flag: $flag))
         }
 
         return view
@@ -220,7 +255,6 @@ struct Timer_Previews: PreviewProvider {
     static var previews: some View {
         return Main()
             .environmentObject(PopupStateModel())
-            .environmentObject(Time())
-            .environmentObject(TimerClass())
+            .environmentObject(ChallengeState())
     }
 }

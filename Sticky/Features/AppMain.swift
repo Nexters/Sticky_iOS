@@ -13,7 +13,7 @@ struct AppMain: View {
     // MARK: Internal
 
     @EnvironmentObject var rootViewManager: RootViewManager
-    @EnvironmentObject var timerClass: TimerClass
+    @EnvironmentObject var challengeState: ChallengeState
     @EnvironmentObject var locationManager: LocationManager
 
 //    init() {
@@ -27,17 +27,25 @@ struct AppMain: View {
     var body: some View {
         getRootView()
             .environment(\.rootPresentationMode, self.$isActive)
-            .onAppear{
+            .onAppear {
                 locationManager.restartManager()
             }
             .onReceive(NotificationCenter.default.publisher(for: .enterGeofence), perform: { _ in
-                if timerClass.type != .running {
-                    timerClass.type = .notRunning
+                if challengeState.type == .notAtHome {
+                    print("집 밖에 있다가 들어감")
+                    challengeState.timeData = TimeData(day: 0, hour: 0, minute: 0, second: 0)
+                    challengeState.type = .notRunning
                 }
             })
             .onReceive(NotificationCenter.default.publisher(for: .exitGeofence), perform: { _ in
-                if timerClass.type != .running {
-                    timerClass.type = .notAtHome
+                if challengeState.type == .running {
+//                    if !locationManager.isContains() {
+//                        print("챌린지 진행 중 나감")
+                        challengeState.type = .notAtHome
+//                    }
+                } else if challengeState.type == .notRunning{
+                    print("시작하지 않은 상태인데 집 밖으로 나감")
+                    challengeState.type = .notAtHome
                 }
             })
     }

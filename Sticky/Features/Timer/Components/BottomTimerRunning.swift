@@ -12,8 +12,6 @@ import UserNotifications
 
 struct BottomTimerRunning: View {
     @EnvironmentObject private var popupState: PopupStateModel
-    @EnvironmentObject var time: Time
-    @EnvironmentObject private var timerClass: TimerClass
     @Binding var sharePresented: Bool
     @Binding var popupStyle: PopupStyle
 
@@ -50,6 +48,5 @@ struct TimerRunning_Previews: PreviewProvider {
     static var previews: some View {
         BottomTimerRunning(sharePresented: .constant(true), popupStyle: .constant(.exit))
             .environmentObject(PopupStateModel())
-            .environmentObject(Time())
     }
 }

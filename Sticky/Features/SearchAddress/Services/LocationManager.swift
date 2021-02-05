@@ -43,16 +43,19 @@ class LocationManager: NSObject, ObservableObject {
 
     let notificationCenter = UNUserNotificationCenter.current()
     let objectWillChange = PassthroughSubject<Void, Never>()
-    @Published var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 37.5173209, longitude: 127.0473887),
-        span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
-    )
+    @Published var region: MKCoordinateRegion?
+//    MKCoordinateRegion(
+//        center: CLLocationCoordinate2D(latitude: 37.5173209, longitude: 127.0473887),
+//        span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+//    )
+    @Published var isAlways: Bool = false
 
     var geofence: CLCircularRegion? {
         willSet {
-            if newValue!.contains(self.location.coordinate) {
+            if newValue!.contains(self.location.coordinate), !(self.geofence?.contains(self.location.coordinate) ?? false) {
+                // newValue내에 존재 && 이전Value내에 존재하지 X
                 NotificationCenter.default.post(name: .enterGeofence, object: nil)
-            } else {
+            } else if !newValue!.contains(self.location.coordinate), self.geofence?.contains(self.location.coordinate) ?? false {
                 NotificationCenter.default.post(name: .exitGeofence, object: nil)
             }
         }
@@ -63,11 +66,21 @@ class LocationManager: NSObject, ObservableObject {
     }
 
     @Published var location = CLLocation() {
-        willSet { self.objectWillChange.send() }
+        willSet {
+            print("location update")
+            self.objectWillChange.send()
+        }
     }
 
     @Published var placemark: CLPlacemark? {
         willSet { self.objectWillChange.send() }
+    }
+
+    func isContains() -> Bool {
+//        locationManager.requestLocation()
+        print(self.geofence, self.location.coordinate)
+        print(self.geofence?.contains(self.location.coordinate))
+        return (self.geofence?.contains(self.location.coordinate) ?? true)
     }
 
     func setNotPause() {
@@ -78,6 +91,16 @@ class LocationManager: NSObject, ObservableObject {
         guard let geofence = self.geofence else { return }
         self.locationManager.stopMonitoring(for: geofence)
         self.locationManager.startMonitoring(for: geofence)
+    }
+
+    // 위치 권한이 항상인지 체크
+    func checkLocationStatus() -> Bool {
+        if self.locationManager.authorizationStatus == .authorizedAlways {
+            self.isAlways = true
+        } else {
+            self.isAlways = false
+        }
+        return self.isAlways
     }
 
     // MARK: Private
@@ -105,7 +128,7 @@ extension LocationManager: CLLocationManagerDelegate {
             return
         }
         self.location = location
-        self.region.center = CLLocationCoordinate2D(
+        self.region?.center = CLLocationCoordinate2D(
             latitude: location.coordinate.latitude,
             longitude: location.coordinate.longitude
         )
@@ -117,15 +140,15 @@ extension LocationManager: CLLocationManagerDelegate {
 
     /// 영역 모니터링 시작할 때
     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
-        print("Start monitoring: \(self.region.center)")
-        self.setGeofenceMyHome(region: self.region)
+        print("Start monitoring: \(self.geofence?.center)")
+        self.setGeofenceMyHome(region: self.region!)
     }
 
     /** 영역을 들어갔을 때
      챌린지 종료 카운트다운 초기화
      */
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        print("Enter: \(self.region.center)")
+        print("Enter: \(self.geofence?.center)")
         NotificationCenter.default.post(name: .enterGeofence, object: nil)
     }
 
@@ -134,7 +157,7 @@ extension LocationManager: CLLocationManagerDelegate {
      - 현재 위치에서 벗어남을 감지하고 n초 후 챌린지 종료 카운트 다운 및 경고
      */
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        print("Exit: \(self.region.center)")
+        print("Exit: \(self.geofence?.center)")
         NotificationCenter.default.post(name: .exitGeofence, object: nil)
     }
 
