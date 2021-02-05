@@ -25,7 +25,11 @@ struct MyPage: View {
             NavigationLink(destination: More(more: $more), isActive: $more) {
                 EmptyView()
             }
-            NavigationLink(destination: Share(), tag: "share", selection: $navSelection) { EmptyView() }
+            NavigationLink(
+                destination: Share(shareType: ShareType.card),
+                tag: ShareType.card,
+                selection: $navSelection
+            ) { EmptyView() }
 
             VStack(alignment: .leading, spacing: 20) {
                 Summary(seconds: total_seconds)
@@ -99,8 +103,7 @@ struct MyPage: View {
     // MARK: Private
 
     @State private var more = false
-    @State private var shareType = ShareType.level
-    @State private var navSelection: String?
+    @State private var navSelection: ShareType?
 }
 
 // MARK: - MyPage_Previews

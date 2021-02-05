@@ -10,14 +10,11 @@ import SwiftUI
 // MARK: - Summary
 
 struct Summary: View {
-    // MARK: Internal
-
     /// 누적 시간
     var seconds: Int
 
     var body: some View {
         let tier = Tier.of(hours: seconds / 3600)
-        let timeString = secondsToDaysHoursMinutes(seconds: seconds)
         VStack(alignment: .trailing) {
             Text("등급정보")
                 .underline()
@@ -41,7 +38,7 @@ struct Summary: View {
                     .padding(.bottom, 8)
 
                     // 현재 누적 시간
-                    Text("\(timeString)")
+                    Text("\(seconds.ToDaysHoursMinutes())")
                         .font(.system(size: 20))
 
                     // 다음 레벨 계산
@@ -53,18 +50,6 @@ struct Summary: View {
                 Spacer()
             }
         }
-    }
-
-    // MARK: Private
-
-    private func secondsToDaysHoursMinutes(seconds: Int) -> String {
-        let formatter = DateComponentsFormatter()
-        var calendar = Calendar.current
-        calendar.locale = Locale(identifier: "ko")
-        formatter.calendar = calendar
-        formatter.allowedUnits = [.day, .hour, .minute]
-        formatter.unitsStyle = .full
-        return formatter.string(from: TimeInterval(seconds))!
     }
 }
 

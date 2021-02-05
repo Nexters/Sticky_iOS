@@ -16,7 +16,7 @@ struct BadgePanel: View {
     var subtitle: String = ""
     var trailing: AnyView?
     var badges: [Badge]?
-    @Binding var selection: String?
+    @Binding var selection: ShareType?
 
     var body: some View {
         VStack {
@@ -40,9 +40,7 @@ struct BadgePanel: View {
             LazyVGrid(columns: columns) {
                 ForEach(badges!, id: \.self) { badge in
                     BadgeItem(
-                        badge: badge.image,
-                        title: badge.name,
-                        date: badge.updated?.toString() ?? "",
+                        badge: badge,
                         selection: $selection
                     )
                 }
@@ -66,7 +64,7 @@ struct BadgePanel: View {
 
 struct BadgePanel_Previews: PreviewProvider {
     static var previews: some View {
-        BadgePanel(title: "누적 달성", subtitle: "누적주적", trailing: AnyView(Text("이번 달")), badges: badgeMocks(count: 6), selection: .constant("share"))
+        BadgePanel(title: "누적 달성", subtitle: "누적주적", trailing: AnyView(Text("이번 달")), badges: badgeMocks(count: 6), selection: .constant(ShareType.card))
             .padding()
     }
 }

@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: - ShareType
+
 /** 공유 유형
  - slide: 슬라이드
  - level: 레벨
@@ -14,10 +16,21 @@ import Foundation
  - continuously: 연속
  - level_up: 레벨업
  */
-enum ShareType {
+enum ShareType: String {
     case slide
-    case level
-    case monthly
-    case continuously
-    case level_up
+    case card
+}
+
+// MARK: - ShareViewModel
+
+class ShareViewModel: ObservableObject {
+    // MARK: Lifecycle
+
+    init() {
+        badge = Badge(badgeType: BadgeType.monthly, badgeValue: "10", name: "")
+    }
+
+    // MARK: Internal
+
+    @Published var badge: Badge
 }

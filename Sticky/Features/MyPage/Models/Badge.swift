@@ -54,9 +54,22 @@ extension Date {
  */
 enum BadgeType: String {
     /// 누적
+    case special
     case monthly
     case continuous
-    case special
+}
+
+extension BadgeType {
+    func format(value: String) -> String {
+        switch self {
+        case .special:
+            return "특별한 배지"
+        case .monthly:
+            return "한달 동안 집에서 보낸 시간\n\(value)을 달성했습니다!"
+        case .continuous:
+            return "연속으로 집에서 보낸 시간\n\(value)을 달성했습니다!"
+        }
+    }
 }
 
 /// Mock 데이터
