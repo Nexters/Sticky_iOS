@@ -15,9 +15,13 @@ struct BottomOuting: View {
     var body: some View {
         VStack {
             Button(action: {
-                count = 3
-                flag = true
-                challengeState.type = .running
+                if locationManager.isContains() {
+                    count = 3
+                    flag = true
+                    challengeState.type = .running
+                }else{
+                    print("아직 집이 아닌데 할거야?")
+                }
             }, label: {
                 GradientRoundedButton(
                     content: "귀가완료".localized,
@@ -42,6 +46,7 @@ struct BottomOuting: View {
     // MARK: Private
 
     @EnvironmentObject private var challengeState: ChallengeState
+    @EnvironmentObject private var locationManager: LocationManager
     @Binding var count: Int
     @Binding var flag: Bool
 }

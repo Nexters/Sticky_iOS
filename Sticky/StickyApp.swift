@@ -28,16 +28,7 @@ struct StickyApp: App {
         .onChange(of: scenePhase) { newScenePhase in
             switch newScenePhase {
             case .active:
-                print("Active")
-                //위치 권한 확인
-                if locationManager.checkLocationStatus(){
-                    //위치 권한이 항상일 때
-                    print("Active - 항상O")
-                }else{
-                    //위치 권한이 항상 아닐 때
-                    print("Active - 항상X")
-                }
-                
+                print("Active \(Main.ChallengeType(rawValue: UserDefaults.standard.integer(forKey: "challengeType")))")
                 // TODO: 현재 챌린지가 진행중인 상태라면 조건문 필요
 //                if let date = UserDefaults.standard.object(forKey: "startDate") {
 //                    if let date = date as? Date {
@@ -59,9 +50,11 @@ struct StickyApp: App {
                         latitude: latitude,
                         longitude: longitude
                     ),
-                    radius: CLLocationDistance(),
+                    radius: 100.0,
                     identifier: "Myhome"
                 )
+                locationManager.region = MKCoordinateRegion(center: locationManager.geofence!.center, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
+                print("체크\(locationManager.isContains())")
 
             case .inactive:
                 print("inActive")

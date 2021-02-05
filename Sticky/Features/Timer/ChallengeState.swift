@@ -24,9 +24,9 @@ public class ChallengeState: ObservableObject {
         if let timeZone = TimeZone(identifier: "UTC") {
             calendar.timeZone = timeZone
         }
-
+        print(type)
         if type == .running {
-            print("챌린지 중 or 외출 중")
+            print("챌린지 중")
             let nowComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: startDate, to: now)
 
             timeData.day = nowComponents.day ?? 0
@@ -35,22 +35,28 @@ public class ChallengeState: ObservableObject {
             timeData.second = nowComponents.second ?? 0
         }
         if type == .outing {
-            let outingComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: outingDate, to: now)
-
-            if outingComponents.minute ?? 0 < 20, type == .outing {
+            let outingComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: outingDate, to: Date())
+            
+            let outingSeconds = (outingComponents.minute ?? 0) * 60 + (outingComponents.second ?? 0)
+            let totalOutingTime = 10 // 20 * 60
+            
+            if outingSeconds < totalOutingTime {
                 print("외출 중인데 아직 20분 안지남")
 
                 let nowComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: startDate, to: now)
 
                 outingTimeDate.day = outingComponents.day ?? 0
                 outingTimeDate.hour = outingComponents.hour ?? 0
-                outingTimeDate.minute = 19 - (outingComponents.minute ?? 0)
-                outingTimeDate.second = 59 - (outingComponents.second ?? 0)
+                outingTimeDate.minute = 0 - (outingComponents.minute ?? 0)
+                outingTimeDate.second = 9 - (outingComponents.second ?? 0)
 
                 timeData.day = nowComponents.day ?? 0
                 timeData.hour = nowComponents.hour ?? 0
                 timeData.minute = nowComponents.minute ?? 0 - (outingComponents.minute ?? 0)
                 timeData.second = nowComponents.second ?? 0 - (outingComponents.second ?? 0)
+            } else {
+                self.type = .notAtHome
+                print("외출했는데 20분 지났")
             }
         }
     }

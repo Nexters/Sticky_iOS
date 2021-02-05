@@ -13,14 +13,15 @@ import UserNotifications
 
 struct Main: View {
     enum ChallengeType: Int, Codable {
-        case outing
         case notRunning
         case running
         case notAtHome
+        case outing
     }
 
     @EnvironmentObject private var popupState: PopupStateModel
     @EnvironmentObject private var challengeState: ChallengeState
+    @EnvironmentObject private var locationManager: LocationManager
     @State var sharePresented: Bool = false
     @State var color = Color.Palette.primary
     @State var selection: String? = ""
@@ -29,8 +30,6 @@ struct Main: View {
     @State var popupStyle: PopupStyle = .exit
     @State var flag = true
     @State var countTime = 3
-
-    // 매 초 간격으로 main 쓰레드에서 공통 실행 루프에서 실행
 
     var body: some View {
         NavigationView {
@@ -114,7 +113,6 @@ struct Main: View {
                     flag = false
                 }
             } else {
-                print(2)
                 // 애니메이션 종료 후
                 if challengeState.outingTimeDate.second <= 0 {
                     if challengeState.outingTimeDate.minute <= 0 {
@@ -122,7 +120,14 @@ struct Main: View {
                         // 이 로직을 돈다면 시간동안 범위 밖을 나가지 않음
                         flag = true
                         countTime = 3
-                        challengeState.type = .running
+                        if locationManager.isContains() {
+                            print("위치가 맞음")
+                            challengeState.type = .running
+                        } else {
+                            print("위치가 틀림")
+                            challengeState.type = .notAtHome
+                        }
+
                     } else {
                         challengeState.outingTimeDate.minute -= 1
                         challengeState.outingTimeDate.second = 59
@@ -161,11 +166,14 @@ struct Main: View {
         case .outing:
 
             // MARK: 챌린지 종료하기
+
             flag = true
-            challengeState.outingTimeDate.minute = 20
-            challengeState.outingTimeDate.second = 0
+            challengeState.outingTimeDate.minute = 0
+            challengeState.outingTimeDate.second = 9
             challengeState.type = .outing
             print("외출하기")
+        case .failDuringOuting:
+            sharePresented = true
         }
     }
 
