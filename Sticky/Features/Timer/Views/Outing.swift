@@ -13,8 +13,11 @@ struct Outing: View {
     // MARK: Internal
 
     @Binding var timer: Timer?
-    @State var minute: Int = 30
-    @State var second: Int = 0
+    
+    @Binding var flag: Bool
+    @Binding var countTime: Int
+    @State var outingTimer: Timer?
+    @EnvironmentObject var challengeState: ChallengeState
 
     var body: some View {
         ZStack {
@@ -27,7 +30,7 @@ struct Outing: View {
                         .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.width * 0.8)
                     VStack {
                         HStack {
-                            Text("\(minute)")
+                            Text("\(challengeState.outingTimeDate.minute)")
                                 .font(.custom("Modak", size: 80))
                                 .foregroundColor(.white)
                                 .bold()
@@ -36,7 +39,7 @@ struct Outing: View {
                                 Circle().frame(width: 8, height: 8)
                             }.padding(.horizontal, 8)
                                 .foregroundColor(.white)
-                            Text("\(String(format: "%02d", self.second))")
+                            Text("\(String(format: "%02d", challengeState.outingTimeDate.second))")
                                 .font(.custom("Modak", size: 80))
                                 .foregroundColor(.white)
                                 .bold()
@@ -47,57 +50,24 @@ struct Outing: View {
                             .bold()
                     }
                 }
-
-                BottomOuting()
+                
+                BottomOuting(count: $countTime, flag: $flag)
                     .padding(.top, 56)
             }
             OutingCount(count: $countTime)
                 .isHidden(!flag)
         }
-        .onAppear {
-            startTimer()
-        }
     }
 
     // MARK: Private
 
-    @State private var flag = true
-    @State private var countTime = 3
-
-    private func startTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
-            timer in
-
-            if self.flag {
-                // 애니메이션 진입
-                self.countTime -= 1
-                if self.countTime == 0 {
-                    self.flag = false
-                }
-            } else {
-                // 애니메이션 종료 후
-                if self.second == 0 {
-                    if self.minute == 0 {
-                        // 외출하기 종료
-                        // MARK: 위치 확인 후에 챌린지 종료 or 유지
-                        timer.invalidate()
-                        self.timer = nil
-                    } else {
-                        self.minute -= 1
-                        self.second = 59
-                    }
-                } else {
-                    self.second -= 1
-                }
-            }
-        }
-    }
 }
 
 // MARK: - Outing_Previews
 
 struct Outing_Previews: PreviewProvider {
     static var previews: some View {
-        Outing(timer: .constant(Timer()))
+        Outing(timer: .constant(Timer()), flag: .constant(false), countTime: .constant(3))
+            .environmentObject(ChallengeState())
     }
 }
