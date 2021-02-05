@@ -12,19 +12,21 @@ import SwiftUI
 struct Share: View {
     // MARK: Lifecycle
 
-    init() {
+    init(shareType: ShareType) {
         let newNavAppearance = UINavigationBarAppearance()
         newNavAppearance.configureWithTransparentBackground()
         newNavAppearance.backgroundColor = .clear
         UINavigationBar.appearance()
             .standardAppearance = newNavAppearance
+        self.shareType = shareType
     }
 
     // MARK: Internal
 
-    var shareType = ShareType.slide
+    var shareType: ShareType
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var shareViewModel: ShareViewModel
 
     var body: some View {
         ZStack {
@@ -43,6 +45,9 @@ struct Share: View {
                     .padding(.bottom, 36)
             }
         }
+        .onAppear(perform: {
+            print(shareViewModel.badge ?? "hi")
+        })
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(
@@ -83,14 +88,27 @@ struct Share: View {
         case .slide:
             view = AnyView(CardSlideView())
 
-        case .level:
-            view = AnyView(LevelView(
-                level: 3,
-                grade: "Yellow Sticky",
-                total_time: TimeData(day: 4, hour: 20)
+        case .card:
+            let badge = shareViewModel.badge
+            let image = badge.image
+            let title = badge.name
+            var value = ""
+            switch badge.badgeType {
+            case BadgeType.special:
+                value = ""
+            case BadgeType.monthly:
+                value = "\(badge.badgeValue)시간"
+            case BadgeType.continuous:
+                let _value = badge.badgeValue
+                let unit = _value == "0.5" ? "시간" : "일"
+                value = "\(_value)\(unit)"
+            }
+            let description = badge.badgeType.format(value: value)
+            view = AnyView(ShareCardView(
+                image: image,
+                title: title,
+                description: description
             ))
-        default:
-            view = AnyView(Text("지원하지 않는 타입"))
         }
 
         return view
@@ -101,7 +119,7 @@ struct Share: View {
 
 struct Share_Previews: PreviewProvider {
     static var previews: some View {
-        Share()
+        Share(shareType: ShareType.slide)
             .environmentObject(UIStateModel())
     }
 }

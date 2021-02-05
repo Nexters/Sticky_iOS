@@ -35,7 +35,7 @@ struct Main: View {
         NavigationView {
             ZStack {
                 NavigationLink(
-                    destination: Share(),
+                    destination: Share(shareType: ShareType.slide),
                     isActive: $sharePresented
                 ) { EmptyView() }
                 NavigationLink(destination: MyPage(), tag: "mypage", selection: self.$selection) { EmptyView() }

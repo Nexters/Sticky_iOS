@@ -10,26 +10,28 @@ import SwiftUI
 // MARK: - BadgeItem
 
 struct BadgeItem: View {
-    var badge: String
-    var title: String
-    var date: String
-    @Binding var selection: String?
+    var badge: Badge
+    @Binding var selection: ShareType?
+    @EnvironmentObject var shareViewModel: ShareViewModel
 
     var body: some View {
-        Button(action: { selection = "share" }) {
+        Button(action: {
+            selection = ShareType.card
+            shareViewModel.badge = badge
+        }) {
             VStack {
                 ZStack {
-                    Image(badge)
+                    Image(badge.image)
                         .frame(width: 79, height: 79)
                         .foregroundColor(Color.Palette.negative)
                 }
                 .frame(width: 99, height: 99)
 
-                Text("\(title)")
+                Text("\(badge.name)")
                     .font(.system(size: 17))
                     .bold()
                     .padding(.top, 6)
-                Text("\(date)")
+                Text("\(badge.updated?.toString() ?? "")")
                     .font(.system(size: 14))
                     .foregroundColor(Color.GrayScale._500)
                     .padding(.top, 4)
@@ -44,12 +46,11 @@ struct BadgeItem_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             BadgeItem(
-                badge: "badge_monthly_10_received",
-                title: "Badge Name",
-                date: "2021.01.22",
-                selection: .constant("share")
+                badge: Badge(badgeType: BadgeType.monthly, badgeValue: "10", name: ""),
+                selection: .constant(ShareType.card)
             )
         }
+        .environmentObject(ShareViewModel())
         .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
     }
 }
