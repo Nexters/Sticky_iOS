@@ -31,8 +31,7 @@ struct Share: View {
     var body: some View {
         ZStack {
             // 배경 Color
-            Color.Sticky.blue_end
-                .opacity(0.2)
+            setBackgroundColor(type: shareViewModel.badge.badgeType)
                 .edgesIgnoringSafeArea(.vertical)
 
             VStack {
@@ -45,9 +44,6 @@ struct Share: View {
                     .padding(.bottom, 36)
             }
         }
-        .onAppear(perform: {
-            print(shareViewModel.badge ?? "hi")
-        })
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(
@@ -57,12 +53,6 @@ struct Share: View {
     }
 
     // MARK: Private
-
-    // 카드에 담길 모델들 데이터
-    @State private var items = [
-        Card(id: 0, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
-        Card(id: 1, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
-    ]
 
     private var backButton: some View {
         Button(action: {
@@ -79,6 +69,25 @@ struct Share: View {
         }) {
             Image("download")
                 .aspectRatio(contentMode: .fit)
+        }
+    }
+
+    private func setBackgroundColor(type: BadgeType) -> AnyView {
+        switch type {
+        case .level:
+            return
+                AnyView(
+                    ZStack {
+                        Color.Sticky.blue_bg.ignoresSafeArea()
+                        Color.black.opacity(0.3)
+                    }
+                )
+        case .monthly:
+            return AnyView(Color.Sticky.blue_bg.ignoresSafeArea())
+        case .continuous:
+            return AnyView(Color.Sticky.red_bg.ignoresSafeArea())
+        case .special:
+            return AnyView(Color.Sticky.blue_bg.ignoresSafeArea())
         }
     }
 
@@ -102,6 +111,8 @@ struct Share: View {
                 let _value = badge.badgeValue
                 let unit = _value == "0.5" ? "시간" : "일"
                 value = "\(_value)\(unit)"
+            case BadgeType.level:
+                value = "\(shareViewModel.seconds.ToDaysHoursMinutes())"
             }
             let description = badge.badgeType.format(value: value)
             view = AnyView(ShareCardView(
@@ -119,7 +130,8 @@ struct Share: View {
 
 struct Share_Previews: PreviewProvider {
     static var previews: some View {
-        Share(shareType: ShareType.slide)
+        Share(shareType: ShareType.card)
+            .environmentObject(ShareViewModel())
             .environmentObject(UIStateModel())
     }
 }
