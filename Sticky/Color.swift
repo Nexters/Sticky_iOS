@@ -42,7 +42,12 @@ extension Color {
         static let negative = Color("palette-nagative")
     }
 
-    enum Background {}
+    enum Background {
+        static let blue = Color("sticky-timer-bg-blue").opacity(0.2)
+        static let yellow = Color("sticky-timer-bg-yellow").opacity(0.2)
+        static let green = Color("sticky-timer-bg-green").opacity(0.2)
+        static let red = Color("sticky-timer-bg-red").opacity(0.2)
+    }
 
     enum TextIconLight {
         static let primary = Color("text-primary-light")

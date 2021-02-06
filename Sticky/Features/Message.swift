@@ -7,10 +7,12 @@
 
 import Foundation
 
-struct Message{
+struct Message {
     var style: PopupStyle
     var title: String
     var description: String
+    var confirmIcon: String = ""
     var confirmString: String
+    var rejectIcon: String = ""
     var rejectString: String
 }
