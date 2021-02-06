@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.11.1](https://github.com/Nexters/Sticky_iOS/compare/v1.11.0...v1.11.1) (2021-02-06)
+
+
+### Bug Fixes
+
+* **timer:** 챌린지 종료 모달 및 타이머 메인 UI 수정 ([e9cf4ab](https://github.com/Nexters/Sticky_iOS/commit/e9cf4ab6682eb72cb9b5bc66e90c9e2c9bc9b8de))
+* **timer:** 타이머, 모달 UI 수정, 타이머 종료 처리 ([8205ef7](https://github.com/Nexters/Sticky_iOS/commit/8205ef7413c816b1e892cd179a9760a1c7d07fc9))
+
 ## [1.11.0](https://github.com/Nexters/Sticky_iOS/compare/v1.10.4...v1.11.0) (2021-02-06)
 
 
