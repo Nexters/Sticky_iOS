@@ -29,8 +29,12 @@
 		BB1C8A2B25B875020000931A /* MapCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A2425B875020000931A /* MapCard.swift */; };
 		BB1C8A2D25B875020000931A /* SearchAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A2625B875020000931A /* SearchAddress.swift */; };
 		BB546BE625C8329800241DF3 /* CardSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB546BE525C8329800241DF3 /* CardSlideView.swift */; };
-		BB546BEB25C8352F00241DF3 /* LevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB546BEA25C8352F00241DF3 /* LevelView.swift */; };
+		BB546BEB25C8352F00241DF3 /* ShareCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB546BEA25C8352F00241DF3 /* ShareCardView.swift */; };
 		BB546BF025C83E8F00241DF3 /* ShareType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB546BEF25C83E8F00241DF3 /* ShareType.swift */; };
+		BB546C0925CC29C600241DF3 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB546C0825CC29C600241DF3 /* Array+.swift */; };
+		BB546C2925CD87D500241DF3 /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB546C2825CD87D500241DF3 /* Int+.swift */; };
+		BB546C3125CEADC700241DF3 /* TierInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB546C3025CEADC600241DF3 /* TierInformation.swift */; };
+		BB546C3625CEB3A100241DF3 /* BadgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB546C3525CEB3A100241DF3 /* BadgeViewModel.swift */; };
 		BB8292CE25BD597200077D8C /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8292CD25BD597200077D8C /* SearchBar.swift */; };
 		BB8292D425BD59A200077D8C /* LocationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8292D325BD59A200077D8C /* LocationSearchService.swift */; };
 		BBAC0F3125C696B900FB81D7 /* LocationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC0F3025C696B800FB81D7 /* LocationPermission.swift */; };
@@ -115,8 +119,12 @@
 		BB1C8A2425B875020000931A /* MapCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCard.swift; sourceTree = "<group>"; };
 		BB1C8A2625B875020000931A /* SearchAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAddress.swift; sourceTree = "<group>"; };
 		BB546BE525C8329800241DF3 /* CardSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSlideView.swift; sourceTree = "<group>"; };
-		BB546BEA25C8352F00241DF3 /* LevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelView.swift; sourceTree = "<group>"; };
+		BB546BEA25C8352F00241DF3 /* ShareCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCardView.swift; sourceTree = "<group>"; };
 		BB546BEF25C83E8F00241DF3 /* ShareType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareType.swift; sourceTree = "<group>"; };
+		BB546C0825CC29C600241DF3 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
+		BB546C2825CD87D500241DF3 /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
+		BB546C3025CEADC600241DF3 /* TierInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TierInformation.swift; sourceTree = "<group>"; };
+		BB546C3525CEB3A100241DF3 /* BadgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeViewModel.swift; sourceTree = "<group>"; };
 		BB8292CD25BD597200077D8C /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		BB8292D325BD59A200077D8C /* LocationSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
 		BBAC0F3025C696B800FB81D7 /* LocationPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermission.swift; sourceTree = "<group>"; };
@@ -225,6 +233,7 @@
 			children = (
 				BB0A593A25BA585A001F529A /* Badge.swift */,
 				BB0A593F25BA6EE4001F529A /* Tier.swift */,
+				BB546C3525CEB3A100241DF3 /* BadgeViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -233,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				BB0A592325B9C99D001F529A /* MyPage.swift */,
+				BB546C3025CEADC600241DF3 /* TierInformation.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -506,6 +516,8 @@
 				EB32FA5C25B8466200DC3FAE /* View+.swift */,
 				C2296FF225BD41D300278E61 /* Notification.Name+.swift */,
 				BBC66F3625C57FF2007687D7 /* CLPlacemark+.swift */,
+				BB546C0825CC29C600241DF3 /* Array+.swift */,
+				BB546C2825CD87D500241DF3 /* Int+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -527,7 +539,7 @@
 				EB63F53225B82D3900151A05 /* CardItem.swift */,
 				BB05ABE425C82D6400E34717 /* ShareButtons.swift */,
 				BB546BE525C8329800241DF3 /* CardSlideView.swift */,
-				BB546BEA25C8352F00241DF3 /* LevelView.swift */,
+				BB546BEA25C8352F00241DF3 /* ShareCardView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -689,6 +701,7 @@
 				C2296FF325BD41D300278E61 /* Notification.Name+.swift in Sources */,
 				EB63F53325B82D3900151A05 /* CardItem.swift in Sources */,
 				EB77449825B6DE8700BF1103 /* Preview.swift in Sources */,
+				BB546C0925CC29C600241DF3 /* Array+.swift in Sources */,
 				BB1C8A1925B874DF0000931A /* Onboarding.swift in Sources */,
 				BBB1EC6725B07B0A00F5EA37 /* String+localize.swift in Sources */,
 				EB63F52225B82C2300151A05 /* Card.swift in Sources */,
@@ -719,9 +732,11 @@
 				C277C54525BEFC4100ADD2EC /* BottomTimerRunning.swift in Sources */,
 				C277C53825BEF98500ADD2EC /* BottomTimerNotRunning.swift in Sources */,
 				C277C53D25BEF9B500ADD2EC /* BottomNotAtHome.swift in Sources */,
+				BB546C3625CEB3A100241DF3 /* BadgeViewModel.swift in Sources */,
 				BBC66EC825C4F99E007687D7 /* TimerView.swift in Sources */,
 				BB546BF025C83E8F00241DF3 /* ShareType.swift in Sources */,
 				BBC66EBD25C4E965007687D7 /* AppMain.swift in Sources */,
+				BB546C3125CEADC700241DF3 /* TierInformation.swift in Sources */,
 				BB546BE625C8329800241DF3 /* CardSlideView.swift in Sources */,
 				BB1C8A2825B875020000931A /* Tip.swift in Sources */,
 				BB0A592425B9C99D001F529A /* MyPage.swift in Sources */,
@@ -730,10 +745,11 @@
 				BB0A592E25BA516A001F529A /* BadgeItem.swift in Sources */,
 				BB05AB6F25C6C22D00E34717 /* BannerItem.swift in Sources */,
 				EB32FA5D25B8466200DC3FAE /* View+.swift in Sources */,
-				BB546BEB25C8352F00241DF3 /* LevelView.swift in Sources */,
+				BB546BEB25C8352F00241DF3 /* ShareCardView.swift in Sources */,
 				BB05AB8325C6EF3500E34717 /* StrokeText.swift in Sources */,
 				EB63F52B25B82CBE00151A05 /* Carousel.swift in Sources */,
 				C27893EC25C6F5A7001319BE /* Outing.swift in Sources */,
+				BB546C2925CD87D500241DF3 /* Int+.swift in Sources */,
 				BBB1EC4B25B077E500F5EA37 /* Color.swift in Sources */,
 				BB0A592925BA50D8001F529A /* Summary.swift in Sources */,
 				BBB1EBF225AF3C2100F5EA37 /* StickyApp.swift in Sources */,
@@ -910,7 +926,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sticky/Preview Content\"";
-				DEVELOPMENT_TEAM = 46A8TRH8G6;
+				DEVELOPMENT_TEAM = M75SXEJ86F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Sticky/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -918,8 +934,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.10.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Sticky;
+				MARKETING_VERSION = 1.9.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nexters.18th.adng.Sticky-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -935,7 +951,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sticky/Preview Content\"";
-				DEVELOPMENT_TEAM = 46A8TRH8G6;
+				DEVELOPMENT_TEAM = M75SXEJ86F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Sticky/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -943,8 +959,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.10.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Sticky;
+				MARKETING_VERSION = 1.9.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nexters.18th.adng.Sticky-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

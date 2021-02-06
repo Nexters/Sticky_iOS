@@ -35,7 +35,7 @@ struct Main: View {
         NavigationView {
             ZStack {
                 NavigationLink(
-                    destination: Share(),
+                    destination: Share(shareType: ShareType.slide),
                     isActive: $sharePresented
                 ) { EmptyView() }
                 NavigationLink(destination: MyPage(), tag: "mypage", selection: self.$selection) { EmptyView() }
@@ -68,6 +68,7 @@ struct Main: View {
                     .isHidden(!popupState.isPresented)
             }
             .navigationBarBackButtonHidden(true)
+            .navigationBarTitle("", displayMode: .inline)
             .ignoresSafeArea(.all)
             .navigationBarItems(leading: mypageButton, trailing: stopButton.isHidden(!(challengeState.type == .running)))
         }
