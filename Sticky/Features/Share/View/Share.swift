@@ -12,25 +12,26 @@ import SwiftUI
 struct Share: View {
     // MARK: Lifecycle
 
-    init() {
+    init(shareType: ShareType) {
         let newNavAppearance = UINavigationBarAppearance()
         newNavAppearance.configureWithTransparentBackground()
         newNavAppearance.backgroundColor = .clear
         UINavigationBar.appearance()
             .standardAppearance = newNavAppearance
+        self.shareType = shareType
     }
 
     // MARK: Internal
 
-    var shareType = ShareType.slide
+    var shareType: ShareType
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var shareViewModel: ShareViewModel
 
     var body: some View {
         ZStack {
             // 배경 Color
-            Color.Sticky.blue_end
-                .opacity(0.2)
+            setBackgroundColor(type: shareViewModel.badge.badgeType)
                 .edgesIgnoringSafeArea(.vertical)
 
             VStack {
@@ -53,12 +54,6 @@ struct Share: View {
 
     // MARK: Private
 
-    // 카드에 담길 모델들 데이터
-    @State private var items = [
-        Card(id: 0, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
-        Card(id: 1, level: 30, nickname: "이불밖은 위험해", totalTime: "10일 23시간 34분"),
-    ]
-
     private var backButton: some View {
         Button(action: {
             self.presentationMode.wrappedValue.dismiss()
@@ -77,20 +72,54 @@ struct Share: View {
         }
     }
 
+    private func setBackgroundColor(type: BadgeType) -> AnyView {
+        switch type {
+        case .level:
+            return
+                AnyView(
+                    ZStack {
+                        Color.Sticky.blue_bg.ignoresSafeArea()
+                        Color.black.opacity(0.3)
+                    }
+                )
+        case .monthly:
+            return AnyView(Color.Sticky.blue_bg.ignoresSafeArea())
+        case .continuous:
+            return AnyView(Color.Sticky.red_bg.ignoresSafeArea())
+        case .special:
+            return AnyView(Color.Sticky.blue_bg.ignoresSafeArea())
+        }
+    }
+
     private func setCardView(shareType: ShareType) -> AnyView {
         var view: AnyView
         switch shareType {
         case .slide:
             view = AnyView(CardSlideView())
 
-        case .level:
-            view = AnyView(LevelView(
-                level: 3,
-                grade: "Yellow Sticky",
-                total_time: TimeData(day: 4, hour: 20)
+        case .card:
+            let badge = shareViewModel.badge
+            let image = badge.image
+            let title = badge.name
+            var value = ""
+            switch badge.badgeType {
+            case BadgeType.special:
+                value = ""
+            case BadgeType.monthly:
+                value = "\(badge.badgeValue)시간"
+            case BadgeType.continuous:
+                let _value = badge.badgeValue == "0.5" ? "12" : badge.badgeValue
+                let unit = _value == "0.5" ? "시간" : "일"
+                value = "\(_value)\(unit)"
+            case BadgeType.level:
+                value = "\(shareViewModel.seconds.ToDaysHoursMinutes())"
+            }
+            let description = badge.badgeType.format(value: value)
+            view = AnyView(ShareCardView(
+                image: image,
+                title: title,
+                description: description
             ))
-        default:
-            view = AnyView(Text("지원하지 않는 타입"))
         }
 
         return view
@@ -101,7 +130,8 @@ struct Share: View {
 
 struct Share_Previews: PreviewProvider {
     static var previews: some View {
-        Share()
+        Share(shareType: ShareType.card)
+            .environmentObject(ShareViewModel())
             .environmentObject(UIStateModel())
     }
 }

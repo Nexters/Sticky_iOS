@@ -24,6 +24,8 @@ struct StickyApp: App {
                 .environmentObject(LocationSearchService())
                 .environmentObject(Location())
                 .environmentObject(RootViewManager())
+                .environmentObject(BadgeViewModel())
+                .environmentObject(ShareViewModel())
         }
         .onChange(of: scenePhase) { newScenePhase in
             switch newScenePhase {
@@ -87,6 +89,4 @@ struct StickyApp: App {
     private var locationManager = LocationManager()
     private let key_time = "time"
     private let key_date = "date"
-
-    
 }
