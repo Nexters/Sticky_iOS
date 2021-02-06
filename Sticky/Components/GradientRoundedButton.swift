@@ -17,6 +17,7 @@ struct GradientRoundedButton: View {
     var height: CGFloat
     var cornerRadius: CGFloat = 24
     var fontColor: Color = .white
+    var icon: String = ""
 
     var body: some View {
         ZStack {
@@ -30,9 +31,13 @@ struct GradientRoundedButton: View {
                     startPoint: .leading,
                     endPoint: .trailing
                 ))
-            Text(content)
-                .foregroundColor(fontColor)
-                .bold()
+            HStack {
+                Image(icon)
+                    .scaledToFit()
+                Text(content)
+                    .foregroundColor(fontColor)
+                    .bold()
+            }
         }.cornerRadius(cornerRadius)
     }
 }

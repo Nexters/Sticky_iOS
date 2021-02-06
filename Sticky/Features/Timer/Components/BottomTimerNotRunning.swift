@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - TimerNotRunning
+// MARK: - BottomTimerNotRunning
 
 struct BottomTimerNotRunning: View {
     // MARK: Internal
@@ -34,7 +34,8 @@ struct BottomTimerNotRunning: View {
                     width: 328,
                     height: 60,
                     cornerRadius: 16.0,
-                    fontColor: Color.white
+                    fontColor: Color.white,
+                    icon: "ic_play"
                 ).padding(.bottom, 24)
             }
         }

@@ -28,7 +28,8 @@ struct BottomTimerRunning: View {
                     width: 328,
                     height: 60,
                     cornerRadius: 16.0,
-                    fontColor: Color.white
+                    fontColor: Color.white,
+                    icon: "ic_share"
                 )
             })
             // 외출하기 button
@@ -36,7 +37,16 @@ struct BottomTimerRunning: View {
                 self.popupStyle = .outing
                 self.popupState.isPresented = true
             }, label: {
-                BorderRoundedButton(text: "외출하기".localized, borderWidth: 1, borderColor: .black, fontColor: .black, width: 328, height: 60, cornerRadius: 16.0)
+                BorderRoundedButton(
+                    text: "외출하기".localized,
+                    borderWidth: 1,
+                    borderColor: Color.black.opacity(0.1),
+                    fontColor: .black,
+                    icon: "heart",
+                    width: 328,
+                    height: 60,
+                    cornerRadius: 16.0
+                )
             })
         }
     }
