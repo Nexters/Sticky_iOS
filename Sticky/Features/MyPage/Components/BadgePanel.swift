@@ -63,8 +63,19 @@ struct BadgePanel: View {
 // MARK: - BadgePanel_Previews
 
 struct BadgePanel_Previews: PreviewProvider {
+    // MARK: Internal
+
     static var previews: some View {
         BadgePanel(title: "누적 달성", subtitle: "누적주적", trailing: AnyView(Text("이번 달")), badges: badgeMocks(count: 6), selection: .constant(ShareType.card))
             .padding()
+    }
+
+    // MARK: Private
+
+    /// Mock 데이터
+    private static func badgeMocks(count: Int) -> [Badge] {
+        return Array(1 ... count).map { _ in
+            Badge(badgeType: BadgeType.monthly, badgeValue: "10", name: "Badge Name", updated: Date(), count: 0)
+        }
     }
 }
