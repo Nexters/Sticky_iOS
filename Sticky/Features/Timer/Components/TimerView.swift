@@ -30,7 +30,7 @@ struct TimerView: View {
                     .bold()
             }
             .frame(height: 80)
-            .padding(.vertical, 16)
+            .padding(.vertical, 6)
 
             Text(String(format: "%02d", time.second))
                 .font(.custom("Modak", size: 40))

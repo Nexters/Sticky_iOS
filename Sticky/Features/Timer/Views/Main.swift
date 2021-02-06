@@ -42,17 +42,14 @@ struct Main: View {
                 NavigationLink(destination: MyPage(), tag: "exit", selection: self.$selection) { EmptyView() }
                 setColor()
                     .ignoresSafeArea()
-                Image("blue_sticky")
-                VStack {
-                    Spacer()
 
+                VStack {
                     scrollCardView
 
                     Spacer()
                     TimerView(time: $challengeState.timeData)
-                        .padding(.bottom, 87)
 
-                    Spacer().frame(height: 100)
+                    Spacer()
 
                     setBottomView()
                         .padding(.bottom, 24)
@@ -66,10 +63,11 @@ struct Main: View {
                              confirmHandler: confirmInPopup,
                              rateOfWidth: 0.8)
                     .isHidden(!popupState.isPresented)
+                    .ignoresSafeArea(.all)
             }
             .navigationBarBackButtonHidden(true)
             .navigationBarTitle("", displayMode: .inline)
-            .ignoresSafeArea(.all)
+
             .navigationBarItems(leading: mypageButton, trailing: stopButton.isHidden(!(challengeState.type == .running)))
         }
         .onAppear {
