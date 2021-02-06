@@ -58,12 +58,14 @@ struct Main: View {
                 outingView
                     .isHidden(!(challengeState.type == .outing))
 
-                PopupMessage(isPresented: $popupState.isPresented,
-                             message: self.popupStyle.getMessage(),
-                             confirmHandler: confirmInPopup,
-                             rateOfWidth: 0.8)
-                    .isHidden(!popupState.isPresented)
-                    .ignoresSafeArea(.all)
+                PopupMessage(
+                    isPresented: $popupState.isPresented,
+                    message: self.popupStyle.getMessage(),
+                    confirmHandler: confirmInPopup,
+                    rateOfWidth: 0.8
+                )
+                .isHidden(!popupState.isPresented)
+                .ignoresSafeArea(.all)
             }
             .navigationBarBackButtonHidden(true)
             .navigationBarTitle("", displayMode: .inline)
@@ -159,7 +161,7 @@ struct Main: View {
 
             // MARK: 챌린지 종료하기
 
-            print("종료하기")
+            challengeState.type = .notRunning
         case .fail:
             sharePresented = true
         case .outing:
@@ -176,28 +178,21 @@ struct Main: View {
         }
     }
 
+    // 획득 가능한 뱃지 리스트
     private var scrollCardView: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
                 Button(action: {}) {
-                    RoundedRectangle(cornerRadius: 20)
-                        .frame(width: 172, height: 60)
-                        .foregroundColor(Color.TextIconColor.secondary)
-                        .overlay(
-                            HStack {
-                                Text("hi")
-                            }
-                        )
+                    BannerItem(
+                        title: "1 Hours",
+                        subtitle: "23분 남음"
+                    )
                 }
                 Button(action: {}) {
-                    RoundedRectangle(cornerRadius: 20)
-                        .frame(width: 172, height: 60)
-                        .foregroundColor(Color.TextIconColor.secondary)
-                        .overlay(
-                            HStack {
-                                Text("hi")
-                            }
-                        )
+                    BannerItem(
+                        title: "1 Hours",
+                        subtitle: "23분 남음"
+                    )
                 }
                 Button(action: {}) {
                     RoundedRectangle(cornerRadius: 20)
@@ -225,7 +220,7 @@ struct Main: View {
             color = Color.gray
 
         default:
-            color = Color.Palette.primary
+            color = Color.Background.blue
         }
 
         return color

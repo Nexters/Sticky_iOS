@@ -17,7 +17,7 @@ struct PopupMessage: View {
 
     var body: some View {
         ZStack {
-            Color.black.opacity(0.7).ignoresSafeArea()
+            Color.black.opacity(0.6).ignoresSafeArea()
             VStack(alignment: .center) {
                 Text(self.message.title)
                     .font(.system(size: 17)).bold()
@@ -33,24 +33,35 @@ struct PopupMessage: View {
                     .padding(.bottom, 16)
 
                 HStack {
-                    Image("heart")
-                        .foregroundColor(.red)
-                    Text("보유갯수/3")
-                        .foregroundColor(.red)
-                        .font(.system(size: 32))
-                }.isHidden(message.style != .outing, remove: message.style != .outing)
+                    Image("ic_heart")
+                    Text("3/3")
+                        .font(.system(size: 24))
+                        .foregroundColor(Color.Palette.negative)
+                }
+                .padding(.bottom, 16)
+                .isHidden(
+                    message.style != .outing,
+                    remove: message.style != .outing
+                )
 
                 Button(action: {
                     self.isPresented = false
                     self.confirmHandler()
                 }, label: {
                     RoundedRectangle(cornerRadius: 16)
-                        .overlay(Text(self.message.confirmString)
-                            .font(.system(size: 20))
-                            .bold()
-                            .foregroundColor(.white))
+                        .overlay(
+                            HStack {
+                                Text(self.message.confirmString)
+                                    .font(.system(size: 20))
+                                    .bold()
+                                    .foregroundColor(.white)
+                            }
+                        )
                         .frame(height: 48)
-                        .foregroundColor(Color.Palette.primary)
+                        .foregroundColor(
+                            self.message.style == PopupStyle.exit ?
+                                Color.Palette.primary : Color.black
+                        )
 
                 }).padding(.bottom, 8)
 
@@ -67,7 +78,7 @@ struct PopupMessage: View {
                         .foregroundColor(.white)
                 })
             }
-            .frame(width: 288, height: 248)
+            .frame(width: 288)
             .padding(24)
             .background(Color.primary.colorInvert())
             .cornerRadius(24)
