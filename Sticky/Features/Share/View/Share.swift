@@ -108,7 +108,7 @@ struct Share: View {
             case BadgeType.monthly:
                 value = "\(badge.badgeValue)시간"
             case BadgeType.continuous:
-                let _value = badge.badgeValue
+                let _value = badge.badgeValue == "0.5" ? "12" : badge.badgeValue
                 let unit = _value == "0.5" ? "시간" : "일"
                 value = "\(_value)\(unit)"
             case BadgeType.level:

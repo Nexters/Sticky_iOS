@@ -19,6 +19,7 @@ struct ShareCardView: View {
         RoundedRectangle(cornerRadius: 40)
             .frame(width: 264, height: 364)
             .foregroundColor(.white)
+            .shadow(color: Color.black.opacity(0.16), radius: 20, x: 0, y: 4)
             .overlay(
                 VStack {
                     Image(image)

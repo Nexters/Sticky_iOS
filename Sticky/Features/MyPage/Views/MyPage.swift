@@ -39,20 +39,29 @@ struct MyPage: View {
                 BadgePanel(
                     title: "스페셜 달성",
                     subtitle: "특별한 기록을 달성하면 받을 수 있어요.",
-                    badges: makeBadges(badgeType: BadgeType.special, dict: badgeViewModel.specials),
+                    badges: makeBadges(
+                        badgeType: BadgeType.special,
+                        dict: badgeViewModel.specials
+                    ),
                     selection: $navSelection
                 )
                 BadgePanel(
                     title: "월간 달성",
                     subtitle: "한달 내에 쌓은 시간을 기준으로 합니다.",
                     trailing: monthlyButton,
-                    badges: makeBadges(badgeType: BadgeType.monthly, dict: badgeViewModel.monthly),
+                    badges: makeBadges(
+                        badgeType: BadgeType.monthly,
+                        dict: badgeViewModel.monthly
+                    ),
                     selection: $navSelection
                 )
                 BadgePanel(
                     title: "연속 달성",
                     subtitle: "멈추지 않고 이어서 기록된 시간을 기준으로 합니다.",
-                    badges: makeBadges(badgeType: BadgeType.continuous, dict: badgeViewModel.continuous),
+                    badges: makeBadges(
+                        badgeType: BadgeType.continuous,
+                        dict: badgeViewModel.continuous
+                    ),
                     selection: $navSelection
                 )
 
