@@ -16,8 +16,10 @@ struct BadgeItem: View {
 
     var body: some View {
         Button(action: {
-            selection = ShareType.card
-            shareViewModel.badge = badge
+            if badge.active {
+                selection = ShareType.card
+                shareViewModel.badge = badge
+            }
         }) {
             VStack {
                 ZStack {
