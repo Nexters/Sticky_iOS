@@ -18,9 +18,14 @@ struct Summary: View {
     var body: some View {
         let tier = Tier.of(hours: seconds / 3600)
         VStack(alignment: .trailing) {
-            Text("등급정보")
-                .underline()
-                .foregroundColor(.gray)
+            NavigationLink(
+                destination: TierInformation()
+            ) {
+                Text("등급정보")
+                    .underline()
+                    .foregroundColor(.gray)
+            }
+
             HStack(alignment: .top) {
                 Spacer()
                 VStack {
