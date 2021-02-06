@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.11.0](https://github.com/Nexters/Sticky_iOS/compare/v1.10.4...v1.11.0) (2021-02-06)
+
+
+### Features
+
+* **mypage:** 누적 시간 연동, 2차 디자인 반영 ([d528efc](https://github.com/Nexters/Sticky_iOS/commit/d528efc1252f8b5403c484409664703db1456c3b))
+* **mypage:** 등급정보 화면 연결 ([c92daf4](https://github.com/Nexters/Sticky_iOS/commit/c92daf453fbbd91fd00dbfa18ff7dc10bbb09643))
+* **mypage:** 배지를 획득한 경우에만 선택 공유 가능 ([d5c2721](https://github.com/Nexters/Sticky_iOS/commit/d5c2721792464b09c42ed846582effca8b9aa97d))
+* **mypage:** 백그라운드 컬러, 배지 데이터 연결 ([548f27f](https://github.com/Nexters/Sticky_iOS/commit/548f27fe9edd6141fd21b304d1e5d0bf8f180e1f))
+
+
+### Bug Fixes
+
+* **mypage:** 배지 정보 user defaults, envobj 처리 ([195b9b4](https://github.com/Nexters/Sticky_iOS/commit/195b9b463f777cb8ebcf1ff88bf935aa8aa4081c))
+
 ### [1.10.4](https://github.com/Nexters/Sticky_iOS/compare/v1.10.3...v1.10.4) (2021-02-05)
 
 ### [1.10.3](https://github.com/Nexters/Sticky_iOS/compare/v1.10.2...v1.10.3) (2021-02-03)
