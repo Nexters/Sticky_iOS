@@ -58,7 +58,6 @@
 		BBC66F3725C57FF2007687D7 /* CLPlacemark+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC66F3625C57FF2007687D7 /* CLPlacemark+.swift */; };
 		C202D59525BD365F0033B450 /* PopupMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C202D59425BD365F0033B450 /* PopupMessage.swift */; };
 		C202D5A025BD38CC0033B450 /* PopupStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C202D59F25BD38CC0033B450 /* PopupStateModel.swift */; };
-		C2228FCC25BD5EAD00C4DF0B /* MyOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2228FCB25BD5EAD00C4DF0B /* MyOperation.swift */; };
 		C2296FF325BD41D300278E61 /* Notification.Name+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2296FF225BD41D300278E61 /* Notification.Name+.swift */; };
 		C277C53825BEF98500ADD2EC /* BottomTimerNotRunning.swift in Sources */ = {isa = PBXBuildFile; fileRef = C277C53725BEF98500ADD2EC /* BottomTimerNotRunning.swift */; };
 		C277C53D25BEF9B500ADD2EC /* BottomNotAtHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = C277C53C25BEF9B500ADD2EC /* BottomNotAtHome.swift */; };
@@ -69,6 +68,7 @@
 		C278951025C82ACE001319BE /* OutingCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C278950F25C82ACE001319BE /* OutingCount.swift */; };
 		C278951825C833D6001319BE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C278951725C833D6001319BE /* Message.swift */; };
 		C278957325CAE3DA001319BE /* ChallengeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C278957225CAE3DA001319BE /* ChallengeState.swift */; };
+		C285614A25CEB59D006FA7D2 /* MyOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C285614925CEB59D006FA7D2 /* MyOperation.swift */; };
 		EB32FA5725B8414500DC3FAE /* CardSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB608B1325B719440061F394 /* CardSlide.swift */; };
 		EB32FA5D25B8466200DC3FAE /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB32FA5C25B8466200DC3FAE /* View+.swift */; };
 		EB63F51C25B8257C00151A05 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB63F51B25B8257C00151A05 /* Colors.xcassets */; };
@@ -154,7 +154,6 @@
 		BBC66F3625C57FF2007687D7 /* CLPlacemark+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLPlacemark+.swift"; sourceTree = "<group>"; };
 		C202D59425BD365F0033B450 /* PopupMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupMessage.swift; sourceTree = "<group>"; };
 		C202D59F25BD38CC0033B450 /* PopupStateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupStateModel.swift; sourceTree = "<group>"; };
-		C2228FCB25BD5EAD00C4DF0B /* MyOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOperation.swift; sourceTree = "<group>"; };
 		C2296FF225BD41D300278E61 /* Notification.Name+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+.swift"; sourceTree = "<group>"; };
 		C277C53725BEF98500ADD2EC /* BottomTimerNotRunning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTimerNotRunning.swift; sourceTree = "<group>"; };
 		C277C53C25BEF9B500ADD2EC /* BottomNotAtHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomNotAtHome.swift; sourceTree = "<group>"; };
@@ -165,6 +164,7 @@
 		C278950F25C82ACE001319BE /* OutingCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutingCount.swift; sourceTree = "<group>"; };
 		C278951725C833D6001319BE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		C278957225CAE3DA001319BE /* ChallengeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeState.swift; sourceTree = "<group>"; };
+		C285614925CEB59D006FA7D2 /* MyOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOperation.swift; sourceTree = "<group>"; };
 		EB32FA5C25B8466200DC3FAE /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		EB608B1325B719440061F394 /* CardSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSlide.swift; sourceTree = "<group>"; };
 		EB63F51B25B8257C00151A05 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -417,6 +417,7 @@
 				BBB1ECCB25B46C3800F5EA37 /* Services */,
 				BBB1ECC025B45BE900F5EA37 /* Components */,
 				BBB1EBF125AF3C2100F5EA37 /* StickyApp.swift */,
+				C285614925CEB59D006FA7D2 /* MyOperation.swift */,
 				BBB1EBF525AF3C2100F5EA37 /* Assets.xcassets */,
 				EB63F51B25B8257C00151A05 /* Colors.xcassets */,
 				BBB1EC5B25B079F700F5EA37 /* Localizable.strings */,
@@ -489,7 +490,6 @@
 		BBB1ECCB25B46C3800F5EA37 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				C2228FCB25BD5EAD00C4DF0B /* MyOperation.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -693,6 +693,7 @@
 				BB1C8A2A25B875020000931A /* NotFound.swift in Sources */,
 				BBC66EDE25C5197A007687D7 /* RootPresentationMode.swift in Sources */,
 				C27893D025C6E1EC001319BE /* RootViewManager.swift in Sources */,
+				C285614A25CEB59D006FA7D2 /* MyOperation.swift in Sources */,
 				C202D5A025BD38CC0033B450 /* PopupStateModel.swift in Sources */,
 				BB0A596D25BAD2CF001F529A /* LinkItem.swift in Sources */,
 				BBB1EC8325B0887500F5EA37 /* Indicator.swift in Sources */,
@@ -724,7 +725,6 @@
 				BB1C8A2B25B875020000931A /* MapCard.swift in Sources */,
 				BBB1EC7725B0856C00F5EA37 /* EditText.swift in Sources */,
 				BB0A597F25BBB1BC001F529A /* LocationManager.swift in Sources */,
-				C2228FCC25BD5EAD00C4DF0B /* MyOperation.swift in Sources */,
 				BBAC0F3125C696B900FB81D7 /* LocationPermission.swift in Sources */,
 				BB1C8A2B25B875020000931A /* MapCard.swift in Sources */,
 				BBB1EC7725B0856C00F5EA37 /* EditText.swift in Sources */,

@@ -5,8 +5,60 @@
 //  Created by deo on 2021/01/13.
 //
 
+import BackgroundTasks
 import MapKit
 import SwiftUI
+import UIKit
+
+// MARK: - AppDelegate
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+        print("Appdelegate DidLaunch")
+        
+        BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.nexters.bgTest", using: nil) { task in
+            self.handleAppRefresh(task: task as! BGAppRefreshTask)
+        }
+
+        return true
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        print("Appdelegate Enter Background")
+        scheduleAppRefresh()
+    }
+
+    func scheduleAppRefresh() {
+        print("scheduleAppRefresh진입")
+        let request = BGAppRefreshTaskRequest(identifier: "com.nexters.bgTest")
+        request.earliestBeginDate = Date(timeIntervalSinceNow: 30)
+
+        do {
+            try BGTaskScheduler.shared.submit(request)
+            print("scheduleAppRefresh성공")
+
+        } catch {
+            print("scheduleAppRefresh에러\(error)")
+        }
+    }
+
+    func handleAppRefresh(task: BGAppRefreshTask) {
+        print("handleAppRefresh진입")
+        scheduleAppRefresh()
+
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
+
+        let operation = MyOperation()
+
+        task.expirationHandler = {
+            print("handleAppRefresh - expirationHandler")
+            queue.cancelAllOperations()
+        }
+
+        queue.addOperation(operation)
+    }
+}
 
 // MARK: - StickyApp
 
@@ -14,6 +66,8 @@ import SwiftUI
 struct StickyApp: App {
     // MARK: Internal
 
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     var body: some Scene {
         WindowGroup {
             AppMain()
@@ -31,6 +85,11 @@ struct StickyApp: App {
             switch newScenePhase {
             case .active:
                 print("Active \(Main.ChallengeType(rawValue: UserDefaults.standard.integer(forKey: "challengeType")))")
+                print("Operation값 : \(UserDefaults.standard.integer(forKey: "operation"))")
+                BGTaskScheduler.shared.getPendingTaskRequests(completionHandler: { (list) in
+                    print(list)
+                    print(Date())
+                })
                 // TODO: 현재 챌린지가 진행중인 상태라면 조건문 필요
 //                if let date = UserDefaults.standard.object(forKey: "startDate") {
 //                    if let date = date as? Date {
@@ -72,6 +131,7 @@ struct StickyApp: App {
                 }
             case .background:
                 print("Background")
+                appDelegate.scheduleAppRefresh()
 
             @unknown default:
                 print("다른 상태 구현 필요")
