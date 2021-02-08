@@ -65,7 +65,14 @@ public class ChallengeState: ObservableObject {
 
     @Published var timeData = TimeData()
     @Published var outingTimeDate = TimeData(minute: 20)
+    @Published var numberOfHeart: Int = UserDefaults.standard.integer(forKey: "numberOfHeart"){
+        didSet{
+            UserDefaults.standard.setValue(numberOfHeart, forKey: "numberOfHeart")
+        }
+    }
 
+    
+    
     @Published var type = Main.ChallengeType(rawValue: UserDefaults.standard.integer(forKey: "challengeType")) ?? .notAtHome {
         didSet {
             print("type 저장")
@@ -78,14 +85,14 @@ public class ChallengeState: ObservableObject {
         }
     }
 
-    @Published var startDate: Date = UserDefaults.standard.object(forKey: "startDate") as? Date ?? Date() {
+    var startDate: Date = UserDefaults.standard.object(forKey: "startDate") as? Date ?? Date() {
         didSet {
             print("startDate 저장")
             UserDefaults.standard.setValue(startDate, forKey: "startDate")
         }
     }
 
-    @Published var outingDate: Date = UserDefaults.standard.object(forKey: "outingDate") as? Date ?? Date() {
+    var outingDate: Date = UserDefaults.standard.object(forKey: "outingDate") as? Date ?? Date() {
         didSet {
             print("outingDate 저장")
             UserDefaults.standard.setValue(outingDate, forKey: "outingDate")

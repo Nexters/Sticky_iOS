@@ -25,6 +25,7 @@ class LocationManager: NSObject, ObservableObject {
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.startUpdatingLocation()
+        self.locationManager.requestLocation()
         self.locationManager.allowsBackgroundLocationUpdates = true
 //        self.locationManager.pausesLocationUpdatesAutomatically = false
         self.locationManager.activityType = .other
@@ -78,8 +79,6 @@ class LocationManager: NSObject, ObservableObject {
 
     func isContains() -> Bool {
 //        locationManager.requestLocation()
-        print(self.geofence, self.location.coordinate)
-        print(self.geofence?.contains(self.location.coordinate))
         return (self.geofence?.contains(self.location.coordinate) ?? true)
     }
 
@@ -88,6 +87,7 @@ class LocationManager: NSObject, ObservableObject {
     }
 
     func restartManager() {
+        print("Restart LocationManager")
         guard let geofence = self.geofence else { return }
         self.locationManager.stopMonitoring(for: geofence)
         self.locationManager.startMonitoring(for: geofence)

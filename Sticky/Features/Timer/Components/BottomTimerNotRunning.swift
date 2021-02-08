@@ -25,6 +25,8 @@ struct BottomTimerNotRunning: View {
 //                })
 
             Button(action: {
+                self.challengeState.timeData = TimeData()
+                self.challengeState.numberOfHeart = 3
                 self.challengeState.type = .running
             }) {
                 GradientRoundedButton(
