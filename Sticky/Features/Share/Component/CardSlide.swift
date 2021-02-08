@@ -16,7 +16,10 @@ import SwiftUI
 // Item -> 카드의 정보가 입력되는 UI
 
 struct CardSlide: View {
+    // MARK: Internal
+
     @EnvironmentObject var UIState: UIStateModel
+    @EnvironmentObject var challengeState: ChallengeState
     @Binding var items: [Card]
 
     var body: some View {
@@ -51,8 +54,21 @@ struct CardSlide: View {
                                 .frame(width: 56, height: 16)
                                 .padding(.top, 24)
                             HStack(spacing: 24) {
+                                // Day
                                 VStack {
-                                    Text("30")
+                                    Text(String(challengeState.timeData.day))
+                                        .font(.custom("Modak", size: 80))
+                                        .frame(height: 64)
+                                        .padding(.bottom, 1)
+                                    Text("일")
+                                        .font(.system(size: 17, weight: .heavy, design: .default))
+                                        .frame(width: 96)
+                                }
+                                .isHidden(isDayTextHidden, remove: isDayTextHidden)
+
+                                // Hour
+                                VStack {
+                                    Text(String(challengeState.timeData.hour))
                                         .font(.custom("Modak", size: 80))
                                         .frame(height: 64)
                                         .padding(.bottom, 1)
@@ -60,10 +76,13 @@ struct CardSlide: View {
                                         .font(.system(size: 17, weight: .heavy, design: .default))
                                         .frame(width: 96)
                                 }
+                                .isHidden(isHourTextHidden, remove: isHourTextHidden)
+
                                 // 얘 높이가 Text랑 달라서 그룹지어서 처리해야함
+                                // Minute
                                 VStack {
                                     StrokeText(
-                                        text: "34",
+                                        text: String(challengeState.timeData.minute),
                                         size: 80,
                                         fontColor: UIColor.white
                                     )
@@ -73,6 +92,7 @@ struct CardSlide: View {
                                         .font(.system(size: 17, weight: .heavy, design: .default))
                                         .frame(width: 96)
                                 }
+                                .isHidden(!isDayTextHidden, remove: !isDayTextHidden)
                             }
                             .frame(width: 216)
                             .padding(.top, 24)
@@ -93,6 +113,16 @@ struct CardSlide: View {
                 .animation(.spring())
             }
         }
+    }
+
+    // MARK: Private
+    
+    private var isDayTextHidden: Bool{
+        return challengeState.timeData.day > 0 ? false : true
+    }
+
+    private var isHourTextHidden: Bool {
+        return challengeState.timeData.hour > 0 ? false : true
     }
 }
 

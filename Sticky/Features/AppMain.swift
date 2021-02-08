@@ -15,6 +15,7 @@ struct AppMain: View {
     @EnvironmentObject var rootViewManager: RootViewManager
     @EnvironmentObject var challengeState: ChallengeState
     @EnvironmentObject var locationManager: LocationManager
+    @EnvironmentObject var popupState: PopupStateModel
 
 //    init() {
 //        let newNavAppearance = UINavigationBarAppearance()
@@ -41,9 +42,11 @@ struct AppMain: View {
                 if challengeState.type == .running {
 //                    if !locationManager.isContains() {
 //                        print("챌린지 진행 중 나감")
-                        challengeState.type = .notAtHome
+                    popupState.popupStyle = .fail
+                    popupState.isPresented = true
+                    challengeState.type = .notAtHome
 //                    }
-                } else if challengeState.type == .notRunning{
+                } else if challengeState.type == .notRunning {
                     print("시작하지 않은 상태인데 집 밖으로 나감")
                     challengeState.type = .notAtHome
                 }

@@ -12,6 +12,7 @@ import UserNotifications
 
 struct BottomTimerRunning: View {
     @EnvironmentObject private var popupState: PopupStateModel
+    @Binding var numberOfHeart: Int
     @Binding var sharePresented: Bool
     @Binding var popupStyle: PopupStyle
 
@@ -34,7 +35,7 @@ struct BottomTimerRunning: View {
             })
             // 외출하기 button
             Button(action: {
-                self.popupStyle = .outing
+                self.popupState.popupStyle = (numberOfHeart > 0) ? .outing : .lockOfHeart
                 self.popupState.isPresented = true
             }, label: {
                 BorderRoundedButton(
@@ -56,7 +57,7 @@ struct BottomTimerRunning: View {
 
 struct TimerRunning_Previews: PreviewProvider {
     static var previews: some View {
-        BottomTimerRunning(sharePresented: .constant(true), popupStyle: .constant(.exit))
+        BottomTimerRunning(numberOfHeart: .constant(2), sharePresented: .constant(true), popupStyle: .constant(.exit))
             .environmentObject(PopupStateModel())
     }
 }
