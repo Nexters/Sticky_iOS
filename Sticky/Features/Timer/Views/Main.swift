@@ -74,7 +74,7 @@ struct Main: View {
         }
         .onAppear {
             // 처음 불릴 때, 타이머 동작
-            print(challengeState.type)
+            print("onAppear")
             if Main.isFirst {
                 Main.isFirst = false
                 startTimer()

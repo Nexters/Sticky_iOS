@@ -54,30 +54,45 @@ struct CardSlide: View {
                                 .frame(width: 56, height: 16)
                                 .padding(.top, 24)
                             HStack(spacing: 24) {
+                                // Day
                                 VStack {
-                                    Text(String(forwardText))
+                                    Text(String(challengeState.timeData.day))
                                         .font(.custom("Modak", size: 80))
                                         .frame(height: 64)
                                         .padding(.bottom, 1)
-                                    Text(forwardUnit)
+                                    Text("일")
                                         .font(.system(size: 17, weight: .heavy, design: .default))
                                         .frame(width: 96)
                                 }
+                                .isHidden(isDayTextHidden, remove: isDayTextHidden)
+
+                                // Hour
+                                VStack {
+                                    Text(String(challengeState.timeData.hour))
+                                        .font(.custom("Modak", size: 80))
+                                        .frame(height: 64)
+                                        .padding(.bottom, 1)
+                                    Text("시간")
+                                        .font(.system(size: 17, weight: .heavy, design: .default))
+                                        .frame(width: 96)
+                                }
+                                .isHidden(isHourTextHidden, remove: isHourTextHidden)
 
                                 // 얘 높이가 Text랑 달라서 그룹지어서 처리해야함
+                                // Minute
                                 VStack {
                                     StrokeText(
-                                        text: String(backwardText),
+                                        text: String(challengeState.timeData.minute),
                                         size: 80,
                                         fontColor: UIColor.white
                                     )
                                     .padding(.bottom, 0)
                                     .frame(width: 80, height: 64)
-                                    Text(backwardUnit)
+                                    Text("분")
                                         .font(.system(size: 17, weight: .heavy, design: .default))
                                         .frame(width: 96)
                                 }
-                                .isHidden(isBackWardHidden, remove: isBackWardHidden)
+                                .isHidden(!isDayTextHidden, remove: !isDayTextHidden)
                             }
                             .frame(width: 216)
                             .padding(.top, 24)
@@ -102,50 +117,12 @@ struct CardSlide: View {
 
     // MARK: Private
     
-    private var isBackWardHidden: Bool{
-        get{
-            return (challengeState.timeData.day == 0 && challengeState.timeData.hour == 0)
-        }
+    private var isDayTextHidden: Bool{
+        return challengeState.timeData.day > 0 ? false : true
     }
 
-    private var forwardText: Int {
-        if challengeState.timeData.day > 0 {
-            return challengeState.timeData.day
-        } else if challengeState.timeData.hour > 0 {
-            return challengeState.timeData.hour
-        } else {
-            return challengeState.timeData.minute
-        }
-    }
-
-    private var forwardUnit: String {
-        if challengeState.timeData.day > 0 {
-            return "일"
-        } else if challengeState.timeData.hour > 0 {
-            return "시간"
-        } else {
-            return "분"
-        }
-    }
-
-    private var backwardText: Int {
-        if challengeState.timeData.day > 0 {
-            return challengeState.timeData.hour
-        } else if challengeState.timeData.hour > 0 {
-            return challengeState.timeData.minute
-        } else {
-            return 0
-        }
-    }
-
-    private var backwardUnit: String {
-        if challengeState.timeData.day > 0 {
-            return "시간"
-        } else if challengeState.timeData.hour > 0 {
-            return "분"
-        } else {
-            return "초"
-        }
+    private var isHourTextHidden: Bool {
+        return challengeState.timeData.hour > 0 ? false : true
     }
 }
 
