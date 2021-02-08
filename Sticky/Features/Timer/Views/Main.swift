@@ -27,7 +27,6 @@ struct Main: View {
     @State var selection: String? = ""
     @State var timer: Timer? = nil
     @State static var isFirst: Bool = true
-    @State var popupStyle: PopupStyle = .exit
     @State var flag = true
     @State var countTime = 3
 
@@ -60,7 +59,7 @@ struct Main: View {
 
                 PopupMessage(
                     isPresented: $popupState.isPresented,
-                    message: self.popupStyle.getMessage(),
+                    message: self.popupState.popupStyle.getMessage(),
                     confirmHandler: confirmInPopup,
                     rateOfWidth: 0.8
                 )
@@ -146,7 +145,7 @@ struct Main: View {
 
     private var stopButton: some View {
         Button(action: {
-            self.popupStyle = .exit
+            self.popupState.popupStyle = .exit
             self.popupState.isPresented = true
         }) {
             Image("exit")
@@ -156,14 +155,17 @@ struct Main: View {
     }
 
     func confirmInPopup() {
-        switch popupStyle {
+        switch popupState.popupStyle {
         case .exit:
 
             // MARK: 챌린지 종료하기
+            sharePresented = true
 
             challengeState.type = .notRunning
         case .fail:
+            print("confirm fail")
             sharePresented = true
+            challengeState.type = .notAtHome
         case .outing:
 
             // MARK: 챌린지 종료하기
@@ -232,7 +234,7 @@ struct Main: View {
         case .notAtHome:
             view = AnyView(BottomNotAtHome())
         case .running:
-            view = AnyView(BottomTimerRunning(sharePresented: $sharePresented, popupStyle: $popupStyle))
+            view = AnyView(BottomTimerRunning(sharePresented: $sharePresented, popupStyle: $popupState.popupStyle))
         case .notRunning:
             view = AnyView(BottomTimerNotRunning())
         case .outing:
