@@ -69,6 +69,7 @@
 		C278951025C82ACE001319BE /* OutingCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C278950F25C82ACE001319BE /* OutingCount.swift */; };
 		C278951825C833D6001319BE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C278951725C833D6001319BE /* Message.swift */; };
 		C278957325CAE3DA001319BE /* ChallengeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C278957225CAE3DA001319BE /* ChallengeState.swift */; };
+		C285619325D13E79006FA7D2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C285619225D13E79006FA7D2 /* User.swift */; };
 		EB32FA5725B8414500DC3FAE /* CardSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB608B1325B719440061F394 /* CardSlide.swift */; };
 		EB32FA5D25B8466200DC3FAE /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB32FA5C25B8466200DC3FAE /* View+.swift */; };
 		EB63F51C25B8257C00151A05 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB63F51B25B8257C00151A05 /* Colors.xcassets */; };
@@ -165,6 +166,7 @@
 		C278950F25C82ACE001319BE /* OutingCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutingCount.swift; sourceTree = "<group>"; };
 		C278951725C833D6001319BE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		C278957225CAE3DA001319BE /* ChallengeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeState.swift; sourceTree = "<group>"; };
+		C285619225D13E79006FA7D2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EB32FA5C25B8466200DC3FAE /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		EB608B1325B719440061F394 /* CardSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSlide.swift; sourceTree = "<group>"; };
 		EB63F51B25B8257C00151A05 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -482,6 +484,7 @@
 				BBC66EDD25C5197A007687D7 /* RootPresentationMode.swift */,
 				C27893CF25C6E1EC001319BE /* RootViewManager.swift */,
 				C278951725C833D6001319BE /* Message.swift */,
+				C285619225D13E79006FA7D2 /* User.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -733,6 +736,7 @@
 				C277C53825BEF98500ADD2EC /* BottomTimerNotRunning.swift in Sources */,
 				C277C53D25BEF9B500ADD2EC /* BottomNotAtHome.swift in Sources */,
 				BB546C3625CEB3A100241DF3 /* BadgeViewModel.swift in Sources */,
+				C285619325D13E79006FA7D2 /* User.swift in Sources */,
 				BBC66EC825C4F99E007687D7 /* TimerView.swift in Sources */,
 				BB546BF025C83E8F00241DF3 /* ShareType.swift in Sources */,
 				BBC66EBD25C4E965007687D7 /* AppMain.swift in Sources */,

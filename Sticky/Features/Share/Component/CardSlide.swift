@@ -16,7 +16,10 @@ import SwiftUI
 // Item -> 카드의 정보가 입력되는 UI
 
 struct CardSlide: View {
+    // MARK: Internal
+
     @EnvironmentObject var UIState: UIStateModel
+    @EnvironmentObject var challengeState: ChallengeState
     @Binding var items: [Card]
 
     var body: some View {
@@ -52,27 +55,29 @@ struct CardSlide: View {
                                 .padding(.top, 24)
                             HStack(spacing: 24) {
                                 VStack {
-                                    Text("30")
+                                    Text(String(forwardText))
                                         .font(.custom("Modak", size: 80))
                                         .frame(height: 64)
                                         .padding(.bottom, 1)
-                                    Text("시간")
+                                    Text(forwardUnit)
                                         .font(.system(size: 17, weight: .heavy, design: .default))
                                         .frame(width: 96)
                                 }
+
                                 // 얘 높이가 Text랑 달라서 그룹지어서 처리해야함
                                 VStack {
                                     StrokeText(
-                                        text: "34",
+                                        text: String(backwardText),
                                         size: 80,
                                         fontColor: UIColor.white
                                     )
                                     .padding(.bottom, 0)
                                     .frame(width: 80, height: 64)
-                                    Text("분")
+                                    Text(backwardUnit)
                                         .font(.system(size: 17, weight: .heavy, design: .default))
                                         .frame(width: 96)
                                 }
+                                .isHidden(isBackWardHidden, remove: isBackWardHidden)
                             }
                             .frame(width: 216)
                             .padding(.top, 24)
@@ -92,6 +97,54 @@ struct CardSlide: View {
                 .transition(AnyTransition.slide)
                 .animation(.spring())
             }
+        }
+    }
+
+    // MARK: Private
+    
+    private var isBackWardHidden: Bool{
+        get{
+            return (challengeState.timeData.day == 0 && challengeState.timeData.hour == 0)
+        }
+    }
+
+    private var forwardText: Int {
+        if challengeState.timeData.day > 0 {
+            return challengeState.timeData.day
+        } else if challengeState.timeData.hour > 0 {
+            return challengeState.timeData.hour
+        } else {
+            return challengeState.timeData.minute
+        }
+    }
+
+    private var forwardUnit: String {
+        if challengeState.timeData.day > 0 {
+            return "일"
+        } else if challengeState.timeData.hour > 0 {
+            return "시간"
+        } else {
+            return "분"
+        }
+    }
+
+    private var backwardText: Int {
+        if challengeState.timeData.day > 0 {
+            return challengeState.timeData.hour
+        } else if challengeState.timeData.hour > 0 {
+            return challengeState.timeData.minute
+        } else {
+            return 0
+        }
+    }
+
+    private var backwardUnit: String {
+        if challengeState.timeData.day > 0 {
+            return "시간"
+        } else if challengeState.timeData.hour > 0 {
+            return "분"
+        } else {
+            return "초"
         }
     }
 }
