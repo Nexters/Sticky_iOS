@@ -105,12 +105,11 @@ struct CardSlide: View {
                             .offset(y: 190)
                     }
                 }
-                .foregroundColor(Color.white)
-                .background(Color.Sticky.blue)
                 .cornerRadius(40)
                 .shadow(color: Color.gray, radius: 4, x: 0, y: 4)
                 .transition(AnyTransition.slide)
                 .animation(.spring())
+//                .environmentObject(self.UIState)
             }
         }
     }

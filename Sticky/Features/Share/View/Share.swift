@@ -27,6 +27,7 @@ struct Share: View {
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var shareViewModel: ShareViewModel
+    @EnvironmentObject var UIState: UIStateModel
 
     var body: some View {
         ZStack {
@@ -65,7 +66,8 @@ struct Share: View {
 
     private var downloadButton: some View {
         Button(action: {
-            saveInPhoto(img: takeCapture())
+            NotificationCenter.default.post(name: .captureScreen, object: nil)
+//            saveInPhoto(img: takeCapture())
         }) {
             Image("download")
                 .aspectRatio(contentMode: .fit)
@@ -73,6 +75,7 @@ struct Share: View {
     }
 
     private func setBackgroundColor(type: BadgeType) -> AnyView {
+        print("\(UIState.activeCard)asdasd")
         switch type {
         case .level:
             return
