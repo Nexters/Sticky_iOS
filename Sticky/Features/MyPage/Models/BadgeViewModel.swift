@@ -18,6 +18,11 @@ class BadgeViewModel: ObservableObject {
         self.specials = UserDefaults.standard.object(forKey: "specials") as? [String: CountAndDate] ?? [
             Special.first.rawValue: (0, nil),
         ]
+        self.previous_monthly = UserDefaults.standard.object(forKey: "monthly") as? [String: CountAndDate] ?? [
+            "10": (0, nil), "30": (0, nil), "50": (0, nil),
+            "100": (0, nil), "150": (0, nil), "300": (0, nil),
+            "500": (0, nil), "700": (0, nil), "720": (0, nil),
+        ]
         self.monthly = UserDefaults.standard.object(forKey: "monthly") as? [String: CountAndDate] ?? [
             "10": (0, nil), "30": (0, nil), "50": (0, nil),
             "100": (0, nil), "150": (0, nil), "300": (0, nil),
@@ -34,6 +39,12 @@ class BadgeViewModel: ObservableObject {
     @Published var specials: [String: CountAndDate] {
         didSet {
             UserDefaults.standard.set(specials, forKey: "specials")
+        }
+    }
+
+    @Published var previous_monthly: [String: CountAndDate] {
+        didSet {
+            UserDefaults.standard.set(previous_monthly, forKey: "previous_monthly")
         }
     }
 
