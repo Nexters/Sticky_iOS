@@ -21,6 +21,7 @@ enum PopupStyle {
     case fail
     case outing
     case failDuringOuting
+    case lockOfHeart
 
     // MARK: Internal
 
@@ -49,6 +50,14 @@ enum PopupStyle {
                 description: "하트 1개당 20분 외출할 수 있어요.\n시간을 넘기면 챌린지가 종료됩니다.",
                 confirmString: "하트 사용해서 외출하기",
                 rejectString: "취소하기"
+            )
+            
+        case .lockOfHeart:
+            return Message(style: .lockOfHeart,
+                           title: "외출하기",
+                           description: "하트가 부족해서 외출할 수 없습니다.\n하트는 챌린지 동안 3개만 지급됩니다.",
+                           confirmString: "확인",
+                           rejectString: ""
             )
         case .failDuringOuting:
             return Message(

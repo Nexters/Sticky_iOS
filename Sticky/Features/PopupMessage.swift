@@ -11,6 +11,7 @@ import SwiftUI
 
 struct PopupMessage: View {
     @Binding var isPresented: Bool
+    @Binding var numberOfHeart: Int
     let message: Message
     let confirmHandler: () -> Void
     let rateOfWidth: CGFloat
@@ -34,7 +35,7 @@ struct PopupMessage: View {
 
                 HStack {
                     Image("ic_heart")
-                    Text("3/3")
+                    Text("\(self.numberOfHeart)/3")
                         .font(.system(size: 24))
                         .foregroundColor(Color.Palette.negative)
                 }
@@ -76,7 +77,7 @@ struct PopupMessage: View {
                             .foregroundColor(.black))
                         .frame(height: 48)
                         .foregroundColor(.white)
-                })
+                }).isHidden(message.rejectString == "")
             }
             .frame(width: 288)
             .padding(24)
@@ -93,7 +94,7 @@ struct PopupMessage: View {
 struct PopupMessage_Previews: PreviewProvider {
     static var previews: some View {
         PopupMessage(
-            isPresented: .constant(false),
+            isPresented: .constant(false), numberOfHeart: .constant(1),
             message: Message(
                 style: .exit,
                 title: "챌린지 종료하기",

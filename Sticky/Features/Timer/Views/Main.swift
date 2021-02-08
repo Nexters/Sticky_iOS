@@ -59,6 +59,7 @@ struct Main: View {
 
                 PopupMessage(
                     isPresented: $popupState.isPresented,
+                    numberOfHeart: $challengeState.numberOfHeart,
                     message: self.popupState.popupStyle.getMessage(),
                     confirmHandler: confirmInPopup,
                     rateOfWidth: 0.8
@@ -159,22 +160,25 @@ struct Main: View {
         case .exit:
 
             // MARK: 챌린지 종료하기
+
             sharePresented = true
+//            challengeState.timeData = TimeData()
 
             challengeState.type = .notRunning
         case .fail:
             print("confirm fail")
             sharePresented = true
+//            challengeState.timeData = TimeData()
             challengeState.type = .notAtHome
         case .outing:
-
-            // MARK: 챌린지 종료하기
-
             flag = true
             challengeState.outingTimeDate.minute = 0
             challengeState.outingTimeDate.second = 9
             challengeState.type = .outing
+            challengeState.numberOfHeart -= 1
             print("외출하기")
+        case .lockOfHeart:
+            popupState.isPresented = false
         case .failDuringOuting:
             sharePresented = true
         }
@@ -234,7 +238,7 @@ struct Main: View {
         case .notAtHome:
             view = AnyView(BottomNotAtHome())
         case .running:
-            view = AnyView(BottomTimerRunning(sharePresented: $sharePresented, popupStyle: $popupState.popupStyle))
+            view = AnyView(BottomTimerRunning(numberOfHeart: $challengeState.numberOfHeart, sharePresented: $sharePresented, popupStyle: $popupState.popupStyle))
         case .notRunning:
             view = AnyView(BottomTimerNotRunning())
         case .outing:
