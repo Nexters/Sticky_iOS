@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.12.0](https://github.com/Nexters/Sticky_iOS/compare/v1.11.1...v1.12.0) (2021-02-08)
+
+
+### Features
+
+* **fail:** 챌린지 중 범위 나간 경우  구현 ([4a17412](https://github.com/Nexters/Sticky_iOS/commit/4a174128664cd38c4108a81a533b25ace69f8f35))
+* **heart:** 외출 하트 개수 구현 ([ee57842](https://github.com/Nexters/Sticky_iOS/commit/ee57842e0aaeac09a5eb840d256a96802b2c874d))
+
 ### [1.11.1](https://github.com/Nexters/Sticky_iOS/compare/v1.11.0...v1.11.1) (2021-02-06)
 
 
