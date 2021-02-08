@@ -14,16 +14,6 @@ struct BottomNotAtHome: View {
 
     var body: some View {
         VStack {
-//                NavigationLink(destination: MyPage()) {
-//                    Text("MyPage")
-//                }
-
-//                Button(action: {
-//                    popupState.isPresented = true
-//                }, label: {
-//                    Text("팝업")
-//                })
-
             Button(action: {}, label: {
                 GradientRoundedButton(
                     content: "집에서만 시작할 수 있어요".localized,
