@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.13.0](https://github.com/Nexters/Sticky_iOS/compare/v1.12.1...v1.13.0) (2021-02-09)
+
+
+### Features
+
+* **mypage:** 이전 달 저장 ([c544314](https://github.com/Nexters/Sticky_iOS/commit/c544314a6a5839257fa138922c595758fcf99c71))
+
+
+### Bug Fixes
+
+* **more:** 주소변경시 삭제 팝업 ([6785c90](https://github.com/Nexters/Sticky_iOS/commit/6785c90ad1286cd4f3dc2e31edb1178579d6a39e))
+
 ### [1.12.1](https://github.com/Nexters/Sticky_iOS/compare/v1.12.0...v1.12.1) (2021-02-09)
 
 ## [1.12.0](https://github.com/Nexters/Sticky_iOS/compare/v1.11.1...v1.12.0) (2021-02-08)
