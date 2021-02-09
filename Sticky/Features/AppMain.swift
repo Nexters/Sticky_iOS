@@ -41,7 +41,7 @@ struct AppMain: View {
             .onReceive(NotificationCenter.default.publisher(for: .exitGeofence), perform: { _ in
                 if challengeState.type == .running {
 //                    if !locationManager.isContains() {
-//                        print("챌린지 진행 중 나감")
+                        print("챌린지 진행 중 나감")
                     popupState.popupStyle = .fail
                     popupState.isPresented = true
                     challengeState.type = .notAtHome

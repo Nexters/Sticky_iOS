@@ -22,6 +22,7 @@ struct Main: View {
     @EnvironmentObject private var popupState: PopupStateModel
     @EnvironmentObject private var challengeState: ChallengeState
     @EnvironmentObject private var locationManager: LocationManager
+    @EnvironmentObject private var user: User
     @State var sharePresented: Bool = false
     @State var color = Color.Palette.primary
     @State var selection: String? = ""
@@ -54,7 +55,7 @@ struct Main: View {
                         .padding(.bottom, 24)
                 }
 
-                outingView
+                Outing(timer: $timer, flag: $flag, countTime: $countTime)
                     .isHidden(!(challengeState.type == .outing))
 
                 PopupMessage(
@@ -92,56 +93,65 @@ struct Main: View {
 
     func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
-            addSecond()
+            if challengeState.type == .running {
+                addChallengeTimer()
+            } else if challengeState.type == .outing {
+                addChallengeTimer()
+                addOutingTimer()
+            }
+
         })
     }
 
-    func addSecond() {
-        if challengeState.type == .running {
-            if challengeState.timeData.minute >= 60 {
-                challengeState.timeData.hour += 1
-                challengeState.timeData.minute = 0
-            } else if challengeState.timeData.second >= 60 {
-                challengeState.timeData.minute += 1
-                challengeState.timeData.second = 0
+    func addChallengeTimer() {
+        if challengeState.timeData.minute >= 60 {
+            challengeState.timeData.hour += 1
+            challengeState.timeData.minute = 0
+        } else if challengeState.timeData.second >= 60 {
+            challengeState.timeData.minute += 1
+            challengeState.timeData.second = 0
+        }
+        challengeState.timeData.second += 1
+    }
+
+    func addOutingTimer() {
+        if flag {
+            // 애니메이션 진입
+            countTime -= 1
+            if countTime == 0 {
+                flag = false
             }
-            challengeState.timeData.second += 1
-        } else if challengeState.type == .outing {
-            if flag {
-                // 애니메이션 진입
-                countTime -= 1
-                if countTime == 0 {
-                    flag = false
+        } else {
+            // 애니메이션 종료 후
+            if challengeState.outingTimeDate.second <= 0 {
+                if challengeState.outingTimeDate.minute <= 0 {
+                    // 외출하기 시간 지남
+                    // 이 로직을 돈다면 시간동안 범위 밖을 나가지 않음
+                    flag = true
+                    countTime = 3
+                    if locationManager.isContains() {
+                        print("위치가 맞음")
+                        challengeState.type = .running
+                    } else {
+                        popupState.popupStyle = .failDuringOuting
+                        popupState.isPresented = true
+                        challengeState.type = .notAtHome
+                        // 누적 시간 저장
+                        addAccumulateTime()
+                    }
+
+                } else {
+                    challengeState.outingTimeDate.minute -= 1
+                    challengeState.outingTimeDate.second = 59
                 }
             } else {
-                // 애니메이션 종료 후
-                if challengeState.outingTimeDate.second <= 0 {
-                    if challengeState.outingTimeDate.minute <= 0 {
-                        // 외출하기 시간 지남
-                        // 이 로직을 돈다면 시간동안 범위 밖을 나가지 않음
-                        flag = true
-                        countTime = 3
-                        if locationManager.isContains() {
-                            print("위치가 맞음")
-                            challengeState.type = .running
-                        } else {
-                            print("위치가 틀림")
-                            challengeState.type = .notAtHome
-                        }
-
-                    } else {
-                        challengeState.outingTimeDate.minute -= 1
-                        challengeState.outingTimeDate.second = 59
-                    }
-                } else {
-                    challengeState.outingTimeDate.second -= 1
-                }
+                challengeState.outingTimeDate.second -= 1
             }
         }
     }
 
-    private var outingView: Outing {
-        Outing(timer: $timer, flag: $flag, countTime: $countTime)
+    func addAccumulateTime() {
+        user.accumulateTime += Date().compareTo(date: challengeState.startDate).toSeconds()
     }
 
     private var stopButton: some View {
@@ -158,25 +168,23 @@ struct Main: View {
     func confirmInPopup() {
         switch popupState.popupStyle {
         case .exit:
-
-            // MARK: 챌린지 종료하기
-
             sharePresented = true
-//            challengeState.timeData = TimeData()
 
             challengeState.type = .notRunning
+            addAccumulateTime()
+            
         case .fail:
-            print("confirm fail")
             sharePresented = true
-//            challengeState.timeData = TimeData()
             challengeState.type = .notAtHome
+            addAccumulateTime()
+            
         case .outing:
             flag = true
             challengeState.outingTimeDate.minute = 0
             challengeState.outingTimeDate.second = 9
             challengeState.type = .outing
             challengeState.numberOfHeart -= 1
-            print("외출하기")
+            
         case .lockOfHeart:
             popupState.isPresented = false
         case .failDuringOuting:
