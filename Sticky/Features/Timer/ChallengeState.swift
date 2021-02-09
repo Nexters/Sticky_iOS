@@ -100,4 +100,8 @@ struct TimeData: Codable {
     var hour: Int = 0
     var minute: Int = 0
     var second: Int = 0
+    
+    func toSeconds() -> Int{
+        return day * 24 * 60 * 60 + hour * 60 * 60 + minute * 60 + second
+    }
 }
