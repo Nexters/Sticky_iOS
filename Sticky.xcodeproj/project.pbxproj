@@ -70,6 +70,8 @@
 		C278951825C833D6001319BE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C278951725C833D6001319BE /* Message.swift */; };
 		C278957325CAE3DA001319BE /* ChallengeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C278957225CAE3DA001319BE /* ChallengeState.swift */; };
 		C285619325D13E79006FA7D2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C285619225D13E79006FA7D2 /* User.swift */; };
+		C28561A125D24D19006FA7D2 /* DateComponenets+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28561A025D24D19006FA7D2 /* DateComponenets+.swift */; };
+		C28561A625D24ED5006FA7D2 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28561A525D24ED5006FA7D2 /* Date+.swift */; };
 		EB32FA5725B8414500DC3FAE /* CardSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB608B1325B719440061F394 /* CardSlide.swift */; };
 		EB32FA5D25B8466200DC3FAE /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB32FA5C25B8466200DC3FAE /* View+.swift */; };
 		EB63F51C25B8257C00151A05 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB63F51B25B8257C00151A05 /* Colors.xcassets */; };
@@ -167,6 +169,8 @@
 		C278951725C833D6001319BE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		C278957225CAE3DA001319BE /* ChallengeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeState.swift; sourceTree = "<group>"; };
 		C285619225D13E79006FA7D2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C28561A025D24D19006FA7D2 /* DateComponenets+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponenets+.swift"; sourceTree = "<group>"; };
+		C28561A525D24ED5006FA7D2 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		EB32FA5C25B8466200DC3FAE /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		EB608B1325B719440061F394 /* CardSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSlide.swift; sourceTree = "<group>"; };
 		EB63F51B25B8257C00151A05 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -233,6 +237,7 @@
 		BB0A592125B9C97D001F529A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C285619225D13E79006FA7D2 /* User.swift */,
 				BB0A593A25BA585A001F529A /* Badge.swift */,
 				BB0A593F25BA6EE4001F529A /* Tier.swift */,
 				BB546C3525CEB3A100241DF3 /* BadgeViewModel.swift */,
@@ -484,7 +489,6 @@
 				BBC66EDD25C5197A007687D7 /* RootPresentationMode.swift */,
 				C27893CF25C6E1EC001319BE /* RootViewManager.swift */,
 				C278951725C833D6001319BE /* Message.swift */,
-				C285619225D13E79006FA7D2 /* User.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -521,6 +525,8 @@
 				BBC66F3625C57FF2007687D7 /* CLPlacemark+.swift */,
 				BB546C0825CC29C600241DF3 /* Array+.swift */,
 				BB546C2825CD87D500241DF3 /* Int+.swift */,
+				C28561A025D24D19006FA7D2 /* DateComponenets+.swift */,
+				C28561A525D24ED5006FA7D2 /* Date+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -691,6 +697,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C28561A625D24ED5006FA7D2 /* Date+.swift in Sources */,
 				BB1C8A2725B875020000931A /* SearchResult.swift in Sources */,
 				BBC66F2C25C55BA6007687D7 /* MapView.swift in Sources */,
 				BB1C8A2A25B875020000931A /* NotFound.swift in Sources */,
@@ -740,6 +747,7 @@
 				BBC66EC825C4F99E007687D7 /* TimerView.swift in Sources */,
 				BB546BF025C83E8F00241DF3 /* ShareType.swift in Sources */,
 				BBC66EBD25C4E965007687D7 /* AppMain.swift in Sources */,
+				C28561A125D24D19006FA7D2 /* DateComponenets+.swift in Sources */,
 				BB546C3125CEADC700241DF3 /* TierInformation.swift in Sources */,
 				BB546BE625C8329800241DF3 /* CardSlideView.swift in Sources */,
 				BB1C8A2825B875020000931A /* Tip.swift in Sources */,

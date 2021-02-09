@@ -24,6 +24,8 @@ struct CardItem<Content: View>: View {
         cardWidth = UIScreen.main.bounds.width - (widthOfHiddenCards * 2) - (spacing * 2)
         self.cardHeight = cardHeight
         self.id = id
+        self.widthOfHiddenCards = widthOfHiddenCards
+        self.spacing = spacing
     }
 
     // MARK: Internal
@@ -31,18 +33,40 @@ struct CardItem<Content: View>: View {
     @EnvironmentObject var UIState: UIStateModel
     let cardWidth: CGFloat
     let cardHeight: CGFloat
+    let widthOfHiddenCards: CGFloat
+    let spacing: CGFloat
     var id: Int
+
     var content: Content
 
     var body: some View {
         // Active 카드인지 확인
         // Active 카드가 아닌 카드들은 여기서 UI/Design 수정
-        content
-            .frame(
-                width: cardWidth,
-                height: id == UIState.activeCard ? cardHeight : cardHeight - 60,
-                alignment: .center
-            )
+
+        GeometryReader { gr in
+//            VStack {
+            content
+                .onReceive(NotificationCenter.default.publisher(for: .captureScreen), perform: { _ in
+                    print("capture\(UIState.activeCard)")
+                    saveInPhoto(img: takeCapture(origin: gr.frame(in: .global).origin, size: gr.size))
+                })
+                .onReceive(NotificationCenter.default.publisher(for: .shareLocal), perform: { _ in
+                    print("shareLocal")
+                    shareLocal(image: takeCapture(origin: gr.frame(in: .global).origin, size: gr.size))
+                })
+                .onReceive(NotificationCenter.default.publisher(for: .shareInstagram), perform: { _ in
+                    print("shareInstagram")
+                    shareInstagram(image: takeCapture(origin: gr.frame(in: .global).origin, size: gr.size))
+                })
+//            }
+
+        }.frame(
+            width: UIScreen.main.bounds.width - (widthOfHiddenCards * 2) - (spacing * 2),
+            height: cardHeight,
+            alignment: .center
+        )
+        .foregroundColor(Color.white)
+        .background(Color.Sticky.blue)
     }
 }
 
@@ -57,27 +81,25 @@ struct CardItem_Previews: PreviewProvider {
         ]
         return ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                ForEach(items, id: \.self.id) { item in
-                    CardItem(
-                        // 카드 UI의 id
-                        id: Int(item.id),
-                        // 카드 사이의 너비
-                        spacing: 20,
-                        // 가려진 카드의 너비
-                        widthOfHiddenCards: 40,
-                        // 카드의 높이
-                        cardHeight: 360
-                    ) {
-                        Text("\(item.nickname)")
-                    }
-                    .foregroundColor(Color.white)
-                    .background(Color.blue)
-                    .cornerRadius(8)
-                    .shadow(color: Color.gray, radius: 4, x: 0, y: 4)
-                    .transition(AnyTransition.slide)
-                    .animation(.spring())
-                    .environmentObject(UIStateModel())
+                CardItem(
+                    // 카드 UI의 id
+                    id: Int(items[0].id),
+                    // 카드 사이의 너비
+                    spacing: 20,
+                    // 가려진 카드의 너비
+                    widthOfHiddenCards: 40,
+                    // 카드의 높이
+                    cardHeight: 360
+                ) {
+                    Text("\(items[0].nickname)")
                 }
+                .foregroundColor(Color.white)
+                .background(Color.blue)
+                .cornerRadius(8)
+                .shadow(color: Color.gray, radius: 4, x: 0, y: 4)
+                .transition(AnyTransition.slide)
+                .animation(.spring())
+                .environmentObject(UIStateModel())
             }
         }
     }
