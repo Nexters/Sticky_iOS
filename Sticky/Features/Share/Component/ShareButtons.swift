@@ -15,7 +15,8 @@ struct ShareButtons: View {
             Rectangle()
                 .overlay(
                     Button(action: {
-                        shareLocal(image: takeCapture())
+                        NotificationCenter.default.post(name: .shareLocal, object: nil)
+//                        shareLocal(image: takeCapture())
                     }) {
                         Image(systemName: "square.and.arrow.up")
                             .frame(width: 48, height: 48)
@@ -27,7 +28,8 @@ struct ShareButtons: View {
                 .foregroundColor(Color.black)
 
             Button(action: {
-                shareInstagram(image: takeCapture())
+                NotificationCenter.default.post(name: .shareInstagram, object: nil)
+//                shareInstagram(image: takeCapture())
             }) {
                 Image("instagram")
                     .frame(width: 48, height: 48)
