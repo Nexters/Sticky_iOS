@@ -8,9 +8,9 @@
 import Foundation
 
 public class User: ObservableObject {
-    @Published var accumulateTime: Int = UserDefaults.standard.integer(forKey: "accumulateTime") {
+    @Published var accumulateSeconds: Int = UserDefaults.standard.integer(forKey: "accumulateSeconds") {
         didSet {
-            UserDefaults.standard.set(accumulateTime, forKey: "accumulateTime")
+            UserDefaults.standard.set(accumulateSeconds, forKey: "accumulateSeconds")
         }
     }
 }

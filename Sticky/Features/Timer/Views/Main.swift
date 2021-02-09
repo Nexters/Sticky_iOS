@@ -151,7 +151,7 @@ struct Main: View {
     }
 
     func addAccumulateTime() {
-        user.accumulateTime += Date().compareTo(date: challengeState.startDate).toSeconds()
+        user.accumulateSeconds += Date().compareTo(date: challengeState.startDate).toSeconds()
     }
 
     private var stopButton: some View {
