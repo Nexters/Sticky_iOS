@@ -104,6 +104,7 @@ struct Main: View {
     }
 
     func addChallengeTimer() {
+        challengeState.timeData.second += 1
         if challengeState.timeData.minute >= 60 {
             challengeState.timeData.hour += 1
             challengeState.timeData.minute = 0
@@ -111,7 +112,6 @@ struct Main: View {
             challengeState.timeData.minute += 1
             challengeState.timeData.second = 0
         }
-        challengeState.timeData.second += 1
     }
 
     func addOutingTimer() {
