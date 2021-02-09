@@ -61,7 +61,7 @@ enum PopupStyle {
             )
         case .failDuringOuting:
             return Message(
-                style: .outing,
+                style: .failDuringOuting,
                 title: "외출 실패",
                 description: "20분의 외출 시간동안 집으로 들어오지 못했어요.\n최종 기록을 공유할까요?",
                 confirmString: "네! 공유할래요",

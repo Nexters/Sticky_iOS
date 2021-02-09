@@ -20,14 +20,8 @@ public class ChallengeState: ObservableObject {
 
     init() {
         let now = Date()
-        var calendar = Calendar.current
-        if let timeZone = TimeZone(identifier: "UTC") {
-            calendar.timeZone = timeZone
-        }
-        print(type)
         if type == .running {
-            print("챌린지 중")
-            let nowComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: startDate, to: now)
+            let nowComponents = now.compareTo(date: startDate)
 
             timeData.day = nowComponents.day ?? 0
             timeData.hour = nowComponents.hour ?? 0
@@ -35,15 +29,15 @@ public class ChallengeState: ObservableObject {
             timeData.second = nowComponents.second ?? 0
         }
         if type == .outing {
-            let outingComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: outingDate, to: Date())
-            
+            let outingComponents = now.compareTo(date: outingDate)
+
             let outingSeconds = (outingComponents.minute ?? 0) * 60 + (outingComponents.second ?? 0)
-            let totalOutingTime = 10 // 20 * 60
-            
+            let totalOutingTime = 20 * 60
+
             if outingSeconds < totalOutingTime {
                 print("외출 중인데 아직 20분 안지남")
 
-                let nowComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: startDate, to: now)
+                let nowComponents = now.compareTo(date: startDate)
 
                 outingTimeDate.day = outingComponents.day ?? 0
                 outingTimeDate.hour = outingComponents.hour ?? 0
@@ -65,14 +59,13 @@ public class ChallengeState: ObservableObject {
 
     @Published var timeData = TimeData()
     @Published var outingTimeDate = TimeData(minute: 20)
-    @Published var numberOfHeart: Int = UserDefaults.standard.integer(forKey: "numberOfHeart"){
-        didSet{
+
+    @Published var numberOfHeart: Int = UserDefaults.standard.integer(forKey: "numberOfHeart") {
+        didSet {
             UserDefaults.standard.setValue(numberOfHeart, forKey: "numberOfHeart")
         }
     }
 
-    
-    
     @Published var type = Main.ChallengeType(rawValue: UserDefaults.standard.integer(forKey: "challengeType")) ?? .notAtHome {
         didSet {
             print("type 저장")
