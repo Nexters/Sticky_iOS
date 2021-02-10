@@ -27,7 +27,7 @@ class ShareViewModel: ObservableObject {
     // MARK: Lifecycle
 
     init() {
-        badge = Badge(badgeType: BadgeType.monthly, badgeValue: "10", name: "")
+        badge = Badge(badgeType: BadgeType.monthly, badgeValue: "10")
         seconds = 0
     }
 

@@ -21,7 +21,7 @@ struct Badge: Hashable, Identifiable {
     var id = UUID()
     var badgeType: BadgeType
     var badgeValue: String
-    var name: String
+    var _name: String = ""
     var updated: Date?
     var count: Int = 0
 
@@ -37,6 +37,39 @@ struct Badge: Hashable, Identifiable {
             return "\(badgeType)_\(badgeValue)\(active ? "" : "_locked")"
         case .level:
             return "level\(badgeValue)"
+        }
+    }
+
+    var name: String {
+        set(name) {
+            _name = name
+        }
+        get {
+            // continuous의 0.5 경우에만 12hours
+            switch badgeType {
+            case .continuous,
+                 .monthly,
+                 .special:
+                if badgeType == BadgeType.continuous, badgeValue == "0.5" {
+                    return "12 Hours"
+                } else {
+                    return "\(badgeValue) \(badgeType.unit)"
+                }
+            case .level:
+                return _name
+            }
+        }
+    }
+
+    var description: String {
+        switch badgeType {
+        case .monthly:
+            return "한달동안 집에서 보낸 시간\n\(badgeValue)을 달성하면 받을 수 있습니다."
+        case .continuous:
+            return "이번 챌린지에서 집에서 보낸 시간\n\(badgeValue)을 달성하면 받을 수 있습니다."
+        case .level,
+             .special:
+            return "준비 중입니다."
         }
     }
 }
@@ -68,7 +101,7 @@ enum BadgeType: String {
 }
 
 extension BadgeType {
-    func format(value: String) -> String {
+    func toString(value: String) -> String {
         switch self {
         case .special:
             return "특별한 배지"
@@ -80,17 +113,9 @@ extension BadgeType {
             return "총 누적시간은\n\(value)입니다."
         }
     }
-}
 
-// MARK: - Special
-
-enum Special: String {
-    case first
-}
-
-func makeBadges(badgeType: BadgeType, dict: [String: CountAndDate]) -> [Badge] {
     var unit: String {
-        switch badgeType {
+        switch self {
         case BadgeType.special:
             return ""
         case BadgeType.monthly:
@@ -101,11 +126,19 @@ func makeBadges(badgeType: BadgeType, dict: [String: CountAndDate]) -> [Badge] {
             return ""
         }
     }
+}
+
+// MARK: - Special
+
+enum Special: String {
+    case first
+}
+
+func makeBadges(badgeType: BadgeType, dict: [String: CountAndUpdated]) -> [Badge] {
     return dict.sorted { Double($0.0)! < Double($1.0)! }.map { key, value in
         Badge(
             badgeType: badgeType,
             badgeValue: key,
-            name: key == "0.5" ? "12 Hours" : "\(key) \(unit)",
             updated: value.date,
             count: value.count
         )

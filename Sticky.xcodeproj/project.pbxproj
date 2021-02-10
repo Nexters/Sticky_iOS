@@ -28,6 +28,7 @@
 		BB1C8A2A25B875020000931A /* NotFound.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A2325B875020000931A /* NotFound.swift */; };
 		BB1C8A2B25B875020000931A /* MapCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A2425B875020000931A /* MapCard.swift */; };
 		BB1C8A2D25B875020000931A /* SearchAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C8A2625B875020000931A /* SearchAddress.swift */; };
+		BB2F28FF25D3DFBC00821F49 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2F28FE25D3DFBC00821F49 /* Banner.swift */; };
 		BB546BE625C8329800241DF3 /* CardSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB546BE525C8329800241DF3 /* CardSlideView.swift */; };
 		BB546BEB25C8352F00241DF3 /* ShareCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB546BEA25C8352F00241DF3 /* ShareCardView.swift */; };
 		BB546BF025C83E8F00241DF3 /* ShareType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB546BEF25C83E8F00241DF3 /* ShareType.swift */; };
@@ -36,6 +37,7 @@
 		BB546C3125CEADC700241DF3 /* TierInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB546C3025CEADC600241DF3 /* TierInformation.swift */; };
 		BB546C3625CEB3A100241DF3 /* BadgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB546C3525CEB3A100241DF3 /* BadgeViewModel.swift */; };
 		BB75BCF525D16AD700793A5E /* Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB75BCF425D16AD700793A5E /* Modal.swift */; };
+		BB77D59925D4A348002BD70A /* BannerItemDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77D59825D4A348002BD70A /* BannerItemDetail.swift */; };
 		BB8292CE25BD597200077D8C /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8292CD25BD597200077D8C /* SearchBar.swift */; };
 		BB8292D425BD59A200077D8C /* LocationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8292D325BD59A200077D8C /* LocationSearchService.swift */; };
 		BBAC0F3125C696B900FB81D7 /* LocationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC0F3025C696B800FB81D7 /* LocationPermission.swift */; };
@@ -122,6 +124,7 @@
 		BB1C8A2325B875020000931A /* NotFound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotFound.swift; sourceTree = "<group>"; };
 		BB1C8A2425B875020000931A /* MapCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCard.swift; sourceTree = "<group>"; };
 		BB1C8A2625B875020000931A /* SearchAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAddress.swift; sourceTree = "<group>"; };
+		BB2F28FE25D3DFBC00821F49 /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		BB546BE525C8329800241DF3 /* CardSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSlideView.swift; sourceTree = "<group>"; };
 		BB546BEA25C8352F00241DF3 /* ShareCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCardView.swift; sourceTree = "<group>"; };
 		BB546BEF25C83E8F00241DF3 /* ShareType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareType.swift; sourceTree = "<group>"; };
@@ -130,6 +133,7 @@
 		BB546C3025CEADC600241DF3 /* TierInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TierInformation.swift; sourceTree = "<group>"; };
 		BB546C3525CEB3A100241DF3 /* BadgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeViewModel.swift; sourceTree = "<group>"; };
 		BB75BCF425D16AD700793A5E /* Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modal.swift; sourceTree = "<group>"; };
+		BB77D59825D4A348002BD70A /* BannerItemDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerItemDetail.swift; sourceTree = "<group>"; };
 		BB8292CD25BD597200077D8C /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		BB8292D325BD59A200077D8C /* LocationSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
 		BBAC0F3025C696B800FB81D7 /* LocationPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermission.swift; sourceTree = "<group>"; };
@@ -283,7 +287,6 @@
 				C277C54425BEFC4100ADD2EC /* BottomTimerRunning.swift */,
 				C27893DA25C6F3E8001319BE /* BottomOuting.swift */,
 				BBC66EC725C4F99E007687D7 /* TimerView.swift */,
-				BB05AB6E25C6C22D00E34717 /* BannerItem.swift */,
 				C278950F25C82ACE001319BE /* OutingCount.swift */,
 			);
 			path = Components;
@@ -362,6 +365,24 @@
 			);
 			name = OnBoarding;
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		BB77D59D25D4D80E002BD70A /* Banner */ = {
+			isa = PBXGroup;
+			children = (
+				BB77D59E25D4D81F002BD70A /* Components */,
+			);
+			path = Banner;
+			sourceTree = "<group>";
+		};
+		BB77D59E25D4D81F002BD70A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				BB2F28FE25D3DFBC00821F49 /* Banner.swift */,
+				BB05AB6E25C6C22D00E34717 /* BannerItem.swift */,
+				BB77D59825D4A348002BD70A /* BannerItemDetail.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		BB8292D825BD59BA00077D8C /* Views */ = {
@@ -479,6 +500,7 @@
 		BBB1ECCA25B469E700F5EA37 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				BB77D59D25D4D80E002BD70A /* Banner */,
 				BB0A596025BAC3DA001F529A /* More */,
 				BB0A595425BAC22F001F529A /* Timer */,
 				BB0A591F25B9C927001F529A /* MyPage */,
@@ -728,10 +750,12 @@
 				BB8292CE25BD597200077D8C /* SearchBar.swift in Sources */,
 				BB0A595925BAC24B001F529A /* Main.swift in Sources */,
 				BB0A595925BAC24B001F529A /* Main.swift in Sources */,
+				BB2F28FF25D3DFBC00821F49 /* Banner.swift in Sources */,
 				BB1C8A2D25B875020000931A /* SearchAddress.swift in Sources */,
 				BBB1ECB825B090A900F5EA37 /* BorderRoundedButton.swift in Sources */,
 				BB05ABE525C82D6400E34717 /* ShareButtons.swift in Sources */,
 				EB32FA5725B8414500DC3FAE /* CardSlide.swift in Sources */,
+				BB77D59925D4A348002BD70A /* BannerItemDetail.swift in Sources */,
 				BB0A594025BA6EE4001F529A /* Tier.swift in Sources */,
 				EB77449E25B6E82300BF1103 /* Share.swift in Sources */,
 				BB1C8A2B25B875020000931A /* MapCard.swift in Sources */,
@@ -951,8 +975,6 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.13.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Sticky;
-				MARKETING_VERSION = 1.13.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nexters.18th.adng.Sticky-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -977,8 +999,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.13.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Sticky;
 				MARKETING_VERSION = 1.13.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nexters.18th.adng.Sticky-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
