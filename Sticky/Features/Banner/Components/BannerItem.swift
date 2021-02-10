@@ -10,6 +10,7 @@ import SwiftUI
 // MARK: - BannerItem
 
 struct BannerItem: View {
+    var image: String
     var title: String
     var subtitle: String
     var width: CGFloat = 172
@@ -20,13 +21,18 @@ struct BannerItem: View {
         ZStack {
             RoundedRectangle(cornerRadius: 12).foregroundColor(bgColor)
             HStack {
-                RoundedRectangle(cornerRadius: 12)
+                Image(image)
+                    .resizable()
+                    .scaledToFit()
+                    .cornerRadius(12)
                     .frame(width: 44, height: 44)
                 VStack(alignment: .leading) {
                     Text("\(title)")
                         .font(.system(size: 17))
+                        .bold()
                     Text("\(subtitle)")
                         .font(.system(size: 14))
+                        .kerning(-0.3)
                 }
                 Spacer()
             }.padding(.all, 8)
@@ -41,6 +47,7 @@ struct BannerItem_Previews: PreviewProvider {
         ZStack {
             Color.GrayScale._900.ignoresSafeArea()
             BannerItem(
+                image: "",
                 title: "제목제목제목제목제목제목",
                 subtitle: "부제목부제목부제목부제목부제목부제목"
             )

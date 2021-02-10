@@ -14,7 +14,9 @@ struct MyPage: View {
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var badgeViewModel: BadgeViewModel
-    var total_seconds: Int = 300000
+    @EnvironmentObject var user: User
+    @EnvironmentObject var challengeState: ChallengeState
+
     var monthlyButton = AnyView(Button(action: {}) {
         Image("slice")
             .aspectRatio(contentMode: .fit)
@@ -32,17 +34,18 @@ struct MyPage: View {
             ) { EmptyView() }
 
             VStack(alignment: .leading, spacing: 20) {
-                Summary(seconds: total_seconds, selection: $navSelection)
+                Summary(seconds: user.accumulateSeconds + challengeState.timeData.toSeconds(), selection: $navSelection)
                     .padding(.bottom, 15)
                 Divider()
                     .padding(.bottom, 15)
                 BadgePanel(
                     title: "스페셜 달성",
                     subtitle: "특별한 기록을 달성하면 받을 수 있어요.",
-                    badges: makeBadges(
-                        badgeType: BadgeType.special,
-                        dict: badgeViewModel.specials
-                    ),
+                    badges: [],
+//                    badges: makeBadges(
+//                        badgeType: BadgeType.special,
+//                        dict: badgeViewModel.specials
+//                    ),
                     selection: $navSelection
                 )
                 BadgePanel(
@@ -51,7 +54,7 @@ struct MyPage: View {
                     trailing: monthlyButton,
                     badges: makeBadges(
                         badgeType: BadgeType.monthly,
-                        dict: badgeViewModel.monthly
+                        dict: badgeViewModel.monthly.items
                     ),
                     selection: $navSelection
                 )
@@ -60,7 +63,7 @@ struct MyPage: View {
                     subtitle: "멈추지 않고 이어서 기록된 시간을 기준으로 합니다.",
                     badges: makeBadges(
                         badgeType: BadgeType.continuous,
-                        dict: badgeViewModel.continuous
+                        dict: badgeViewModel.continuous.items
                     ),
                     selection: $navSelection
                 )
@@ -80,6 +83,7 @@ struct MyPage: View {
             print("Special: \(badgeViewModel.specials)")
             print("Monthly: \(badgeViewModel.monthly)")
             print("Continuous: \(badgeViewModel.continuous)")
+            print("챌린지 시간 누적: \(user.accumulateSeconds)")
         }
     }
 
@@ -119,7 +123,8 @@ struct MyPage: View {
 
 struct MyPage_Previews: PreviewProvider {
     static var previews: some View {
-        MyPage(total_seconds: 100)
+        MyPage()
             .environmentObject(BadgeViewModel())
+            .environmentObject(User())
     }
 }

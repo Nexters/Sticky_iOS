@@ -16,6 +16,7 @@ struct LocationPermission: View {
                 Image("bg_map")
                     .resizable()
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                    .edgesIgnoringSafeArea(.all)
                 VStack {
                     Spacer()
                     Text("Sticky")
@@ -46,7 +47,7 @@ struct LocationPermission: View {
             }
         }
         .edgesIgnoringSafeArea(.all)
-            .navigationBarHidden(true)
+        .navigationBarHidden(true)
     }
 }
 
