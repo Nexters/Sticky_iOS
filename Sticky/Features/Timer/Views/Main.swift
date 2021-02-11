@@ -23,9 +23,13 @@ struct Main: View {
     @EnvironmentObject private var challengeState: ChallengeState
     @EnvironmentObject private var locationManager: LocationManager
     @EnvironmentObject private var user: User
+    @EnvironmentObject private var badgeViewModel: BadgeViewModel
+
     @State var sharePresented: Bool = false
+    @State var bannerDetailPresented: Bool = false
+    @State var mypagePresented: Bool = false
+
     @State var color = Color.Palette.primary
-    @State var selection: String? = ""
     @State var timer: Timer? = nil
     @State static var isFirst: Bool = true
     @State var flag = true
@@ -38,19 +42,21 @@ struct Main: View {
                     destination: Share(shareType: ShareType.slide),
                     isActive: $sharePresented
                 ) { EmptyView() }
-                NavigationLink(destination: MyPage(), tag: "mypage", selection: self.$selection) { EmptyView() }
-                NavigationLink(destination: MyPage(), tag: "exit", selection: self.$selection) { EmptyView() }
+                NavigationLink(
+                    destination: MyPage(),
+                    isActive: $mypagePresented
+                ) { EmptyView() }
                 setColor()
                     .ignoresSafeArea()
 
                 VStack {
-                    scrollCardView
-
+                    Banner(
+                        bannerDetailPresented: $bannerDetailPresented,
+                        mypagePresented: $mypagePresented
+                    )
                     Spacer()
                     TimerView(time: $challengeState.timeData)
-
                     Spacer()
-
                     setBottomView()
                         .padding(.bottom, 24)
                 }
@@ -66,6 +72,12 @@ struct Main: View {
                     rateOfWidth: 0.8
                 )
                 .isHidden(!popupState.isPresented)
+                .ignoresSafeArea(.all)
+                BannerItemDetail(
+                    isPresented: $bannerDetailPresented,
+                    badge: badgeViewModel.select
+                )
+                .isHidden(!bannerDetailPresented)
                 .ignoresSafeArea(.all)
             }
             .navigationBarBackButtonHidden(true)
@@ -84,7 +96,7 @@ struct Main: View {
     }
 
     private var mypageButton: some View {
-        Button(action: { self.selection = "mypage" }) {
+        Button(action: { self.mypagePresented = true }) {
             Image("menu")
                 .aspectRatio(contentMode: .fit)
                 .foregroundColor(.black)
@@ -93,6 +105,8 @@ struct Main: View {
 
     func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
+            /// 뱃지 획득 여부 체크
+
             if challengeState.type == .running {
                 addChallengeTimer()
             } else if challengeState.type == .outing {
@@ -151,7 +165,13 @@ struct Main: View {
     }
 
     func addAccumulateTime() {
-        user.accumulateSeconds += Date().compareTo(date: challengeState.startDate).toSeconds()
+        print("[누적시간 저장]")
+        let seconds = Int(challengeState.startDate.timeIntervalSinceNow) * -1
+        print("챌린지 시간: \(seconds)")
+        user.accumulateSeconds += seconds
+        user.thisMonthAccumulateSeconds += seconds
+        print("내 정보:\(user.accumulateSeconds)")
+        print("내 정보:\(user.thisMonthAccumulateSeconds)")
     }
 
     private var stopButton: some View {
@@ -172,57 +192,24 @@ struct Main: View {
 
             challengeState.type = .notRunning
             addAccumulateTime()
-            
+
         case .fail:
             sharePresented = true
             challengeState.type = .notAtHome
             addAccumulateTime()
-            
+
         case .outing:
             flag = true
             challengeState.outingTimeDate.minute = 0
             challengeState.outingTimeDate.second = 9
             challengeState.type = .outing
             challengeState.numberOfHeart -= 1
-            
+
         case .lockOfHeart:
             popupState.isPresented = false
         case .failDuringOuting:
             sharePresented = true
         }
-    }
-
-    // 획득 가능한 뱃지 리스트
-    private var scrollCardView: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack {
-                Button(action: {}) {
-                    BannerItem(
-                        title: "1 Hours",
-                        subtitle: "23분 남음"
-                    )
-                }
-                Button(action: {}) {
-                    BannerItem(
-                        title: "1 Hours",
-                        subtitle: "23분 남음"
-                    )
-                }
-                Button(action: {}) {
-                    RoundedRectangle(cornerRadius: 20)
-                        .frame(width: 96, height: 60)
-                        .foregroundColor(Color.TextIconColor.secondary)
-                        .overlay(
-                            HStack {
-                                Text("더보기")
-                                Image("arrow_right")
-                            }
-                        )
-                }
-            }
-        }
-        .foregroundColor(.black)
-        .padding(.leading, 16)
     }
 
     private func setColor() -> Color {

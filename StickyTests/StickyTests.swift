@@ -33,6 +33,19 @@ class StickyTests: XCTestCase {
         print(formattedString)
     }
 
+    func testNextBadge() throws {
+        let nextMonthlyBadge = nextBadge(
+            badgeType: BadgeType.monthly,
+            badges: monthly_default.items
+        )
+        print(nextMonthlyBadge)
+        let nextContiousBadge = nextBadge(
+            badgeType: BadgeType.continuous,
+            badges: continuous_default.items
+        )
+        print(nextContiousBadge)
+    }
+
     func testPerformanceExample() throws {
         self.measure {}
     }

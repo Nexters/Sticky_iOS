@@ -75,7 +75,13 @@ struct BadgePanel_Previews: PreviewProvider {
     /// Mock 데이터
     private static func badgeMocks(count: Int) -> [Badge] {
         return Array(1 ... count).map { _ in
-            Badge(badgeType: BadgeType.monthly, badgeValue: "10", name: "Badge Name", updated: Date(), count: 0)
+            Badge(
+                badgeType: BadgeType.monthly,
+                badgeValue: "10",
+                _name: "Badge Name",
+                updated: Date(),
+                count: 0
+            )
         }
     }
 }
