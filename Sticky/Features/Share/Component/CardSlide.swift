@@ -95,11 +95,6 @@ struct CardSlide: View {
                 .background(Color.black)
             }
         }
-        .frame(
-            width: UIScreen.main.bounds.width - (widthOfHiddenCards * 2) - (spacing * 2),
-            height: cardHeight,
-            alignment: .center
-        )
         .foregroundColor(Color.white)
         .cornerRadius(40)
         .shadow(color: Color.gray, radius: 4, x: 0, y: 4)
@@ -178,11 +173,6 @@ struct CardSlide: View {
                 .background(bgColor)
             }
         }
-        .frame(
-            width: UIScreen.main.bounds.width - (widthOfHiddenCards * 2) - (spacing * 2),
-            height: cardHeight,
-            alignment: .center
-        )
         .foregroundColor(Color.white)
         .cornerRadius(40)
         .shadow(color: Color.gray, radius: 4, x: 0, y: 4)

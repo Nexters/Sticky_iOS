@@ -55,6 +55,7 @@ struct CardItem<Content: View>: View {
                     }
                 })
                 .onReceive(NotificationCenter.default.publisher(for: .shareLocal), perform: { noti in
+                    print("CardItem - Notification(shareLocal)")
                     guard let id = noti.userInfo?["index"] as? Int else { return }
                     if self.id == id {
                         print("shareLocal")
@@ -62,6 +63,7 @@ struct CardItem<Content: View>: View {
                     }
                 })
                 .onReceive(NotificationCenter.default.publisher(for: .shareInstagram), perform: { noti in
+                    print("CardItem - Notification(shareInstagram)")
                     guard let id = noti.userInfo?["index"] as? Int else { return }
                     if self.id == id {
                         print("shareInstagram")
@@ -71,6 +73,11 @@ struct CardItem<Content: View>: View {
 //            }
 
         }
+        .frame(
+            width: UIScreen.main.bounds.width - (widthOfHiddenCards * 2) - (spacing * 2),
+            height: cardHeight,
+            alignment: .center
+        )
     }
 }
 
