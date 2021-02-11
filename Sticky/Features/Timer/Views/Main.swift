@@ -203,9 +203,11 @@ struct Main: View {
             challengeState.outingTimeDate.minute = 0
             challengeState.outingTimeDate.second = 9
             challengeState.type = .outing
-            challengeState.numberOfHeart -= 1
+            if challengeState.numberOfHeart > 0 {
+                challengeState.numberOfHeart -= 1
+            }
 
-        case .lockOfHeart:
+        case .lackOfHeart:
             popupState.isPresented = false
         case .failDuringOuting:
             sharePresented = true
