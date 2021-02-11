@@ -1,14 +1,8 @@
-//
-//  View+.swift
-//  Sticky
-//
-//  Created by 지현우 on 2021/01/20.
-//
 
 import SwiftUI
 
-extension UIView{
-    var renderedImage: UIImage{
+extension UIView {
+    var renderedImage: UIImage {
         let rect = self.bounds
         
         UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
@@ -24,33 +18,32 @@ extension UIView{
 
 extension View {
     
-    func takeCapture(origin: CGPoint, size: CGSize) -> UIImage {
-        let window = UIWindow(frame: CGRect(origin: origin, size: size))
+    func share(origin: CGPoint, size: CGSize) -> UIImage{
+        let window = UIWindow(frame: UIScreen.main.bounds)
         let hosting = UIHostingController(rootView: self)
         hosting.view.frame = window.frame
+        
+        // MARK: 레벨에 따른 배경색
+        hosting.view.backgroundColor = .yellow
         window.addSubview(hosting.view)
         window.makeKeyAndVisible()
         
         return hosting.view.renderedImage
         
-//        var image: UIImage?
+    }
+    
+    func takeCapture(origin: CGPoint, size: CGSize) -> UIImage {
+        let window = UIWindow(frame: CGRect(origin: origin, size: size))
+        let hosting = UIHostingController(rootView: self)
+        hosting.view.frame = window.frame
+        hosting.view.backgroundColor = .clear
+        hosting.view.clipsToBounds = true
+        hosting.view.layer.cornerRadius = hosting.view.frame.height / 20
         
-//        guard let currentLayer = UIApplication
-//            .shared
-//            .windows
-//            .first(where: { $0.isKeyWindow })?
-//            .layer else { return UIImage() }
-//
-//        let currentScale = UIScreen.main.scale
-//        UIGraphicsBeginImageContextWithOptions(currentLayer.frame.size, false, currentScale)
-//
-//        guard let currentContext = UIGraphicsGetCurrentContext() else { return UIImage() }
-//        currentLayer.render(in: currentContext)
-//        image = UIGraphicsGetImageFromCurrentImageContext()
-//        UIGraphicsEndImageContext()
+        window.addSubview(hosting.view)
+        window.makeKeyAndVisible()
         
-        
-
+        return hosting.view.renderedImage
     }
 
     func saveInPhoto(img: UIImage) {
@@ -58,12 +51,12 @@ extension View {
     }
     
     @ViewBuilder func isHidden(_ hidden: Bool, remove: Bool = false) -> some View {
-            if hidden {
-                if !remove {
-                    self.hidden()
-                }
-            } else {
-                self
+        if hidden {
+            if !remove {
+                self.hidden()
             }
+        } else {
+            self
         }
+    }
 }
