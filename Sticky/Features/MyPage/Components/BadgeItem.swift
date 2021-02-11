@@ -48,7 +48,7 @@ struct BadgeItem_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             BadgeItem(
-                badge: Badge(badgeType: BadgeType.monthly, badgeValue: "10", name: ""),
+                badge: Badge(badgeType: BadgeType.monthly, badgeValue: "10"),
                 selection: .constant(ShareType.card)
             )
         }

@@ -108,16 +108,13 @@ struct Share: View {
             switch badge.badgeType {
             case BadgeType.special:
                 value = ""
-            case BadgeType.monthly:
-                value = "\(badge.badgeValue)시간"
-            case BadgeType.continuous:
-                let _value = badge.badgeValue == "0.5" ? "12" : badge.badgeValue
-                let unit = _value == "0.5" ? "시간" : "일"
-                value = "\(_value)\(unit)"
+            case BadgeType.continuous,
+                 BadgeType.monthly:
+                value = badge.name
             case BadgeType.level:
                 value = "\(shareViewModel.seconds.ToDaysHoursMinutes())"
             }
-            let description = badge.badgeType.format(value: value)
+            let description = badge.badgeType.toString(value: value)
             view = AnyView(ShareCardView(
                 image: image,
                 title: title,

@@ -34,8 +34,9 @@ struct Summary: View {
                         shareViewModel.badge = Badge(
                             badgeType: BadgeType.level,
                             badgeValue: String(tier.level),
-                            name: "LV\(tier.level) \(tier.name())"
+                            _name: "LV\(tier.level) \(tier.name())"
                         )
+                        shareViewModel.seconds = seconds
                     }) {
                         Image("level\(tier.level)")
                             .frame(width: 140, height: 140)
