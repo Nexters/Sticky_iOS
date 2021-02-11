@@ -35,7 +35,7 @@ struct BottomTimerRunning: View {
             })
             // 외출하기 button
             Button(action: {
-                self.popupState.popupStyle = (numberOfHeart > 0) ? .outing : .lockOfHeart
+                self.popupState.popupStyle = (numberOfHeart > 0) ? .outing : .lackOfHeart
                 self.popupState.isPresented = true
             }, label: {
                 BorderRoundedButton(
