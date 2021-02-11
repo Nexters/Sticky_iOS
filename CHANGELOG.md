@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.14.0](https://github.com/Nexters/Sticky_iOS/compare/v1.13.0...v1.14.0) (2021-02-11)
+
+
+### Features
+
+* **main, mypage:** 배지 획득 처리 구현 ([2486738](https://github.com/Nexters/Sticky_iOS/commit/2486738899bd8f14719bf3e926c33ebb49db0867))
+
 ## [1.13.0](https://github.com/Nexters/Sticky_iOS/compare/v1.12.1...v1.13.0) (2021-02-09)
 
 
