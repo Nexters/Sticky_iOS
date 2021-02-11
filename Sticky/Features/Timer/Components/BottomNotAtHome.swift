@@ -17,8 +17,8 @@ struct BottomNotAtHome: View {
             Button(action: {}, label: {
                 GradientRoundedButton(
                     content: "집에서만 시작할 수 있어요".localized,
-                    startColor: Color.gray,
-                    endColor: Color.gray,
+                    startColor: Color.GrayScale._600,
+                    endColor: Color.GrayScale._600,
                     width: 328,
                     height: 60,
                     cornerRadius: 16.0,

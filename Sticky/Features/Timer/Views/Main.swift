@@ -218,12 +218,25 @@ struct Main: View {
         var color: Color
         switch challengeState.type {
         case .outing:
-            color = Color.gray
+            color = Color.GrayScale._500
         case .notAtHome:
-            color = Color.gray
+            color = Color.GrayScale._500
 
         default:
-            color = Color.Background.blue
+            let level = Tier.of(hours: user.accumulateSeconds + challengeState.timeData.toSeconds()).level
+            switch level{
+            case 1:
+                color = Color.Background.blue
+            case 2:
+                color = Color.Background.yellow
+            case 3:
+                color = Color.Background.green
+            case 4:
+                color = Color.Background.red
+            default:
+                print("Main - Should Implement Another Background Color Case in level")
+                color = Color.Background.blue
+            }
         }
 
         return color
