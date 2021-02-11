@@ -21,6 +21,8 @@ struct CardSlide: View {
 
     @EnvironmentObject var UIState: UIStateModel
     @EnvironmentObject var challengeState: ChallengeState
+    @EnvironmentObject var user: User
+
     @Binding var items: [Card]
     let spacing: CGFloat = 16
     // 숨겨진 카드의 보여질 width
@@ -58,13 +60,14 @@ struct CardSlide: View {
                         .scaleEffect(1.3)
                         .padding(.top, 24)
 
+                    // MARK: 뱃지 갯수에 따른 코멘트 변경
                     Text("벌써 절반 넘게 모았어요!")
                         .font(Font.system(size: 18))
                         .foregroundColor(.white)
                         .padding(.top, 16)
 
                     Text("24")
-                        .frame(width: 200, height: 64, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .frame(width: 200, height: 64, alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/)
                         .font(.custom("Modak", size: 88))
                         .padding(.vertical, 8)
 
@@ -74,6 +77,7 @@ struct CardSlide: View {
 
                     ScrollView(.horizontal) {
                         HStack(alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/, spacing: 15) {
+                            // MARK: 뱃지 공유 카드: 뱃지 최소 0개 최대 3개
                             Image("monthly_10")
                                 .scaleEffect(1.4)
                             Image("monthly_10")
@@ -106,7 +110,7 @@ struct CardSlide: View {
             cardHeight: cardHeight
         ) {
             ZStack {
-                Image("shareBg_level01")
+                Image("shareBg_level\(String(format: "%02d", level))")
                 VStack {
                     Rectangle()
                         .foregroundColor(.white)
@@ -159,15 +163,18 @@ struct CardSlide: View {
                         .padding(.top, 24)
                     Spacer()
                 }
-//                Image("blue_sticky")
-//                    .aspectRatio(contentMode: .fit)
-//                    .offset(y: 190)
             }
         }
         .cornerRadius(40)
         .shadow(color: Color.gray, radius: 4, x: 0, y: 4)
         .transition(AnyTransition.slide)
         .animation(.spring())
+    }
+    
+    private var level: Int{
+        get{
+            Tier.of(hours: challengeState.timeData.toSeconds() + user.accumulateSeconds / 3600).level
+        }
     }
 
     private var isDayTextHidden: Bool {
