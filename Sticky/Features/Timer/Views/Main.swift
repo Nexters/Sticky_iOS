@@ -223,7 +223,7 @@ struct Main: View {
             color = Color.GrayScale._500
 
         default:
-            let level = Tier.of(hours: (user.accumulateSeconds + challengeState.timeData.toSeconds())/3600).level
+            let level = Tier.of(hours: (user.accumulateSeconds + challengeState.timeData.toSeconds())).level
             
             switch level {
             case 1...3:
