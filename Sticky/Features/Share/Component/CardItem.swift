@@ -70,13 +70,7 @@ struct CardItem<Content: View>: View {
                 })
 //            }
 
-        }.frame(
-            width: UIScreen.main.bounds.width - (widthOfHiddenCards * 2) - (spacing * 2),
-            height: cardHeight,
-            alignment: .center
-        )
-        .foregroundColor(Color.white)
-        .background(Color.Sticky.blue)
+        }
     }
 }
 

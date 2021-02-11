@@ -35,7 +35,7 @@ struct CardSlide: View {
         // 각 카드 사이의 너비
 
         return Carousel(
-            numberOfItems: CGFloat(items.count),
+            numberOfItems: 2,
             spacing: spacing,
             widthOfHiddenCards: widthOfHiddenCards
         ) {
@@ -61,6 +61,7 @@ struct CardSlide: View {
                         .padding(.top, 24)
 
                     // MARK: 뱃지 갯수에 따른 코멘트 변경
+
                     Text("벌써 절반 넘게 모았어요!")
                         .font(Font.system(size: 18))
                         .foregroundColor(.white)
@@ -78,6 +79,7 @@ struct CardSlide: View {
                     ScrollView(.horizontal) {
                         HStack(alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/, spacing: 15) {
                             // MARK: 뱃지 공유 카드: 뱃지 최소 0개 최대 3개
+
                             Image("monthly_10")
                                 .scaleEffect(1.4)
                             Image("monthly_10")
@@ -89,9 +91,16 @@ struct CardSlide: View {
                     }
                     .fixedSize()
                     .disabled(true)
-                }
+                }.frame(width: gr.frame(in: .global).size.width, height: gr.frame(in: .global).height, alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/)
+                .background(Color.black)
             }
         }
+        .frame(
+            width: UIScreen.main.bounds.width - (widthOfHiddenCards * 2) - (spacing * 2),
+            height: cardHeight,
+            alignment: .center
+        )
+        .foregroundColor(Color.white)
         .cornerRadius(40)
         .shadow(color: Color.gray, radius: 4, x: 0, y: 4)
         .transition(AnyTransition.slide)
@@ -109,71 +118,109 @@ struct CardSlide: View {
             // 카드의 높이
             cardHeight: cardHeight
         ) {
-            ZStack {
-                Image("shareBg_level\(String(format: "%02d", level))")
-                VStack {
-                    Rectangle()
-                        .foregroundColor(.white)
-                        .frame(width: 56, height: 16)
+            GeometryReader { gr in
+                ZStack {
+                    Image("shareBg_level\(String(format: "%02d", level))")
+
+                    VStack {
+                        Rectangle()
+                            .foregroundColor(.white)
+                            .frame(width: 56, height: 16)
+                            .padding(.top, 24)
+                        HStack(spacing: 24) {
+                            // Day
+                            VStack {
+                                Text(String(challengeState.timeData.day))
+                                    .font(.custom("Modak", size: 80))
+                                    .frame(height: 64)
+                                    .padding(.bottom, 1)
+                                Text("일")
+                                    .font(.system(size: 17, weight: .heavy, design: .default))
+                                    .frame(width: 96)
+                            }
+                            .isHidden(isDayTextHidden, remove: isDayTextHidden)
+
+                            // Hour
+                            VStack {
+                                Text(String(challengeState.timeData.hour))
+                                    .font(.custom("Modak", size: 80))
+                                    .frame(height: 64)
+                                    .padding(.bottom, 1)
+                                Text("시간")
+                                    .font(.system(size: 17, weight: .heavy, design: .default))
+                                    .frame(width: 96)
+                            }
+                            .isHidden(isHourTextHidden, remove: isHourTextHidden)
+
+                            // 얘 높이가 Text랑 달라서 그룹지어서 처리해야함
+                            // Minute
+                            VStack {
+                                StrokeText(
+                                    text: String(challengeState.timeData.minute),
+                                    size: 80,
+                                    fontColor: UIColor.white
+                                )
+                                .padding(.bottom, 0)
+                                .frame(width: 80, height: 64)
+                                Text("분")
+                                    .font(.system(size: 17, weight: .heavy, design: .default))
+                                    .frame(width: 96)
+                            }
+                            .isHidden(!isDayTextHidden, remove: !isDayTextHidden)
+                        }
+                        .frame(width: 216)
                         .padding(.top, 24)
-                    HStack(spacing: 24) {
-                        // Day
-                        VStack {
-                            Text(String(challengeState.timeData.day))
-                                .font(.custom("Modak", size: 80))
-                                .frame(height: 64)
-                                .padding(.bottom, 1)
-                            Text("일")
-                                .font(.system(size: 17, weight: .heavy, design: .default))
-                                .frame(width: 96)
-                        }
-                        .isHidden(isDayTextHidden, remove: isDayTextHidden)
-
-                        // Hour
-                        VStack {
-                            Text(String(challengeState.timeData.hour))
-                                .font(.custom("Modak", size: 80))
-                                .frame(height: 64)
-                                .padding(.bottom, 1)
-                            Text("시간")
-                                .font(.system(size: 17, weight: .heavy, design: .default))
-                                .frame(width: 96)
-                        }
-                        .isHidden(isHourTextHidden, remove: isHourTextHidden)
-
-                        // 얘 높이가 Text랑 달라서 그룹지어서 처리해야함
-                        // Minute
-                        VStack {
-                            StrokeText(
-                                text: String(challengeState.timeData.minute),
-                                size: 80,
-                                fontColor: UIColor.white
-                            )
-                            .padding(.bottom, 0)
-                            .frame(width: 80, height: 64)
-                            Text("분")
-                                .font(.system(size: 17, weight: .heavy, design: .default))
-                                .frame(width: 96)
-                        }
-                        .isHidden(!isDayTextHidden, remove: !isDayTextHidden)
+                        Text("body text")
+                            .padding(.top, 24)
+                        Spacer()
                     }
-                    .frame(width: 216)
-                    .padding(.top, 24)
-                    Text("body text")
-                        .padding(.top, 24)
-                    Spacer()
-                }
+                }.frame(width: gr.frame(in: .global).size.width, height: gr.frame(in: .global).height, alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/)
+                .background(bgColor)
             }
         }
+        .frame(
+            width: UIScreen.main.bounds.width - (widthOfHiddenCards * 2) - (spacing * 2),
+            height: cardHeight,
+            alignment: .center
+        )
+        .foregroundColor(Color.white)
         .cornerRadius(40)
         .shadow(color: Color.gray, radius: 4, x: 0, y: 4)
         .transition(AnyTransition.slide)
         .animation(.spring())
     }
+
+    private var bgColor: Color{
+        // MARK: 색 변경해야 함
+        switch level {
+        case 1:
+            return Color.Sticky.blue_card
+        case 2:
+            return Color.Sticky.yellow_card
+        case 3:
+            return Color.Sticky.green_card
+        case 4:
+            return Color.Sticky.red_card
+        default:
+            print("CardSlide - Should implement level over '4'")
+            return Color.Sticky.blue_card
+        }
+    }
     
-    private var level: Int{
-        get{
-            Tier.of(hours: challengeState.timeData.toSeconds() + user.accumulateSeconds / 3600).level
+    private var level: Int {
+        switch Tier.of(hours: (user.accumulateSeconds + challengeState.timeData.toSeconds()) / 3600).level{
+        case 1...3:
+            return 1
+        case 4...6:
+            return 2
+        case 7...9:
+            return 3
+        case 10:
+            return 4
+        default:
+            print("CardSlide - Should implement level over '4'")
+            return 5
+            
         }
     }
 
@@ -200,6 +247,7 @@ struct CardSlide_Previews: PreviewProvider {
         CardSlide(items: .constant(items))
             .environmentObject(UIStateModel())
             .environmentObject(ChallengeState())
+            .environmentObject(User())
     }
 }
 

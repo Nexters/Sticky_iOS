@@ -27,6 +27,7 @@ extension Tier {
      - 10: 361~
      */
     static func of(hours: Int) -> Tier {
+        print("Tier - of(hours: ) -> hours: \(hours)")
         switch hours {
         case 0..<11:
             return Tier(level: 1)
