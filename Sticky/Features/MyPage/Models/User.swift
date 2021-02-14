@@ -8,6 +8,21 @@
 import Foundation
 
 public class User: ObservableObject {
+    // MARK: Lifecycle
+
+    init() {
+        let _level = UserDefaults.standard.integer(forKey: "level")
+        self.level = _level == 0 ? 1 : _level
+    }
+
+    // MARK: Internal
+
+    @Published var level: Int {
+        didSet {
+            UserDefaults.standard.set(level, forKey: "level")
+        }
+    }
+
     // 총 누적 시간
     @Published var accumulateSeconds: Int = UserDefaults.standard.integer(forKey: "accumulateSeconds") {
         didSet {

@@ -57,25 +57,25 @@ extension Tier {
     func next() -> Int {
         switch level {
         case 1:
-            return 11
+            return 11 * 3600
         case 2:
-            return 21
+            return 21 * 3600
         case 3:
-            return 31
+            return 31 * 3600
         case 4:
-            return 61
+            return 61 * 3600
         case 5:
-            return 91
+            return 91 * 3600
         case 6:
-            return 121
+            return 121 * 3600
         case 7:
-            return 201
+            return 201 * 3600
         case 8:
-            return 281
+            return 281 * 3600
         case 9:
-            return 361
+            return 361 * 3600
         default:
-            return 0
+            return -1
         }
     }
 
