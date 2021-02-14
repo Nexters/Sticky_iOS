@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.14.1](https://github.com/Nexters/Sticky_iOS/compare/v1.14.0...v1.14.1) (2021-02-14)
+
+
+### Bug Fixes
+
+* add userinfo in notification , 캡처 백그라운드 색 버그 수정 ([259442a](https://github.com/Nexters/Sticky_iOS/commit/259442aabdc7ec1fa7e0c021382737021e5a1568))
+* 공유하기 누적 기록 -> 최근 뱃지 문자열 변경 ([b55e8e8](https://github.com/Nexters/Sticky_iOS/commit/b55e8e888e954486a0c147f7fc30419098f35b17))
+* 임시 컬러 설정 및 레벨 받아오는 오류 변경 ([6fdc5bc](https://github.com/Nexters/Sticky_iOS/commit/6fdc5bc70ff9704f9c26928e5b8cd3aca0a9df00))
+* **card:** 카드 이미지 변경 ([ab1b795](https://github.com/Nexters/Sticky_iOS/commit/ab1b795b25cd0d59ef8c9218986c6cf124632474))
+* **popup:** 외출 팝업 하트 없을 시, 크기 변경 ([5fe98b0](https://github.com/Nexters/Sticky_iOS/commit/5fe98b0d71e82eaaaebcec15cb9ce984e3f40540))
+
 ## [1.14.0](https://github.com/Nexters/Sticky_iOS/compare/v1.13.0...v1.14.0) (2021-02-11)
 
 
