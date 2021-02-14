@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.15.0](https://github.com/Nexters/Sticky_iOS/compare/v1.14.2...v1.15.0) (2021-02-14)
+
+
+### Features
+
+* **onboarding:** 온보딩 ui 구현 및 화면 플로우 수정 ([76389a3](https://github.com/Nexters/Sticky_iOS/commit/76389a3f68af4b6e1d23a28096f1149949a3fcc7))
+
+
+### Bug Fixes
+
+* 공유화면 ui 수정 ([f0c83c3](https://github.com/Nexters/Sticky_iOS/commit/f0c83c36857b02fcf25e4e19425bc8b80bfe9f45))
+
 ### [1.14.2](https://github.com/Nexters/Sticky_iOS/compare/v1.14.1...v1.14.2) (2021-02-14)
 
 
