@@ -10,12 +10,13 @@ import SwiftUI
 // MARK: - ShareButtons
 
 struct ShareButtons: View {
+    @EnvironmentObject var UIState : UIStateModel
     var body: some View {
         HStack(spacing: 48) {
             Rectangle()
                 .overlay(
                     Button(action: {
-                        NotificationCenter.default.post(name: .shareLocal, object: nil)
+                        NotificationCenter.default.post(name: .shareLocal, object: nil, userInfo: ["index": UIState.activeCard])
 //                        shareLocal(image: takeCapture())
                     }) {
                         Image(systemName: "square.and.arrow.up")
@@ -28,7 +29,7 @@ struct ShareButtons: View {
                 .foregroundColor(Color.black)
 
             Button(action: {
-                NotificationCenter.default.post(name: .shareInstagram, object: nil)
+                NotificationCenter.default.post(name: .shareInstagram, object: nil, userInfo: ["index": UIState.activeCard])
 //                shareInstagram(image: takeCapture())
             }) {
                 Image("instagram")

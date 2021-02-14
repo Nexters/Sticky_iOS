@@ -33,6 +33,11 @@ extension Color {
             startPoint: .top,
             endPoint: .bottom
         )
+        
+        static let blue_card = Color("sticky-blue")
+        static let red_card = Color("sticky-red")
+        static let yellow_card = Color("sticky-yellow")
+        static let green_card = Color("sticky-green")
     }
 
     enum Palette {

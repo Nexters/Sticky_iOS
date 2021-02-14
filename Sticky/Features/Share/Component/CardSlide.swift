@@ -1,3 +1,4 @@
+
 //
 //  CardSlide.swift
 //  Sticky
@@ -20,103 +21,200 @@ struct CardSlide: View {
 
     @EnvironmentObject var UIState: UIStateModel
     @EnvironmentObject var challengeState: ChallengeState
+    @EnvironmentObject var user: User
+
     @Binding var items: [Card]
+    let spacing: CGFloat = 16
+    // 숨겨진 카드의 보여질 width
+    let widthOfHiddenCards: CGFloat = 40 /// UIScreen.main.bounds.width - 10
+    // 카드의 Height
+    let cardHeight: CGFloat = 368 // UIScreen.main.bounds.height * 0.5
+    let badgeList = ["monthly_10", "monthly_10", "monthly_10"]
 
     var body: some View {
         // 각 카드 사이의 너비
-        let spacing: CGFloat = 16
-        // 숨겨진 카드의 보여질 width
-        let widthOfHiddenCards: CGFloat = 40 /// UIScreen.main.bounds.width - 10
-        // 카드의 Height
-        let cardHeight: CGFloat = 368 // UIScreen.main.bounds.height * 0.5
 
         return Carousel(
-            numberOfItems: CGFloat(items.count),
+            numberOfItems: 2,
             spacing: spacing,
             widthOfHiddenCards: widthOfHiddenCards
         ) {
             // items를 돌며 생성
-            ForEach(items, id: \.self.id) { item in
-                CardItem(
-                    // 카드 UI의 id
-                    id: Int(item.id),
-                    // 카드 사이의 너비
-                    spacing: spacing,
-                    // 가려진 카드의 너비
-                    widthOfHiddenCards: widthOfHiddenCards,
-                    // 카드의 높이
-                    cardHeight: cardHeight
-                ) {
-                    ZStack {
-                        VStack {
-                            Rectangle()
-                                .foregroundColor(.white)
-                                .frame(width: 56, height: 16)
-                                .padding(.top, 24)
-                            HStack(spacing: 24) {
-                                // Day
-                                VStack {
-                                    Text(String(challengeState.timeData.day))
-                                        .font(.custom("Modak", size: 80))
-                                        .frame(height: 64)
-                                        .padding(.bottom, 1)
-                                    Text("일")
-                                        .font(.system(size: 17, weight: .heavy, design: .default))
-                                        .frame(width: 96)
-                                }
-                                .isHidden(isDayTextHidden, remove: isDayTextHidden)
-
-                                // Hour
-                                VStack {
-                                    Text(String(challengeState.timeData.hour))
-                                        .font(.custom("Modak", size: 80))
-                                        .frame(height: 64)
-                                        .padding(.bottom, 1)
-                                    Text("시간")
-                                        .font(.system(size: 17, weight: .heavy, design: .default))
-                                        .frame(width: 96)
-                                }
-                                .isHidden(isHourTextHidden, remove: isHourTextHidden)
-
-                                // 얘 높이가 Text랑 달라서 그룹지어서 처리해야함
-                                // Minute
-                                VStack {
-                                    StrokeText(
-                                        text: String(challengeState.timeData.minute),
-                                        size: 80,
-                                        fontColor: UIColor.white
-                                    )
-                                    .padding(.bottom, 0)
-                                    .frame(width: 80, height: 64)
-                                    Text("분")
-                                        .font(.system(size: 17, weight: .heavy, design: .default))
-                                        .frame(width: 96)
-                                }
-                                .isHidden(!isDayTextHidden, remove: !isDayTextHidden)
-                            }
-                            .frame(width: 216)
-                            .padding(.top, 24)
-                            Text("body text")
-                                .padding(.top, 24)
-                            Spacer()
-                        }
-                        Image("blue_sticky")
-                            .aspectRatio(contentMode: .fit)
-                            .offset(y: 190)
-                    }
-                }
-                .cornerRadius(40)
-                .shadow(color: Color.gray, radius: 4, x: 0, y: 4)
-                .transition(AnyTransition.slide)
-                .animation(.spring())
-//                .environmentObject(self.UIState)
-            }
+            challengeCard
+            badgeCard
         }
     }
 
     // MARK: Private
+
+    private var badgeCard: some View {
+        CardItem(
+            id: 1,
+            spacing: spacing,
+            widthOfHiddenCards: widthOfHiddenCards,
+            cardHeight: cardHeight
+        ) {
+            GeometryReader { gr in
+                VStack(alignment: .center) {
+                    Image("Union")
+                        .scaleEffect(1.3)
+                        .padding(.top, 24)
+
+                    // MARK: 뱃지 갯수에 따른 코멘트 변경
+
+                    Text("벌써 절반 넘게 모았어요!")
+                        .font(Font.system(size: 18))
+                        .foregroundColor(.white)
+                        .padding(.top, 16)
+
+                    Text("24")
+                        .frame(width: 200, height: 64, alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/)
+                        .font(.custom("Modak", size: 88))
+                        .padding(.vertical, 8)
+
+                    Text("받은 배지")
+                        .foregroundColor(.gray)
+                        .padding(.bottom, 20)
+
+                    ScrollView(.horizontal) {
+                        HStack(alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/, spacing: 15) {
+                            // MARK: 뱃지 공유 카드: 뱃지 최소 0개 최대 3개
+
+                            Image("monthly_10")
+                                .scaleEffect(1.4)
+                            Image("monthly_10")
+                                .scaleEffect(1.4)
+                            Image("monthly_10")
+                                .scaleEffect(1.4)
+                        }
+                        .frame(width: gr.frame(in: .local).size.width, height: 130, alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/)
+                    }
+                    .fixedSize()
+                    .disabled(true)
+                }.frame(width: gr.frame(in: .global).size.width, height: gr.frame(in: .global).height, alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/)
+                .background(Color.black)
+            }
+        }
+        .foregroundColor(Color.white)
+        .cornerRadius(40)
+        .shadow(color: Color.gray, radius: 4, x: 0, y: 4)
+        .transition(AnyTransition.slide)
+        .animation(.spring())
+    }
+
+    private var challengeCard: some View {
+        CardItem(
+            // 카드 UI의 id
+            id: 0,
+            // 카드 사이의 너비
+            spacing: spacing,
+            // 가려진 카드의 너비
+            widthOfHiddenCards: widthOfHiddenCards,
+            // 카드의 높이
+            cardHeight: cardHeight
+        ) {
+            GeometryReader { gr in
+                ZStack {
+                    Image("shareBg_level\(String(format: "%02d", level))")
+
+                    VStack {
+                        Rectangle()
+                            .foregroundColor(.white)
+                            .frame(width: 56, height: 16)
+                            .padding(.top, 24)
+                        HStack(spacing: 24) {
+                            // Day
+                            VStack {
+                                Text(String(challengeState.timeData.day))
+                                    .font(.custom("Modak", size: 80))
+                                    .frame(height: 64)
+                                    .padding(.bottom, 1)
+                                Text("일")
+                                    .font(.system(size: 17, weight: .heavy, design: .default))
+                                    .frame(width: 96)
+                            }
+                            .isHidden(isDayTextHidden, remove: isDayTextHidden)
+
+                            // Hour
+                            VStack {
+                                Text(String(challengeState.timeData.hour))
+                                    .font(.custom("Modak", size: 80))
+                                    .frame(height: 64)
+                                    .padding(.bottom, 1)
+                                Text("시간")
+                                    .font(.system(size: 17, weight: .heavy, design: .default))
+                                    .frame(width: 96)
+                            }
+                            .isHidden(isHourTextHidden, remove: isHourTextHidden)
+
+                            // 얘 높이가 Text랑 달라서 그룹지어서 처리해야함
+                            // Minute
+                            VStack {
+                                StrokeText(
+                                    text: String(challengeState.timeData.minute),
+                                    size: 80,
+                                    fontColor: UIColor.white
+                                )
+                                .padding(.bottom, 0)
+                                .frame(width: 80, height: 64)
+                                Text("분")
+                                    .font(.system(size: 17, weight: .heavy, design: .default))
+                                    .frame(width: 96)
+                            }
+                            .isHidden(!isDayTextHidden, remove: !isDayTextHidden)
+                        }
+                        .frame(width: 216)
+                        .padding(.top, 24)
+                        Text("body text")
+                            .padding(.top, 24)
+                        Spacer()
+                    }
+                }.frame(width: gr.frame(in: .global).size.width, height: gr.frame(in: .global).height, alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/)
+                .background(bgColor)
+            }
+        }
+        .foregroundColor(Color.white)
+        .cornerRadius(40)
+        .shadow(color: Color.gray, radius: 4, x: 0, y: 4)
+        .transition(AnyTransition.slide)
+        .animation(.spring())
+    }
+
+    private var bgColor: Color{
+        // MARK: 색 변경해야 함
+        switch level {
+        case 1:
+            return Color.Sticky.blue_card
+        case 2:
+            return Color.Sticky.yellow_card
+        case 3:
+            return Color.Sticky.green_card
+        case 4:
+            return Color.Sticky.red_card
+        default:
+            print("CardSlide - Should implement level over '4'")
+            return Color.Sticky.blue_card
+        }
+    }
     
-    private var isDayTextHidden: Bool{
+    private var level: Int {
+        switch Tier.of(hours: (user.accumulateSeconds + challengeState.timeData.toSeconds()) / 3600).level{
+        case 1...3:
+            return 1
+        case 4...6:
+            return 2
+        case 7...9:
+            return 3
+        case 10:
+            return 4
+        default:
+            print("CardSlide - Should implement level over '4'")
+            return 5
+            
+        }
+    }
+
+    private var isDayTextHidden: Bool {
         return challengeState.timeData.day > 0 ? false : true
     }
 
@@ -138,6 +236,8 @@ struct CardSlide_Previews: PreviewProvider {
     static var previews: some View {
         CardSlide(items: .constant(items))
             .environmentObject(UIStateModel())
+            .environmentObject(ChallengeState())
+            .environmentObject(User())
     }
 }
 
