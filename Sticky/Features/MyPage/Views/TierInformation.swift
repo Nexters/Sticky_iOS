@@ -14,12 +14,21 @@ struct TierInformation: View {
     // MARK: Internal
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State var imageName = ""
     var body: some View {
         
         ScrollView(.vertical){
-            Image("level_info_KR")
+            Image(imageName)
                 .resizable()
                 .scaledToFit()
+        }
+        .onAppear{
+            print(Locale.current.regionCode)
+            if Locale.current.regionCode == "KR"{
+                imageName = "level_info_KR"
+            }else{
+                imageName = "level_info_EN"
+            }
         }
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: backButton)
