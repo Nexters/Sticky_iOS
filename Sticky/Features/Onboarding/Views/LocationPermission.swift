@@ -34,7 +34,7 @@ struct LocationPermission: View {
 
                     NavigationLink(destination: SearchAddress()) {
                         GradientRoundedButton(
-                            content: "위치정보 설정하기".localized,
+                            content: "위치정보 설정하기",
                             startColor: Color.Palette.primary,
                             endColor: Color.Palette.primary,
                             width: 180,

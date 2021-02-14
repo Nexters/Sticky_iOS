@@ -9,13 +9,16 @@ import Foundation
 
 extension Int {
     // seconds로 판단하여 Days, Hours, Minutes로 변환해줌
-    func ToDaysHoursMinutes() -> String {
+    func ToDaysHoursMinutes(
+        allowedUnits: NSCalendar.Unit = [.day, .hour, .minute],
+        unitStyle: DateComponentsFormatter.UnitsStyle = .full
+    ) -> String {
         let formatter = DateComponentsFormatter()
         var calendar = Calendar.current
         calendar.locale = Locale(identifier: "ko")
         formatter.calendar = calendar
-        formatter.allowedUnits = [.day, .hour, .minute]
-        formatter.unitsStyle = .full
+        formatter.unitsStyle = unitStyle
+        formatter.allowedUnits = allowedUnits
         return formatter.string(from: TimeInterval(self))!
     }
 }

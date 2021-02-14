@@ -19,12 +19,12 @@ struct BottomOuting: View {
                     count = 3
                     flag = true
                     challengeState.type = .running
-                }else{
+                } else {
                     print("아직 집이 아닌데 할거야?")
                 }
             }, label: {
                 GradientRoundedButton(
-                    content: "귀가완료".localized,
+                    content: "귀가완료",
                     startColor: Color.black,
                     endColor: Color.black,
                     width: 130,

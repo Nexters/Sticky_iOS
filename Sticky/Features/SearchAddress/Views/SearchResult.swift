@@ -40,7 +40,7 @@ struct SearchResult: View {
                     .padding(.bottom, 8)
                 Button(action: setHome) {
                     GradientRoundedButton(
-                        content: "집으로 설정하기".localized,
+                        content: "집으로 설정하기",
                         startColor: Color.Palette.primary,
                         endColor: Color.Palette.primary,
                         width: 296,
