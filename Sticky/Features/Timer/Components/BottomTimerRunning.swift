@@ -23,7 +23,7 @@ struct BottomTimerRunning: View {
                 sharePresented = true
             }, label: {
                 GradientRoundedButton(
-                    content: "공유하기".localized,
+                    content: "공유하기",
                     startColor: Color.black,
                     endColor: Color.black,
                     width: 328,
@@ -39,7 +39,7 @@ struct BottomTimerRunning: View {
                 self.popupState.isPresented = true
             }, label: {
                 BorderRoundedButton(
-                    text: "외출하기".localized,
+                    text: "외출하기",
                     borderWidth: 1,
                     borderColor: Color.black.opacity(0.1),
                     fontColor: .black,

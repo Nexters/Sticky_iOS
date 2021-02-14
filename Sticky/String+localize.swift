@@ -7,7 +7,11 @@
 
 import Foundation
 extension String {
-    var localized: String {
-        return NSLocalizedString(self, tableName: "Localizable", value: self, comment: "")
+    func localized(comment: String = "") -> String {
+        return NSLocalizedString(self, value: self, comment: comment)
+    }
+
+    func localized(with arguments: CVarArg = [], comment: String = "") -> String {
+        return String(format: self.localized(comment: comment), arguments)
     }
 }

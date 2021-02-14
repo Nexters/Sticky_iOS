@@ -17,7 +17,7 @@ struct Onboarding: View {
             VStack {
                 Image("logo_sticky")
                     .padding(.bottom, 40)
-                Text("“Sticky”는 집에서 사용하는 챌린지 서비스입니다. 집 위치를 설정하기 위해 위치정보 사용을 동의해주세요!".localized)
+                Text("“Sticky”는 집에서 사용하는 챌린지 서비스입니다. 집 위치를 설정하기 위해 위치정보 사용을 동의해주세요!")
                     .font(.system(size: 16))
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
@@ -26,7 +26,7 @@ struct Onboarding: View {
 
                 NavigationLink(destination: SearchAddress()) {
                     GradientRoundedButton(
-                        content: "위치정보 설정하기".localized,
+                        content: "위치정보 설정하기",
                         startColor: Color.black,
                         endColor: Color.black,
                         width: 202,
