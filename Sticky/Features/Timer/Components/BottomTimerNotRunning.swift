@@ -30,7 +30,7 @@ struct BottomTimerNotRunning: View {
                 self.challengeState.type = .running
             }) {
                 GradientRoundedButton(
-                    content: "시작하기".localized,
+                    content: "시작하기",
                     startColor: Color.black,
                     endColor: Color.black,
                     width: 328,

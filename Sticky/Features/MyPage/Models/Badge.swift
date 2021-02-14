@@ -64,9 +64,9 @@ struct Badge: Hashable, Identifiable {
     var description: String {
         switch badgeType {
         case .monthly:
-            return "한달동안 집에서 보낸 시간\n\(badgeValue)을 달성하면 받을 수 있습니다."
+            return "한 달동안 집에서 보낸 시간\n\(name)을 달성하면 받을 수 있습니다."
         case .continuous:
-            return "이번 챌린지에서 집에서 보낸 시간\n\(badgeValue)을 달성하면 받을 수 있습니다."
+            return "이번 챌린지에서 집에서 보낸 시간\n\(name)을 달성하면 받을 수 있습니다."
         case .level,
              .special:
             return "준비 중입니다."

@@ -13,7 +13,7 @@ struct BannerItem: View {
     var image: String
     var title: String
     var subtitle: String
-    var width: CGFloat = 172
+    var width: CGFloat = 190
     var height: CGFloat = 60
     var bgColor = Color.TextIconColor.secondary
 
@@ -31,8 +31,9 @@ struct BannerItem: View {
                         .font(.system(size: 17))
                         .bold()
                     Text("\(subtitle)")
-                        .font(.system(size: 14))
                         .kerning(-0.3)
+                        .font(.system(size: 14))
+                        .lineLimit(2)
                 }
                 Spacer()
             }.padding(.all, 8)

@@ -33,7 +33,7 @@ struct BannerItemDetail: View {
                                 .font(.custom("Modak", size: 28))
                                 .frame(width: 232, height: 32)
                                 .padding(.horizontal, 8)
-                            Text(badge.description)
+                            Text(badge.description) 
                                 .kerning(-0.3)
                                 .font(.system(size: 14))
                                 .multilineTextAlignment(.center)

@@ -47,7 +47,7 @@ struct GradientRoundedButton: View {
 struct GradientRoundedButton_Previews: PreviewProvider {
     static var previews: some View {
         GradientRoundedButton(
-            content: "시작하기".localized,
+            content: "시작하기",
             startColor: Color.Palette.primary,
             endColor: Color.Palette.secondary,
             width: 312,

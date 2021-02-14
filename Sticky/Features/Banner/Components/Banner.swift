@@ -10,6 +10,8 @@ import SwiftUI
 // MARK: - Banner
 
 struct Banner: View {
+    // MARK: Internal
+
     @Binding var bannerDetailPresented: Bool
     @Binding var mypagePresented: Bool
 
@@ -56,7 +58,7 @@ struct Banner: View {
                     BannerItem(
                         image: nextMonthlyBadge.image,
                         title: nextMonthlyBadge.name,
-                        subtitle: "\(remainMonthlyBadge.ToDaysHoursMinutes()) 남음"
+                        subtitle: "\(remainTime(remainMonthlyBadge)) 남음"
                     )
                 }
                 Button(action: {
@@ -66,7 +68,7 @@ struct Banner: View {
                     BannerItem(
                         image: nextContiousBadge.image,
                         title: nextContiousBadge.name,
-                        subtitle: "\(remainContinuousBadge.ToDaysHoursMinutes()) 남음"
+                        subtitle: "\(remainTime(remainContinuousBadge)) 남음"
                     )
                 }
                 Button(action: { self.mypagePresented = true }) {
@@ -84,6 +86,16 @@ struct Banner: View {
         }
         .foregroundColor(.black)
         .padding(.leading, 16)
+    }
+
+    // MARK: Private
+
+    private func remainTime(_ seconds: Int) -> String {
+        if seconds >= 86400 {
+            return "약 \(seconds.ToDaysHoursMinutes(allowedUnits: [.day, .hour]))"
+        } else {
+            return seconds.ToDaysHoursMinutes()
+        }
     }
 }
 
