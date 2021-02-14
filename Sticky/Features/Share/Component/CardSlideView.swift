@@ -51,8 +51,6 @@ struct CardSlideView: View {
         case 0:
             return "현재 기록을"
         case 1:
-            return "누적 기록을"
-        case 2:
             return "최근 뱃지를"
         default:
             return "알수없음"

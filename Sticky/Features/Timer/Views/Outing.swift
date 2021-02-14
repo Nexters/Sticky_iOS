@@ -18,7 +18,7 @@ struct Outing: View {
     @Binding var countTime: Int
     @State var outingTimer: Timer?
     @EnvironmentObject var challengeState: ChallengeState
-
+    @State var isAnimated = false
     var body: some View {
         ZStack {
             Color.Palette.negative
@@ -28,6 +28,9 @@ struct Outing: View {
                     Circle()
                         .foregroundColor(.pink)
                         .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.width * 0.8)
+                        .scaleEffect(isAnimated ? 3 : 0.5)
+                        .animation(circleAnimation)
+                    
                     VStack {
                         HStack {
                             Text("\(challengeState.outingTimeDate.minute)")
@@ -57,9 +60,20 @@ struct Outing: View {
             OutingCount(count: $countTime)
                 .isHidden(!flag)
         }
+        .onAppear{
+            print("Outing - Appear")
+            self.isAnimated = true
+        }
+        .onDisappear{
+            print("Outing - onDisappear")
+            self.isAnimated = false
+        }
     }
 
     // MARK: Private
+    private var circleAnimation: Animation{
+        Animation.linear(duration: 1.0).repeatForever(autoreverses: false)
+    }
 
 }
 

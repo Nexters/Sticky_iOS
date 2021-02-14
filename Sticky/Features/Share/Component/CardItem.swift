@@ -1,3 +1,4 @@
+
 //
 //  CardItem.swift
 //  Sticky
@@ -46,27 +47,37 @@ struct CardItem<Content: View>: View {
         GeometryReader { gr in
 //            VStack {
             content
-                .onReceive(NotificationCenter.default.publisher(for: .captureScreen), perform: { _ in
-                    print("capture\(UIState.activeCard)")
-                    saveInPhoto(img: takeCapture(origin: gr.frame(in: .global).origin, size: gr.size))
+                .onReceive(NotificationCenter.default.publisher(for: .captureScreen), perform: { noti in
+                    guard let id = noti.userInfo?["index"] as? Int else { return }
+                    if self.id == id {
+                        print("capture\(UIState.activeCard)")
+                        saveInPhoto(img: share(origin: gr.frame(in: .global).origin, size: gr.size))
+                    }
                 })
-                .onReceive(NotificationCenter.default.publisher(for: .shareLocal), perform: { _ in
-                    print("shareLocal")
-                    shareLocal(image: takeCapture(origin: gr.frame(in: .global).origin, size: gr.size))
+                .onReceive(NotificationCenter.default.publisher(for: .shareLocal), perform: { noti in
+                    print("CardItem - Notification(shareLocal)")
+                    guard let id = noti.userInfo?["index"] as? Int else { return }
+                    if self.id == id {
+                        print("shareLocal")
+                        shareLocal(image: share(origin: gr.frame(in: .global).origin, size: gr.size))
+                    }
                 })
-                .onReceive(NotificationCenter.default.publisher(for: .shareInstagram), perform: { _ in
-                    print("shareInstagram")
-                    shareInstagram(image: takeCapture(origin: gr.frame(in: .global).origin, size: gr.size))
+                .onReceive(NotificationCenter.default.publisher(for: .shareInstagram), perform: { noti in
+                    print("CardItem - Notification(shareInstagram)")
+                    guard let id = noti.userInfo?["index"] as? Int else { return }
+                    if self.id == id {
+                        print("shareInstagram")
+                        shareInstagram(image: share(origin: gr.frame(in: .global).origin, size: gr.size))
+                    }
                 })
 //            }
 
-        }.frame(
+        }
+        .frame(
             width: UIScreen.main.bounds.width - (widthOfHiddenCards * 2) - (spacing * 2),
             height: cardHeight,
             alignment: .center
         )
-        .foregroundColor(Color.white)
-        .background(Color.Sticky.blue)
     }
 }
 

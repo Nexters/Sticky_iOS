@@ -966,7 +966,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sticky/Preview Content\"";
-				DEVELOPMENT_TEAM = M75SXEJ86F;
+				DEVELOPMENT_TEAM = 46A8TRH8G6;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Sticky/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -975,7 +975,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.14.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nexters.18th.adng.Sticky-";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Sticky;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -991,7 +991,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sticky/Preview Content\"";
-				DEVELOPMENT_TEAM = M75SXEJ86F;
+				DEVELOPMENT_TEAM = 46A8TRH8G6;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Sticky/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1000,7 +1000,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.14.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nexters.18th.adng.Sticky-";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Sticky;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

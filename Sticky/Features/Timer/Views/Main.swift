@@ -203,9 +203,11 @@ struct Main: View {
             challengeState.outingTimeDate.minute = 0
             challengeState.outingTimeDate.second = 9
             challengeState.type = .outing
-            challengeState.numberOfHeart -= 1
+            if challengeState.numberOfHeart > 0 {
+                challengeState.numberOfHeart -= 1
+            }
 
-        case .lockOfHeart:
+        case .lackOfHeart:
             popupState.isPresented = false
         case .failDuringOuting:
             sharePresented = true
@@ -216,12 +218,26 @@ struct Main: View {
         var color: Color
         switch challengeState.type {
         case .outing:
-            color = Color.gray
+            color = Color.GrayScale._500
         case .notAtHome:
-            color = Color.gray
+            color = Color.GrayScale._500
 
         default:
-            color = Color.Background.blue
+            let level = Tier.of(hours: (user.accumulateSeconds + challengeState.timeData.toSeconds())).level
+            
+            switch level {
+            case 1...3:
+                color = Color.Background.blue
+            case 4...6:
+                color = Color.Background.yellow
+            case 7...9:
+                color = Color.Background.green
+            case 10:
+                color = Color.Background.red
+            default:
+                print("Main - Should Implement Another Background Color Case in level")
+                color = Color.Background.blue
+            }
         }
 
         return color

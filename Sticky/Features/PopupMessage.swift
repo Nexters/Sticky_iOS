@@ -10,6 +10,8 @@ import SwiftUI
 // MARK: - PopupMessage
 
 struct PopupMessage: View {
+    // MARK: Internal
+
     @Binding var isPresented: Bool
     @Binding var numberOfHeart: Int
     let message: Message
@@ -34,15 +36,16 @@ struct PopupMessage: View {
                     .padding(.bottom, 16)
 
                 HStack {
-                    Image("ic_heart")
+                    Image(message.style == .outing ? "ic_heart" : "ic_grayHeart")
+                    
                     Text("\(self.numberOfHeart)/3")
                         .font(.system(size: 24))
-                        .foregroundColor(Color.Palette.negative)
+                        .foregroundColor(message.style == .outing ? Color.Palette.negative : Color.GrayScale._500)
                 }
                 .padding(.bottom, 16)
                 .isHidden(
-                    message.style != .outing,
-                    remove: message.style != .outing
+                    isHidden_heartLabel,
+                    remove: isHidden_heartLabel
                 )
 
                 Button(action: {
@@ -77,7 +80,7 @@ struct PopupMessage: View {
                             .foregroundColor(.black))
                         .frame(height: 48)
                         .foregroundColor(.white)
-                }).isHidden(message.rejectString == "")
+                }).isHidden(message.rejectString == "", remove: message.rejectString == "")
             }
             .frame(width: 288)
             .padding(24)
@@ -85,6 +88,16 @@ struct PopupMessage: View {
             .cornerRadius(24)
             .shadow(color: Color.black.opacity(0.24), radius: 15, x: 0, y: 4)
             .position(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
+        }
+    }
+
+    // MARK: Private
+
+    private var isHidden_heartLabel: Bool {
+        if message.style == .outing || message.style == .lackOfHeart {
+            return false
+        } else {
+            return true
         }
     }
 }

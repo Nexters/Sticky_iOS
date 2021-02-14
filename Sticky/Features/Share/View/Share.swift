@@ -1,3 +1,4 @@
+
 //
 //  Share.swift
 //  Sticky
@@ -66,8 +67,8 @@ struct Share: View {
 
     private var downloadButton: some View {
         Button(action: {
-            NotificationCenter.default.post(name: .captureScreen, object: nil)
-//            saveInPhoto(img: takeCapture())
+            print("download")
+            NotificationCenter.default.post(name: .captureScreen, object: nil, userInfo: ["index": UIState.activeCard])
         }) {
             Image("download")
                 .aspectRatio(contentMode: .fit)
@@ -109,8 +110,8 @@ struct Share: View {
             case BadgeType.special:
                 value = ""
             case BadgeType.continuous,
-                 BadgeType.monthly:
-                value = badge.name
+                             BadgeType.monthly:
+                            value = badge.name
             case BadgeType.level:
                 value = "\(shareViewModel.seconds.ToDaysHoursMinutes())"
             }
