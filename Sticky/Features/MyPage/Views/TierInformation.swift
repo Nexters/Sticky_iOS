@@ -14,9 +14,13 @@ struct TierInformation: View {
     // MARK: Internal
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
     var body: some View {
-        VStack {}
+        
+        ScrollView(.vertical){
+            Image("level_info_KR")
+                .resizable()
+                .scaledToFit()
+        }
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: backButton)
             .navigationBarTitle("등급정보", displayMode: .inline)
