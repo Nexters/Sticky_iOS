@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.14.2](https://github.com/Nexters/Sticky_iOS/compare/v1.14.1...v1.14.2) (2021-02-14)
+
+
+### Bug Fixes
+
+* **banner:** 배지 획득까지 남은 시간 문자열 처리 수정 ([#46](https://github.com/Nexters/Sticky_iOS/issues/46)) ([a58a79e](https://github.com/Nexters/Sticky_iOS/commit/a58a79e4acc21d8842b88d023e8cdad30e484573))
+
 ### [1.14.1](https://github.com/Nexters/Sticky_iOS/compare/v1.14.0...v1.14.1) (2021-02-14)
 
 
