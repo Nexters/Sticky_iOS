@@ -10,6 +10,9 @@ import SwiftUI
 // MARK: - LocationPermission
 
 struct LocationPermission: View {
+    @EnvironmentObject var locationManager: LocationManager
+    @State var isAlways: Bool = false
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -19,20 +22,33 @@ struct LocationPermission: View {
                     .edgesIgnoringSafeArea(.all)
                 VStack {
                     Spacer()
-                    Text("Sticky")
-                        .font(.custom("Modak", size: 40))
-                        .foregroundColor(Color.Palette.primary)
-                    Image("pin_and_character")
+                    Image("logo-blue")
                         .resizable()
-                        .frame(width: 108, height: 225)
-                        .padding(.top, 28)
-                    Text("Sticky를 사용하기 위해 위치정보 설정을 항상으로 변경해주세요.")
-                        .font(.custom("AppleSDGothicNeo-Bold", size: 17))
-                        .fontWeight(.bold)
-                        .multilineTextAlignment(.center)
-                        .padding(.top, 32)
+                        .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, maxWidth: /*@START_MENU_TOKEN@*/ .infinity/*@END_MENU_TOKEN@*/,
+                               minHeight: 0, maxHeight: /*@START_MENU_TOKEN@*/ .infinity/*@END_MENU_TOKEN@*/,
+                               alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/)
+                        .scaledToFit()
 
-                    NavigationLink(destination: SearchAddress()) {
+                    Text("""
+                        집콕 시간 측정을 위해 위치 정보 설정을
+                        "항상"으로 변경해주세요
+                        """
+                    )
+                    .font(.custom("AppleSDGothicNeo-Bold", size: 17))
+                    .fontWeight(.bold)
+                    .multilineTextAlignment(.center)
+
+                    Text("설정 > 위치 > 항상")
+                        .foregroundColor(Color.GrayScale._700)
+                        .font(.custom("AppleSDGothicNeo", size: 14))
+                        .padding(.top, 12)
+
+                    NavigationLink(destination: Onboarding(), isActive: $isAlways) {
+                        EmptyView()
+                    }
+                    Button(action: {
+                        checkLocationStatus()
+                    }, label: {
                         GradientRoundedButton(
                             content: "위치정보 설정하기",
                             startColor: Color.Palette.primary,
@@ -41,13 +57,32 @@ struct LocationPermission: View {
                             height: 48,
                             cornerRadius: 16.0
                         )
-                    }.padding(.top, 24)
+                    }).padding(.top, 40)
+
                     Spacer()
-                }.padding(.horizontal, 48)
+                    Spacer()
+                }
+                .padding(.horizontal, 48)
             }
         }
         .edgesIgnoringSafeArea(.all)
         .navigationBarHidden(true)
+    }
+    
+    private func checkLocationStatus(){
+        if !locationManager.checkLocationStatus() {
+            if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(appSettings, options: [:], completionHandler: { _ in
+                    if locationManager.checkLocationStatus() {
+                        isAlways = true
+                    } else {
+                        isAlways = false
+                    }
+                })
+            }
+        }else{
+            isAlways = true
+        }
     }
 }
 

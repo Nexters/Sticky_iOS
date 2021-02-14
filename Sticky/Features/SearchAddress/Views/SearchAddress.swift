@@ -17,7 +17,6 @@ struct SearchAddress: View {
     @EnvironmentObject var locationSearchService: LocationSearchService
     @EnvironmentObject var locationManager: LocationManager
     @EnvironmentObject var location: Location
-    @State var isAlways: Bool = false
 
     var body: some View {
         ZStack {
@@ -92,20 +91,6 @@ struct SearchAddress: View {
                     }
                 }.padding(.horizontal, 16)
                 Spacer()
-            }
-        }
-        .onAppear {
-            //always가 아니면 설정으로 이동
-            if !locationManager.checkLocationStatus() {
-                if let appSettings = URL(string: UIApplication.openSettingsURLString) {
-                    UIApplication.shared.open(appSettings, options: [:], completionHandler: { _ in
-                        if locationManager.checkLocationStatus() {
-                            isAlways = true
-                        } else {
-                            isAlways = false
-                        }
-                    })
-                }
             }
         }
         .allowsHitTesting(locationManager.checkLocationStatus()) // 항상 처리 확인
