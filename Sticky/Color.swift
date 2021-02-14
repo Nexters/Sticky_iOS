@@ -39,6 +39,19 @@ extension Color {
         static let yellow_card = Color("sticky-yellow")
         static let green_card = Color("sticky-green")
     }
+    
+    enum Card{
+        static let blue_card = Color("sticky-blue")
+        static let red_card = Color("sticky-red")
+        static let yellow_card = Color("sticky-yellow")
+        static let green_card = Color("sticky-green")
+        
+        static let badge_card = LinearGradient(
+            gradient: Gradient(colors: [Color.black, Color("badgeCard-black-end")]),
+            startPoint: .top,
+            endPoint: .bottom
+        )
+    }
 
     enum Palette {
         static let primary = Color("palette-primary")
