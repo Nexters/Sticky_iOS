@@ -20,14 +20,14 @@ struct Banner: View {
     @EnvironmentObject var badgeViewModel: BadgeViewModel
 
     var body: some View {
-        let nextMonthlyBadge = nextBadge(
+        var nextMonthlyBadge = nextBadge(
             badgeType: BadgeType.monthly,
             badges: self.badgeViewModel.monthly.items
         )
         // 월간 배지 획득까지 남은 seconds; 뱃지 필요한 시간 - (챌린지 시간 + 이번 달 누적 시간)
         let remainMonthlyBadge = (Int(nextMonthlyBadge.badgeValue) ?? 0) * 3600
             - (challengeState.timeData.toSeconds() + user.thisMonthAccumulateSeconds)
-        let nextContiousBadge = nextBadge(
+        var nextContiousBadge = nextBadge(
             badgeType: BadgeType.continuous,
             badges: self.badgeViewModel.continuous.items
         )
@@ -37,16 +37,21 @@ struct Banner: View {
 
         if remainMonthlyBadge <= 0 {
             let key = nextMonthlyBadge.badgeValue
+            nextMonthlyBadge.updated = Date()
+            nextMonthlyBadge.count = 1
             badgeViewModel.monthly.items[key] = CountAndUpdated(count: 1, date: Date())
+            badgeViewModel.badgeQueue.append(nextMonthlyBadge)
         } else {
             print("월간 배지 획득 남은 시간: \(remainMonthlyBadge)")
         }
         if remainContinuousBadge <= 0 {
-            print("연속 배지 획득")
             let key = nextContiousBadge.badgeValue
+            nextContiousBadge.updated = Date()
+            nextContiousBadge.count = 1
             badgeViewModel.continuous.items[key] = CountAndUpdated(count: 1, date: Date())
+            badgeViewModel.badgeQueue.append(nextContiousBadge)
         } else {
-            print("월간 배지 획득 남은 시간: \(remainContinuousBadge)")
+            print("연속 배지 획득 남은 시간: \(remainContinuousBadge)")
         }
 
         return ScrollView(.horizontal, showsIndicators: false) {

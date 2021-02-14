@@ -38,6 +38,7 @@
 		BB546C3625CEB3A100241DF3 /* BadgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB546C3525CEB3A100241DF3 /* BadgeViewModel.swift */; };
 		BB75BCF525D16AD700793A5E /* Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB75BCF425D16AD700793A5E /* Modal.swift */; };
 		BB77D59925D4A348002BD70A /* BannerItemDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77D59825D4A348002BD70A /* BannerItemDetail.swift */; };
+		BB77D5C325D92B89002BD70A /* NewItemShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77D5C225D92B89002BD70A /* NewItemShare.swift */; };
 		BB8292CE25BD597200077D8C /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8292CD25BD597200077D8C /* SearchBar.swift */; };
 		BB8292D425BD59A200077D8C /* LocationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8292D325BD59A200077D8C /* LocationSearchService.swift */; };
 		BBAC0F3125C696B900FB81D7 /* LocationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC0F3025C696B800FB81D7 /* LocationPermission.swift */; };
@@ -135,6 +136,7 @@
 		BB546C3525CEB3A100241DF3 /* BadgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeViewModel.swift; sourceTree = "<group>"; };
 		BB75BCF425D16AD700793A5E /* Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modal.swift; sourceTree = "<group>"; };
 		BB77D59825D4A348002BD70A /* BannerItemDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerItemDetail.swift; sourceTree = "<group>"; };
+		BB77D5C225D92B89002BD70A /* NewItemShare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemShare.swift; sourceTree = "<group>"; };
 		BB8292CD25BD597200077D8C /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		BB8292D325BD59A200077D8C /* LocationSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
 		BBAC0F3025C696B800FB81D7 /* LocationPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermission.swift; sourceTree = "<group>"; };
@@ -541,6 +543,7 @@
 			isa = PBXGroup;
 			children = (
 				EB77449D25B6E82300BF1103 /* Share.swift */,
+				BB77D5C225D92B89002BD70A /* NewItemShare.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -744,6 +747,7 @@
 				BBB1EC6725B07B0A00F5EA37 /* String+localize.swift in Sources */,
 				EB63F52225B82C2300151A05 /* Card.swift in Sources */,
 				C278957325CAE3DA001319BE /* ChallengeState.swift in Sources */,
+				BB77D5C325D92B89002BD70A /* NewItemShare.swift in Sources */,
 				BB0A596525BAC3F2001F529A /* More.swift in Sources */,
 				BB0A594525BA7AB4001F529A /* BadgePanel.swift in Sources */,
 				C278951025C82ACE001319BE /* OutingCount.swift in Sources */,

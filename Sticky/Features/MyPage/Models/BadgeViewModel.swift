@@ -73,6 +73,9 @@ class BadgeViewModel: ObservableObject {
 
     // MARK: Internal
 
+    // 획득한 배지 처리를 위한 queue
+    @Published var badgeQueue: [Badge] = []
+
     @Published var select = Badge(badgeType: BadgeType.monthly, badgeValue: "10", _name: "")
 
     @Published var specials: BadgeInfo {
@@ -145,7 +148,6 @@ func nextBadge(
         .sorted { Double($0.0)! < Double($1.0)! }
         .first
     let badgeValue = next?.key ?? ""
-    let name = badgeValue == "0.5" ? "12 Hours" : "\(badgeValue) \(badgeType.unit)"
 
     return Badge(
         badgeType: badgeType,
