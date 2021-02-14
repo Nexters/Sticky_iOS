@@ -56,8 +56,8 @@ struct CardSlide: View {
         ) {
             GeometryReader { gr in
                 VStack(alignment: .center) {
-                    Image("Union")
-                        .scaleEffect(1.3)
+                    Image("logo-gray")
+                        .frame(width: 56, height: 16)
                         .padding(.top, 24)
 
                     // MARK: 뱃지 갯수에 따른 코멘트 변경
@@ -92,7 +92,7 @@ struct CardSlide: View {
                     .fixedSize()
                     .disabled(true)
                 }.frame(width: gr.frame(in: .global).size.width, height: gr.frame(in: .global).height, alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/)
-                .background(Color.black)
+                .background(Color.Card.badge_card)
             }
         }
         .foregroundColor(Color.white)
@@ -118,8 +118,7 @@ struct CardSlide: View {
                     Image("shareBg_level\(String(format: "%02d", level))")
 
                     VStack {
-                        Rectangle()
-                            .foregroundColor(.white)
+                        Image("logo-gray")
                             .frame(width: 56, height: 16)
                             .padding(.top, 24)
                         HStack(spacing: 24) {

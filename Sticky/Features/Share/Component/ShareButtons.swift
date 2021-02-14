@@ -12,41 +12,30 @@ import SwiftUI
 struct ShareButtons: View {
     @EnvironmentObject var UIState : UIStateModel
     var body: some View {
-        HStack(spacing: 48) {
-            Rectangle()
-                .overlay(
-                    Button(action: {
-                        NotificationCenter.default.post(name: .shareLocal, object: nil, userInfo: ["index": UIState.activeCard])
-//                        shareLocal(image: takeCapture())
-                    }) {
-                        Image(systemName: "square.and.arrow.up")
-                            .frame(width: 48, height: 48)
+        VStack(spacing: 16){
+            RoundedRectangle(cornerRadius: 12)
+                .frame(width: UIScreen.main.bounds.width * 260/360, height: UIScreen.main.bounds.height * 44/640, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .overlay(Button(action: {
+                    NotificationCenter.default.post(name: .shareInstagram, object: nil, userInfo: ["index": UIState.activeCard])
+                }, label: {
+                    HStack{
+                        Image("instagram-gray")
+                        
+                        Text("인스타그램 공유하기")
+                            .font(Font.system(size: 17))
                             .foregroundColor(.white)
                     }
-                )
-                .frame(width: 48, height: 48)
-                .cornerRadius(10)
-                .foregroundColor(Color.black)
-
+                }))
+            
             Button(action: {
-                NotificationCenter.default.post(name: .shareInstagram, object: nil, userInfo: ["index": UIState.activeCard])
-//                shareInstagram(image: takeCapture())
-            }) {
-                Image("instagram")
-                    .frame(width: 48, height: 48)
-                    .foregroundColor(.white)
-            }
-            .frame(width: 48, height: 48)
-            .cornerRadius(10)
-            // 트위터 사진 공유 지원 중단으로 인한 보류
-//            Button(action: {}) {
-//                Image("twitter")
-//                    .resizable()
-//                    .frame(width: 48, height: 48)
-//                    .foregroundColor(.white)
-//            }
-//            .frame(width: 48, height: 48)
-//            .cornerRadius(10)
+                NotificationCenter.default.post(name: .shareLocal, object: nil, userInfo: ["index": UIState.activeCard])
+            }, label: {
+                Text("다른 방법으로 공유하기")
+                    .underline()
+                    .font(Font.system(size: 17))
+                    .bold()
+                    .foregroundColor(.black)
+            })
         }
     }
 }
@@ -56,5 +45,6 @@ struct ShareButtons: View {
 struct ShareButtons_Previews: PreviewProvider {
     static var previews: some View {
         ShareButtons()
+            .environmentObject(UIStateModel())
     }
 }
