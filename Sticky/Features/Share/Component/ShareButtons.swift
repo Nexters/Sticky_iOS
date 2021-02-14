@@ -12,16 +12,16 @@ import SwiftUI
 struct ShareButtons: View {
     @EnvironmentObject var UIState : UIStateModel
     var body: some View {
-        VStack(spacing: 10){
+        VStack(spacing: 16){
             RoundedRectangle(cornerRadius: 12)
                 .frame(width: UIScreen.main.bounds.width * 260/360, height: UIScreen.main.bounds.height * 44/640, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .overlay(Button(action: {
-                    NotificationCenter.default.post(name: .shareLocal, object: nil, userInfo: ["index": UIState.activeCard])
+                    NotificationCenter.default.post(name: .shareInstagram, object: nil, userInfo: ["index": UIState.activeCard])
                 }, label: {
                     HStack{
                         Image("instagram-gray")
                         
-                        Text("Share on Instagram")
+                        Text("인스타그램 공유하기")
                             .font(Font.system(size: 17))
                             .foregroundColor(.white)
                     }
@@ -30,8 +30,10 @@ struct ShareButtons: View {
             Button(action: {
                 NotificationCenter.default.post(name: .shareLocal, object: nil, userInfo: ["index": UIState.activeCard])
             }, label: {
-                Text("Share in other apps")
+                Text("다른 방법으로 공유하기")
+                    .underline()
                     .font(Font.system(size: 17))
+                    .bold()
                     .foregroundColor(.black)
             })
         }

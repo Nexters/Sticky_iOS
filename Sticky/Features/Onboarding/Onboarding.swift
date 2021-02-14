@@ -10,30 +10,142 @@ import SwiftUI
 // MARK: - Onboarding
 
 struct Onboarding: View {
-    var body: some View {
-        ZStack {
-            Color.Palette.primary
-                .ignoresSafeArea()
-            VStack {
-                Image("logo_sticky")
-                    .padding(.bottom, 40)
-                Text("“Sticky”는 집에서 사용하는 챌린지 서비스입니다. 집 위치를 설정하기 위해 위치정보 사용을 동의해주세요!")
-                    .font(.system(size: 16))
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.center)
-                    .frame(width: 280, height: 72)
-                    .padding(.bottom, 50)
+    @State var SlideGesture = CGSize.zero
+    @State var SlideOne = false
+    @State var SlideOnePrevious = false
+    @State var SlideTwo = false
+    @State var SlideTwoPrevious = false
+    @State var isEndOnboarding = false
 
-                NavigationLink(destination: SearchAddress()) {
-                    GradientRoundedButton(
-                        content: "위치정보 설정하기",
-                        startColor: Color.black,
-                        endColor: Color.black,
-                        width: 202,
-                        height: 48
+    var body: some View {
+        VStack {
+            NavigationLink(destination: SearchAddress(), isActive: $isEndOnboarding) {
+                EmptyView()
+            }
+            HStack {
+                Spacer()
+                Button(action: {
+                    isEndOnboarding = true
+                }, label: {
+                    Text("건너뛰기")
+                }).padding(.trailing, 16)
+                    .padding(.top, 16)
+                    .font(.custom("AppleSDGothicNeo", size: 14))
+                    .foregroundColor(Color.GrayScale._500)
+            }
+            Spacer()
+            ZStack {
+                Onboarding3()
+                    .offset(x: SlideGesture.width)
+                    .offset(x: SlideTwo ? 0 : 500)
+                    .animation(.spring())
+
+                    .gesture(
+                        DragGesture().onChanged { value in
+                            self.SlideGesture = value.translation
+                        }
+                        .onEnded { _ in
+                            if self.SlideGesture.width > 150 {
+                                self.SlideTwo = false
+                                self.SlideTwoPrevious = true
+                            }
+                            self.SlideGesture = .zero
+                        }
                     )
-                }
-            }.frame(width: 280, height: 290)
+
+                Onboarding2()
+                    .offset(x: SlideGesture.width)
+                    .offset(x: SlideOne ? 0 : 500)
+                    .offset(x: SlideOnePrevious ? 500 : 0)
+                    .offset(x: SlideTwo ? -500 : 0)
+                    .animation(.spring())
+
+                    .gesture(
+                        DragGesture().onChanged { value in
+                            self.SlideGesture = value.translation
+                        }
+                        .onEnded { _ in
+                            if self.SlideGesture.width < -150 {
+                                self.SlideOne = true
+                                self.SlideTwo = true
+                            }
+
+                            if self.SlideGesture.width > 150 {
+                                self.SlideOnePrevious = true
+                                self.SlideOne = false
+                            }
+                            self.SlideGesture = .zero
+                        }
+                    )
+
+                Onboarding1()
+                    .offset(x: SlideGesture.width)
+                    .offset(x: SlideOne ? -500 : 0)
+
+                    .animation(.spring())
+
+                    .gesture(
+                        DragGesture().onChanged { value in
+                            self.SlideGesture = value.translation
+                        }
+                        .onEnded { _ in
+                            if self.SlideGesture.width < -150 {
+                                self.SlideOne = true
+                                self.SlideOnePrevious = false
+                            }
+                            self.SlideGesture = .zero
+                        }
+                    )
+            }
+            Spacer()
+            HStack {
+                Circle()
+                    .frame(width: 8, height: 8)
+                    .foregroundColor(SlideOne ? Color.GrayScale._200 : Color.Palette.primary)
+                Circle()
+                    .frame(width: 8, height: 8)
+                    .foregroundColor(SlideOne && !SlideTwo ? Color.Palette.primary : Color.GrayScale._200)
+                Circle()
+                    .frame(width: 8, height: 8)
+                    .foregroundColor(SlideTwo ? Color.Palette.primary : Color.GrayScale._200)
+            }
+            .padding(.bottom, 28)
+            ZStack {
+                Button(action: {
+                    self.isEndOnboarding = true
+                }, label: {
+                    Text("시작하기")
+                        .font(.custom("AppleSDGothicNeo", size: 17))
+                        .foregroundColor(Color.white)
+                })
+                    .frame(width: 160, height: 60)
+                    .background(Color.Palette.primary)
+                    .cornerRadius(20)
+                    .animation(.spring())
+                    .offset(x: SlideTwo ? 0 : 500)
+                    .shadow(color: Color("shadow"), radius: 24, x: 0, y: 4)
+
+                Button(action: {
+                    if !SlideOne {
+                        self.SlideOne = true
+                        self.SlideOnePrevious = false
+                    } else if !SlideTwo {
+                        self.SlideOne = true
+                        self.SlideTwo = true
+                    }
+                }, label: {
+                    Text("다음")
+                        .font(.custom("AppleSDGothicNeo", size: 17))
+                        .foregroundColor(Color.Palette.primary)
+                })
+                    .frame(width: 160, height: 60)
+                    .background(Color.white)
+                    .cornerRadius(20)
+                    .animation(.spring())
+                    .offset(x: SlideTwo ? -500 : 0)
+                    .shadow(color: Color("shadow"), radius: 24, x: 0, y: 4)
+            }
+            .padding(.bottom, 32)
         }
         .navigationBarHidden(true)
     }
