@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.16.2](https://github.com/Nexters/Sticky_iOS/compare/v1.16.1...v1.16.2) (2021-02-15)
+
+
+### Bug Fixes
+
+* gps 오류 ([a697a55](https://github.com/Nexters/Sticky_iOS/commit/a697a552504646c55245a290e123454b356e3318))
+* 시간 1시간->1초, conflict 해결 ([df0e03d](https://github.com/Nexters/Sticky_iOS/commit/df0e03dc13712150f14b055c23299deb824a5d4d))
+
 ### [1.16.1](https://github.com/Nexters/Sticky_iOS/compare/v1.16.0...v1.16.1) (2021-02-15)
 
 
