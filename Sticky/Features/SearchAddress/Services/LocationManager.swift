@@ -53,10 +53,13 @@ class LocationManager: NSObject, ObservableObject {
 
     var geofence: CLCircularRegion? {
         willSet {
+            print("LocationManager - geofence\(newValue) willSet")
             if newValue!.contains(self.location.coordinate), !(self.geofence?.contains(self.location.coordinate) ?? false) {
                 // newValue내에 존재 && 이전Value내에 존재하지 X
+                print("LocationManager - geofence enter")
                 NotificationCenter.default.post(name: .enterGeofence, object: nil)
             } else if !newValue!.contains(self.location.coordinate), self.geofence?.contains(self.location.coordinate) ?? false {
+                print("LocationManager - geofence exit")
                 NotificationCenter.default.post(name: .exitGeofence, object: nil)
             }
         }
@@ -68,7 +71,21 @@ class LocationManager: NSObject, ObservableObject {
 
     @Published var location = CLLocation() {
         willSet {
-            print("location update")
+            print("LocationManager - location\(newValue) willSet")
+            print("LocationManager - 1 : \((self.geofence?.contains(newValue.coordinate) ?? false))")
+            print("LocationManager - 2 : \(!(self.geofence?.contains(self.location.coordinate) ?? false))")
+            print("LocationManager - 3 : \(!(geofence?.contains(newValue.coordinate) ?? false))")
+            print("LocationManager - 4 : \(self.geofence?.contains(self.location.coordinate) ?? false)")
+            
+            if (self.geofence?.contains(newValue.coordinate) ?? false), !(self.geofence?.contains(self.location.coordinate) ?? false) {
+                // newValue내에 존재 && 이전Value내에 존재하지 X
+                print("LocationManager - geofence enter")
+                NotificationCenter.default.post(name: .enterGeofence, object: nil)
+            } else if !(geofence?.contains(newValue.coordinate) ?? false), (self.geofence?.contains(self.location.coordinate) ?? false) {
+                print("LocationManager - geofence exit")
+                NotificationCenter.default.post(name: .exitGeofence, object: nil)
+            }
+            
             self.objectWillChange.send()
         }
     }

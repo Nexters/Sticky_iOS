@@ -18,13 +18,13 @@ extension UIView {
 
 extension View {
     
-    func share(origin: CGPoint, size: CGSize) -> UIImage{
+    func captureBGImage(origin: CGPoint, size: CGSize, bgColor: LinearGradient) -> UIImage{
         let window = UIWindow(frame: UIScreen.main.bounds)
-        let hosting = UIHostingController(rootView: self)
+        let hosting = UIHostingController(rootView: BGView(color: bgColor))
         hosting.view.frame = window.frame
         
         // MARK: 레벨에 따른 배경색
-        hosting.view.backgroundColor = .yellow
+//        hosting.view.backgroundColor = bgColor
         window.addSubview(hosting.view)
         window.makeKeyAndVisible()
         
@@ -32,18 +32,37 @@ extension View {
         
     }
     
-    func takeCapture(origin: CGPoint, size: CGSize) -> UIImage {
+    func captureCardImage(origin: CGPoint, size: CGSize) -> UIImage{
         let window = UIWindow(frame: CGRect(origin: origin, size: size))
         let hosting = UIHostingController(rootView: self)
         hosting.view.frame = window.frame
-        hosting.view.backgroundColor = .clear
         hosting.view.clipsToBounds = true
         hosting.view.layer.cornerRadius = hosting.view.frame.height / 20
         
+        // MARK: 레벨에 따른 배경색
         window.addSubview(hosting.view)
         window.makeKeyAndVisible()
         
         return hosting.view.renderedImage
+        
+    }
+    
+    func captureWithBG(origin: CGPoint, size: CGSize, bgColor: LinearGradient) -> UIImage {
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        let mainView = UIHostingController(rootView: BGView(color: bgColor))
+        let hosting = UIHostingController(rootView: self)
+        mainView.view.frame = window.frame
+        mainView.view.addSubview(hosting.view)
+        
+        hosting.view.frame = CGRect(origin: origin, size: size)
+        hosting.view.backgroundColor = .clear
+        hosting.view.clipsToBounds = true
+        hosting.view.layer.cornerRadius = hosting.view.frame.height / 20
+        
+        window.addSubview(mainView.view)
+        window.makeKeyAndVisible()
+        
+        return mainView.view.renderedImage
     }
 
     func saveInPhoto(img: UIImage) {

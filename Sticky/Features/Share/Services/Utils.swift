@@ -7,7 +7,7 @@
 import SwiftUI
 
 /// 인스타그램 공유
-func shareInstagram(image: UIImage) {
+func shareInstagram(bgImage: UIImage, cardImage: UIImage) {
     guard let urlScheme = URL(string: "instagram-stories://share") else {
         return
     }
@@ -18,8 +18,8 @@ func shareInstagram(image: UIImage) {
     UIPasteboard.general.setItems(
         [
             [
-                "com.instagram.sharedSticker.stickerImage": image.pngData()!,
-                "com.instagram.sharedSticker.backgroundImage": image.pngData()!,
+                "com.instagram.sharedSticker.stickerImage": cardImage.pngData()!,
+                "com.instagram.sharedSticker.backgroundImage": bgImage.pngData()!,
             ],
         ],
         options: [UIPasteboard.OptionsKey.expirationDate: Date().addingTimeInterval(60 * 5)]
