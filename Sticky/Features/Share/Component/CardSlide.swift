@@ -52,7 +52,8 @@ struct CardSlide: View {
             id: 1,
             spacing: spacing,
             widthOfHiddenCards: widthOfHiddenCards,
-            cardHeight: cardHeight
+            cardHeight: cardHeight,
+            bgColor: bgColor
         ) {
             GeometryReader { gr in
                 VStack(alignment: .center) {
@@ -71,6 +72,7 @@ struct CardSlide: View {
                         .frame(width: 200, height: 64, alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/)
                         .font(.custom("Modak", size: 88))
                         .padding(.vertical, 8)
+                        .foregroundColor(.white)
 
                     Text("받은 배지")
                         .foregroundColor(.gray)
@@ -92,12 +94,12 @@ struct CardSlide: View {
                     .fixedSize()
                     .disabled(true)
                 }.frame(width: gr.frame(in: .global).size.width, height: gr.frame(in: .global).height, alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/)
-                .background(Color.Card.badge_card)
+                    .background(Color.Card.badge_card)
             }
         }
         .foregroundColor(Color.white)
         .cornerRadius(40)
-        .shadow(color: Color.gray, radius: 4, x: 0, y: 4)
+        .shadow(color: Color.black.opacity(0.16), radius: 4, x: 0, y: 4)
         .transition(AnyTransition.slide)
         .animation(.spring())
     }
@@ -111,7 +113,8 @@ struct CardSlide: View {
             // 가려진 카드의 너비
             widthOfHiddenCards: widthOfHiddenCards,
             // 카드의 높이
-            cardHeight: cardHeight
+            cardHeight: cardHeight,
+            bgColor: bgColor
         ) {
             GeometryReader { gr in
                 ZStack {
@@ -140,7 +143,9 @@ struct CardSlide: View {
                                     .font(.custom("Modak", size: 80))
                                     .frame(height: 64)
                                     .padding(.bottom, 1)
+                                    .foregroundColor(.white)
                                 Text("시간")
+                                    .foregroundColor(.white)
                                     .font(.system(size: 17, weight: .heavy, design: .default))
                                     .frame(width: 96)
                             }
@@ -149,14 +154,14 @@ struct CardSlide: View {
                             // 얘 높이가 Text랑 달라서 그룹지어서 처리해야함
                             // Minute
                             VStack {
-                                StrokeText(
-                                    text: String(challengeState.timeData.minute),
-                                    size: 80,
-                                    fontColor: UIColor.white
-                                )
-                                .padding(.bottom, 0)
-                                .frame(width: 80, height: 64)
+                                Text(String(challengeState.timeData.minute))
+                                    .font(.custom("Modak", size: 80))
+                                    .frame(height: 64)
+                                    .padding(.bottom, 1)
+                                    .foregroundColor(.white)
+
                                 Text("분")
+                                    .foregroundColor(.white)
                                     .font(.system(size: 17, weight: .heavy, design: .default))
                                     .frame(width: 96)
                             }
@@ -169,18 +174,19 @@ struct CardSlide: View {
                         Spacer()
                     }
                 }.frame(width: gr.frame(in: .global).size.width, height: gr.frame(in: .global).height, alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/)
-                .background(bgColor)
+                    .background(bgColor)
             }
         }
         .foregroundColor(Color.white)
         .cornerRadius(40)
-        .shadow(color: Color.gray, radius: 4, x: 0, y: 4)
+        .shadow(color: Color.black.opacity(0.16), radius: 4, x: 0, y: 4)
         .transition(AnyTransition.slide)
         .animation(.spring())
     }
 
-    private var bgColor: Color{
+    private var bgColor: Color {
         // MARK: 색 변경해야 함
+
         switch level {
         case 1:
             return Color.Sticky.blue_card
@@ -195,9 +201,9 @@ struct CardSlide: View {
             return Color.Sticky.blue_card
         }
     }
-    
+
     private var level: Int {
-        switch Tier.of(hours: (user.accumulateSeconds + challengeState.timeData.toSeconds()) / 3600).level{
+        switch Tier.of(hours: (user.accumulateSeconds + challengeState.timeData.toSeconds()) / 3600).level {
         case 1...3:
             return 1
         case 4...6:
@@ -209,7 +215,6 @@ struct CardSlide: View {
         default:
             print("CardSlide - Should implement level over '4'")
             return 5
-            
         }
     }
 

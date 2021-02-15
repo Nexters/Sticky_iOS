@@ -131,7 +131,7 @@ struct Main: View {
     }
 
     func addChallengeTimer() {
-        challengeState.timeData.minute += 60
+        challengeState.timeData.second += 1
         if challengeState.timeData.minute >= 60 {
             challengeState.timeData.hour += 1
             challengeState.timeData.minute = 0
@@ -231,8 +231,8 @@ struct Main: View {
 
         case .outing:
             flag = true
-            challengeState.outingTimeDate.minute = 0
-            challengeState.outingTimeDate.second = 9
+            challengeState.outingTimeDate.minute = 19
+            challengeState.outingTimeDate.second = 59
             challengeState.type = .outing
             if challengeState.numberOfHeart > 0 {
                 challengeState.numberOfHeart -= 1
