@@ -13,12 +13,12 @@ struct NewItemShare: View {
     // MARK: Internal
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @EnvironmentObject var badgeViewModel: BadgeViewModel
     @EnvironmentObject var user: User
+    @Binding var badgeQueue: [Badge]
 
     var body: some View {
-        let badge = badgeViewModel.badgeQueue.first ??
-            Badge(badgeType: .level, badgeValue: "")
+        let badge = self.badgeQueue.first ??
+            Badge(badgeType: .level, badgeValue: "1")
         let image = badge.image
         var value = ""
         switch badge.badgeType {
@@ -32,7 +32,8 @@ struct NewItemShare: View {
         }
         let description = badge.badgeType.toString(value: value)
         return ZStack {
-            Color.black.ignoresSafeArea()
+            LottieView(name: "tada")
+                .ignoresSafeArea()
 
             VStack {
                 Spacer()
@@ -55,7 +56,9 @@ struct NewItemShare: View {
                 HStack {
                     Text("새로 달성한 레벨").bold() + Text("을 자랑해보세요!")
                 }.padding(.top, 66)
-                Spacer()
+                ShareButtons(textColor: Color.white)
+                    .foregroundColor(Color.Palette.negative)
+                    .padding(.bottom, 36)
             }.foregroundColor(.white)
         }
         .navigationBarTitle("", displayMode: .inline)
@@ -70,7 +73,9 @@ struct NewItemShare: View {
 
     private var backButton: some View {
         Button(action: {
-            badgeViewModel.badgeQueue.remove(at: 0)
+            if !self.badgeQueue.isEmpty {
+                self.badgeQueue.remove(at: 0)
+            }
             self.presentationMode.wrappedValue.dismiss()
         }) {
             Image("ic_close")
@@ -92,7 +97,7 @@ struct NewItemShare: View {
 
 struct NewItemShare_Previews: PreviewProvider {
     static var previews: some View {
-        NewItemShare()
+        NewItemShare(badgeQueue: .constant([]))
             .environmentObject(BadgeViewModel())
     }
 }

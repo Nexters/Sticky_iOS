@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1945EC7C3B85C74AB384F722 /* Pods_Sticky.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF7366D0FAC978F9D8EEE394 /* Pods_Sticky.framework */; };
 		BB05AB6F25C6C22D00E34717 /* BannerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB05AB6E25C6C22D00E34717 /* BannerItem.swift */; };
 		BB05AB7E25C6EE2400E34717 /* Modak.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB05AB7D25C6EE2400E34717 /* Modak.ttf */; };
 		BB05AB8325C6EF3500E34717 /* StrokeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB05AB8225C6EF3500E34717 /* StrokeText.swift */; };
@@ -54,6 +55,8 @@
 		BBB1EC8325B0887500F5EA37 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EC8225B0887500F5EA37 /* Indicator.swift */; };
 		BBB1EC8E25B088EA00F5EA37 /* GradientRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EC8D25B088EA00F5EA37 /* GradientRoundedButton.swift */; };
 		BBB1ECB825B090A900F5EA37 /* BorderRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1ECB725B090A900F5EA37 /* BorderRoundedButton.swift */; };
+		BBBC768125DA32D400E72F29 /* tada.json in Resources */ = {isa = PBXBuildFile; fileRef = BBBC768025DA32D400E72F29 /* tada.json */; };
+		BBBC768625DA34EB00E72F29 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBC768525DA34EB00E72F29 /* LottieView.swift */; };
 		BBC66EBD25C4E965007687D7 /* AppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC66EBC25C4E965007687D7 /* AppMain.swift */; };
 		BBC66EC825C4F99E007687D7 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC66EC725C4F99E007687D7 /* TimerView.swift */; };
 		BBC66EDE25C5197A007687D7 /* RootPresentationMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC66EDD25C5197A007687D7 /* RootPresentationMode.swift */; };
@@ -105,6 +108,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B686839C18E886E12846A69 /* Pods-StickyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StickyUITests.debug.xcconfig"; path = "Target Support Files/Pods-StickyUITests/Pods-StickyUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		6763C72601C500C5F38AAD9E /* Pods-Sticky.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sticky.debug.xcconfig"; path = "Target Support Files/Pods-Sticky/Pods-Sticky.debug.xcconfig"; sourceTree = "<group>"; };
+		A14A4CE4E7AED10371BD6398 /* Pods-Sticky.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sticky.release.xcconfig"; path = "Target Support Files/Pods-Sticky/Pods-Sticky.release.xcconfig"; sourceTree = "<group>"; };
 		BB05AB6E25C6C22D00E34717 /* BannerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerItem.swift; sourceTree = "<group>"; };
 		BB05AB7D25C6EE2400E34717 /* Modak.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Modak.ttf; sourceTree = "<group>"; };
 		BB05AB8225C6EF3500E34717 /* StrokeText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeText.swift; sourceTree = "<group>"; };
@@ -158,12 +164,15 @@
 		BBB1EC8225B0887500F5EA37 /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		BBB1EC8D25B088EA00F5EA37 /* GradientRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientRoundedButton.swift; sourceTree = "<group>"; };
 		BBB1ECB725B090A900F5EA37 /* BorderRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderRoundedButton.swift; sourceTree = "<group>"; };
+		BBBC768025DA32D400E72F29 /* tada.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tada.json; sourceTree = "<group>"; };
+		BBBC768525DA34EB00E72F29 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		BBC66EBC25C4E965007687D7 /* AppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMain.swift; sourceTree = "<group>"; };
 		BBC66EC725C4F99E007687D7 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		BBC66EDD25C5197A007687D7 /* RootPresentationMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootPresentationMode.swift; sourceTree = "<group>"; };
 		BBC66F2B25C55BA6007687D7 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		BBC66F3125C578B6007687D7 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		BBC66F3625C57FF2007687D7 /* CLPlacemark+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLPlacemark+.swift"; sourceTree = "<group>"; };
+		BF7366D0FAC978F9D8EEE394 /* Pods_Sticky.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sticky.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C202D59425BD365F0033B450 /* PopupMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupMessage.swift; sourceTree = "<group>"; };
 		C202D59F25BD38CC0033B450 /* PopupStateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupStateModel.swift; sourceTree = "<group>"; };
 		C2228FCB25BD5EAD00C4DF0B /* MyOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOperation.swift; sourceTree = "<group>"; };
@@ -181,6 +190,7 @@
 		C28561A025D24D19006FA7D2 /* DateComponenets+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponenets+.swift"; sourceTree = "<group>"; };
 		C28561A525D24ED5006FA7D2 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		C2B0429125D90F4200AC7854 /* OnboardingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingComponent.swift; sourceTree = "<group>"; };
+		D5F1177849470578F47D72DB /* Pods-StickyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StickyUITests.release.xcconfig"; path = "Target Support Files/Pods-StickyUITests/Pods-StickyUITests.release.xcconfig"; sourceTree = "<group>"; };
 		EB32FA5C25B8466200DC3FAE /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		EB608B1325B719440061F394 /* CardSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSlide.swift; sourceTree = "<group>"; };
 		EB63F51B25B8257C00151A05 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -196,6 +206,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1945EC7C3B85C74AB384F722 /* Pods_Sticky.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +227,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		826BF498D3606FF0DA791E4D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6763C72601C500C5F38AAD9E /* Pods-Sticky.debug.xcconfig */,
+				A14A4CE4E7AED10371BD6398 /* Pods-Sticky.release.xcconfig */,
+				2B686839C18E886E12846A69 /* Pods-StickyUITests.debug.xcconfig */,
+				D5F1177849470578F47D72DB /* Pods-StickyUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		BB05ABCF25C8236F00E34717 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -402,6 +424,7 @@
 		BBAC0F2825C65EEC00FB81D7 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				BBBC767A25DA301C00E72F29 /* Lotties */,
 				BBAC0F2925C65EF600FB81D7 /* Fonts */,
 			);
 			path = Shared;
@@ -430,6 +453,8 @@
 				BBB1EC0225AF3C2200F5EA37 /* StickyTests */,
 				BBB1EC0D25AF3C2200F5EA37 /* StickyUITests */,
 				BBB1EBEF25AF3C2100F5EA37 /* Products */,
+				826BF498D3606FF0DA791E4D /* Pods */,
+				E52AE307806F66811338290C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -498,6 +523,7 @@
 				BBB1ECB725B090A900F5EA37 /* BorderRoundedButton.swift */,
 				BB05AB8225C6EF3500E34717 /* StrokeText.swift */,
 				BB75BCF425D16AD700793A5E /* Modal.swift */,
+				BBBC768525DA34EB00E72F29 /* LottieView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -531,12 +557,28 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		BBBC767A25DA301C00E72F29 /* Lotties */ = {
+			isa = PBXGroup;
+			children = (
+				BBBC768025DA32D400E72F29 /* tada.json */,
+			);
+			path = Lotties;
+			sourceTree = "<group>";
+		};
 		BBC66F3025C578AA007687D7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				BBC66F3125C578B6007687D7 /* Location.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		E52AE307806F66811338290C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BF7366D0FAC978F9D8EEE394 /* Pods_Sticky.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		EB32FA5025B840D700DC3FAE /* View */ = {
@@ -602,9 +644,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BBB1EC1325AF3C2200F5EA37 /* Build configuration list for PBXNativeTarget "Sticky" */;
 			buildPhases = (
+				3EEEE88BB4E018B27280B180 /* [CP] Check Pods Manifest.lock */,
 				BBB1EBEA25AF3C2100F5EA37 /* Sources */,
 				BBB1EBEB25AF3C2100F5EA37 /* Frameworks */,
 				BBB1EBEC25AF3C2100F5EA37 /* Resources */,
+				54DC95F86993CF8CDE16E09F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -704,6 +748,7 @@
 				BB05AB7E25C6EE2400E34717 /* Modak.ttf in Resources */,
 				BBB1EBF925AF3C2100F5EA37 /* Preview Assets.xcassets in Resources */,
 				BBB1EBF625AF3C2100F5EA37 /* Assets.xcassets in Resources */,
+				BBBC768125DA32D400E72F29 /* tada.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -723,6 +768,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3EEEE88BB4E018B27280B180 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Sticky-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		54DC95F86993CF8CDE16E09F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sticky/Pods-Sticky-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sticky/Pods-Sticky-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sticky/Pods-Sticky-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BBB1EBEA25AF3C2100F5EA37 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -730,6 +817,7 @@
 			files = (
 				C28561A625D24ED5006FA7D2 /* Date+.swift in Sources */,
 				BB1C8A2725B875020000931A /* SearchResult.swift in Sources */,
+				BBBC768625DA34EB00E72F29 /* LottieView.swift in Sources */,
 				BBC66F2C25C55BA6007687D7 /* MapView.swift in Sources */,
 				BB1C8A2A25B875020000931A /* NotFound.swift in Sources */,
 				BBC66EDE25C5197A007687D7 /* RootPresentationMode.swift in Sources */,
@@ -968,7 +1056,9 @@
 		};
 		BBB1EC1425AF3C2200F5EA37 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6763C72601C500C5F38AAD9E /* Pods-Sticky.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -993,7 +1083,9 @@
 		};
 		BBB1EC1525AF3C2200F5EA37 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A14A4CE4E7AED10371BD6398 /* Pods-Sticky.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;

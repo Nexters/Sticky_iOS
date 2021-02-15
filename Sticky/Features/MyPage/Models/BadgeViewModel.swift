@@ -41,6 +41,7 @@ class BadgeViewModel: ObservableObject {
     // MARK: Lifecycle
 
     init() {
+        self.badgeQueue = getBadgeQueue(forKey: "badgeQueue")
         /// 스페셜 배지
         self.specials = getBadgeInfo(
             forKey: "specials",
@@ -73,10 +74,15 @@ class BadgeViewModel: ObservableObject {
 
     // MARK: Internal
 
-    // 획득한 배지 처리를 위한 queue
-    @Published var badgeQueue: [Badge] = []
-
     @Published var select = Badge(badgeType: BadgeType.monthly, badgeValue: "10", _name: "")
+
+    // 획득한 배지 처리를 위한 queue
+    @Published var badgeQueue: [Badge] {
+        didSet {
+            let data = try? encoder.encode(badgeQueue)
+            UserDefaults.standard.set(data, forKey: "badgeQueue")
+        }
+    }
 
     @Published var specials: BadgeInfo {
         didSet {
@@ -129,6 +135,22 @@ private func getBadgeInfo(
         do {
             let items = try decoder.decode([String: CountAndUpdated].self, from: data)
             return BadgeInfo(items: items)
+        } catch {
+            print(error.localizedDescription)
+            return default_
+        }
+    }
+    return default_
+}
+
+private func getBadgeQueue(
+    forKey: String,
+    default_: [Badge] = []
+) -> [Badge] {
+    if let data = UserDefaults.standard.value(forKey: forKey) as? Data {
+        do {
+            let badges = try decoder.decode([Badge].self, from: data)
+            return badges
         } catch {
             print(error.localizedDescription)
             return default_
