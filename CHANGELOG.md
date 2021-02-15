@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.16.0](https://github.com/Nexters/Sticky_iOS/compare/v1.15.0...v1.16.0) (2021-02-15)
+
+
+### Features
+
+* **lottie:** tada effect lottie 추가 ([f6ae320](https://github.com/Nexters/Sticky_iOS/commit/f6ae32017741e5ecb511b77c28f3cc192ed8cb29))
+* **new-badge:** 배지 획득, 레벨 업 화면 추가 ([8209293](https://github.com/Nexters/Sticky_iOS/commit/8209293c0938bc864c00a3e6836a980e5c7afd8e))
+
+
+### Bug Fixes
+
+* **new-badge:** 배지 획득 처리 및 ui 개선 ([797b236](https://github.com/Nexters/Sticky_iOS/commit/797b236e11a82e7b70f71db8b7a58d8553f72a10))
+
 ## [1.15.0](https://github.com/Nexters/Sticky_iOS/compare/v1.14.2...v1.15.0) (2021-02-14)
 
 
