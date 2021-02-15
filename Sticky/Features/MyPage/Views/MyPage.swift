@@ -34,8 +34,11 @@ struct MyPage: View {
             ) { EmptyView() }
 
             VStack(alignment: .leading, spacing: 20) {
-                Summary(seconds: user.accumulateSeconds + challengeState.timeData.toSeconds(), selection: $navSelection)
-                    .padding(.bottom, 15)
+                Summary(
+                    seconds: user.accumulateSeconds + challengeState.timeData.toSeconds(),
+                    selection: $navSelection
+                )
+                .padding(.bottom, 15)
                 Divider()
                     .padding(.bottom, 15)
                 BadgePanel(

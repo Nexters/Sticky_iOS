@@ -17,7 +17,8 @@ struct Summary: View {
 
     var body: some View {
         let tier = Tier.of(hours: seconds / 3600)
-        VStack(alignment: .trailing) {
+        let remainNextLevel = tier.next() - seconds
+        return VStack(alignment: .trailing) {
             NavigationLink(
                 destination: TierInformation()
             ) {
@@ -60,7 +61,7 @@ struct Summary: View {
 
                     // 다음 레벨 계산
                     if tier.level < 10 {
-                        Text("다음 레벨까지 \(tier.next() - seconds / 3600)시간 남았습니다")
+                        Text("다음 레벨까지 \(remainNextLevel.ToDaysHoursMinutes()) 남았습니다")
                             .foregroundColor(Color.GrayScale._600)
                     }
                 }
