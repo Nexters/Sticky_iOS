@@ -23,7 +23,7 @@ struct Main: View {
     @EnvironmentObject private var challengeState: ChallengeState
     @EnvironmentObject private var locationManager: LocationManager
     @EnvironmentObject private var user: User
-    @EnvironmentObject private var badgeViewModel: BadgeViewModel
+    @StateObject private var badgeViewModel = BadgeViewModel()
 
     @State var sharePresented: Bool = false
     @State var bannerDetailPresented: Bool = false
@@ -48,7 +48,7 @@ struct Main: View {
                     isActive: $mypagePresented
                 ) { EmptyView() }
                 NavigationLink(
-                    destination: NewItemShare(),
+                    destination: NewItemShare(badgeQueue: $badgeViewModel.badgeQueue),
                     isActive: $showNewBadge
                 ) { EmptyView() }
 
@@ -89,7 +89,10 @@ struct Main: View {
             }
             .navigationBarBackButtonHidden(true)
             .navigationBarTitle("", displayMode: .inline)
-            .navigationBarItems(leading: mypageButton, trailing: stopButton.isHidden(!(challengeState.type == .running)))
+            .navigationBarItems(
+                leading: mypageButton,
+                trailing: stopButton.isHidden(!(challengeState.type == .running))
+            )
         }
         .onAppear {
             // 처음 불릴 때, 타이머 동작

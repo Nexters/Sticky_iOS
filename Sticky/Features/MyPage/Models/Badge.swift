@@ -17,8 +17,25 @@ import Foundation
  - count: 획득 횟수
  - active: 활성여부
  */
-struct Badge: Hashable, Identifiable {
-    var id = UUID()
+struct Badge: Codable, Hashable {
+    // MARK: Lifecycle
+
+    init(
+        badgeType: BadgeType,
+        badgeValue: String,
+        _name: String = "",
+        updated: Date? = nil,
+        count: Int = 0
+    ) {
+        self.badgeType = badgeType
+        self.badgeValue = badgeValue
+        self._name = _name
+        self.updated = updated
+        self.count = count
+    }
+
+    // MARK: Internal
+
     var badgeType: BadgeType
     var badgeValue: String
     var _name: String = ""
@@ -93,7 +110,7 @@ extension Date {
  - special: 스페셜
  - level: 레벨
  */
-enum BadgeType: String {
+enum BadgeType: String, Codable {
     case special
     case monthly
     case continuous
