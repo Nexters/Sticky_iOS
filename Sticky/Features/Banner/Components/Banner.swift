@@ -17,7 +17,7 @@ struct Banner: View {
 
     @EnvironmentObject var user: User
     @EnvironmentObject var challengeState: ChallengeState
-    @EnvironmentObject var badgeViewModel: BadgeViewModel
+    @StateObject var badgeViewModel: BadgeViewModel
 
     var body: some View {
         var nextMonthlyBadge = nextBadge(
@@ -110,7 +110,8 @@ struct Banner_Previews: PreviewProvider {
     static var previews: some View {
         Banner(
             bannerDetailPresented: .constant(true),
-            mypagePresented: .constant(true)
+            mypagePresented: .constant(true),
+            badgeViewModel: BadgeViewModel()
         )
     }
 }

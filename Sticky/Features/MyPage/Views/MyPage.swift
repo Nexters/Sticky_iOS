@@ -13,7 +13,7 @@ struct MyPage: View {
     // MARK: Internal
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @EnvironmentObject var badgeViewModel: BadgeViewModel
+    @StateObject var badgeViewModel: BadgeViewModel
     @EnvironmentObject var user: User
     @EnvironmentObject var challengeState: ChallengeState
 
@@ -126,8 +126,7 @@ struct MyPage: View {
 
 struct MyPage_Previews: PreviewProvider {
     static var previews: some View {
-        MyPage()
-            .environmentObject(BadgeViewModel())
+        MyPage(badgeViewModel: BadgeViewModel())
             .environmentObject(User())
     }
 }

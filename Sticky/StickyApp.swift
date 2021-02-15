@@ -24,7 +24,6 @@ struct StickyApp: App {
                 .environmentObject(LocationSearchService())
                 .environmentObject(Location())
                 .environmentObject(RootViewManager())
-                .environmentObject(BadgeViewModel())
                 .environmentObject(ShareViewModel())
                 .environmentObject(user)
         }

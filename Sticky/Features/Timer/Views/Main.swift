@@ -44,7 +44,7 @@ struct Main: View {
                     isActive: $sharePresented
                 ) { EmptyView() }
                 NavigationLink(
-                    destination: MyPage(),
+                    destination: MyPage(badgeViewModel: badgeViewModel),
                     isActive: $mypagePresented
                 ) { EmptyView() }
                 NavigationLink(
@@ -58,7 +58,8 @@ struct Main: View {
                 VStack {
                     Banner(
                         bannerDetailPresented: $bannerDetailPresented,
-                        mypagePresented: $mypagePresented
+                        mypagePresented: $mypagePresented,
+                        badgeViewModel: badgeViewModel
                     )
                     Spacer()
                     TimerView(time: $challengeState.timeData)
@@ -82,7 +83,7 @@ struct Main: View {
 
                 BannerItemDetail(
                     isPresented: $bannerDetailPresented,
-                    badge: badgeViewModel.select
+                    badge: $badgeViewModel.select
                 )
                 .isHidden(!bannerDetailPresented)
                 .ignoresSafeArea(.all)
@@ -130,7 +131,7 @@ struct Main: View {
     }
 
     func addChallengeTimer() {
-        challengeState.timeData.second += 1
+        challengeState.timeData.minute += 60
         if challengeState.timeData.minute >= 60 {
             challengeState.timeData.hour += 1
             challengeState.timeData.minute = 0
