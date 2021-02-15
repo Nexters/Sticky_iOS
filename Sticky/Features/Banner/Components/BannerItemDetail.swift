@@ -11,7 +11,7 @@ import SwiftUI
 
 struct BannerItemDetail: View {
     @Binding var isPresented: Bool
-    var badge: Badge
+    @Binding var badge: Badge
 
     var body: some View {
         ZStack {
@@ -33,7 +33,7 @@ struct BannerItemDetail: View {
                                 .font(.custom("Modak", size: 28))
                                 .frame(width: 232, height: 32)
                                 .padding(.horizontal, 8)
-                            Text(badge.description) 
+                            Text(badge.description)
                                 .kerning(-0.3)
                                 .font(.system(size: 14))
                                 .multilineTextAlignment(.center)
@@ -67,7 +67,7 @@ struct BannerItemDetail_Previews: PreviewProvider {
         ZStack {
             BannerItemDetail(
                 isPresented: .constant(true),
-                badge: Badge(badgeType: BadgeType.monthly, badgeValue: "30", _name: "")
+                badge: .constant(Badge(badgeType: BadgeType.monthly, badgeValue: "30", _name: ""))
             )
 //            image: "monthly_30_locked",
 //            title: "30 Hours",
