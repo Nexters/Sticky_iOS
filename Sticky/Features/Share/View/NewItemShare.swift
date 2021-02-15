@@ -98,6 +98,5 @@ struct NewItemShare: View {
 struct NewItemShare_Previews: PreviewProvider {
     static var previews: some View {
         NewItemShare(badgeQueue: .constant([]))
-            .environmentObject(BadgeViewModel())
     }
 }

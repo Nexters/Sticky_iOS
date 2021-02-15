@@ -41,6 +41,7 @@ class BadgeViewModel: ObservableObject {
     // MARK: Lifecycle
 
     init() {
+        self.select = Badge(badgeType: BadgeType.monthly, badgeValue: "10", _name: "")
         self.badgeQueue = getBadgeQueue(forKey: "badgeQueue")
         /// 스페셜 배지
         self.specials = getBadgeInfo(
@@ -74,7 +75,7 @@ class BadgeViewModel: ObservableObject {
 
     // MARK: Internal
 
-    @Published var select = Badge(badgeType: BadgeType.monthly, badgeValue: "10", _name: "")
+    @Published var select: Badge
 
     // 획득한 배지 처리를 위한 queue
     @Published var badgeQueue: [Badge] {
