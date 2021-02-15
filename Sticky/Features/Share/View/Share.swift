@@ -24,6 +24,7 @@ struct Share: View {
 
     // MARK: Internal
 
+    @State var bgColor: LinearGradient = Color.Sticky.blue_bg
     var shareType: ShareType
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -42,7 +43,7 @@ struct Share: View {
                 setCardView(shareType: shareType)
 
                 Spacer()
-                ShareButtons()
+                ShareButtons(bgColor: $bgColor)
                     .padding(.bottom, 36)
             }
         }
@@ -68,7 +69,7 @@ struct Share: View {
     private var downloadButton: some View {
         Button(action: {
             print("download")
-            NotificationCenter.default.post(name: .captureScreen, object: nil, userInfo: ["index": UIState.activeCard])
+            NotificationCenter.default.post(name: .captureScreen, object: nil, userInfo: ["index": UIState.activeCard, "bgColor": bgColor])
         }) {
             Image("download")
                 .aspectRatio(contentMode: .fit)
@@ -79,6 +80,8 @@ struct Share: View {
         print("\(UIState.activeCard)asdasd")
         switch type {
         case .level:
+            
+            bgColor = Color.Sticky.blue_bg
             return
                 AnyView(
                     ZStack {
@@ -87,10 +90,13 @@ struct Share: View {
                     }
                 )
         case .monthly:
+            bgColor = Color.Sticky.blue_bg
             return AnyView(Color.Sticky.blue_bg.ignoresSafeArea())
         case .continuous:
+            bgColor = Color.Sticky.red_bg
             return AnyView(Color.Sticky.red_bg.ignoresSafeArea())
         case .special:
+            bgColor = Color.Sticky.blue_bg
             return AnyView(Color.Sticky.blue_bg.ignoresSafeArea())
         }
     }
@@ -110,8 +116,8 @@ struct Share: View {
             case BadgeType.special:
                 value = ""
             case BadgeType.continuous,
-                             BadgeType.monthly:
-                            value = badge.name
+                 BadgeType.monthly:
+                value = badge.name
             case BadgeType.level:
                 value = "\(shareViewModel.seconds.ToDaysHoursMinutes())"
             }

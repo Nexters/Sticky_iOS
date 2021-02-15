@@ -15,18 +15,24 @@ struct NewItemShare: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var user: User
     @Binding var badgeQueue: [Badge]
-
+    @State var bgColor: LinearGradient = Color.Sticky.blue_bg
     var body: some View {
         let badge = self.badgeQueue.first ??
             Badge(badgeType: .level, badgeValue: "1")
         let image = badge.image
         var value = ""
         switch badge.badgeType {
-        case .special: break
-        case .continuous,
-             .monthly:
+        case .special:
+            bgColor = Color.Sticky.blue_bg
+            break
+        case .continuous:
+            bgColor = Color.Sticky.red_bg
+            value = badge.name
+        case .monthly:
+            bgColor = Color.Sticky.blue_bg
             value = badge.name
         case .level:
+            bgColor = Color.Sticky.blue_bg
             let seconds = user.accumulateSeconds + user.thisMonthAccumulateSeconds
             value = "\(seconds.ToDaysHoursMinutes())"
         }
@@ -56,7 +62,7 @@ struct NewItemShare: View {
                 HStack {
                     Text("새로 달성한 레벨").bold() + Text("을 자랑해보세요!")
                 }.padding(.top, 66)
-                ShareButtons(textColor: Color.white)
+                ShareButtons(textColor: Color.white, bgColor: $bgColor)
                     .foregroundColor(Color.Palette.negative)
                     .padding(.bottom, 36)
             }.foregroundColor(.white)

@@ -41,8 +41,8 @@ public class ChallengeState: ObservableObject {
 
                 outingTimeDate.day = outingComponents.day ?? 0
                 outingTimeDate.hour = outingComponents.hour ?? 0
-                outingTimeDate.minute = 0 - (outingComponents.minute ?? 0)
-                outingTimeDate.second = 9 - (outingComponents.second ?? 0)
+                outingTimeDate.minute = 19 - (outingComponents.minute ?? 0)
+                outingTimeDate.second = 59 - (outingComponents.second ?? 0)
 
                 timeData.day = nowComponents.day ?? 0
                 timeData.hour = nowComponents.hour ?? 0
