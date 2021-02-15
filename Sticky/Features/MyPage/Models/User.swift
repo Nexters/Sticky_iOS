@@ -13,6 +13,7 @@ public class User: ObservableObject {
     init() {
         let _level = UserDefaults.standard.integer(forKey: "level")
         self.level = _level == 0 ? 1 : _level
+        print("User init")
     }
 
     // MARK: Internal

@@ -124,6 +124,8 @@ class BadgeViewModel: ObservableObject {
             UserDefaults.standard.set(data, forKey: "previous_continuous")
         }
     }
+    
+    
 }
 
 let encoder = PropertyListEncoder()
