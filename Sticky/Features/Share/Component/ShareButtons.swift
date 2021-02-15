@@ -10,23 +10,27 @@ import SwiftUI
 // MARK: - ShareButtons
 
 struct ShareButtons: View {
-    @EnvironmentObject var UIState : UIStateModel
+    @EnvironmentObject var UIState: UIStateModel
+    var buttonTextColor = Color.white
+    var textColor = Color.black
+
     var body: some View {
-        VStack(spacing: 16){
+        VStack(spacing: 16) {
             RoundedRectangle(cornerRadius: 12)
-                .frame(width: UIScreen.main.bounds.width * 260/360, height: UIScreen.main.bounds.height * 44/640, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .frame(width: UIScreen.main.bounds.width * 260/360, height: UIScreen.main.bounds.height * 44/640, alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/)
                 .overlay(Button(action: {
                     NotificationCenter.default.post(name: .shareInstagram, object: nil, userInfo: ["index": UIState.activeCard])
                 }, label: {
-                    HStack{
+                    HStack {
                         Image("instagram-gray")
-                        
-                        Text("인스타그램 공유하기")
+
+                        Text("Instagram 공유하기")
+                            .bold()
                             .font(Font.system(size: 17))
-                            .foregroundColor(.white)
+                            .foregroundColor(buttonTextColor)
                     }
                 }))
-            
+
             Button(action: {
                 NotificationCenter.default.post(name: .shareLocal, object: nil, userInfo: ["index": UIState.activeCard])
             }, label: {
@@ -34,7 +38,7 @@ struct ShareButtons: View {
                     .underline()
                     .font(Font.system(size: 17))
                     .bold()
-                    .foregroundColor(.black)
+                    .foregroundColor(textColor)
             })
         }
     }

@@ -23,11 +23,12 @@ struct Main: View {
     @EnvironmentObject private var challengeState: ChallengeState
     @EnvironmentObject private var locationManager: LocationManager
     @EnvironmentObject private var user: User
-    @EnvironmentObject private var badgeViewModel: BadgeViewModel
+    @StateObject private var badgeViewModel = BadgeViewModel()
 
     @State var sharePresented: Bool = false
     @State var bannerDetailPresented: Bool = false
     @State var mypagePresented: Bool = false
+    @State var showNewBadge: Bool = false
 
     @State var color = Color.Palette.primary
     @State var timer: Timer? = nil
@@ -46,6 +47,11 @@ struct Main: View {
                     destination: MyPage(),
                     isActive: $mypagePresented
                 ) { EmptyView() }
+                NavigationLink(
+                    destination: NewItemShare(badgeQueue: $badgeViewModel.badgeQueue),
+                    isActive: $showNewBadge
+                ) { EmptyView() }
+
                 setColor()
                     .ignoresSafeArea()
 
@@ -73,6 +79,7 @@ struct Main: View {
                 )
                 .isHidden(!popupState.isPresented)
                 .ignoresSafeArea(.all)
+
                 BannerItemDetail(
                     isPresented: $bannerDetailPresented,
                     badge: badgeViewModel.select
@@ -82,8 +89,10 @@ struct Main: View {
             }
             .navigationBarBackButtonHidden(true)
             .navigationBarTitle("", displayMode: .inline)
-
-            .navigationBarItems(leading: mypageButton, trailing: stopButton.isHidden(!(challengeState.type == .running)))
+            .navigationBarItems(
+                leading: mypageButton,
+                trailing: stopButton.isHidden(!(challengeState.type == .running))
+            )
         }
         .onAppear {
             // 처음 불릴 때, 타이머 동작
@@ -104,17 +113,20 @@ struct Main: View {
     }
 
     func startTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
-            /// 뱃지 획득 여부 체크
-
-            if challengeState.type == .running {
-                addChallengeTimer()
-            } else if challengeState.type == .outing {
-                addChallengeTimer()
-                addOutingTimer()
+        timer = Timer.scheduledTimer(
+            withTimeInterval: 1.0,
+            repeats: true,
+            block: { _ in
+                showNewBadge = !badgeViewModel.badgeQueue.isEmpty
+                checkLevelUp()
+                if challengeState.type == .running {
+                    addChallengeTimer()
+                } else if challengeState.type == .outing {
+                    addChallengeTimer()
+                    addOutingTimer()
+                }
             }
-
-        })
+        )
     }
 
     func addChallengeTimer() {
@@ -174,6 +186,24 @@ struct Main: View {
         print("내 정보:\(user.thisMonthAccumulateSeconds)")
     }
 
+    /// 레벨업 체크
+    func checkLevelUp() {
+        let tier = Tier(level: user.level)
+        let seconds = user.accumulateSeconds + challengeState.timeData.toSeconds()
+        let remains = tier.next() - seconds
+        if remains <= 0 {
+            user.level += 1
+            let _tier = Tier(level: user.level)
+            badgeViewModel.badgeQueue.append(
+                Badge(
+                    badgeType: .level,
+                    badgeValue: "\(user.level)",
+                    _name: "LV\(_tier.level) \(_tier.name())"
+                )
+            )
+        }
+    }
+
     private var stopButton: some View {
         Button(action: {
             self.popupState.popupStyle = .exit
@@ -216,6 +246,7 @@ struct Main: View {
 
     private func setColor() -> Color {
         var color: Color
+        let hours = (user.accumulateSeconds + challengeState.timeData.toSeconds()) / 3600
         switch challengeState.type {
         case .outing:
             color = Color.GrayScale._500
@@ -223,10 +254,10 @@ struct Main: View {
             color = Color.GrayScale._500
 
         default:
-            let level = Tier.of(hours: (user.accumulateSeconds + challengeState.timeData.toSeconds())).level
-            
+            let level = Tier.of(hours: hours).level
+
             switch level {
-            case 1...3:
+            case 0...3:
                 color = Color.Background.blue
             case 4...6:
                 color = Color.Background.yellow
