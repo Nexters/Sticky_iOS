@@ -48,7 +48,8 @@ struct Main: View {
                     isActive: $mypagePresented
                 ) { EmptyView() }
                 NavigationLink(
-                    destination: NewItemShare(badgeQueue: $badgeViewModel.badgeQueue),
+                    destination: NewItemShare(badgeQueue: $badgeViewModel.badgeQueue, seconds:
+                        user.accumulateSeconds + user.thisMonthAccumulateSeconds),
                     isActive: $showNewBadge
                 ) { EmptyView() }
 
@@ -131,7 +132,7 @@ struct Main: View {
     }
 
     func addChallengeTimer() {
-        challengeState.timeData.second += 1
+        challengeState.timeData.minute += 60
         if challengeState.timeData.minute >= 60 {
             challengeState.timeData.hour += 1
             challengeState.timeData.minute = 0
@@ -192,6 +193,10 @@ struct Main: View {
         let tier = Tier(level: user.level)
         let seconds = user.accumulateSeconds + challengeState.timeData.toSeconds()
         let remains = tier.next() - seconds
+        if tier.next() == -1 {
+            return
+        }
+
         if remains <= 0 {
             user.level += 1
             let _tier = Tier(level: user.level)

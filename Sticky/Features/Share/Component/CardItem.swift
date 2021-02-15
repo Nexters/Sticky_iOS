@@ -72,7 +72,7 @@ struct CardItem<Content: View>: View {
                     if self.id == id {
                         print("shareInstagram")
                         shareInstagram(
-                            bgImage: captureBGImage(origin: gr.frame(in: .global).origin, size: gr.size, bgColor: bgColor),
+                            bgImage: captureBGImage(bgColor: bgColor),
                             cardImage: captureCardImage(origin: gr.frame(in: .global).origin, size: gr.size)
                         )
                     }

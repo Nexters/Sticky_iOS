@@ -55,7 +55,7 @@ struct ShareCardView: View {
                 .onReceive(NotificationCenter.default.publisher(for: .shareInstagram), perform: { noti in
                     guard let color = noti.userInfo?["bgColor"] as? LinearGradient else { return }
                     shareInstagram(
-                        bgImage: captureBGImage(origin: gr.frame(in: .global).origin, size: gr.size, bgColor: color),
+                        bgImage: captureBGImage(bgColor: color),
                         cardImage: captureCardImage(origin: gr.frame(in: .global).origin, size: gr.size)
                     )
 

@@ -12,67 +12,62 @@ import SwiftUI
 struct NewItemShare: View {
     // MARK: Internal
 
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var user: User
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Binding var badgeQueue: [Badge]
-    @State var bgColor: LinearGradient = Color.Sticky.blue_bg
+
+    @State var image: String = ""
+    @State var description: String = ""
+    @State var value: String = ""
+    @State var badge = Badge(badgeType: .level, badgeValue: "1")
+    var seconds: Int
+
     var body: some View {
-        let badge = self.badgeQueue.first ??
-            Badge(badgeType: .level, badgeValue: "1")
-        let image = badge.image
-        var value = ""
-        switch badge.badgeType {
-        case .special:
-            bgColor = Color.Sticky.blue_bg
-            break
-        case .continuous:
-            bgColor = Color.Sticky.red_bg
-            value = badge.name
-        case .monthly:
-            bgColor = Color.Sticky.blue_bg
-            value = badge.name
-        case .level:
-            bgColor = Color.Sticky.blue_bg
-            let seconds = user.accumulateSeconds + user.thisMonthAccumulateSeconds
-            value = "\(seconds.ToDaysHoursMinutes())"
-        }
-        let description = badge.badgeType.toString(value: value)
-        return ZStack {
-            LottieView(name: "tada")
-                .ignoresSafeArea()
+        return
+            ZStack {
+                LottieView(name: "tada")
+                    .ignoresSafeArea()
 
-            VStack {
-                Spacer()
-                Text("CONGRATULATION!")
-                    .kerning(-0.3)
-                    .font(.custom("Modak", size: 28))
+                VStack {
+                    ShareCongratulation(image: image, badge: badge, description: description)
+                    
 
-                Image(image)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 160, height: 160)
-                Text(badge.name)
-                    .kerning(-0.3)
-                    .font(.custom("Modak", size: 28))
                 Text(description)
                     .kerning(-0.3)
                     .multilineTextAlignment(.center)
                     .font(.system(size: 14))
+                    HStack {
+                        Text("새로 달성한 레벨").bold() + Text("을 자랑해보세요!")
+                    }.padding(.top, 66)
 
-                HStack {
-                    Text("새로 달성한 레벨").bold() + Text("을 자랑해보세요!")
-                }.padding(.top, 66)
-                ShareButtons(textColor: Color.white, bgColor: $bgColor)
-                    .foregroundColor(Color.Palette.negative)
-                    .padding(.bottom, 36)
-            }.foregroundColor(.white)
-        }
-        .navigationBarTitle("", displayMode: .inline)
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(
-            leading: backButton,
-            trailing: downloadButton
-        )
+                    ShareButtons(textColor: Color.white, bgColor: .constant(Color.Sticky.blue_bg), shareId: 1)
+                        .foregroundColor(Color.Palette.negative)
+                        .padding(.bottom, 36)
+
+                }.foregroundColor(.white)
+                    .navigationBarTitle("", displayMode: .inline)
+                    .navigationBarBackButtonHidden(true)
+                    .navigationBarItems(
+                        leading: backButton,
+                        trailing: downloadButton
+                    )
+            }.onAppear {
+                if let firstBadge = badgeQueue.first {
+                    self.badge = firstBadge
+                    self.image = badge.image
+                    self.value = ""
+                    switch badge.badgeType {
+                    case .special:
+                        break
+                    case .continuous,
+                         .monthly:
+                        self.value = badge.name
+                    case .level:
+                        self.value = "\(seconds.ToDaysHoursMinutes())"
+                    }
+                    self.description = badge.badgeType.toString(value: value)
+                }
+            }
     }
 
     // MARK: Private
@@ -91,10 +86,50 @@ struct NewItemShare: View {
 
     private var downloadButton: some View {
         Button(action: {
-            print("download")
+            NotificationCenter.default.post(name: .captureCongratulation, object: nil)
         }) {
             Image("ic_download")
                 .aspectRatio(contentMode: .fit)
+        }
+    }
+}
+
+struct ShareCongratulation: View{
+    let image: String
+    let badge: Badge
+    let description: String
+    var body: some View{
+        GeometryReader { gr in
+            VStack {
+                Text("CONGRATULATION!")
+                    .kerning(-0.3)
+                    .font(.custom("Modak", size: 28))
+
+                Image(image)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 160, height: 160)
+                Text(badge.name)
+                    .kerning(-0.3)
+                    .font(.custom("Modak", size: 28))
+            }
+            .foregroundColor(.white)
+            .onReceive(NotificationCenter.default.publisher(for: .captureCongratulation), perform: { _ in
+
+                saveInPhoto(img: captureWithBG(origin: gr.frame(in: .global).origin, size: gr.size, bgColor: nil))
+
+            }).onReceive(NotificationCenter.default.publisher(for: .shareInstagramCongratulation), perform: { _ in
+                shareInstagram(
+                    bgImage: captureBGImage(bgColor: nil),
+                    cardImage: captureCardImageCongratulation(origin: gr.frame(in: .global).origin, size: gr.size)
+                )
+
+            }).onReceive(NotificationCenter.default.publisher(for: .shareLocalCongratulation), perform: { _ in
+                
+                shareLocal(image: captureWithBG(origin: gr.frame(in: .global).origin, size: gr.size, bgColor: nil))
+
+            })
+                .frame(width: gr.frame(in: .global).width, height: gr.frame(in: .global).height, alignment: .center)
         }
     }
 }
@@ -103,6 +138,7 @@ struct NewItemShare: View {
 
 struct NewItemShare_Previews: PreviewProvider {
     static var previews: some View {
-        NewItemShare(badgeQueue: .constant([]))
+        NewItemShare(badgeQueue: .constant([]), seconds: 0)
+            .environmentObject(User())
     }
 }

@@ -43,7 +43,7 @@ struct Share: View {
                 setCardView(shareType: shareType)
 
                 Spacer()
-                ShareButtons(bgColor: $bgColor)
+                ShareButtons(bgColor: $bgColor, shareId: 0)
                     .padding(.bottom, 36)
             }
         }

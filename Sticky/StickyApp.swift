@@ -46,8 +46,8 @@ struct StickyApp: App {
 //                }
                 let latitude = UserDefaults.standard.double(forKey: "latitude")
                 let longitude = UserDefaults.standard.double(forKey: "longitude")
-                print("latitude: \(latitude)")
-                print("longitude: \(longitude)")
+                print("App - latitude: \(latitude)")
+                print("App - longitude: \(longitude)")
                 locationManager.geofence = CLCircularRegion(
                     center: CLLocationCoordinate2D(
                         latitude: latitude,
@@ -65,12 +65,12 @@ struct StickyApp: App {
 //                    UserDefaults.standard.set(data, forKey: key_time)
 //                    UserDefaults.standard.setValue(Date(), forKey: key_date)
                 }
-                if let geofence = locationManager.geofence {
-                    print("latitude: \(geofence.center.latitude)")
-                    print("longitude: \(geofence.center.longitude)")
-                    UserDefaults.standard.set(geofence.center.latitude, forKey: "latitude")
-                    UserDefaults.standard.set(geofence.center.longitude, forKey: "longitude")
-                }
+//                if let geofence = locationManager.geofence {
+//                    print("latitude: \(geofence.center.latitude)")
+//                    print("longitude: \(geofence.center.longitude)")
+//                    UserDefaults.standard.set(geofence.center.latitude, forKey: "latitude")
+//                    UserDefaults.standard.set(geofence.center.longitude, forKey: "longitude")
+//                }
             case .background:
                 print("Background")
 

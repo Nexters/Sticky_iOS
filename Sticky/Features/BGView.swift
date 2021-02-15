@@ -7,12 +7,25 @@
 
 import SwiftUI
 
+// MARK: - BGView
+
 struct BGView: View {
-    var color: LinearGradient
+    var color: LinearGradient?
+    var image = Image("congratulationBg")
+
     var body: some View {
-        AnyView(color.ignoresSafeArea())
+        ZStack {
+            AnyView(color?.ignoresSafeArea())
+            image
+                .resizable()
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/)
+                .ignoresSafeArea()
+                .isHidden(color != nil)
+        }
     }
 }
+
+// MARK: - BGView_Previews
 
 struct BGView_Previews: PreviewProvider {
     static var previews: some View {

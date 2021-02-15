@@ -65,6 +65,8 @@ struct SearchResult: View {
     }
 
     func setHome() {
+        UserDefaults.standard.set(location.latitude, forKey: "latitude")
+        UserDefaults.standard.set(location.longitude, forKey: "longitude")
         locationManager.setGeofenceMyHome(region: MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude),
             span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
