@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.16.1](https://github.com/Nexters/Sticky_iOS/compare/v1.16.0...v1.16.1) (2021-02-15)
+
+
+### Bug Fixes
+
+* **badge-vm:** 버그 수정 ([bc1e08e](https://github.com/Nexters/Sticky_iOS/commit/bc1e08eeba28c800dfcdc2f8e2dcede1ea3f4adb))
+
 ## [1.16.0](https://github.com/Nexters/Sticky_iOS/compare/v1.15.0...v1.16.0) (2021-02-15)
 
 
