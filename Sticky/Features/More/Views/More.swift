@@ -11,6 +11,7 @@ import SwiftUI
 
 struct More: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var rootViewManager: RootViewManager
     @State private var isPresented: Bool=false
     @State private var selection: String?
     @Binding var more: Bool
@@ -42,7 +43,7 @@ struct More: View {
                 confirmHandler: {
                     UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
                     UserDefaults.standard.synchronize()
-                    exit(-1)
+                    rootViewManager.hasGeofence=false
                 },
                 title: "주소 변경하기",
                 description: "주소를 변경하면 지금까지 쌓은 모든 기록이 사라집니다.정말 주소를 변경하고 새로 시작 하시겠어요?",
