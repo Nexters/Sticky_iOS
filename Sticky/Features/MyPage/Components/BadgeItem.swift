@@ -30,7 +30,7 @@ struct BadgeItem: View {
                     ZStack {
                         Circle()
                             .foregroundColor(.black)
-                        Text("\(badge.count)")
+                        Text("\(badge.count > 9 ? "9+" : String(badge.count))")
                             .bold()
                             .foregroundColor(.white)
                             .font(Font.system(size: 12))
