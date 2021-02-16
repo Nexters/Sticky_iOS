@@ -14,4 +14,10 @@ extension Notification.Name {
     static let captureScreen = Notification.Name("captureScreen")
     static let shareLocal = Notification.Name("shareLocal")
     static let shareInstagram = Notification.Name("shareInstagram")
+    
+    static let captureCongratulation = Notification.Name("captureCongratulation")
+    static let shareInstagramCongratulation = Notification.Name("shareInstagramCongratulation")
+    static let shareLocalCongratulation = Notification.Name("shareLocalCongratulation")
+    
+    static let endAboutSticky = Notification.Name("endAboutSticky")
 }

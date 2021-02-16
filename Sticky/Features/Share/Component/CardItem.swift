@@ -19,7 +19,7 @@ struct CardItem<Content: View>: View {
         spacing: CGFloat,
         widthOfHiddenCards: CGFloat,
         cardHeight: CGFloat,
-        bgColor: Color,
+        bgColor: LinearGradient,
         @ViewBuilder _ content: () -> Content
     ) {
         self.content = content()
@@ -39,7 +39,7 @@ struct CardItem<Content: View>: View {
     let widthOfHiddenCards: CGFloat
     let spacing: CGFloat
     var id: Int
-    let bgColor: Color
+    let bgColor: LinearGradient
 
     var content: Content
 
@@ -72,7 +72,7 @@ struct CardItem<Content: View>: View {
                     if self.id == id {
                         print("shareInstagram")
                         shareInstagram(
-                            bgImage: captureBGImage(origin: gr.frame(in: .global).origin, size: gr.size, bgColor: bgColor),
+                            bgImage: captureBGImage(bgColor: bgColor),
                             cardImage: captureCardImage(origin: gr.frame(in: .global).origin, size: gr.size)
                         )
                     }
@@ -107,7 +107,7 @@ struct CardItem_Previews: PreviewProvider {
                     widthOfHiddenCards: 40,
                     // 카드의 높이
                     cardHeight: 360,
-                    bgColor: Color.red
+                    bgColor: Color.Sticky.blue_bg
                 ) {
                     Text("\(items[0].nickname)")
                 }
