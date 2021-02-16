@@ -50,6 +50,7 @@ class LocationManager: NSObject, ObservableObject {
 //        span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
 //    )
     @Published var isAlways: Bool = false
+    var challengeType: Main.ChallengeType?
 
     var geofence: CLCircularRegion? {
         willSet {
@@ -64,7 +65,6 @@ class LocationManager: NSObject, ObservableObject {
             }
         }
     }
-    
 
     @Published var status: CLAuthorizationStatus? {
         willSet { self.objectWillChange.send() }
@@ -73,20 +73,20 @@ class LocationManager: NSObject, ObservableObject {
     @Published var location = CLLocation() {
         willSet {
             print("LocationManager - location\(newValue) willSet")
-            print("LocationManager - 1 : \((self.geofence?.contains(newValue.coordinate) ?? false))")
+            print("LocationManager - 1 : \(self.geofence?.contains(newValue.coordinate) ?? false)")
             print("LocationManager - 2 : \(!(self.geofence?.contains(self.location.coordinate) ?? false))")
-            print("LocationManager - 3 : \(!(geofence?.contains(newValue.coordinate) ?? false))")
+            print("LocationManager - 3 : \(!(self.geofence?.contains(newValue.coordinate) ?? false))")
             print("LocationManager - 4 : \(self.geofence?.contains(self.location.coordinate) ?? false)")
-            
-            if (self.geofence?.contains(newValue.coordinate) ?? false), !(self.geofence?.contains(self.location.coordinate) ?? false) {
+
+            if self.geofence?.contains(newValue.coordinate) ?? false, !(self.geofence?.contains(self.location.coordinate) ?? false) {
                 // newValue내에 존재 && 이전Value내에 존재하지 X
                 print("LocationManager - geofence enter")
                 NotificationCenter.default.post(name: .enterGeofence, object: nil)
-            } else if !(geofence?.contains(newValue.coordinate) ?? false), (self.geofence?.contains(self.location.coordinate) ?? false) {
+            } else if !(self.geofence?.contains(newValue.coordinate) ?? false), self.geofence?.contains(self.location.coordinate) ?? false {
                 print("LocationManager - geofence exit")
                 NotificationCenter.default.post(name: .exitGeofence, object: nil)
             }
-            
+
             self.objectWillChange.send()
         }
     }
@@ -142,7 +142,7 @@ extension LocationManager: CLLocationManagerDelegate {
         didUpdateLocations locations: [CLLocation]
     ) {
         guard let location = locations.last else {
-            print("변경된 location이 없습니다")
+            print("LocationManager - 변경된 location이 없습니다")
             return
         }
         self.location = location
@@ -166,7 +166,7 @@ extension LocationManager: CLLocationManagerDelegate {
      챌린지 종료 카운트다운 초기화
      */
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        print("Enter: \(self.geofence?.center)")
+        print("LocationManager - Enter: \(self.geofence?.center)")
         NotificationCenter.default.post(name: .enterGeofence, object: nil)
     }
 
@@ -175,12 +175,19 @@ extension LocationManager: CLLocationManagerDelegate {
      - 현재 위치에서 벗어남을 감지하고 n초 후 챌린지 종료 카운트 다운 및 경고
      */
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        print("Exit: \(self.geofence?.center)")
+        print("LocationManager - Exit: \(self.geofence?.center)")
         NotificationCenter.default.post(name: .exitGeofence, object: nil)
     }
 
     /** 현재 위치를 지오펜싱으로 영역 처리
      */
+
+    func resetGeofence() {
+        if let reset_geofence = self.geofence {
+            scheduleNotification_exit(region: reset_geofence)
+        }
+    }
+
     func setGeofenceMyHome(region: MKCoordinateRegion) {
         let _geofenceExit = CLCircularRegion(
             center: region.center,
@@ -188,10 +195,8 @@ extension LocationManager: CLLocationManagerDelegate {
             identifier: "MyHomeRegion1"
         )
 
-        _geofenceExit.notifyOnExit = true
-        _geofenceExit.notifyOnEntry = true
         self.geofence = _geofenceExit
-        scheduleNotification_exit(region: _geofenceExit)
+//        scheduleNotification_exit(region: _geofenceExit)
 //        self.locationManager.startMonitoring(for: _geofenceExit)
     }
 }
@@ -201,46 +206,26 @@ extension LocationManager: CLLocationManagerDelegate {
 extension LocationManager: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, openSettingsFor notification: UNNotification?) {}
 
-    func scheduleNotification_enter(region: CLCircularRegion) {
-        print("asd")
-        let center = UNUserNotificationCenter.current()
-
-        center.removeAllPendingNotificationRequests() // deletes pending scheduled notifications, there is a schedule limit qty
-
-        let content = UNMutableNotificationContent()
-        content.title = "들어감"
-        content.body = "Run! This zone is dangerous! :o"
-        content.categoryIdentifier = "alarm"
-        content.sound = UNNotificationSound.default
-
-        // Ex. Trigger within a timeInterval
-        // let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-
-        let trigger = UNLocationNotificationTrigger(region: region, repeats: true)
-
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        self.notificationCenter.add(request)
-    }
-
     func scheduleNotification_exit(region: CLCircularRegion) {
-        print("asd")
         let center = UNUserNotificationCenter.current()
 
         center.removeAllPendingNotificationRequests() // deletes pending scheduled notifications, there is a schedule limit qty
 
         let content = UNMutableNotificationContent()
-        content.title = "나가기"
-        content.body = "Run! This zone is dangerous! :o"
+        content.title = "나갔다"
+        content.body = "?????"
         content.categoryIdentifier = "alarm"
         content.sound = UNNotificationSound.default
 
+        region.notifyOnEntry = false
+        region.notifyOnExit = true
         // Ex. Trigger within a timeInterval
         // let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
 
-        let trigger = UNLocationNotificationTrigger(region: region, repeats: true)
+        let trigger = UNLocationNotificationTrigger(region: region, repeats: false)
 
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        self.notificationCenter.add(request)
+        center.add(request)
     }
 
     func userNotificationCenter(
@@ -248,6 +233,11 @@ extension LocationManager: UNUserNotificationCenterDelegate {
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
-        completionHandler([.list, .badge, .sound])
+        if self.challengeType == .running {
+            print("로케이션 completion \(self.challengeType)")
+            completionHandler([.banner, .list, .sound])
+        } else {
+            print("로케이션 \(self.challengeType)")
+        }
     }
 }
