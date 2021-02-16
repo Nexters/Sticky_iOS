@@ -26,18 +26,37 @@ extension Color {
             startPoint: .top,
             endPoint: .bottom
         )
-        static let red_bg_start = Color("sticky-red-start")
-        static let red_bg_end = Color("sticky-red-end")
+        static let red_bg_start = Color("sticky-red-bg-start")
+        static let red_bg_end = Color("sticky-red-bg-end")
         static let red_bg = LinearGradient(
             gradient: Gradient(colors: [red_bg_start, red_bg_end]),
             startPoint: .top,
             endPoint: .bottom
         )
         
-        static let blue_card = Color("sticky-blue")
-        static let red_card = Color("sticky-red")
-        static let yellow_card = Color("sticky-yellow")
-        static let green_card = Color("sticky-green")
+        static let red_start = Color("sticky-red-start")
+        static let red_end = Color("sticky-red-end")
+        static let red = LinearGradient(
+            gradient: Gradient(colors: [red_start, red_end]),
+            startPoint: .top,
+            endPoint: .bottom
+        )
+        
+        static let yellow_start = Color("sticky-yellow-start")
+        static let yellow_end = Color("sticky-yellow-end")
+        static let yellow = LinearGradient(
+            gradient: Gradient(colors: [yellow_start, yellow_end]),
+            startPoint: .top,
+            endPoint: .bottom
+        )
+        
+        static let green_start = Color("sticky-green-start")
+        static let green_end = Color("sticky-green-end")
+        static let green = LinearGradient(
+            gradient: Gradient(colors: [green_start, green_end]),
+            startPoint: .top,
+            endPoint: .bottom
+        )
     }
     
     enum Card{

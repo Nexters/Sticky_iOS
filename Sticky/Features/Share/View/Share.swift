@@ -30,6 +30,8 @@ struct Share: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var shareViewModel: ShareViewModel
     @EnvironmentObject var UIState: UIStateModel
+    @EnvironmentObject var user: User
+    @EnvironmentObject var challengeState: ChallengeState
 
     var body: some View {
         ZStack {
@@ -78,27 +80,64 @@ struct Share: View {
 
     private func setBackgroundColor(type: BadgeType) -> AnyView {
         print("\(UIState.activeCard)asdasd")
-        switch type {
-        case .level:
-            
-            bgColor = Color.Sticky.blue_bg
-            return
-                AnyView(
-                    ZStack {
-                        Color.Sticky.blue_bg.ignoresSafeArea()
-                        Color.black.opacity(0.3)
-                    }
-                )
-        case .monthly:
-            bgColor = Color.Sticky.blue_bg
-            return AnyView(Color.Sticky.blue_bg.ignoresSafeArea())
-        case .continuous:
-            bgColor = Color.Sticky.red_bg
-            return AnyView(Color.Sticky.red_bg.ignoresSafeArea())
-        case .special:
-            bgColor = Color.Sticky.blue_bg
-            return AnyView(Color.Sticky.blue_bg.ignoresSafeArea())
+        switch shareType {
+        case .slide:
+            return AnyView(setColor().ignoresSafeArea())
+        
+        default:
+            switch type {
+            case .level:
+                
+                bgColor = Color.Sticky.blue_bg
+                return
+                    AnyView(
+                        ZStack {
+                            Color.Sticky.blue_bg.ignoresSafeArea()
+                            Color.black.opacity(0.3)
+                        }
+                    )
+            case .monthly:
+                bgColor = Color.Sticky.blue_bg
+                return AnyView(Color.Sticky.blue_bg.ignoresSafeArea())
+            case .continuous:
+                bgColor = Color.Sticky.red_bg
+                return AnyView(Color.Sticky.red_bg.ignoresSafeArea())
+            case .special:
+                bgColor = Color.Sticky.blue_bg
+                return AnyView(Color.Sticky.blue_bg.ignoresSafeArea())
+            }
         }
+        
+    }
+    
+    private func setColor() -> Color {
+        var color: Color
+        let hours = (user.accumulateSeconds + challengeState.timeData.toSeconds()) / 3600
+        switch challengeState.type {
+        case .outing:
+            color = Color.GrayScale._500
+        case .notAtHome:
+            color = Color.GrayScale._500
+
+        default:
+            let level = Tier.of(hours: hours).level
+
+            switch level {
+            case 0...3:
+                color = Color.Background.blue
+            case 4...6:
+                color = Color.Background.yellow
+            case 7...9:
+                color = Color.Background.green
+            case 10:
+                color = Color.Background.red
+            default:
+                print("Main - Should Implement Another Background Color Case in level")
+                color = Color.Background.blue
+            }
+        }
+
+        return color
     }
 
     private func setCardView(shareType: ShareType) -> AnyView {
