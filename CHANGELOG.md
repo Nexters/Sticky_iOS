@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.17.0](https://github.com/Nexters/Sticky_iOS/compare/v1.16.3...v1.17.0) (2021-02-16)
+
+
+### Features
+
+* **leave:** 초기화 기능 구현 ([80186a7](https://github.com/Nexters/Sticky_iOS/commit/80186a74e6df98b648f111f994561e9959a3d386))
+
+
+### Bug Fixes
+
+* **leave:** 앱 초기화 후 시작 화면으로 ([2800cd4](https://github.com/Nexters/Sticky_iOS/commit/2800cd48dbf2bf33cf50937edab2ad76d4431fd1))
+
 ### [1.16.3](https://github.com/Nexters/Sticky_iOS/compare/v1.16.2...v1.16.3) (2021-02-16)
 
 
