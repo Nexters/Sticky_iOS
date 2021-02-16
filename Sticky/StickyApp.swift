@@ -23,7 +23,7 @@ struct StickyApp: App {
                 .environmentObject(locationManager)
                 .environmentObject(LocationSearchService())
                 .environmentObject(Location())
-                .environmentObject(RootViewManager())
+                .environmentObject(rootViewManager)
                 .environmentObject(ShareViewModel())
                 .environmentObject(user)
         }
@@ -57,7 +57,7 @@ struct StickyApp: App {
                     identifier: "Myhome"
                 )
                 locationManager.region = MKCoordinateRegion(center: locationManager.geofence!.center, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
-                print("체크\(locationManager.isContains())")
+                
 
             case .inactive:
                 print("inActive")
@@ -88,6 +88,7 @@ struct StickyApp: App {
     @Environment(\.scenePhase) private var scenePhase
     private var challengeState = ChallengeState()
     private var locationManager = LocationManager()
+    private var rootViewManager = RootViewManager()
     private var user = User()
     private let key_time = "time"
     private let key_date = "date"

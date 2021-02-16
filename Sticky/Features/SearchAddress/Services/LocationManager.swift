@@ -64,6 +64,7 @@ class LocationManager: NSObject, ObservableObject {
             }
         }
     }
+    
 
     @Published var status: CLAuthorizationStatus? {
         willSet { self.objectWillChange.send() }

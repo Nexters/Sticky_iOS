@@ -10,12 +10,16 @@ import SwiftUI
 // MARK: - Onboarding
 
 struct Onboarding: View {
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var SlideGesture = CGSize.zero
     @State var SlideOne = false
     @State var SlideOnePrevious = false
     @State var SlideTwo = false
     @State var SlideTwoPrevious = false
     @State var isEndOnboarding = false
+    @State var isEndAboutSticky = false
+    var type: Int
 
     var body: some View {
         VStack {
@@ -32,6 +36,7 @@ struct Onboarding: View {
                     .padding(.top, 16)
                     .font(.custom("AppleSDGothicNeo", size: 14))
                     .foregroundColor(Color.GrayScale._500)
+                .isHidden(type != 0)
             }
             Spacer()
             ZStack {
@@ -50,6 +55,8 @@ struct Onboarding: View {
                                 self.SlideTwoPrevious = true
                             }
                             self.SlideGesture = .zero
+                            let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                            impactMed.impactOccurred()
                         }
                     )
 
@@ -75,6 +82,8 @@ struct Onboarding: View {
                                 self.SlideOne = false
                             }
                             self.SlideGesture = .zero
+                            let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                            impactMed.impactOccurred()
                         }
                     )
 
@@ -94,6 +103,8 @@ struct Onboarding: View {
                                 self.SlideOnePrevious = false
                             }
                             self.SlideGesture = .zero
+                            let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                            impactMed.impactOccurred()
                         }
                     )
             }
@@ -112,9 +123,13 @@ struct Onboarding: View {
             .padding(.bottom, 28)
             ZStack {
                 Button(action: {
-                    self.isEndOnboarding = true
+                    if type == 0 {
+                        self.isEndOnboarding = true
+                    }else{
+                        NotificationCenter.default.post(name: .endAboutSticky, object: nil)
+                    }
                 }, label: {
-                    Text("시작하기")
+                    Text( type == 0 ? "시작하기" : "완료")
                         .font(.custom("AppleSDGothicNeo", size: 17))
                         .foregroundColor(Color.white)
                 })
@@ -133,10 +148,13 @@ struct Onboarding: View {
                         self.SlideOne = true
                         self.SlideTwo = true
                     }
+                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                    impactMed.impactOccurred()
                 }, label: {
                     Text("다음")
                         .font(.custom("AppleSDGothicNeo", size: 17))
                         .foregroundColor(Color.Palette.primary)
+
                 })
                     .frame(width: 160, height: 60)
                     .background(Color.white)
@@ -148,6 +166,10 @@ struct Onboarding: View {
             .padding(.bottom, 32)
         }
         .navigationBarHidden(true)
+        .onReceive(NotificationCenter.default.publisher(for: .endAboutSticky), perform: { _ in
+
+            presentationMode.wrappedValue.dismiss()
+        })
     }
 }
 
@@ -155,6 +177,6 @@ struct Onboarding: View {
 
 struct Onboarding_Previews: PreviewProvider {
     static var previews: some View {
-        Onboarding()
+        Onboarding(type: 0)
     }
 }

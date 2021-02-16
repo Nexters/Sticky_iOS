@@ -89,6 +89,7 @@ struct Main: View {
                 .isHidden(!bannerDetailPresented)
                 .ignoresSafeArea(.all)
             }
+            .navigationBarHidden(!flag)
             .navigationBarBackButtonHidden(true)
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(
@@ -132,7 +133,7 @@ struct Main: View {
     }
 
     func addChallengeTimer() {
-        challengeState.timeData.minute += 60
+        challengeState.timeData.second += 1
         if challengeState.timeData.minute >= 60 {
             challengeState.timeData.hour += 1
             challengeState.timeData.minute = 0

@@ -57,7 +57,7 @@ struct More: View {
             EmptyView()
         }
         NavigationLink(
-            destination: Text("Sticky"),
+            destination: Onboarding(type: 1),
             tag: "about",
             selection: $selection
         ) {
