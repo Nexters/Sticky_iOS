@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "등급정보_KR.png",
+      "filename" : "level_info_KR.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "등급정보_KR-1.png",
+      "filename" : "level_info_KR-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

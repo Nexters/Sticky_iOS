@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "등급정보_EN.png",
+      "filename" : "level_info_EN.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "등급정보_EN-1.png",
+      "filename" : "level_info_EN-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
