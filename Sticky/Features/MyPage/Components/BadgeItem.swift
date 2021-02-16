@@ -12,6 +12,7 @@ import SwiftUI
 struct BadgeItem: View {
     var badge: Badge
     @Binding var selection: ShareType?
+    @Binding var showCountBadge: Bool
     @EnvironmentObject var shareViewModel: ShareViewModel
 
     var body: some View {
@@ -26,6 +27,18 @@ struct BadgeItem: View {
                     Image(badge.image)
                         .frame(width: 79, height: 79)
                         .foregroundColor(Color.Palette.negative)
+                    ZStack {
+                        Circle()
+                            .foregroundColor(.black)
+                        Text("\(badge.count > 9 ? "9+" : String(badge.count))")
+                            .bold()
+                            .foregroundColor(.white)
+                            .font(Font.system(size: 12))
+                    }
+                    .isHidden(!showCountBadge)
+                    .frame(width: 24, height: 24)
+                    .offset(x: 30, y: -35)
+                    .opacity(1.0)
                 }
                 .frame(width: 99, height: 99)
 
@@ -49,7 +62,8 @@ struct BadgeItem_Previews: PreviewProvider {
         ZStack {
             BadgeItem(
                 badge: Badge(badgeType: BadgeType.monthly, badgeValue: "10"),
-                selection: .constant(ShareType.card)
+                selection: .constant(ShareType.card),
+                showCountBadge: .constant(true)
             )
         }
         .environmentObject(ShareViewModel())
