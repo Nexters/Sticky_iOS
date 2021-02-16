@@ -49,6 +49,7 @@ struct AppMain: View {
                     popupState.popupStyle = .fail
                     popupState.isPresented = true
                     challengeState.type = .notAtHome
+                    print("로케이션 나가기 - \(popupState.isPresented)")
 //                    }
                 } else if challengeState.type == .notRunning {
                     print("시작하지 않은 상태인데 집 밖으로 나감")

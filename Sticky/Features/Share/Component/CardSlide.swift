@@ -24,6 +24,9 @@ struct CardSlide: View {
     @EnvironmentObject var user: User
 
     @Binding var items: [Card]
+    let randomBodyText_KR = ["와우! 끈기가 대단해요", "정말 대단해요!", "와 진짜 믿을수 없어"]
+    let randomBodyText_EN = ["Exellent..!", "Is this real?", "Wow, I can't believe it.", "Unbelievable", "That's amazing", "I'm proud of you"]
+    let randomNumber = Int.random(in: 0...5)
     let spacing: CGFloat = 16
     // 숨겨진 카드의 보여질 width
     let widthOfHiddenCards: CGFloat = 40 /// UIScreen.main.bounds.width - 10
@@ -131,11 +134,13 @@ struct CardSlide: View {
                                     .font(.custom("Modak", size: 80))
                                     .frame(height: 64)
                                     .padding(.bottom, 1)
+                                
                                 Text("일")
                                     .font(.system(size: 17, weight: .heavy, design: .default))
                                     .frame(width: 96)
                             }
                             .isHidden(isDayTextHidden, remove: isDayTextHidden)
+                            .foregroundColor(.white)
 
                             // Hour
                             VStack {
@@ -143,13 +148,12 @@ struct CardSlide: View {
                                     .font(.custom("Modak", size: 80))
                                     .frame(height: 64)
                                     .padding(.bottom, 1)
-                                    .foregroundColor(.white)
                                 Text("시간")
-                                    .foregroundColor(.white)
                                     .font(.system(size: 17, weight: .heavy, design: .default))
                                     .frame(width: 96)
                             }
                             .isHidden(isHourTextHidden, remove: isHourTextHidden)
+                            .foregroundColor(.white)
 
                             // 얘 높이가 Text랑 달라서 그룹지어서 처리해야함
                             // Minute
@@ -166,11 +170,13 @@ struct CardSlide: View {
                                     .frame(width: 96)
                             }
                             .isHidden(!isDayTextHidden, remove: !isDayTextHidden)
+                            .foregroundColor(.white)
                         }
                         .frame(width: 216)
                         .padding(.top, 24)
-                        Text("body text")
+                        Text(getRandomText())
                             .padding(.top, 24)
+                            .foregroundColor(.white)
                         Spacer()
                     }
                 }.frame(width: gr.frame(in: .global).size.width, height: gr.frame(in: .global).height, alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/)
@@ -199,6 +205,15 @@ struct CardSlide: View {
         default:
             print("CardSlide - Should implement level over '4'")
             return Color.Sticky.blue
+        }
+    }
+    
+    private func getRandomText() -> String{
+        if Locale.current.regionCode == "KR"{
+            return randomBodyText_KR[randomNumber % 3]
+        }else{
+            return randomBodyText_EN[randomNumber]
+            
         }
     }
 
