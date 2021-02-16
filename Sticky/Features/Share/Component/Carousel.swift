@@ -100,7 +100,7 @@ struct Carousel_Previews: PreviewProvider {
                     // 가려진 카드의 너비
                     widthOfHiddenCards: 40,
                     // 카드의 높이
-                    cardHeight: 360, bgColor: Color.red
+                    cardHeight: 360, bgColor: Color.Sticky.blue_bg
                 ) {
                     VStack {
                         HStack {
