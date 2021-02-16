@@ -48,6 +48,7 @@ struct StickyApp: App {
                 let longitude = UserDefaults.standard.double(forKey: "longitude")
                 print("App - latitude: \(latitude)")
                 print("App - longitude: \(longitude)")
+                locationManager.challengeType = challengeState.type
                 locationManager.geofence = CLCircularRegion(
                     center: CLLocationCoordinate2D(
                         latitude: latitude,

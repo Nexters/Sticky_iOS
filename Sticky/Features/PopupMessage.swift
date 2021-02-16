@@ -12,6 +12,7 @@ import SwiftUI
 struct PopupMessage: View {
     // MARK: Internal
 
+    @EnvironmentObject var popupState: PopupStateModel
     @Binding var isPresented: Bool
     @Binding var numberOfHeart: Int
     let message: Message
@@ -49,7 +50,7 @@ struct PopupMessage: View {
                 )
 
                 Button(action: {
-                    self.isPresented = false
+                    popupState.isPresented = false
                     self.confirmHandler()
                 }, label: {
                     RoundedRectangle(cornerRadius: 16)
@@ -70,7 +71,8 @@ struct PopupMessage: View {
                 }).padding(.bottom, 8)
 
                 Button(action: {
-                    self.isPresented = false
+                    popupState.isPresented = false
+                    print("로케이션 나가기(Popup) - \(popupState.isPresented)")
                 }, label: {
                     RoundedRectangle(cornerRadius: 16)
                         .stroke(Color.black.opacity(0.1), lineWidth: 1)
