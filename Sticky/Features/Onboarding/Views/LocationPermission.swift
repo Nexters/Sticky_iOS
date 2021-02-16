@@ -43,7 +43,7 @@ struct LocationPermission: View {
                         .font(.custom("AppleSDGothicNeo", size: 14))
                         .padding(.top, 12)
 
-                    NavigationLink(destination: Onboarding(), isActive: $isAlways) {
+                    NavigationLink(destination: Onboarding(type: 0), isActive: $isAlways) {
                         EmptyView()
                     }
                     Button(action: {

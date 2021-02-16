@@ -125,6 +125,10 @@ class BadgeViewModel: ObservableObject {
         }
     }
     
+    func getBadgeInShareCard() -> [Badge]{
+        var badges: [(String, CountAndUpdated)] = []
+        return []
+    }
     
 }
 
