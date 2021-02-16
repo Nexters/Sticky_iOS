@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.18.0](https://github.com/Nexters/Sticky_iOS/compare/v1.17.0...v1.18.0) (2021-02-16)
+
+
+### Features
+
+* **mypage-monthly-filter:**  월간 배지 필터 구현 ([f2ca033](https://github.com/Nexters/Sticky_iOS/commit/f2ca033ca78d8e886356b310f334583d4fb5fb4b))
+* **mypage-monthly-filter:** 10 이상일 경우 9+ 처리 ([058d1b8](https://github.com/Nexters/Sticky_iOS/commit/058d1b8572034568bc2dfb90815b4ee0e6662dfa))
+
 ## [1.17.0](https://github.com/Nexters/Sticky_iOS/compare/v1.16.3...v1.17.0) (2021-02-16)
 
 
