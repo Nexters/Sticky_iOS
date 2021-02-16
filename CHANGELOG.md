@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.16.3](https://github.com/Nexters/Sticky_iOS/compare/v1.16.2...v1.16.3) (2021-02-16)
+
+
+### Bug Fixes
+
+* 공유하기 레벨 별 배경 색 ([14e2293](https://github.com/Nexters/Sticky_iOS/commit/14e2293afec45ec7783a1fe3987116ed6e6cc793))
+* 외출하기 네비게이션바 히든 ([a2d9f87](https://github.com/Nexters/Sticky_iOS/commit/a2d9f87bec26b7af88a86f290d7fb883d0c312a6))
+
 ### [1.16.2](https://github.com/Nexters/Sticky_iOS/compare/v1.16.1...v1.16.2) (2021-02-15)
 
 
