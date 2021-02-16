@@ -184,21 +184,21 @@ struct CardSlide: View {
         .animation(.spring())
     }
 
-    private var bgColor: Color {
+    private var bgColor: LinearGradient {
         // MARK: 색 변경해야 함
 
         switch level {
         case 1:
-            return Color.Sticky.blue_card
+            return Color.Sticky.blue
         case 2:
-            return Color.Sticky.yellow_card
+            return Color.Sticky.yellow
         case 3:
-            return Color.Sticky.green_card
+            return Color.Sticky.green
         case 4:
-            return Color.Sticky.red_card
+            return Color.Sticky.red
         default:
             print("CardSlide - Should implement level over '4'")
-            return Color.Sticky.blue_card
+            return Color.Sticky.blue
         }
     }
 

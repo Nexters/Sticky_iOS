@@ -16,11 +16,34 @@ struct MyPage: View {
     @StateObject var badgeViewModel: BadgeViewModel
     @EnvironmentObject var user: User
     @EnvironmentObject var challengeState: ChallengeState
+    @State var showingActionSheet = false
 
-    var monthlyButton = AnyView(Button(action: {}) {
-        Image("slice")
-            .aspectRatio(contentMode: .fit)
-    })
+    var monthlyButton: some View {
+        AnyView(
+            Button(action: {
+                self.showingActionSheet = true
+            }, label: {
+                Image("slice")
+                    .aspectRatio(contentMode: .fit)
+            })
+                .actionSheet(isPresented: $showingActionSheet, content: {
+                    ActionSheet(title: Text("월간 기록")
+                                    .bold()
+                                    .foregroundColor(.black),
+                                message: nil,
+                                buttons: [
+                                    .default(Text("전체 기록 보기"), action: {
+                                        print("ActionSheet - 전체기록")
+                                    }),
+
+                                    .default(Text("이번달 기록 보기"), action: {
+                                        print("ActionSheet - 전체기록")
+                                    }),
+                                    .cancel(Text("취소"))
+                                ])
+                })
+        )
+    }
 
     var body: some View {
         ScrollView {
@@ -54,7 +77,8 @@ struct MyPage: View {
                 BadgePanel(
                     title: "월간 달성",
                     subtitle: "한달 내에 쌓은 시간을 기준으로 합니다.",
-                    trailing: monthlyButton,
+                    trailing: (monthlyButton as? AnyView),
+
                     badges: makeBadges(
                         badgeType: BadgeType.monthly,
                         dict: badgeViewModel.monthly.items
@@ -128,5 +152,6 @@ struct MyPage_Previews: PreviewProvider {
     static var previews: some View {
         MyPage(badgeViewModel: BadgeViewModel())
             .environmentObject(User())
+            .environmentObject(ChallengeState())
     }
 }

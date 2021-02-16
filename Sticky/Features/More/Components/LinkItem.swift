@@ -7,8 +7,11 @@
 
 import SwiftUI
 
+// MARK: - LinkItem
+
 struct LinkItem: View {
     let text: String
+
     var body: some View {
         HStack {
             Text(text)
@@ -20,6 +23,8 @@ struct LinkItem: View {
         }.frame(height: 60)
     }
 }
+
+// MARK: - LinkItem_Previews
 
 struct LinkItem_Previews: PreviewProvider {
     static var previews: some View {

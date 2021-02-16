@@ -124,6 +124,12 @@ class BadgeViewModel: ObservableObject {
             UserDefaults.standard.set(data, forKey: "previous_continuous")
         }
     }
+    
+    func getBadgeInShareCard() -> [Badge]{
+        var badges: [(String, CountAndUpdated)] = []
+        return []
+    }
+    
 }
 
 let encoder = PropertyListEncoder()
