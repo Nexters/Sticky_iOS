@@ -43,27 +43,19 @@ class BadgeViewModel: ObservableObject {
     init() {
         self.select = Badge(badgeType: BadgeType.monthly, badgeValue: "10", _name: "")
         self.badgeQueue = getBadgeQueue(forKey: "badgeQueue")
+
         /// 스페셜 배지
         self.specials = getBadgeInfo(
             forKey: "specials",
             default_: special_default
         )
-        /// 전체 획득한 월간 배지
-        self.previous_monthly = getBadgeInfo(
-            forKey: "previous_monthly",
-            default_: monthly_default
-        )
+
+        self.showCountBadge = false
         /// 이번 달에 획득한 배지리스트
         print("BadgeViewModel - monthly: \(getBadgeInfo(forKey: "monthly"))")
         self.monthly = getBadgeInfo(
             forKey: "monthly",
             default_: monthly_default
-        )
-
-        /// 전체 획득한 연속 배지
-        self.previous_continuous = getBadgeInfo(
-            forKey: "previous_continuous",
-            default_: continuous_default
         )
         /// 현재 챌린지의 누적
         print("BadgeViewModel - continuous: \(getBadgeInfo(forKey: "continuous"))")
@@ -76,6 +68,8 @@ class BadgeViewModel: ObservableObject {
     // MARK: Internal
 
     @Published var select: Badge
+
+    @Published var showCountBadge: Bool
 
     // 획득한 배지 처리를 위한 queue
     @Published var badgeQueue: [Badge] {
@@ -90,14 +84,6 @@ class BadgeViewModel: ObservableObject {
             print("specials set: \(specials)")
             let data = try? encoder.encode(specials.items)
             UserDefaults.standard.set(data, forKey: "specials")
-        }
-    }
-
-    @Published var previous_monthly: BadgeInfo {
-        didSet {
-            print("previous_monthly set: \(previous_monthly)")
-            let data = try? encoder.encode(previous_monthly.items)
-            UserDefaults.standard.set(data, forKey: "previous_monthly")
         }
     }
 
@@ -117,19 +103,10 @@ class BadgeViewModel: ObservableObject {
         }
     }
 
-    @Published var previous_continuous: BadgeInfo {
-        didSet {
-            print("previous_continuous set: \(continuous)")
-            let data = try? encoder.encode(previous_continuous.items)
-            UserDefaults.standard.set(data, forKey: "previous_continuous")
-        }
-    }
-    
-    func getBadgeInShareCard() -> [Badge]{
+    func getBadgeInShareCard() -> [Badge] {
         var badges: [(String, CountAndUpdated)] = []
         return []
     }
-    
 }
 
 let encoder = PropertyListEncoder()
@@ -183,4 +160,17 @@ func nextBadge(
         badgeValue: badgeValue,
         updated: nil
     )
+}
+
+/// 이번 달 배지만 보여주기
+func filterByThisMonth(badges: [String: CountAndUpdated]) -> [String: CountAndUpdated] {
+    let calendar = Calendar(identifier: .gregorian)
+    let component = calendar.dateComponents([.year, .month], from: Date())
+    let thisYear = component.year
+    let thisMonth = component.month
+    return badges.filter { _, countAndUpdated in
+        guard let date = countAndUpdated.date else { return true }
+        let _component = calendar.dateComponents([.year, .month], from: date)
+        return thisYear == _component.year && thisMonth == _component.month
+    }
 }

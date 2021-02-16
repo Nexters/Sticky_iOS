@@ -17,6 +17,7 @@ struct BadgePanel: View {
     var trailing: AnyView?
     var badges: [Badge]?
     @Binding var selection: ShareType?
+    @Binding var showCountBadge: Bool
 
     var body: some View {
         VStack {
@@ -41,7 +42,8 @@ struct BadgePanel: View {
                 ForEach(badges!, id: \.self) { badge in
                     BadgeItem(
                         badge: badge,
-                        selection: $selection
+                        selection: $selection,
+                        showCountBadge: $showCountBadge
                     )
                 }
             }
@@ -66,8 +68,15 @@ struct BadgePanel_Previews: PreviewProvider {
     // MARK: Internal
 
     static var previews: some View {
-        BadgePanel(title: "누적 달성", subtitle: "누적주적", trailing: AnyView(Text("이번 달")), badges: badgeMocks(count: 6), selection: .constant(ShareType.card))
-            .padding()
+        BadgePanel(
+            title: "누적 달성",
+            subtitle: "누적주적",
+            trailing: AnyView(Text("이번 달")),
+            badges: badgeMocks(count: 6),
+            selection: .constant(ShareType.card),
+            showCountBadge: .constant(true)
+        )
+        .padding()
     }
 
     // MARK: Private
