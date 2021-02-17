@@ -71,30 +71,22 @@ struct MyPage: View {
                 BadgePanel(
                     title: "스페셜 달성",
                     subtitle: "특별한 기록을 달성하면 받을 수 있어요.",
-                    badges: [],
+                    badges: badgeViewModel.specials,
                     selection: $navSelection,
-                    showCountBadge: $badgeViewModel.showCountBadge
+                    showCountBadge: .constant(false)
                 )
                 BadgePanel(
                     title: "월간 달성",
                     subtitle: "한달 내에 쌓은 시간을 기준으로 합니다.",
                     trailing: monthlyButton as? AnyView,
-                    badges: makeBadges(
-                        badgeType: BadgeType.monthly,
-                        dict: badgeViewModel.showCountBadge ?
-                            filterByThisMonth(badges: badgeViewModel.monthly.items) :
-                            badgeViewModel.monthly.items
-                    ),
+                    badges: badgeViewModel.monthly,
                     selection: $navSelection,
                     showCountBadge: $badgeViewModel.showCountBadge
                 )
                 BadgePanel(
                     title: "연속 달성",
                     subtitle: "멈추지 않고 이어서 기록된 시간을 기준으로 합니다.",
-                    badges: makeBadges(
-                        badgeType: BadgeType.continuous,
-                        dict: badgeViewModel.continuous.items
-                    ),
+                    badges: badgeViewModel.continuous,
                     selection: $navSelection,
                     showCountBadge: .constant(false)
                 )
@@ -110,12 +102,6 @@ struct MyPage: View {
             leading: backButton,
             trailing: moreButton
         )
-        .onAppear {
-            print("Special: \(badgeViewModel.specials)")
-            print("Monthly: \(badgeViewModel.monthly)")
-            print("Continuous: \(badgeViewModel.continuous)")
-            print("챌린지 시간 누적: \(user.accumulateSeconds)")
-        }
     }
 
     var backButton: some View {

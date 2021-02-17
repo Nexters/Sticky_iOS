@@ -7,33 +7,9 @@
 
 import Foundation
 
-// MARK: - BadgeInfo
-
-// typealias BadgeInfo = [String: CountAndUpdated]
-
-struct BadgeInfo: Codable {
-    var items: [String: CountAndUpdated]
-}
-
-// MARK: - CountAndUpdated
-
-struct CountAndUpdated: Codable {
-    var count: Int = 0
-    var date: Date? = nil
-}
-
-let special_default = BadgeInfo(items: [Special.first.rawValue: CountAndUpdated()])
-
-let monthly_default = BadgeInfo(items: [
-    "10": CountAndUpdated(), "30": CountAndUpdated(), "50": CountAndUpdated(),
-    "100": CountAndUpdated(), "150": CountAndUpdated(), "300": CountAndUpdated(),
-    "500": CountAndUpdated(), "700": CountAndUpdated(), "720": CountAndUpdated(),
-])
-/// 챌린지당 몇시간을 유지했는지
-let continuous_default = BadgeInfo(items: [
-    "0.5": CountAndUpdated(), "1": CountAndUpdated(), "3": CountAndUpdated(), "7": CountAndUpdated(),
-    "10": CountAndUpdated(), "15": CountAndUpdated(), "30": CountAndUpdated(),
-])
+let special_default = ["first", "locked", "locked"].map { keyword in Badge(badgeType: .special, badgeValue: keyword) }
+let monthly_default = ["10", "30", "50", "100", "150", "300", "500", "700", "720"].map { hours in Badge(badgeType: .monthly, badgeValue: hours) }
+let continuous_default = ["0.5", "1", "3", "7", "10", "15", "30"].map { days in Badge(badgeType: .continuous, badgeValue: days) }
 
 // MARK: - BadgeViewModel
 
@@ -45,21 +21,21 @@ class BadgeViewModel: ObservableObject {
         self.badgeQueue = getBadgeQueue(forKey: "badgeQueue")
 
         /// 스페셜 배지
-        self.specials = getBadgeInfo(
+        self.specials = loadBadges(
             forKey: "specials",
             default_: special_default
         )
 
         self.showCountBadge = false
         /// 이번 달에 획득한 배지리스트
-        print("BadgeViewModel - monthly: \(getBadgeInfo(forKey: "monthly"))")
-        self.monthly = getBadgeInfo(
+        print("BadgeViewModel - monthly: \(loadBadges(forKey: "monthly"))")
+        self.monthly = loadBadges(
             forKey: "monthly",
             default_: monthly_default
         )
         /// 현재 챌린지의 누적
-        print("BadgeViewModel - continuous: \(getBadgeInfo(forKey: "continuous"))")
-        self.continuous = getBadgeInfo(
+        print("BadgeViewModel - continuous: \(loadBadges(forKey: "continuous"))")
+        self.continuous = loadBadges(
             forKey: "continuous",
             default_: continuous_default
         )
@@ -79,46 +55,41 @@ class BadgeViewModel: ObservableObject {
         }
     }
 
-    @Published var specials: BadgeInfo {
+    @Published var specials: [Badge] {
         didSet {
             print("specials set: \(specials)")
-            let data = try? encoder.encode(specials.items)
+            let data = try? encoder.encode(specials)
             UserDefaults.standard.set(data, forKey: "specials")
         }
     }
 
-    @Published var monthly: BadgeInfo {
+    @Published var monthly: [Badge] {
         didSet {
             print("monthly set: \(monthly)")
-            let data = try? encoder.encode(monthly.items)
+            let data = try? encoder.encode(monthly)
             UserDefaults.standard.set(data, forKey: "monthly")
         }
     }
 
-    @Published var continuous: BadgeInfo {
+    @Published var continuous: [Badge] {
         didSet {
             print("continuous set: \(continuous)")
-            let data = try? encoder.encode(continuous.items)
+            let data = try? encoder.encode(continuous)
             UserDefaults.standard.set(data, forKey: "continuous")
         }
-    }
-
-    func getBadgeInShareCard() -> [Badge] {
-        var badges: [(String, CountAndUpdated)] = []
-        return []
     }
 }
 
 let encoder = PropertyListEncoder()
 let decoder = PropertyListDecoder()
-private func getBadgeInfo(
+private func loadBadges(
     forKey: String,
-    default_: BadgeInfo = BadgeInfo(items: [:])
-) -> BadgeInfo {
+    default_: [Badge] = []
+) -> [Badge] {
     if let data = UserDefaults.standard.value(forKey: forKey) as? Data {
         do {
-            let items = try decoder.decode([String: CountAndUpdated].self, from: data)
-            return BadgeInfo(items: items)
+            let badges = try decoder.decode([Badge].self, from: data)
+            return badges
         } catch {
             print(error.localizedDescription)
             return default_
@@ -143,34 +114,35 @@ private func getBadgeQueue(
     return default_
 }
 
-/// 다음 획득할 월간 배지
+/// 다음 획득할 배지
 func nextBadge(
     badgeType: BadgeType,
-    badges: [String: CountAndUpdated]
+    badges: [Badge]
 ) -> Badge {
-    /// 월간은 무조건 1회인데, 연속은 1회가 아님
-    let next = badges
-        .filter { _, countAndDate in countAndDate.count == 0 }
-        .sorted { Double($0.0)! < Double($1.0)! }
-        .first
-    let badgeValue = next?.key ?? ""
-
-    return Badge(
-        badgeType: badgeType,
-        badgeValue: badgeValue,
-        updated: nil
-    )
+    return badges
+        .filter { badge in
+            guard let date = badge.updated else { return true }
+            // 마지막 갱신일이 이번 달이 아닐 경우 획득 가능
+            return !isItThisMonth(date: date)
+        }
+        .sorted { Double($0.badgeValue)! < Double($1.badgeValue)! }
+        .first ?? Badge(badgeType: .special, badgeValue: "locked")
 }
 
 /// 이번 달 배지만 보여주기
-func filterByThisMonth(badges: [String: CountAndUpdated]) -> [String: CountAndUpdated] {
+func filterByThisMonth(badges: [Badge]) -> [Badge] {
+    return badges.filter { badge in
+        guard let date = badge.updated else { return true }
+        return isItThisMonth(date: date)
+    }
+}
+
+/// 이번달 여부 확인
+func isItThisMonth(date: Date) -> Bool {
     let calendar = Calendar(identifier: .gregorian)
     let component = calendar.dateComponents([.year, .month], from: Date())
     let thisYear = component.year
     let thisMonth = component.month
-    return badges.filter { _, countAndUpdated in
-        guard let date = countAndUpdated.date else { return true }
-        let _component = calendar.dateComponents([.year, .month], from: date)
-        return thisYear == _component.year && thisMonth == _component.month
-    }
+    let _component = calendar.dateComponents([.year, .month], from: date)
+    return thisYear == _component.year && thisMonth == _component.month
 }
