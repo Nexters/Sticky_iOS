@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.18.1](https://github.com/Nexters/Sticky_iOS/compare/v1.18.0...v1.18.1) (2021-02-17)
+
+
+### Bug Fixes
+
+* 노티피케이션 챌린지 중, 나갈 때만 구현 ([1cd2330](https://github.com/Nexters/Sticky_iOS/commit/1cd23304b5f3cab901ee568b48ede55abb1e7dae))
+* 이미지 ([3a6546d](https://github.com/Nexters/Sticky_iOS/commit/3a6546d307ad4f0532ba1b4ec9eb6dd3a5088510))
+
 ## [1.18.0](https://github.com/Nexters/Sticky_iOS/compare/v1.17.0...v1.18.0) (2021-02-16)
 
 
