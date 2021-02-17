@@ -39,7 +39,7 @@ struct BadgePanel: View {
             }
 
             LazyVGrid(columns: columns) {
-                ForEach(badges!, id: \.self) { badge in
+                ForEach(badges!, id: \.id) { badge in
                     BadgeItem(
                         badge: badge,
                         selection: $selection,

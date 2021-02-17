@@ -17,7 +17,7 @@ import Foundation
  - count: 획득 횟수
  - active: 활성여부
  */
-struct Badge: Codable, Hashable, Identifiable {
+class Badge: Codable, Hashable, Identifiable {
     // MARK: Lifecycle
 
     init(
@@ -34,14 +34,17 @@ struct Badge: Codable, Hashable, Identifiable {
         self.count = count
     }
 
+    // MARK: Public
+
+    public var updated: Date?
+    public var count: Int = 0
+
     // MARK: Internal
 
     var id = UUID()
     var badgeType: BadgeType
     var badgeValue: String
     var _name: String = ""
-    var updated: Date?
-    var count: Int = 0
 
     // 업데이트 일자가 이번 달에만 활성화
     var active: Bool {
@@ -100,6 +103,22 @@ struct Badge: Codable, Hashable, Identifiable {
              .special:
             return "준비 중입니다."
         }
+    }
+
+    static func == (lhs: Badge, rhs: Badge) -> Bool {
+        return lhs.badgeType == rhs.badgeType
+            && lhs.badgeValue == rhs.badgeValue
+            && lhs._name == rhs._name
+            && lhs.updated == rhs.updated
+            && lhs.count == rhs.count
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(badgeType)
+        hasher.combine(badgeValue)
+        hasher.combine(_name)
+        hasher.combine(updated)
+        hasher.combine(count)
     }
 }
 

@@ -11,6 +11,24 @@ let special_default = ["first", "locked", "locked"].map { keyword in Badge(badge
 let monthly_default = ["10", "30", "50", "100", "150", "300", "500", "700", "720"].map { hours in Badge(badgeType: .monthly, badgeValue: hours) }
 let continuous_default = ["0.5", "1", "3", "7", "10", "15", "30"].map { days in Badge(badgeType: .continuous, badgeValue: days) }
 
+let encoder = PropertyListEncoder()
+let decoder = PropertyListDecoder()
+private func loadBadges(
+    forKey: String,
+    default_: [Badge] = []
+) -> [Badge] {
+    if let data = UserDefaults.standard.value(forKey: forKey) as? Data {
+        do {
+            let badges = try decoder.decode([Badge].self, from: data)
+            return badges
+        } catch {
+            print(error.localizedDescription)
+            return default_
+        }
+    }
+    return default_
+}
+
 // MARK: - BadgeViewModel
 
 class BadgeViewModel: ObservableObject {
@@ -80,24 +98,6 @@ class BadgeViewModel: ObservableObject {
     }
 }
 
-let encoder = PropertyListEncoder()
-let decoder = PropertyListDecoder()
-private func loadBadges(
-    forKey: String,
-    default_: [Badge] = []
-) -> [Badge] {
-    if let data = UserDefaults.standard.value(forKey: forKey) as? Data {
-        do {
-            let badges = try decoder.decode([Badge].self, from: data)
-            return badges
-        } catch {
-            print(error.localizedDescription)
-            return default_
-        }
-    }
-    return default_
-}
-
 private func getBadgeQueue(
     forKey: String,
     default_: [Badge] = []
@@ -120,11 +120,7 @@ func nextBadge(
     badges: [Badge]
 ) -> Badge {
     return badges
-        .filter { badge in
-            guard let date = badge.updated else { return true }
-            // 마지막 갱신일이 이번 달이 아닐 경우 획득 가능
-            return !isItThisMonth(date: date)
-        }
+        .filter { badge in !badge.active }
         .sorted { Double($0.badgeValue)! < Double($1.badgeValue)! }
         .first ?? Badge(badgeType: .special, badgeValue: "locked")
 }

@@ -23,7 +23,7 @@ public class ChallengeState: ObservableObject {
         if type == .running {
             let nowComponents = now.compareTo(date: startDate)
 
-            timeData.day = 8//nowComponents.day ?? 0
+            timeData.day = nowComponents.day ?? 0
             timeData.hour = nowComponents.hour ?? 0
             timeData.minute = nowComponents.minute ?? 0
             timeData.second = nowComponents.second ?? 0
