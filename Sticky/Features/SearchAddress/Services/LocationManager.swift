@@ -212,8 +212,9 @@ extension LocationManager: UNUserNotificationCenterDelegate {
         center.removeAllPendingNotificationRequests() // deletes pending scheduled notifications, there is a schedule limit qty
 
         let content = UNMutableNotificationContent()
-        content.title = "나갔다"
-        content.body = "?????"
+        
+        content.title = "Stikky"
+        content.body = "챌린지 중 집 밖을 나가서 중지되었습니다."
         content.categoryIdentifier = "alarm"
         content.sound = UNNotificationSound.default
 
