@@ -17,7 +17,7 @@ import Foundation
  - count: 획득 횟수
  - active: 활성여부
  */
-struct Badge: Codable, Hashable {
+struct Badge: Codable, Hashable, Identifiable {
     // MARK: Lifecycle
 
     init(
@@ -36,21 +36,33 @@ struct Badge: Codable, Hashable {
 
     // MARK: Internal
 
+    var id = UUID()
     var badgeType: BadgeType
     var badgeValue: String
     var _name: String = ""
     var updated: Date?
     var count: Int = 0
 
+    // 업데이트 일자가 이번 달에만 활성화
     var active: Bool {
-        count > 0 || updated != nil
+        guard let date = updated else { return false }
+        switch badgeType {
+        case .monthly:
+            return isItThisMonth(date: date)
+        case .continuous,
+             .level,
+             .special:
+            // 한 번이라도 획득했으면 무조건 활성화
+            return count > 0
+        }
     }
 
     var image: String {
         switch badgeType {
+        case .special:
+            return active ? "\(badgeType)_\(badgeValue)" : "special_locked"
         case .continuous,
-             .monthly,
-             .special:
+             .monthly:
             return "\(badgeType)_\(badgeValue)\(active ? "" : "_locked")"
         case .level:
             return "level\(badgeValue)"
@@ -142,22 +154,5 @@ extension BadgeType {
         case BadgeType.level:
             return ""
         }
-    }
-}
-
-// MARK: - Special
-
-enum Special: String {
-    case first
-}
-
-func makeBadges(badgeType: BadgeType, dict: [String: CountAndUpdated]) -> [Badge] {
-    return dict.sorted { Double($0.0)! < Double($1.0)! }.map { key, value in
-        Badge(
-            badgeType: badgeType,
-            badgeValue: key,
-            updated: value.date,
-            count: value.count
-        )
     }
 }
