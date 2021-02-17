@@ -1,22 +1,23 @@
 {
   "images" : [
     {
-      "filename" : "ic_grayHeart.png",
-      "idiom" : "universal",
-      "scale" : "1x"
+      "filename" : "iconHeart.png",
+      "scale" : "1x",
+      "idiom" : "universal"
     },
     {
-      "filename" : "ic_grayHeart-1.png",
-      "idiom" : "universal",
-      "scale" : "2x"
+      "filename" : "iconHeart@2x.png",
+      "scale" : "2x",
+      "idiom" : "universal"
     },
     {
       "idiom" : "universal",
+      "filename" : "iconHeart@3x.png",
       "scale" : "3x"
     }
   ],
   "info" : {
-    "author" : "xcode",
-    "version" : 1
+    "version" : 1,
+    "author" : "xcode"
   }
 }
