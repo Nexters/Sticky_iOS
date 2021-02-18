@@ -76,7 +76,7 @@ struct More: View {
             EmptyView()
         }
         NavigationLink(
-            destination: Text("license"),
+            destination: LicenseView(),
             tag: "license",
             selection: $selection
         ) {

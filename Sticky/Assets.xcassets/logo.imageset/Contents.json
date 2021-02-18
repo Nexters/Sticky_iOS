@@ -1,22 +1,23 @@
 {
   "images" : [
     {
-      "filename" : "group297.pdf",
-      "idiom" : "universal",
-      "scale" : "1x"
+      "filename" : "group297.png",
+      "scale" : "1x",
+      "idiom" : "universal"
     },
     {
-      "filename" : "group297-1.pdf",
-      "idiom" : "universal",
-      "scale" : "2x"
+      "filename" : "group297@2x.png",
+      "scale" : "2x",
+      "idiom" : "universal"
     },
     {
+      "scale" : "3x",
       "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "group297@3x.png"
     }
   ],
   "info" : {
-    "author" : "xcode",
-    "version" : 1
+    "version" : 1,
+    "author" : "xcode"
   }
 }
