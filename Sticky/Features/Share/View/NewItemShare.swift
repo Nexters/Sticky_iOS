@@ -29,9 +29,12 @@ struct NewItemShare: View {
                     .ignoresSafeArea()
 
                 VStack {
-                    ShareCongratulation(image: image, badge: badge, description: description)
+                    ShareCongratulation(
+                        image: image,
+                        badge: badge,
+                        description: description
+                    )
 
-                    
                     HStack {
                         Text("새로 달성한 레벨").bold() + Text("을 자랑해보세요!")
                     }.padding(.top, 66)
@@ -48,21 +51,7 @@ struct NewItemShare: View {
                         trailing: downloadButton
                     )
             }.onAppear {
-                if let firstBadge = badgeQueue.first {
-                    self.badge = firstBadge
-                    self.image = badge.image
-                    self.value = ""
-                    switch badge.badgeType {
-                    case .special:
-                        break
-                    case .continuous,
-                         .monthly:
-                        self.value = badge.name
-                    case .level:
-                        self.value = "\(seconds.ToDaysHoursMinutes())"
-                    }
-                    self.description = badge.badgeType.toString(value: value)
-                }
+                changeBadge()
             }
     }
 
@@ -72,8 +61,12 @@ struct NewItemShare: View {
         Button(action: {
             if !self.badgeQueue.isEmpty {
                 self.badgeQueue.remove(at: 0)
+                if self.badgeQueue.isEmpty {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+                changeBadge()
             }
-            self.presentationMode.wrappedValue.dismiss()
+
         }) {
             Image("ic_close")
                 .aspectRatio(contentMode: .fit)
@@ -86,6 +79,24 @@ struct NewItemShare: View {
         }) {
             Image("ic_download")
                 .aspectRatio(contentMode: .fit)
+        }
+    }
+
+    private func changeBadge() {
+        if let firstBadge = badgeQueue.first {
+            badge = firstBadge
+            image = badge.image
+            value = ""
+            switch badge.badgeType {
+            case .special:
+                break
+            case .continuous,
+                 .monthly:
+                value = badge.name
+            case .level:
+                value = "\(seconds.ToDaysHoursMinutes())"
+            }
+            description = badge.badgeType.toString(value: value)
         }
     }
 }
