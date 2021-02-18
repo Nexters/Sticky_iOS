@@ -102,6 +102,7 @@ struct MyPage: View {
             leading: backButton,
             trailing: moreButton
         )
+        .navigationBarColor(UIColor.white, textColor: UIColor.black)
     }
 
     var backButton: some View {

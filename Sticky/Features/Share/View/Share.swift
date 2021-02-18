@@ -14,11 +14,6 @@ struct Share: View {
     // MARK: Lifecycle
 
     init(shareType: ShareType, badgeViewModel: BadgeViewModel) {
-        let newNavAppearance = UINavigationBarAppearance()
-        newNavAppearance.configureWithTransparentBackground()
-        newNavAppearance.backgroundColor = .clear
-        UINavigationBar.appearance()
-            .standardAppearance = newNavAppearance
         self.shareType = shareType
         self.badgeViewModel = badgeViewModel
     }
