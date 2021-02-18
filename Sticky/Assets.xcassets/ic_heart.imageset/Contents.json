@@ -1,22 +1,23 @@
 {
   "images" : [
     {
-      "filename" : "iconHeart.svg",
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "iconHeart.png"
     },
     {
-      "filename" : "iconHeart-1.svg",
-      "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "iconHeart@2x.png",
+      "idiom" : "universal"
     },
     {
-      "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "iconHeart@3x.png",
+      "idiom" : "universal"
     }
   ],
   "info" : {
-    "author" : "xcode",
-    "version" : 1
+    "version" : 1,
+    "author" : "xcode"
   }
 }

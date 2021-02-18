@@ -1,23 +1,23 @@
 {
   "images" : [
     {
-      "filename" : "group302.pdf",
+      "filename" : "group302.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "group302-1.pdf",
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "group302@2x.png"
     },
     {
-      "filename" : "group302-2.pdf",
+      "scale" : "3x",
       "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "group302@3x.png"
     }
   ],
   "info" : {
-    "author" : "xcode",
-    "version" : 1
+    "version" : 1,
+    "author" : "xcode"
   }
 }
