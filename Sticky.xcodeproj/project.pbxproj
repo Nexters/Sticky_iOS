@@ -79,6 +79,8 @@
 		C285619325D13E79006FA7D2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C285619225D13E79006FA7D2 /* User.swift */; };
 		C28561A125D24D19006FA7D2 /* DateComponenets+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28561A025D24D19006FA7D2 /* DateComponenets+.swift */; };
 		C28561A625D24ED5006FA7D2 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28561A525D24ED5006FA7D2 /* Date+.swift */; };
+		C28EB45225DEA87F0073554B /* LicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28EB45125DEA87F0073554B /* LicenseView.swift */; };
+		C28EB45725DEA96C0073554B /* LottieLicense.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28EB45625DEA96C0073554B /* LottieLicense.swift */; };
 		C2B0429225D90F4200AC7854 /* OnboardingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B0429125D90F4200AC7854 /* OnboardingComponent.swift */; };
 		C2B042D425DA1EAF00AC7854 /* BGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B042D325DA1EAF00AC7854 /* BGView.swift */; };
 		EB32FA5725B8414500DC3FAE /* CardSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB608B1325B719440061F394 /* CardSlide.swift */; };
@@ -188,6 +190,8 @@
 		C285619225D13E79006FA7D2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C28561A025D24D19006FA7D2 /* DateComponenets+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponenets+.swift"; sourceTree = "<group>"; };
 		C28561A525D24ED5006FA7D2 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		C28EB45125DEA87F0073554B /* LicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseView.swift; sourceTree = "<group>"; };
+		C28EB45625DEA96C0073554B /* LottieLicense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LottieLicense.swift; path = Sticky/Features/More/Views/LottieLicense.swift; sourceTree = SOURCE_ROOT; };
 		C2B0429125D90F4200AC7854 /* OnboardingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingComponent.swift; sourceTree = "<group>"; };
 		C2B042D325DA1EAF00AC7854 /* BGView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGView.swift; sourceTree = "<group>"; };
 		DE16CE2C92BE0353AF6A4409 /* Pods_Sticky.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sticky.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -338,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				BB0A596425BAC3F2001F529A /* More.swift */,
+				C28EB45125DEA87F0073554B /* LicenseView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -353,6 +358,7 @@
 		BB0A596325BAC3E8001F529A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C28EB45625DEA96C0073554B /* LottieLicense.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -817,6 +823,7 @@
 				C28561A625D24ED5006FA7D2 /* Date+.swift in Sources */,
 				C2B042D425DA1EAF00AC7854 /* BGView.swift in Sources */,
 				BB1C8A2725B875020000931A /* SearchResult.swift in Sources */,
+				C28EB45225DEA87F0073554B /* LicenseView.swift in Sources */,
 				BBBC768625DA34EB00E72F29 /* LottieView.swift in Sources */,
 				BBC66F2C25C55BA6007687D7 /* MapView.swift in Sources */,
 				BB1C8A2A25B875020000931A /* NotFound.swift in Sources */,
@@ -849,6 +856,7 @@
 				BB1C8A2D25B875020000931A /* SearchAddress.swift in Sources */,
 				BBB1ECB825B090A900F5EA37 /* BorderRoundedButton.swift in Sources */,
 				BB05ABE525C82D6400E34717 /* ShareButtons.swift in Sources */,
+				C28EB45725DEA96C0073554B /* LottieLicense.swift in Sources */,
 				EB32FA5725B8414500DC3FAE /* CardSlide.swift in Sources */,
 				BB77D59925D4A348002BD70A /* BannerItemDetail.swift in Sources */,
 				BB0A594025BA6EE4001F529A /* Tier.swift in Sources */,
