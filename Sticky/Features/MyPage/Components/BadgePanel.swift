@@ -24,9 +24,13 @@ struct BadgePanel: View {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
                     if !title.isEmpty {
-                        Text("\(title)")
-                            .font(.system(size: 16))
-                            .bold()
+                        HStack {
+                            Text("\(title)")
+                                .font(.system(size: 16))
+                                .bold()
+                            Spacer()
+                            trailing
+                        }
                     }
                     if !subtitle.isEmpty {
                         Text("\(subtitle)")
@@ -35,7 +39,6 @@ struct BadgePanel: View {
                     }
                 }
                 Spacer()
-                trailing
             }
 
             LazyVGrid(columns: columns) {
