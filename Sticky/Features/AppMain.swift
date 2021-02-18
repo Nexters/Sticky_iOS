@@ -36,6 +36,7 @@ struct AppMain: View {
                 locationManager.restartManager()
             }
             .onReceive(NotificationCenter.default.publisher(for: .enterGeofence), perform: { _ in
+                print("LocationManager - AppMain enter")
                 if challengeState.type == .notAtHome {
                     print("집 밖에 있다가 들어감")
                     challengeState.timeData = TimeData(day: 0, hour: 0, minute: 0, second: 0)
@@ -43,6 +44,7 @@ struct AppMain: View {
                 }
             })
             .onReceive(NotificationCenter.default.publisher(for: .exitGeofence), perform: { _ in
+                print("LocationManager - AppMain exit")
                 if challengeState.type == .running {
 //                    if !locationManager.isContains() {
                     print("챌린지 진행 중 나감")

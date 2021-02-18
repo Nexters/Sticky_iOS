@@ -25,7 +25,6 @@ class LocationManager: NSObject, ObservableObject {
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.startUpdatingLocation()
-        self.locationManager.requestLocation()
         self.locationManager.allowsBackgroundLocationUpdates = true
 //        self.locationManager.pausesLocationUpdatesAutomatically = false
         self.locationManager.activityType = .other
@@ -55,14 +54,14 @@ class LocationManager: NSObject, ObservableObject {
     var geofence: CLCircularRegion? {
         willSet {
             print("LocationManager - geofence\(newValue) willSet")
-            if newValue!.contains(self.location.coordinate), !(self.geofence?.contains(self.location.coordinate) ?? false) {
-                // newValue내에 존재 && 이전Value내에 존재하지 X
-                print("LocationManager - geofence enter")
-                NotificationCenter.default.post(name: .enterGeofence, object: nil)
-            } else if !newValue!.contains(self.location.coordinate), self.geofence?.contains(self.location.coordinate) ?? false {
-                print("LocationManager - geofence exit")
-                NotificationCenter.default.post(name: .exitGeofence, object: nil)
-            }
+//            if newValue!.contains(self.location.coordinate), !(self.geofence?.contains(self.location.coordinate) ?? false) {
+//                // newValue내에 존재 && 이전Value내에 존재하지 X
+//                print("LocationManager - geofence enter")
+//                NotificationCenter.default.post(name: .enterGeofence, object: nil)
+//            } else if !newValue!.contains(self.location.coordinate), self.geofence?.contains(self.location.coordinate) ?? false {
+//                print("LocationManager - geofence exit")
+//                NotificationCenter.default.post(name: .exitGeofence, object: nil)
+//            }
         }
     }
 
@@ -73,16 +72,18 @@ class LocationManager: NSObject, ObservableObject {
     @Published var location = CLLocation() {
         willSet {
             print("LocationManager - location\(newValue) willSet")
-            print("LocationManager - 1 : \(self.geofence?.contains(newValue.coordinate) ?? false)")
-            print("LocationManager - 2 : \(!(self.geofence?.contains(self.location.coordinate) ?? false))")
-            print("LocationManager - 3 : \(!(self.geofence?.contains(newValue.coordinate) ?? false))")
-            print("LocationManager - 4 : \(self.geofence?.contains(self.location.coordinate) ?? false)")
 
-            if self.geofence?.contains(newValue.coordinate) ?? false, !(self.geofence?.contains(self.location.coordinate) ?? false) {
+            guard let isContainAfterSet = self.geofence?.contains(newValue.coordinate) else { return }
+            guard let isContainBeforeSet = self.geofence?.contains(self.location.coordinate) else { return }
+            
+            print("LocationManager - location : isContainAfterSet \(isContainAfterSet)")
+            print("LocationManager - location : isContainBeforeSet \(isContainBeforeSet)")
+            
+            if isContainAfterSet, !isContainBeforeSet {
                 // newValue내에 존재 && 이전Value내에 존재하지 X
-                print("LocationManager - geofence enter")
+                print("LocationManager - geofence enter : ")
                 NotificationCenter.default.post(name: .enterGeofence, object: nil)
-            } else if !(self.geofence?.contains(newValue.coordinate) ?? false), self.geofence?.contains(self.location.coordinate) ?? false {
+            } else if isContainBeforeSet, !isContainAfterSet {
                 print("LocationManager - geofence exit")
                 NotificationCenter.default.post(name: .exitGeofence, object: nil)
             }
@@ -105,10 +106,12 @@ class LocationManager: NSObject, ObservableObject {
     }
 
     func restartManager() {
-        print("Restart LocationManager")
+        print("LocationManager - Restart LocationManager: geofence : \(geofence)")
         guard let geofence = self.geofence else { return }
         self.locationManager.stopMonitoring(for: geofence)
         self.locationManager.startMonitoring(for: geofence)
+        
+        self.locationManager.requestLocation()
     }
 
     // 위치 권한이 항상인지 체크
@@ -145,6 +148,7 @@ extension LocationManager: CLLocationManagerDelegate {
             print("LocationManager - 변경된 location이 없습니다")
             return
         }
+        
         self.location = location
         self.region?.center = CLLocationCoordinate2D(
             latitude: location.coordinate.latitude,
@@ -212,9 +216,9 @@ extension LocationManager: UNUserNotificationCenterDelegate {
         center.removeAllPendingNotificationRequests() // deletes pending scheduled notifications, there is a schedule limit qty
 
         let content = UNMutableNotificationContent()
-        
+
         content.title = "[챌린지 종료]"
-        content.body = "집에서 이탈하여 챌린지가 종료됐어요. 최종 기록을 종유하세요."
+        content.body = "집에서 이탈하여 챌린지가 종료됐어요. 최종 기록을 공유하세요."
         content.categoryIdentifier = "alarm"
         content.sound = UNNotificationSound.default
 

@@ -30,7 +30,7 @@ struct StickyApp: App {
         .onChange(of: scenePhase) { newScenePhase in
             switch newScenePhase {
             case .active:
-                print("Active \(user.accumulateSeconds)")
+                print("locationManager - ChallengeType \(challengeState.type)")
                 print("Active \(Main.ChallengeType(rawValue: UserDefaults.standard.integer(forKey: "challengeType")))")
                 // TODO: 현재 챌린지가 진행중인 상태라면 조건문 필요
 //                if let date = UserDefaults.standard.object(forKey: "startDate") {
