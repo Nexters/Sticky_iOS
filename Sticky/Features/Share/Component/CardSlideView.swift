@@ -18,25 +18,33 @@ struct CardSlideView: View {
     var body: some View {
         VStack {
             HStack(spacing: 16) {
-                Button("현재 기록", action: { UIState.activeCard = 0 })
-                    .font(.system(size: 17, weight: .heavy, design: .default))
-                    .foregroundColor(UIState.activeCard == 0 ? .black : .gray)
+                Button(action: { UIState.activeCard = 0 }) {
+                    Text("현재 기록")
+                        .kerning(-0.3)
+                        .bold()
+                        .font(.system(size: 17))
+                        .foregroundColor(Color.black.opacity(UIState.activeCard == 0 ? 1 : 0.5))
+//                        .opacity(UIState.activeCard == 0 ? 0 : 0.5)
+                }
 
-                Button("받은 배지", action: { UIState.activeCard = 1 })
-                    .font(.system(size: 17, weight: .heavy, design: .default))
-                    .foregroundColor(UIState.activeCard == 1 ? .black : .gray)
+                Button(action: { UIState.activeCard = 1 }) {
+                    Text("받은 배지")
+                        .kerning(-0.3)
+                        .bold()
+                        .font(.system(size: 17))
+                        .foregroundColor(Color.black.opacity(UIState.activeCard == 1 ? 1 : 0.5))
+//                        .opacity(UIState.activeCard == 1 ? 0 : 0.5)
+                }
             }
             .padding(.bottom, 16)
             .foregroundColor(Color.white)
             CardSlide(badgeViewModel: badgeViewModel, items: $items)
             HStack {
-                Text("나의")
-                Text(getBottomString()).bold()
-                Text("공유합니다")
+                Text("나의 ")+Text(getBottomString()).bold()+Text(" 공유합니다")
             }
-            .font(.title3)
+            .font(.system(size: 14))
             .foregroundColor(.black)
-            .padding(.top, 20)
+            .padding(.top, 16)
         }
     }
 
