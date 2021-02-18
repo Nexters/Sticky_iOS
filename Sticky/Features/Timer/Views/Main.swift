@@ -102,6 +102,14 @@ struct Main: View {
             print("onAppear")
             if Main.isFirst {
                 Main.isFirst = false
+                if let badge = getWelcomeBadge(badges: badgeViewModel.specials) {
+                    if !badge.active {
+                        badge.count += 1
+                        badge.updated = Date()
+                        badgeViewModel.badgeQueue.append(badge)
+                        badgeViewModel.specials = badgeViewModel.specials
+                    }
+                }
                 startTimer()
             }
         }
