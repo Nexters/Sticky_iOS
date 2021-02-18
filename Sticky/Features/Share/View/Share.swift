@@ -136,6 +136,7 @@ struct Share: View {
 
     private func setCardView(shareType: ShareType) -> AnyView {
         var view: AnyView
+        print("setCardView")
         switch shareType {
         case .slide:
             view = AnyView(CardSlideView(badgeViewModel: badgeViewModel))

@@ -35,6 +35,7 @@ extension View {
         let window = UIWindow(frame: CGRect(origin: origin, size: size))
         let hosting = UIHostingController(rootView: self)
         hosting.view.frame = window.frame
+        hosting.view.backgroundColor = .clear
         
         hosting.view.clipsToBounds = true
         hosting.view.layer.cornerRadius = hosting.view.frame.height / 20
