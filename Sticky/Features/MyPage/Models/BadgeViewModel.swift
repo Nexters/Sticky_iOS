@@ -7,9 +7,17 @@
 
 import Foundation
 
-let special_default = ["first", "locked", "locked"].map { keyword in Badge(badgeType: .special, badgeValue: keyword) }
-let monthly_default = ["10", "30", "50", "100", "150", "300", "500", "700", "720"].map { hours in Badge(badgeType: .monthly, badgeValue: hours) }
-let continuous_default = ["0.5", "1", "3", "7", "10", "15", "30"].map { days in Badge(badgeType: .continuous, badgeValue: days) }
+let special_default = ["welcome", "locked", "locked"].map { keyword in
+    Badge(badgeType: .special, badgeValue: keyword)
+}
+
+let monthly_default = ["10", "30", "50", "100", "150", "300", "500", "700", "720"].map { hours in
+    Badge(badgeType: .monthly, badgeValue: hours)
+}
+
+let continuous_default = ["0.5", "1", "3", "7", "10", "15", "30"].map { days in
+    Badge(badgeType: .continuous, badgeValue: days)
+}
 
 let encoder = PropertyListEncoder()
 let decoder = PropertyListDecoder()
@@ -39,6 +47,7 @@ class BadgeViewModel: ObservableObject {
         self.badgeQueue = getBadgeQueue(forKey: "badgeQueue")
 
         /// 스페셜 배지
+        print("BadgeViewModel - specials: \(loadBadges(forKey: "specials"))")
         self.specials = loadBadges(
             forKey: "specials",
             default_: special_default
@@ -133,4 +142,11 @@ func isItThisMonth(date: Date) -> Bool {
     let thisMonth = component.month
     let _component = calendar.dateComponents([.year, .month], from: date)
     return thisYear == _component.year && thisMonth == _component.month
+}
+
+/// welcome 배지 획득 여부 확인
+func getWelcomeBadge(
+    badges: [Badge]
+) -> Badge? {
+    return badges.filter { $0.badgeValue == "welcome" }.first
 }
