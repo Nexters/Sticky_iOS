@@ -55,7 +55,7 @@ struct More: View {
             )
             .isHidden(!isPresented)
             .ignoresSafeArea(.all)
-        }
+        }.navigationBarColor(UIColor.white, textColor: UIColor.black)
         NavigationLink(
             destination: SearchAddress(),
             tag: "address",
