@@ -20,7 +20,7 @@ class LocationManager: NSObject, ObservableObject {
         super.init()
 
         self.locationManager.delegate = self
-        self.locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
+        self.locationManager.distanceFilter = kCLLocationAccuracyBestForNavigation
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.requestAlwaysAuthorization()
@@ -64,6 +64,8 @@ class LocationManager: NSObject, ObservableObject {
 //            }
         }
     }
+    
+    var exitNum = 0
 
     @Published var status: CLAuthorizationStatus? {
         willSet { self.objectWillChange.send() }
@@ -71,20 +73,31 @@ class LocationManager: NSObject, ObservableObject {
 
     @Published var location = CLLocation() {
         willSet {
+            
             print("LocationManager - location\(newValue) willSet")
 
             guard let isContainAfterSet = self.geofence?.contains(newValue.coordinate) else { return }
-            guard let isContainBeforeSet = self.geofence?.contains(self.location.coordinate) else { return }
+            
+            if !isContainAfterSet{
+                //변경된 위치가 exit 구역
+                print("Why - exitNum += 1 exitNum : \(exitNum), location: \(newValue.coordinate)")
+                exitNum += 1
+            }else{
+                //변경된 위치가 enter 구역
+                print("Why - enter 구역임")
+                exitNum = 0
+            }
             
             print("LocationManager - location : isContainAfterSet \(isContainAfterSet)")
-            print("LocationManager - location : isContainBeforeSet \(isContainBeforeSet)")
             
             if isContainAfterSet {
                 // newValue내에 존재 && 이전Value내에 존재하지 X
                 print("LocationManager - geofence enter : ")
                 NotificationCenter.default.post(name: .enterGeofence, object: nil)
-            } else if isContainBeforeSet {
+            } else if !isContainAfterSet, exitNum >= 2 {
+                //exit Notification 발생
                 print("LocationManager - geofence exit")
+                exitNum = 0
                 NotificationCenter.default.post(name: .exitGeofence, object: nil)
             }
 
@@ -144,6 +157,7 @@ extension LocationManager: CLLocationManagerDelegate {
         _ manager: CLLocationManager,
         didUpdateLocations locations: [CLLocation]
     ) {
+        print("Why - location Update")
         guard let location = locations.last else {
             print("LocationManager - 변경된 location이 없습니다")
             return
@@ -180,6 +194,9 @@ extension LocationManager: CLLocationManagerDelegate {
      */
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         print("LocationManager - Exit: \(self.geofence?.center)")
+        UserDefaults.standard.setValue(self.location.coordinate.latitude, forKey: "whyLatitude")
+        UserDefaults.standard.setValue(self.location.coordinate.longitude, forKey: "whyLongitude")
+        print("Why - latitude : \(self.location.coordinate.latitude), longitude : \(self.location.coordinate.longitude)")
         NotificationCenter.default.post(name: .exitGeofence, object: nil)
     }
 
