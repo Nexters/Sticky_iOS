@@ -31,6 +31,7 @@ struct LicenseView: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: backButton)
         .navigationBarTitle("라이센스", displayMode: .inline)
+        .navigationBarColor(UIColor.white, textColor: UIColor.black)
     }
 
     var backButton: some View {
