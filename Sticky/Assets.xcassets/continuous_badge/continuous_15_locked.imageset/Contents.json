@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "nonstopBadgeNonstop15Days.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "nonstopBadgeNonstop15Days@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "nonstopBadgeNonstop15Days@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -83,11 +83,11 @@ struct Share: View {
         switch shareType {
         case .slide:
             return AnyView(setColor().ignoresSafeArea())
-        
+
         default:
             switch type {
             case .level:
-                
+
                 bgColor = Color.Sticky.blue_bg
                 return
                     AnyView(
@@ -107,34 +107,26 @@ struct Share: View {
                 return AnyView(Color.Sticky.blue_bg.ignoresSafeArea())
             }
         }
-        
     }
-    
+
     private func setColor() -> Color {
         var color: Color
         let hours = (user.accumulateSeconds + challengeState.timeData.toSeconds()) / 3600
-        switch challengeState.type {
-        case .outing:
-            color = Color.GrayScale._500
-        case .notAtHome:
-            color = Color.GrayScale._500
 
+        let level = Tier.of(hours: hours).level
+
+        switch level {
+        case 0...3:
+            color = Color.Background.blue
+        case 4...6:
+            color = Color.Background.yellow
+        case 7...9:
+            color = Color.Background.green
+        case 10:
+            color = Color.Background.red
         default:
-            let level = Tier.of(hours: hours).level
-
-            switch level {
-            case 0...3:
-                color = Color.Background.blue
-            case 4...6:
-                color = Color.Background.yellow
-            case 7...9:
-                color = Color.Background.green
-            case 10:
-                color = Color.Background.red
-            default:
-                print("Main - Should Implement Another Background Color Case in level")
-                color = Color.Background.blue
-            }
+            print("Main - Should Implement Another Background Color Case in level")
+            color = Color.Background.blue
         }
 
         return color

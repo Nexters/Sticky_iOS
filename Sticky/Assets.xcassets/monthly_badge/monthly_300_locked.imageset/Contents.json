@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "monthlyBadgeMonthly300Locked.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "monthlyBadgeMonthly300Locked@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "monthlyBadgeMonthly300Locked@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

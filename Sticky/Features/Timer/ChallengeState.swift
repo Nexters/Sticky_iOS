@@ -17,7 +17,7 @@ import Foundation
 
 public class ChallengeState: ObservableObject {
     // MARK: Lifecycle
-
+    
     init() {
         let now = Date()
         if type == .running {
@@ -66,7 +66,7 @@ public class ChallengeState: ObservableObject {
         }
     }
 
-    @Published var type = Main.ChallengeType(rawValue: UserDefaults.standard.integer(forKey: "challengeType")) ?? .notAtHome {
+    @Published var type = Main.ChallengeType(rawValue: UserDefaults.standard.integer(forKey: "challengeType")) ?? .notRunning {
         didSet {
             print("type 저장")
             UserDefaults.standard.setValue(type.rawValue, forKey: "challengeType")

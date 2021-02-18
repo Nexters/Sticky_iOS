@@ -30,7 +30,8 @@ struct StickyApp: App {
         .onChange(of: scenePhase) { newScenePhase in
             switch newScenePhase {
             case .active:
-                print("Active \(user.accumulateSeconds)")
+                print("Why - latitude : \(UserDefaults.standard.double(forKey: "whyLatitude")), longitude : \(UserDefaults.standard.double(forKey: "whyLongitude"))")
+                print("locationManager - ChallengeType \(challengeState.type)")
                 print("Active \(Main.ChallengeType(rawValue: UserDefaults.standard.integer(forKey: "challengeType")))")
                 // TODO: 현재 챌린지가 진행중인 상태라면 조건문 필요
 //                if let date = UserDefaults.standard.object(forKey: "startDate") {
@@ -48,17 +49,18 @@ struct StickyApp: App {
                 let longitude = UserDefaults.standard.double(forKey: "longitude")
                 print("App - latitude: \(latitude)")
                 print("App - longitude: \(longitude)")
-                locationManager.challengeType = challengeState.type
-                locationManager.geofence = CLCircularRegion(
-                    center: CLLocationCoordinate2D(
-                        latitude: latitude,
-                        longitude: longitude
-                    ),
-                    radius: 100.0,
-                    identifier: "Myhome"
-                )
-                locationManager.region = MKCoordinateRegion(center: locationManager.geofence!.center, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
-                
+                if latitude != 0, longitude != 0 {
+                    locationManager.challengeType = challengeState.type
+                    locationManager.geofence = CLCircularRegion(
+                        center: CLLocationCoordinate2D(
+                            latitude: latitude,
+                            longitude: longitude
+                        ),
+                        radius: 100.0,
+                        identifier: "Myhome"
+                    )
+                    locationManager.region = MKCoordinateRegion(center: locationManager.geofence!.center, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
+                }
 
             case .inactive:
                 print("inActive")

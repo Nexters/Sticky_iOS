@@ -30,12 +30,8 @@ struct NewItemShare: View {
 
                 VStack {
                     ShareCongratulation(image: image, badge: badge, description: description)
-                    
 
-                Text(description)
-                    .kerning(-0.3)
-                    .multilineTextAlignment(.center)
-                    .font(.system(size: 14))
+                    
                     HStack {
                         Text("새로 달성한 레벨").bold() + Text("을 자랑해보세요!")
                     }.padding(.top, 66)
@@ -94,11 +90,14 @@ struct NewItemShare: View {
     }
 }
 
-struct ShareCongratulation: View{
+// MARK: - ShareCongratulation
+
+struct ShareCongratulation: View {
     let image: String
     let badge: Badge
     let description: String
-    var body: some View{
+
+    var body: some View {
         GeometryReader { gr in
             VStack {
                 Text("CONGRATULATION!")
@@ -112,6 +111,10 @@ struct ShareCongratulation: View{
                 Text(badge.name)
                     .kerning(-0.3)
                     .font(.custom("Modak", size: 28))
+                Text(description)
+                    .kerning(-0.3)
+                    .multilineTextAlignment(.center)
+                    .font(.system(size: 14))
             }
             .foregroundColor(.white)
             .onReceive(NotificationCenter.default.publisher(for: .captureCongratulation), perform: { _ in
@@ -125,11 +128,11 @@ struct ShareCongratulation: View{
                 )
 
             }).onReceive(NotificationCenter.default.publisher(for: .shareLocalCongratulation), perform: { _ in
-                
+
                 shareLocal(image: captureWithBG(origin: gr.frame(in: .global).origin, size: gr.size, bgColor: nil))
 
             })
-                .frame(width: gr.frame(in: .global).width, height: gr.frame(in: .global).height, alignment: .center)
+            .frame(width: gr.frame(in: .global).width, height: gr.frame(in: .global).height, alignment: .bottom)
         }
     }
 }
