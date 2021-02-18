@@ -79,11 +79,11 @@ class LocationManager: NSObject, ObservableObject {
             print("LocationManager - location : isContainAfterSet \(isContainAfterSet)")
             print("LocationManager - location : isContainBeforeSet \(isContainBeforeSet)")
             
-            if isContainAfterSet, !isContainBeforeSet {
+            if isContainAfterSet {
                 // newValue내에 존재 && 이전Value내에 존재하지 X
                 print("LocationManager - geofence enter : ")
                 NotificationCenter.default.post(name: .enterGeofence, object: nil)
-            } else if isContainBeforeSet, !isContainAfterSet {
+            } else if isContainBeforeSet {
                 print("LocationManager - geofence exit")
                 NotificationCenter.default.post(name: .exitGeofence, object: nil)
             }
@@ -187,7 +187,9 @@ extension LocationManager: CLLocationManagerDelegate {
      */
 
     func resetGeofence() {
+        print("LocationManager - resetGeofence")
         if let reset_geofence = self.geofence {
+            print("LocationManager - noti On")
             scheduleNotification_exit(region: reset_geofence)
         }
     }
@@ -200,6 +202,7 @@ extension LocationManager: CLLocationManagerDelegate {
         )
 
         self.geofence = _geofenceExit
+        self.locationManager.requestLocation()
 //        scheduleNotification_exit(region: _geofenceExit)
 //        self.locationManager.startMonitoring(for: _geofenceExit)
     }
@@ -228,7 +231,7 @@ extension LocationManager: UNUserNotificationCenterDelegate {
         // let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
 
         let trigger = UNLocationNotificationTrigger(region: region, repeats: false)
-
+        print("LocationManager - Notificiation Add")
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         center.add(request)
     }
@@ -239,10 +242,10 @@ extension LocationManager: UNUserNotificationCenterDelegate {
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
         if self.challengeType == .running {
-            print("로케이션 completion \(self.challengeType)")
+            print("LocationManager - 로케이션 completion \(String(describing: self.challengeType))")
             completionHandler([.banner, .list, .sound])
         } else {
-            print("로케이션 \(self.challengeType)")
+            print("LocationManager - 로케이션 \(String(describing: self.challengeType))")
         }
     }
 }
