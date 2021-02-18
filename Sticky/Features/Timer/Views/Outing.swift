@@ -32,6 +32,10 @@ struct Outing: View {
                         .animation(circleAnimation)
                     
                     VStack {
+                        Text("외출중")
+                            .font(.custom("Modak", size: 20))
+                            .foregroundColor(.white)
+                            .bold()
                         HStack {
                             Text("\(challengeState.outingTimeDate.minute)")
                                 .font(.custom("Modak", size: 80))
@@ -47,10 +51,7 @@ struct Outing: View {
                                 .foregroundColor(.white)
                                 .bold()
                         }
-                        Text("외출중")
-                            .font(.custom("Modak", size: 20))
-                            .foregroundColor(.white)
-                            .bold()
+                        
                     }
                 }
                 
@@ -61,11 +62,9 @@ struct Outing: View {
                 .isHidden(!flag)
         }
         .onAppear{
-            print("Outing - Appear")
             self.isAnimated = true
         }
         .onDisappear{
-            print("Outing - onDisappear")
             self.isAnimated = false
         }
     }

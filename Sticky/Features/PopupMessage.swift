@@ -57,7 +57,7 @@ struct PopupMessage: View {
                         .overlay(
                             HStack {
                                 Text(self.message.confirmString)
-                                    .font(.system(size: 20))
+                                    .font(.system(size: 17))
                                     .bold()
                                     .foregroundColor(.white)
                             }
@@ -77,7 +77,7 @@ struct PopupMessage: View {
                     RoundedRectangle(cornerRadius: 16)
                         .stroke(Color.black.opacity(0.1), lineWidth: 1)
                         .overlay(Text(self.message.rejectString)
-                            .font(.system(size: 20))
+                            .font(.system(size: 17))
                             .bold()
                             .foregroundColor(.black))
                         .frame(height: 48)

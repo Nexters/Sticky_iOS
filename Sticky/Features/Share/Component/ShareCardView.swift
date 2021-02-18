@@ -34,7 +34,7 @@ struct ShareCardView: View {
                             .multilineTextAlignment(.center)
                             .frame(width: 224)
                         Spacer()
-                        Text("sticky")
+                        Text("stikky")
                             .font(.custom("Modak", size: 16))
                             .foregroundColor(.gray)
                             .opacity(2.0)

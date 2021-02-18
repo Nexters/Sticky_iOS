@@ -20,7 +20,7 @@ struct BottomNotAtHome: View {
                     width: 328,
                     height: 60,
                     cornerRadius: 16.0,
-                    fontColor: Color.black
+                    fontColor: Color.white
                 )
             })
         }
