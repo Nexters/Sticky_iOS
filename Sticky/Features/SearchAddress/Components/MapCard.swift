@@ -24,13 +24,12 @@ struct MapCard: View {
             .cornerRadius(24)
             .overlay(
                 ZStack {
-                    Circle()
-                        .fill(Color.Palette.primary)
-                        .opacity(0.3)
-                        .frame(width: 32, height: 32)
-                    Image(systemName: "pin.fill")
-                        .foregroundColor(Color.red)
-                        .offset(y: self.pinUp ? -20 : -10)
+                    Image("marker")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 30, height: 45)
+                        .offset(y: -10)
+//                        .offset(y: self.pinUp ? -20 : -10)
                         .animation(.easeIn(duration: 0.5))
                 }
             )

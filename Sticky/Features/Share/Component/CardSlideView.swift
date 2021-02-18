@@ -13,6 +13,7 @@ struct CardSlideView: View {
     // MARK: Internal
 
     @EnvironmentObject var UIState: UIStateModel
+    @ObservedObject var badgeViewModel: BadgeViewModel
 
     var body: some View {
         VStack {
@@ -27,7 +28,7 @@ struct CardSlideView: View {
             }
             .padding(.bottom, 16)
             .foregroundColor(Color.white)
-            CardSlide(items: $items)
+            CardSlide(badgeViewModel: badgeViewModel, items: $items)
             HStack {
                 Text("나의")
                 Text(getBottomString()).bold()
@@ -62,7 +63,7 @@ struct CardSlideView: View {
 
 struct CardSlideView_Previews: PreviewProvider {
     static var previews: some View {
-        CardSlideView()
+        CardSlideView(badgeViewModel: BadgeViewModel())
             .environmentObject(UIStateModel())
     }
 }
