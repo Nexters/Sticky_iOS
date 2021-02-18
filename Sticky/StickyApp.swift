@@ -48,17 +48,18 @@ struct StickyApp: App {
                 let longitude = UserDefaults.standard.double(forKey: "longitude")
                 print("App - latitude: \(latitude)")
                 print("App - longitude: \(longitude)")
-                locationManager.challengeType = challengeState.type
-                locationManager.geofence = CLCircularRegion(
-                    center: CLLocationCoordinate2D(
-                        latitude: latitude,
-                        longitude: longitude
-                    ),
-                    radius: 100.0,
-                    identifier: "Myhome"
-                )
-                locationManager.region = MKCoordinateRegion(center: locationManager.geofence!.center, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
-                
+                if latitude != 0, longitude != 0 {
+                    locationManager.challengeType = challengeState.type
+                    locationManager.geofence = CLCircularRegion(
+                        center: CLLocationCoordinate2D(
+                            latitude: latitude,
+                            longitude: longitude
+                        ),
+                        radius: 100.0,
+                        identifier: "Myhome"
+                    )
+                    locationManager.region = MKCoordinateRegion(center: locationManager.geofence!.center, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
+                }
 
             case .inactive:
                 print("inActive")
