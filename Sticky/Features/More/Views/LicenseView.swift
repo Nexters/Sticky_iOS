@@ -26,6 +26,7 @@ struct LicenseView: View {
                     .frame(height: 20)
                 Text(LottieLicense.description)
             }
+            .padding(.horizontal, 12)
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: backButton)
