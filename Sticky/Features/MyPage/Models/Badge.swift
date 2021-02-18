@@ -152,7 +152,7 @@ extension BadgeType {
     func toString(value: String) -> String {
         switch self {
         case .special:
-            return "특별한 배지"
+            return value
         case .monthly:
             return "한달 동안 집에서 보낸 시간\n\(value)을 달성했습니다!"
         case .continuous:
