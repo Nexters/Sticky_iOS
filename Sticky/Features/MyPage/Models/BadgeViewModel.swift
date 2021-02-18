@@ -37,6 +37,22 @@ private func loadBadges(
     return default_
 }
 
+func loadBadge(
+    forKey: String,
+    default_: Badge = Badge(badgeType: .monthly, badgeValue: "10")
+) -> Badge {
+    if let data = UserDefaults.standard.value(forKey: forKey) as? Data {
+        do {
+            let badge = try decoder.decode(Badge.self, from: data)
+            return badge
+        } catch {
+            print(error.localizedDescription)
+            return default_
+        }
+    }
+    return default_
+}
+
 // MARK: - BadgeViewModel
 
 class BadgeViewModel: ObservableObject {

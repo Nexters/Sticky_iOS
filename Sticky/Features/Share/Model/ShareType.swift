@@ -27,12 +27,18 @@ class ShareViewModel: ObservableObject {
     // MARK: Lifecycle
 
     init() {
-        badge = Badge(badgeType: BadgeType.monthly, badgeValue: "10")
+        badge = loadBadge(forKey: "shareBadge")
         seconds = 0
     }
 
     // MARK: Internal
 
-    @Published var badge: Badge
     @Published var seconds: Int
+
+    @Published var badge: Badge {
+        didSet {
+            let data = try? encoder.encode(badge)
+            UserDefaults.standard.set(data, forKey: "shareBadge")
+        }
+    }
 }
