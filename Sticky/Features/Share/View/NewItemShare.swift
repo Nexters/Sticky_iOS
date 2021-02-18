@@ -134,6 +134,7 @@ struct ShareCongratulation: View {
             })
             .frame(width: gr.frame(in: .global).width, height: gr.frame(in: .global).height, alignment: .center)
         }
+        .padding(.top, 100)
     }
 }
 
