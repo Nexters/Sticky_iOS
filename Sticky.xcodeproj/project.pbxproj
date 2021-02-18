@@ -56,6 +56,7 @@
 		BBB1ECB825B090A900F5EA37 /* BorderRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1ECB725B090A900F5EA37 /* BorderRoundedButton.swift */; };
 		BBBC768125DA32D400E72F29 /* tada.json in Resources */ = {isa = PBXBuildFile; fileRef = BBBC768025DA32D400E72F29 /* tada.json */; };
 		BBBC768625DA34EB00E72F29 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBC768525DA34EB00E72F29 /* LottieView.swift */; };
+		BBBC773725DED95F00E72F29 /* View+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBC773625DED95F00E72F29 /* View+Navigation.swift */; };
 		BBC66EBD25C4E965007687D7 /* AppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC66EBC25C4E965007687D7 /* AppMain.swift */; };
 		BBC66EC825C4F99E007687D7 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC66EC725C4F99E007687D7 /* TimerView.swift */; };
 		BBC66EDE25C5197A007687D7 /* RootPresentationMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC66EDD25C5197A007687D7 /* RootPresentationMode.swift */; };
@@ -168,6 +169,7 @@
 		BBB1ECB725B090A900F5EA37 /* BorderRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderRoundedButton.swift; sourceTree = "<group>"; };
 		BBBC768025DA32D400E72F29 /* tada.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tada.json; sourceTree = "<group>"; };
 		BBBC768525DA34EB00E72F29 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		BBBC773625DED95F00E72F29 /* View+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Navigation.swift"; sourceTree = "<group>"; };
 		BBC66EBC25C4E965007687D7 /* AppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMain.swift; sourceTree = "<group>"; };
 		BBC66EC725C4F99E007687D7 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		BBC66EDD25C5197A007687D7 /* RootPresentationMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootPresentationMode.swift; sourceTree = "<group>"; };
@@ -605,6 +607,7 @@
 				BB546C2825CD87D500241DF3 /* Int+.swift */,
 				C28561A025D24D19006FA7D2 /* DateComponenets+.swift */,
 				C28561A525D24ED5006FA7D2 /* Date+.swift */,
+				BBBC773625DED95F00E72F29 /* View+Navigation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -865,6 +868,7 @@
 				BBB1EC7725B0856C00F5EA37 /* EditText.swift in Sources */,
 				BB0A597F25BBB1BC001F529A /* LocationManager.swift in Sources */,
 				C2228FCC25BD5EAD00C4DF0B /* MyOperation.swift in Sources */,
+				BBBC773725DED95F00E72F29 /* View+Navigation.swift in Sources */,
 				BBAC0F3125C696B900FB81D7 /* LocationPermission.swift in Sources */,
 				BB1C8A2B25B875020000931A /* MapCard.swift in Sources */,
 				BBB1EC7725B0856C00F5EA37 /* EditText.swift in Sources */,
@@ -1073,7 +1077,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sticky/Preview Content\"";
-				DEVELOPMENT_TEAM = 46A8TRH8G6;
+				DEVELOPMENT_TEAM = M75SXEJ86F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Sticky/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
