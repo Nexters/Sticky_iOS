@@ -22,6 +22,7 @@ struct CardSlide: View {
     @EnvironmentObject var UIState: UIStateModel
     @EnvironmentObject var challengeState: ChallengeState
     @EnvironmentObject var user: User
+    @ObservedObject var badgeViewModel: BadgeViewModel
 
     @Binding var items: [Card]
     let randomBodyText_KR = ["와우! 끈기가 대단해요", "정말 대단해요!", "와 진짜 믿을수 없어"]
@@ -70,8 +71,8 @@ struct CardSlide: View {
                         .font(Font.system(size: 18))
                         .foregroundColor(.white)
                         .padding(.top, 16)
-
-                    Text("24")
+                    let badges = badgeViewModel.specials + badgeViewModel.monthly + badgeViewModel.continuous
+                    Text("\(countActiveBadges(badges: badges))")
                         .frame(width: 200, height: 64, alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/)
                         .font(.custom("Modak", size: 88))
                         .padding(.vertical, 8)
@@ -85,12 +86,24 @@ struct CardSlide: View {
                         HStack(alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/, spacing: 15) {
                             // MARK: 뱃지 공유 카드: 뱃지 최소 0개 최대 3개
 
-                            Image("monthly_10")
-                                .scaleEffect(1.4)
-                            Image("monthly_10")
-                                .scaleEffect(1.4)
-                            Image("monthly_10")
-                                .scaleEffect(1.4)
+                            if let latestSpecial = latestBadge(
+                                badges: badgeViewModel.specials)
+                            {
+                                Image(latestSpecial.image)
+                                    .scaleEffect(1.4)
+                            }
+                            if let latestMonthly = latestBadge(
+                                badges: badgeViewModel.monthly)
+                            {
+                                Image(latestMonthly.image)
+                                    .scaleEffect(1.4)
+                            }
+                            if let latestContinous = latestBadge(
+                                badges: badgeViewModel.continuous)
+                            {
+                                Image(latestContinous.image)
+                                    .scaleEffect(1.4)
+                            }
                         }
                         .frame(width: gr.frame(in: .local).size.width, height: 130, alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/)
                     }
@@ -134,7 +147,7 @@ struct CardSlide: View {
                                     .font(.custom("Modak", size: 80))
                                     .frame(height: 64)
                                     .padding(.bottom, 1)
-                                
+
                                 Text("일")
                                     .font(.system(size: 17, weight: .heavy, design: .default))
                                     .frame(width: 96)
@@ -207,15 +220,6 @@ struct CardSlide: View {
             return Color.Sticky.blue
         }
     }
-    
-    private func getRandomText() -> String{
-        if Locale.current.regionCode == "KR"{
-            return randomBodyText_KR[randomNumber % 3]
-        }else{
-            return randomBodyText_EN[randomNumber]
-            
-        }
-    }
 
     private var level: Int {
         switch Tier.of(hours: (user.accumulateSeconds + challengeState.timeData.toSeconds()) / 3600).level {
@@ -240,6 +244,14 @@ struct CardSlide: View {
     private var isHourTextHidden: Bool {
         return challengeState.timeData.hour > 0 ? false : true
     }
+
+    private func getRandomText() -> String {
+        if Locale.current.regionCode == "KR" {
+            return randomBodyText_KR[randomNumber % 3]
+        } else {
+            return randomBodyText_EN[randomNumber]
+        }
+    }
 }
 
 // MARK: - UIStateModel
@@ -253,7 +265,7 @@ public class UIStateModel: ObservableObject {
 
 struct CardSlide_Previews: PreviewProvider {
     static var previews: some View {
-        CardSlide(items: .constant(items))
+        CardSlide(badgeViewModel: BadgeViewModel(), items: .constant(items))
             .environmentObject(UIStateModel())
             .environmentObject(ChallengeState())
             .environmentObject(User())

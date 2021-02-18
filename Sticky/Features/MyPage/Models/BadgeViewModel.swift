@@ -150,3 +150,15 @@ func getWelcomeBadge(
 ) -> Badge? {
     return badges.filter { $0.badgeValue == "welcome" }.first
 }
+
+/// active 배지 카운트
+func countActiveBadges(badges: [Badge]) -> Int {
+    return badges.filter { badge in badge.active }.count
+}
+
+/// 가장 최근에 획득한 배지
+func latestBadge(badges: [Badge]) -> Badge? {
+    return badges.filter { badge in badge.active }.max(by: {
+        $0.updated!.timeIntervalSinceReferenceDate < $1.updated!.timeIntervalSinceReferenceDate
+    })
+}

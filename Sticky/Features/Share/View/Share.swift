@@ -13,13 +13,14 @@ import SwiftUI
 struct Share: View {
     // MARK: Lifecycle
 
-    init(shareType: ShareType) {
+    init(shareType: ShareType, badgeViewModel: BadgeViewModel) {
         let newNavAppearance = UINavigationBarAppearance()
         newNavAppearance.configureWithTransparentBackground()
         newNavAppearance.backgroundColor = .clear
         UINavigationBar.appearance()
             .standardAppearance = newNavAppearance
         self.shareType = shareType
+        self.badgeViewModel = badgeViewModel
     }
 
     // MARK: Internal
@@ -32,6 +33,7 @@ struct Share: View {
     @EnvironmentObject var UIState: UIStateModel
     @EnvironmentObject var user: User
     @EnvironmentObject var challengeState: ChallengeState
+    @ObservedObject var badgeViewModel: BadgeViewModel
 
     var body: some View {
         ZStack {
@@ -136,7 +138,7 @@ struct Share: View {
         var view: AnyView
         switch shareType {
         case .slide:
-            view = AnyView(CardSlideView())
+            view = AnyView(CardSlideView(badgeViewModel: badgeViewModel))
 
         case .card:
             let badge = shareViewModel.badge
@@ -168,7 +170,7 @@ struct Share: View {
 
 struct Share_Previews: PreviewProvider {
     static var previews: some View {
-        Share(shareType: ShareType.card)
+        Share(shareType: ShareType.card, badgeViewModel: BadgeViewModel())
             .environmentObject(ShareViewModel())
             .environmentObject(UIStateModel())
     }
