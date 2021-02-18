@@ -42,8 +42,13 @@ struct Share: View {
                 setCardView(shareType: shareType)
 
                 Spacer()
-                ShareButtons(bgColor: $bgColor, shareId: 0)
-                    .padding(.bottom, 36)
+
+                ShareButtons(
+                    textColor: shareType == .card ? .white : .black,
+                    bgColor: $bgColor,
+                    shareId: 0
+                )
+                .padding(.bottom, 36)
             }
         }
         .navigationBarTitle("", displayMode: .inline)
@@ -151,11 +156,22 @@ struct Share: View {
                 value = "\(shareViewModel.seconds.ToDaysHoursMinutes())"
             }
             let description = badge.badgeType.toString(value: value)
-            view = AnyView(ShareCardView(
-                image: image,
-                title: title,
-                description: description
-            ))
+            view = AnyView(VStack {
+                ShareCardView(
+                    image: image,
+                    title: title,
+                    description: description
+                )
+                HStack {
+                    Text("나의 ")
+                        .kerning(-0.3) + Text(shareViewModel.badge.badgeType.alias).bold()
+                        .kerning(-0.3) + Text("을 공유합니다")
+                        .kerning(-0.3)
+                }
+                .font(.system(size: 14))
+                .foregroundColor(.white)
+                .padding(.top, 17)
+            })
         }
 
         return view

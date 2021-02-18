@@ -36,7 +36,7 @@ struct NewItemShare: View {
                     )
 
                     HStack {
-                        Text("새로 달성한 레벨").bold() + Text("을 자랑해보세요!")
+                        Text("새로 달성한 \(badge.badgeType.alias)").bold() + Text("을 자랑해보세요!")
                     }.padding(.top, 66)
 
                     ShareButtons(textColor: Color.white, bgColor: .constant(Color.Sticky.blue_bg), shareId: 1)

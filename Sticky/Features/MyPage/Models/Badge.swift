@@ -174,4 +174,17 @@ extension BadgeType {
             return ""
         }
     }
+
+    var alias: String {
+        switch self {
+        case .continuous:
+            return "연속 달성 기록"
+        case .monthly:
+            return "월간 달성 기록"
+        case .special:
+            return "스페셜 기록"
+        case .level:
+            return "레벨"
+        }
+    }
 }
