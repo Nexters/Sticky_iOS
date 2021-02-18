@@ -132,9 +132,8 @@ struct ShareCongratulation: View {
                 shareLocal(image: captureWithBG(origin: gr.frame(in: .global).origin, size: gr.size, bgColor: nil))
 
             })
-            .frame(width: gr.frame(in: .global).width, height: gr.frame(in: .global).height, alignment: .center)
+            .frame(width: gr.frame(in: .global).width, height: gr.frame(in: .global).height, alignment: .bottom)
         }
-        .padding(.top, 100)
     }
 }
 
