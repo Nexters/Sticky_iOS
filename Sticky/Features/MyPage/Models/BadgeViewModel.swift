@@ -125,14 +125,6 @@ func nextBadge(
         .first ?? Badge(badgeType: .special, badgeValue: "locked")
 }
 
-/// 이번 달 배지만 보여주기
-func filterByThisMonth(badges: [Badge]) -> [Badge] {
-    return badges.filter { badge in
-        guard let date = badge.updated else { return true }
-        return isItThisMonth(date: date)
-    }
-}
-
 /// 이번달 여부 확인
 func isItThisMonth(date: Date) -> Bool {
     let calendar = Calendar(identifier: .gregorian)
