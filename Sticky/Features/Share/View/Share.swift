@@ -147,10 +147,9 @@ struct Share: View {
             let title = badge.name
             var value = ""
             switch badge.badgeType {
-            case BadgeType.special:
-                value = ""
             case BadgeType.continuous,
-                 BadgeType.monthly:
+                 BadgeType.monthly,
+                 BadgeType.special:
                 value = badge.name
             case BadgeType.level:
                 value = "\(shareViewModel.seconds.ToDaysHoursMinutes())"

@@ -88,10 +88,9 @@ struct NewItemShare: View {
             image = badge.image
             value = ""
             switch badge.badgeType {
-            case .special:
-                break
             case .continuous,
-                 .monthly:
+                 .monthly,
+                 .special:
                 value = badge.name
             case .level:
                 value = "\(seconds.ToDaysHoursMinutes())"

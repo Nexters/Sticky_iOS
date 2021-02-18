@@ -8,7 +8,11 @@
 import Foundation
 
 let special_default = ["welcome", "locked", "locked"].map { keyword in
-    Badge(badgeType: .special, badgeValue: keyword)
+    Badge(
+        badgeType: .special,
+        badgeValue: keyword,
+        _name: keyword == "welcome" ? "스티키에 오신걸 환영합니다" : ""
+    )
 }
 
 let monthly_default = ["10", "30", "50", "100", "150", "300", "500", "700", "720"].map { hours in
