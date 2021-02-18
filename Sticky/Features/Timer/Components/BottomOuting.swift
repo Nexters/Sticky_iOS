@@ -15,13 +15,9 @@ struct BottomOuting: View {
     var body: some View {
         VStack {
             Button(action: {
-                if locationManager.isContains() {
-                    count = 3
-                    flag = true
-                    challengeState.type = .running
-                } else {
-                    print("아직 집이 아닌데 할거야?")
-                }
+                count = 3
+                flag = true
+                challengeState.type = .running
             }, label: {
                 GradientRoundedButton(
                     content: "귀가완료",
