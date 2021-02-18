@@ -94,7 +94,7 @@ class LocationManager: NSObject, ObservableObject {
                 // newValue내에 존재 && 이전Value내에 존재하지 X
                 print("LocationManager - geofence enter : ")
                 NotificationCenter.default.post(name: .enterGeofence, object: nil)
-            } else if !isContainAfterSet, exitNum >= 2 {
+            } else if !isContainAfterSet, exitNum >= 10 {
                 //exit Notification 발생
                 print("LocationManager - geofence exit")
                 exitNum = 0
