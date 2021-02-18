@@ -17,7 +17,7 @@ import Foundation
  - count: 획득 횟수
  - active: 활성여부
  */
-struct Badge: Codable, Hashable {
+class Badge: Codable, Hashable, Identifiable {
     // MARK: Lifecycle
 
     init(
@@ -34,23 +34,38 @@ struct Badge: Codable, Hashable {
         self.count = count
     }
 
+    // MARK: Public
+
+    public var updated: Date?
+    public var count: Int = 0
+
     // MARK: Internal
 
+    var id = UUID()
     var badgeType: BadgeType
     var badgeValue: String
     var _name: String = ""
-    var updated: Date?
-    var count: Int = 0
 
+    // 업데이트 일자가 이번 달에만 활성화
     var active: Bool {
-        count > 0 || updated != nil
+        guard let date = updated else { return false }
+        switch badgeType {
+        case .monthly:
+            return isItThisMonth(date: date)
+        case .continuous,
+             .level,
+             .special:
+            // 한 번이라도 획득했으면 무조건 활성화
+            return count > 0
+        }
     }
 
     var image: String {
         switch badgeType {
+        case .special:
+            return active ? "\(badgeType)_\(badgeValue)" : "special_locked"
         case .continuous,
-             .monthly,
-             .special:
+             .monthly:
             return "\(badgeType)_\(badgeValue)\(active ? "" : "_locked")"
         case .level:
             return "level\(badgeValue)"
@@ -89,6 +104,22 @@ struct Badge: Codable, Hashable {
             return "준비 중입니다."
         }
     }
+
+    static func == (lhs: Badge, rhs: Badge) -> Bool {
+        return lhs.badgeType == rhs.badgeType
+            && lhs.badgeValue == rhs.badgeValue
+            && lhs._name == rhs._name
+            && lhs.updated == rhs.updated
+            && lhs.count == rhs.count
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(badgeType)
+        hasher.combine(badgeValue)
+        hasher.combine(_name)
+        hasher.combine(updated)
+        hasher.combine(count)
+    }
 }
 
 /// 다국어 지원 시 locale 변경필요
@@ -121,7 +152,7 @@ extension BadgeType {
     func toString(value: String) -> String {
         switch self {
         case .special:
-            return "특별한 배지"
+            return value
         case .monthly:
             return "한달 동안 집에서 보낸 시간\n\(value)을 달성했습니다!"
         case .continuous:
@@ -142,22 +173,5 @@ extension BadgeType {
         case BadgeType.level:
             return ""
         }
-    }
-}
-
-// MARK: - Special
-
-enum Special: String {
-    case first
-}
-
-func makeBadges(badgeType: BadgeType, dict: [String: CountAndUpdated]) -> [Badge] {
-    return dict.sorted { Double($0.0)! < Double($1.0)! }.map { key, value in
-        Badge(
-            badgeType: badgeType,
-            badgeValue: key,
-            updated: value.date,
-            count: value.count
-        )
     }
 }
