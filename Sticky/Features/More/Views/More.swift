@@ -12,6 +12,7 @@ import SwiftUI
 struct More: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var rootViewManager: RootViewManager
+    @EnvironmentObject var challengeState: ChallengeState
     @State private var isPresented: Bool=false
     @State private var selection: String?
     @Binding var more: Bool
@@ -43,6 +44,7 @@ struct More: View {
                 confirmHandler: {
                     UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
                     UserDefaults.standard.synchronize()
+                    challengeState.type = .notRunning
                     rootViewManager.hasGeofence=false
                 },
                 title: "주소 변경하기",

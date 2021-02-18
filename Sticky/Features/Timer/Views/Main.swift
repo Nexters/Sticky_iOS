@@ -23,6 +23,7 @@ struct Main: View {
     @EnvironmentObject private var challengeState: ChallengeState
     @EnvironmentObject private var locationManager: LocationManager
     @EnvironmentObject private var user: User
+    @EnvironmentObject private var rootManager: RootViewManager
     @StateObject private var badgeViewModel = BadgeViewModel()
 
     @State var sharePresented: Bool = false
@@ -99,9 +100,7 @@ struct Main: View {
         }
         .onAppear {
             // 처음 불릴 때, 타이머 동작
-            print("onAppear")
-            if Main.isFirst {
-                Main.isFirst = false
+            if timer == nil, rootManager.hasGeofence {
                 if let badge = getWelcomeBadge(badges: badgeViewModel.specials) {
                     if !badge.active {
                         badge.count += 1
@@ -112,6 +111,10 @@ struct Main: View {
                 }
                 startTimer()
             }
+        }
+        .onDisappear {
+            timer?.invalidate()
+            timer = nil
         }
     }
 
@@ -124,20 +127,22 @@ struct Main: View {
     }
 
     func startTimer() {
-        timer = Timer.scheduledTimer(
-            withTimeInterval: 1.0,
-            repeats: true,
-            block: { _ in
-                showNewBadge = !badgeViewModel.badgeQueue.isEmpty
-                checkLevelUp()
-                if challengeState.type == .running {
-                    addChallengeTimer()
-                } else if challengeState.type == .outing {
-                    addChallengeTimer()
-                    addOutingTimer()
+        if timer == nil {
+            timer = Timer.scheduledTimer(
+                withTimeInterval: 1.0,
+                repeats: true,
+                block: { _ in
+                    showNewBadge = !badgeViewModel.badgeQueue.isEmpty
+                    checkLevelUp()
+                    if challengeState.type == .running {
+                        addChallengeTimer()
+                    } else if challengeState.type == .outing {
+                        addChallengeTimer()
+                        addOutingTimer()
+                    }
                 }
-            }
-        )
+            )
+        }
     }
 
     func addChallengeTimer() {
@@ -264,9 +269,9 @@ struct Main: View {
         let hours = (user.accumulateSeconds + challengeState.timeData.toSeconds()) / 3600
         switch challengeState.type {
         case .outing:
-            color = Color.GrayScale._500
+            color = Color.GrayScale._200
         case .notAtHome:
-            color = Color.GrayScale._500
+            color = Color.GrayScale._200
 
         default:
             let level = Tier.of(hours: hours).level

@@ -26,7 +26,7 @@ struct CardSlide: View {
     @Binding var items: [Card]
     let randomBodyText_KR = ["와우! 끈기가 대단해요", "정말 대단해요!", "와 진짜 믿을수 없어"]
     let randomBodyText_EN = ["Exellent..!", "Is this real?", "Wow, I can't believe it.", "Unbelievable", "That's amazing", "I'm proud of you"]
-    let randomNumber = Int.random(in: 0...5)
+    @State var randomNumber = Int.random(in: 0...5)
     let spacing: CGFloat = 16
     // 숨겨진 카드의 보여질 width
     let widthOfHiddenCards: CGFloat = 40 /// UIScreen.main.bounds.width - 10
