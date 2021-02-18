@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.19.1](https://github.com/Nexters/Sticky_iOS/compare/v1.19.0...v1.19.1) (2021-02-18)
+
+
+### Bug Fixes
+
+* appicon ([6d46a9e](https://github.com/Nexters/Sticky_iOS/commit/6d46a9ec9eb5f90f81ca3f21e5bada82016257bb))
+* exit 처리 횟수  3회 -> 10회 ([87eda1a](https://github.com/Nexters/Sticky_iOS/commit/87eda1ae2616b45df0a9721d8bd31793c2247e7e))
+* image ([607fc2f](https://github.com/Nexters/Sticky_iOS/commit/607fc2fff66160a7ad8b4c3daf8f56360639fcf8))
+* image (1x, 2x, 3x) ([ac35067](https://github.com/Nexters/Sticky_iOS/commit/ac35067edf7a3349923d0b3a99c85fc3fef53647))
+* location exit error ([c3b0395](https://github.com/Nexters/Sticky_iOS/commit/c3b03953a6a73cdec2bbd2e6150becda160254cd))
+* locationmanager ([cc9481a](https://github.com/Nexters/Sticky_iOS/commit/cc9481a0477de3faff665bffc75c73b579866266))
+* newslide .bottom ([2c461a2](https://github.com/Nexters/Sticky_iOS/commit/2c461a21ef6887ee9ea0b0a2207ae8eeb10c660c))
+* newslide padding ([7816f90](https://github.com/Nexters/Sticky_iOS/commit/7816f909fc68e3bc250ac3029f1ae8dfedb9c35b))
+* 노티 title, description ([a5def34](https://github.com/Nexters/Sticky_iOS/commit/a5def34dbf64bcabb2bda45f9b8a312406cd468d))
+* 뱃지 획득 Height 조절 ([2b6b4de](https://github.com/Nexters/Sticky_iOS/commit/2b6b4de5d1d07c08dc7a361738a81961a6ed5596))
+* 외출복귀 버튼 집이 아니어도 active ([46f6e0c](https://github.com/Nexters/Sticky_iOS/commit/46f6e0cd969c2995046f3a643f5c9dbe35140758))
+* 처음 앱 시작시, notAtHome -> notRunning 상태 수정 ([7627a96](https://github.com/Nexters/Sticky_iOS/commit/7627a96816de766e5f08960a6b478d37afcf59da))
+
 ## [1.19.0](https://github.com/Nexters/Sticky_iOS/compare/v1.18.1...v1.19.0) (2021-02-18)
 
 
