@@ -213,8 +213,8 @@ extension LocationManager: UNUserNotificationCenterDelegate {
 
         let content = UNMutableNotificationContent()
         
-        content.title = "Stikky"
-        content.body = "챌린지 중 집 밖을 나가서 중지되었습니다."
+        content.title = "[챌린지 종료]"
+        content.body = "집에서 이탈하여 챌린지가 종료됐어요. 최종 기록을 종유하세요."
         content.categoryIdentifier = "alarm"
         content.sound = UNNotificationSound.default
 
