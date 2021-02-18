@@ -23,7 +23,7 @@ struct Main: View {
     @EnvironmentObject private var challengeState: ChallengeState
     @EnvironmentObject private var locationManager: LocationManager
     @EnvironmentObject private var user: User
-    @StateObject private var badgeViewModel = BadgeViewModel()
+    @StateObject var badgeViewModel = BadgeViewModel()
 
     @State var sharePresented: Bool = false
     @State var bannerDetailPresented: Bool = false
@@ -40,7 +40,10 @@ struct Main: View {
         NavigationView {
             ZStack {
                 NavigationLink(
-                    destination: Share(shareType: ShareType.slide),
+                    destination: Share(
+                        shareType: ShareType.slide,
+                        badgeViewModel: badgeViewModel
+                    ),
                     isActive: $sharePresented
                 ) { EmptyView() }
                 NavigationLink(
