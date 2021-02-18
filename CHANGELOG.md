@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.20.0](https://github.com/Nexters/Sticky_iOS/compare/v1.19.1...v1.20.0) (2021-02-18)
+
+
+### Features
+
+* **share-challenge:** 획득한 배지 공유 구현 ([2cd282f](https://github.com/Nexters/Sticky_iOS/commit/2cd282f42c92524b97682ee81c248fa53e43d08c))
+
+
+### Bug Fixes
+
+* **get-badge:** 배지 획득 화면 전환 수정 ([ef7138f](https://github.com/Nexters/Sticky_iOS/commit/ef7138ff328055c32f7688ec2322c7069c2f4f54))
+* **map-marker:** 지도 마커 이미지 변경 ([ec1c4b5](https://github.com/Nexters/Sticky_iOS/commit/ec1c4b56eb201bf713e7a5cf68e281caa816b78a))
+* appicon ([953bfba](https://github.com/Nexters/Sticky_iOS/commit/953bfba94b38de048bc9ac4c877eb08279822c84))
+
 ### [1.19.1](https://github.com/Nexters/Sticky_iOS/compare/v1.19.0...v1.19.1) (2021-02-18)
 
 
