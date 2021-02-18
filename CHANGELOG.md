@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.19.0](https://github.com/Nexters/Sticky_iOS/compare/v1.18.1...v1.19.0) (2021-02-18)
+
+
+### Features
+
+* **welcome-badge:** welcome 배지 획득 처리 ([c58793b](https://github.com/Nexters/Sticky_iOS/commit/c58793b8f463409e1eb650ff9610a2863942e523))
+
 ### [1.18.1](https://github.com/Nexters/Sticky_iOS/compare/v1.18.0...v1.18.1) (2021-02-17)
 
 
