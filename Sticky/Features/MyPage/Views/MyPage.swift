@@ -55,7 +55,7 @@ struct MyPage: View {
                 EmptyView()
             }
             NavigationLink(
-                destination: Share(shareType: ShareType.card),
+                destination: Share(shareType: ShareType.card, badgeViewModel: badgeViewModel),
                 tag: ShareType.card,
                 selection: $navSelection
             ) { EmptyView() }
