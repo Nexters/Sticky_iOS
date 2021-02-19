@@ -47,7 +47,7 @@ struct StickyApp: App {
             case .active:
                 print("Why - latitude : \(UserDefaults.standard.double(forKey: "whyLatitude")), longitude : \(UserDefaults.standard.double(forKey: "whyLongitude"))")
                 print("locationManager - ChallengeType \(challengeState.type)")
-                print("Active \(Main.ChallengeType(rawValue: UserDefaults.standard.integer(forKey: "challengeType")))")
+                print("Active \(String(describing: Main.ChallengeType(rawValue: UserDefaults.standard.integer(forKey: "challengeType"))))")
                 let latitude = UserDefaults.standard.double(forKey: "latitude")
                 let longitude = UserDefaults.standard.double(forKey: "longitude")
                 print("App - latitude: \(latitude)")
@@ -64,22 +64,10 @@ struct StickyApp: App {
                     )
                     locationManager.region = MKCoordinateRegion(center: locationManager.geofence!.center, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
                 }
-
             case .inactive:
                 print("inActive")
-                if let data = try? PropertyListEncoder().encode(challengeState.timeData) {
-//                    UserDefaults.standard.set(data, forKey: key_time)
-//                    UserDefaults.standard.setValue(Date(), forKey: key_date)
-                }
-//                if let geofence = locationManager.geofence {
-//                    print("latitude: \(geofence.center.latitude)")
-//                    print("longitude: \(geofence.center.longitude)")
-//                    UserDefaults.standard.set(geofence.center.latitude, forKey: "latitude")
-//                    UserDefaults.standard.set(geofence.center.longitude, forKey: "longitude")
-//                }
             case .background:
                 print("Background")
-
             @unknown default:
                 print("다른 상태 구현 필요")
             }

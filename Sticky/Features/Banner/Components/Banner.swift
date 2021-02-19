@@ -20,7 +20,7 @@ struct Banner: View {
     @StateObject var badgeViewModel: BadgeViewModel
 
     var body: some View {
-        var nextMonthlyBadge = nextBadge(
+        let nextMonthlyBadge = nextBadge(
             badgeType: BadgeType.monthly,
             badges: self.badgeViewModel.monthly
         )
@@ -35,7 +35,7 @@ struct Banner: View {
             print("월간 배지 획득 남은 시간: \(remainMonthlyBadge)")
         }
 
-        var nextContiousBadge = nextBadge(
+        let nextContiousBadge = nextBadge(
             badgeType: BadgeType.continuous,
             badges: self.badgeViewModel.continuous
         )
