@@ -57,6 +57,8 @@ class Badge: Codable, Hashable, Identifiable {
              .special:
             // 한 번이라도 획득했으면 무조건 활성화
             return count > 0
+        case .unknown:
+            return false
         }
     }
 
@@ -69,6 +71,8 @@ class Badge: Codable, Hashable, Identifiable {
             return "\(badgeType)_\(badgeValue)\(active ? "" : "_locked")"
         case .level:
             return "level\(badgeValue)"
+        case .unknown:
+            return ""
         }
     }
 
@@ -81,7 +85,8 @@ class Badge: Codable, Hashable, Identifiable {
             switch badgeType {
             case .continuous,
                  .monthly,
-                 .special:
+                 .special,
+                 .unknown:
                 if badgeType == BadgeType.continuous, badgeValue == "0.5" {
                     return "12 Hours"
                 }
@@ -99,8 +104,9 @@ class Badge: Codable, Hashable, Identifiable {
         case .continuous:
             return "이번 챌린지에서 집에서 보낸 시간\n\(name)을 달성하면 받을 수 있습니다."
         case .level,
-             .special:
-            return "준비 중입니다."
+             .special,
+             .unknown:
+            return ""
         }
     }
 
@@ -141,6 +147,7 @@ extension Date {
  - level: 레벨
  */
 enum BadgeType: String, Codable {
+    case unknown
     case special
     case monthly
     case continuous
@@ -150,6 +157,8 @@ enum BadgeType: String, Codable {
 extension BadgeType {
     func toString(value: String) -> String {
         switch self {
+        case .unknown:
+            return ""
         case .special:
             if value.trimmingCharacters(in: .whitespaces) == "welcome" {
                 return "스티키에 오신걸 환영합니다!"
@@ -166,19 +175,21 @@ extension BadgeType {
 
     var unit: String {
         switch self {
-        case BadgeType.special:
+        case .level,
+             .special,
+             .unknown:
             return ""
-        case BadgeType.monthly:
+        case .monthly:
             return "Hours"
-        case BadgeType.continuous:
+        case .continuous:
             return "Days"
-        case BadgeType.level:
-            return ""
         }
     }
 
     var alias: String {
         switch self {
+        case .unknown:
+            return ""
         case .continuous:
             return "연속 달성 기록"
         case .monthly:

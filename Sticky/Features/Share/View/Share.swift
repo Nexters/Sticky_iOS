@@ -91,7 +91,8 @@ struct Share: View {
 
         default:
             switch type {
-            case .level:
+            case .level,
+                 .unknown:
                 bgColor = Color.Sticky.blue_bg
                 return
                     AnyView(
@@ -148,11 +149,12 @@ struct Share: View {
             let title = badge.name
             var value = ""
             switch badge.badgeType {
-            case BadgeType.continuous,
-                 BadgeType.monthly,
-                 BadgeType.special:
+            case .continuous,
+                 .monthly,
+                 .special,
+                 .unknown:
                 value = badge.name
-            case BadgeType.level:
+            case .level:
                 value = "\(shareViewModel.seconds.ToDaysHoursMinutes())"
             }
             let description = badge.badgeType.toString(value: value)
