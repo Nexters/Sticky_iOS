@@ -19,13 +19,14 @@ struct Main: View {
         case outing
     }
 
-    @EnvironmentObject private var popupState: PopupStateModel
-    @EnvironmentObject private var challengeState: ChallengeState
-    @EnvironmentObject private var shareViewModel: ShareViewModel
-    @EnvironmentObject private var locationManager: LocationManager
     @EnvironmentObject private var user: User
-    @EnvironmentObject private var rootManager: RootViewManager
+    @EnvironmentObject private var challengeState: ChallengeState
+    @StateObject private var shareViewModel = ShareViewModel()
     @StateObject private var badgeViewModel = BadgeViewModel()
+
+    @EnvironmentObject private var popupState: PopupStateModel
+    @EnvironmentObject private var locationManager: LocationManager
+    @EnvironmentObject private var rootManager: RootViewManager
 
     @State var sharePresented: Bool = false
     @State var bannerDetailPresented: Bool = false
@@ -44,14 +45,20 @@ struct Main: View {
                 NavigationLink(
                     destination: Share(
                         shareType: ShareType.slide,
+                        shareViewModel: shareViewModel,
                         badgeViewModel: badgeViewModel
                     ),
                     isActive: $sharePresented
                 ) { EmptyView() }
+
                 NavigationLink(
-                    destination: MyPage(badgeViewModel: badgeViewModel),
+                    destination: MyPage(
+                        shareViewModel: shareViewModel,
+                        badgeViewModel: badgeViewModel
+                    ),
                     isActive: $mypagePresented
                 ) { EmptyView() }
+
                 NavigationLink(
                     destination: NewItemShare(badgeQueue: $badgeViewModel.badgeQueue, seconds: user.accumulateSeconds),
                     isActive: $showNewBadge
@@ -149,9 +156,9 @@ struct Main: View {
     }
 
     func addChallengeTimer() {
-        user.accumulateSeconds += 3600
-        shareViewModel.seconds += 3600
-        challengeState.timeData.minute += 60
+        user.accumulateSeconds += 1
+        shareViewModel.seconds += 1
+        challengeState.timeData.second += 1
         if challengeState.timeData.minute >= 60 {
             challengeState.timeData.hour += 1
             challengeState.timeData.minute = 0

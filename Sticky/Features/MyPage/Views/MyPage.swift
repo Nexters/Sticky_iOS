@@ -13,9 +13,12 @@ struct MyPage: View {
     // MARK: Internal
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @StateObject var badgeViewModel: BadgeViewModel
+
     @EnvironmentObject var user: User
     @EnvironmentObject var challengeState: ChallengeState
+    @StateObject var shareViewModel: ShareViewModel
+    @StateObject var badgeViewModel: BadgeViewModel
+
     @State var showingActionSheet = false
 
     var monthlyButton: some View {
@@ -59,7 +62,11 @@ struct MyPage: View {
                 EmptyView()
             }
             NavigationLink(
-                destination: Share(shareType: ShareType.card, badgeViewModel: badgeViewModel),
+                destination: Share(
+                    shareType: ShareType.card,
+                    shareViewModel: shareViewModel,
+                    badgeViewModel: badgeViewModel
+                ),
                 tag: ShareType.card,
                 selection: $navSelection
             ) { EmptyView() }
@@ -145,7 +152,7 @@ struct MyPage: View {
 
 struct MyPage_Previews: PreviewProvider {
     static var previews: some View {
-        MyPage(badgeViewModel: BadgeViewModel())
+        MyPage(shareViewModel: ShareViewModel(), badgeViewModel: BadgeViewModel())
             .environmentObject(User())
             .environmentObject(ChallengeState())
     }

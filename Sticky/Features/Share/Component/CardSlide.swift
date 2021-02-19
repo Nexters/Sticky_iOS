@@ -20,9 +20,9 @@ struct CardSlide: View {
     // MARK: Internal
 
     @EnvironmentObject var UIState: UIStateModel
-    @EnvironmentObject var shareViewModel: ShareViewModel
     @EnvironmentObject var user: User
     @ObservedObject var badgeViewModel: BadgeViewModel
+    @ObservedObject var shareViewModel: ShareViewModel
 
     @Binding var items: [Card]
     let randomBodyText_KR = ["와우! 끈기가 대단해요", "정말 대단해요!", "와 진짜 믿을수 없어"]
@@ -265,7 +265,7 @@ public class UIStateModel: ObservableObject {
 
 struct CardSlide_Previews: PreviewProvider {
     static var previews: some View {
-        CardSlide(badgeViewModel: BadgeViewModel(), items: .constant(items))
+        CardSlide(badgeViewModel: BadgeViewModel(), shareViewModel: ShareViewModel(), items: .constant(items))
             .environmentObject(UIStateModel())
             .environmentObject(User())
     }
