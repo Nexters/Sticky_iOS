@@ -13,7 +13,7 @@ struct More: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var rootViewManager: RootViewManager
     @EnvironmentObject var challengeState: ChallengeState
-    @State private var isPresented: Bool=false
+    @State private var isPresented: Bool = false
     @State private var selection: String?
     @Binding var more: Bool
 
@@ -21,16 +21,16 @@ struct More: View {
         ZStack {
             VStack {
                 List {
-                    Button(action: { self.isPresented=true }) {
+                    Button(action: { self.isPresented = true }) {
                         LinkItem(text: "주소 변경")
                     }
-                    Button(action: { self.selection="about" }) {
+                    Button(action: { self.selection = "about" }) {
                         LinkItem(text: "스티키에 대해서")
                     }
-                    Button(action: { self.selection="version" }) {
+                    Button(action: { self.selection = "version" }) {
                         LinkItem(text: "버전 정보")
                     }
-                    Button(action: { self.selection="license" }) {
+                    Button(action: { self.selection = "license" }) {
                         LinkItem(text: "오픈소스 라이센스")
                     }
                 }
@@ -44,8 +44,16 @@ struct More: View {
                 confirmHandler: {
                     UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
                     UserDefaults.standard.synchronize()
+                    StickyApp.locationManager = LocationManager()
+                    StickyApp.rootViewManager = RootViewManager()
+                    StickyApp.user = User()
+                    StickyApp.challengeState = ChallengeState()
+                    StickyApp.popupStateModel = PopupStateModel()
+                    StickyApp.uiStateModel = UIStateModel()
+                    StickyApp.locationSearchService = LocationSearchService()
+                    StickyApp.location = Location()
                     challengeState.type = .notRunning
-                    rootViewManager.hasGeofence=false
+                    rootViewManager.hasGeofence = false
                 },
                 title: "주소 변경하기",
                 description: "주소를 변경하면 지금까지 쌓은 모든 기록이 사라집니다.정말 주소를 변경하고 새로 시작 하시겠어요?",

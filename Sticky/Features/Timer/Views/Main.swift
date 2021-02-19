@@ -74,7 +74,7 @@ struct Main: View {
                         badgeViewModel: badgeViewModel
                     )
                     Spacer()
-                    TimerView(time: $challengeState.timeData)
+                    TimerView(seconds: $challengeState.seconds)
                     Spacer()
                     setBottomView()
                         .padding(.bottom, 24)
@@ -111,14 +111,6 @@ struct Main: View {
         .onAppear {
             // 처음 불릴 때, 타이머 동작
             if timer == nil, rootManager.hasGeofence {
-                if let badge = getWelcomeBadge(badges: badgeViewModel.specials) {
-                    if !badge.active {
-                        badge.count += 1
-                        badge.updated = Date()
-                        badgeViewModel.badgeQueue.append(badge)
-                        badgeViewModel.specials = badgeViewModel.specials
-                    }
-                }
                 startTimer()
             }
         }
@@ -144,10 +136,11 @@ struct Main: View {
                 block: { _ in
                     showNewBadge = !badgeViewModel.badgeQueue.isEmpty
                     checkLevelUp()
+                    let increase = 1
                     if challengeState.type == .running {
-                        addChallengeTimer()
+                        addChallengeTimer(increase: increase)
                     } else if challengeState.type == .outing {
-                        addChallengeTimer()
+                        addChallengeTimer(increase: increase)
                         addOutingTimer()
                     }
                 }
@@ -155,17 +148,10 @@ struct Main: View {
         }
     }
 
-    func addChallengeTimer() {
-        user.accumulateSeconds += 1
-        shareViewModel.seconds += 1
-        challengeState.timeData.second += 1
-        if challengeState.timeData.minute >= 60 {
-            challengeState.timeData.hour += 1
-            challengeState.timeData.minute = 0
-        } else if challengeState.timeData.second >= 60 {
-            challengeState.timeData.minute += 1
-            challengeState.timeData.second = 0
-        }
+    func addChallengeTimer(increase: Int) {
+        user.accumulateSeconds += increase
+        shareViewModel.seconds += increase
+        challengeState.seconds += increase
     }
 
     func addOutingTimer() {
@@ -239,12 +225,12 @@ struct Main: View {
         case .exit:
             sharePresented = true
             challengeState.type = .notRunning
-            challengeState.timeData = TimeData()
+            challengeState.seconds = 0
 
         case .fail:
             sharePresented = true
             challengeState.type = .notAtHome
-            challengeState.timeData = TimeData()
+            challengeState.seconds = 0
 
         case .outing:
             flag = true
@@ -306,7 +292,7 @@ struct Main: View {
                 )
             )
         case .notRunning:
-            view = AnyView(BottomTimerNotRunning())
+            view = AnyView(BottomTimerNotRunning(badgeViewModel: badgeViewModel))
         case .outing:
             view = AnyView(BottomOuting(count: $countTime, flag: $flag))
         }
