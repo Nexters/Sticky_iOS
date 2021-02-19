@@ -39,7 +39,7 @@ struct SearchAddress: View {
                     EditText(
                         input: $locationSearchService.searchQuery,
                         placeholder:
-                            locationManager.checkLocationStatus() ? "도로명, 건물명 또는 지번으로 검색" : "위치 정보를 항상으로 체크해주세요.",
+                        locationManager.checkLocationStatus() ? "도로명, 건물명 또는 지번으로 검색" : "위치 정보를 항상으로 체크해주세요.",
                         accentColor: .white
                     )
                     .padding(.bottom, 8)
@@ -59,32 +59,44 @@ struct SearchAddress: View {
                             cornerRadius: 16.0
                         )
                     }
+                    .frame(height: 48)
+
                 }.padding(.horizontal, 16)
 
-                Divider().padding(.vertical, 16)
+                Divider().padding(.top, 16)
 
                 VStack {
                     if locationSearchService.searchQuery.isEmpty {
                         Tip()
+                            .padding(.top, 16)
                     } else {
                         if !locationSearchService.completions.isEmpty {
-                            List {
+                            ScrollView {
                                 // List에서는 RowInsets로 좌우 패딩이 안지워지므로 ForEach 사용
-                                ForEach(locationSearchService.completions) {
-                                    completion in
-                                    Button(action: { searchByCompletion(completion: completion) }) {
-                                        VStack(alignment: .leading) {
-                                            Text(completion.title)
-                                            Text(completion.subtitle)
-                                                .font(.subheadline)
-                                                .foregroundColor(.gray)
+                                VStack(alignment: .leading) {
+                                    ForEach(locationSearchService.completions) {
+                                        completion in
+                                        Button(action: { searchByCompletion(completion: completion) }) {
+                                            VStack(alignment: .leading) {
+                                                Text(completion.title)
+                                                    .kerning(-0.3)
+                                                    .font(.system(size: 17))
+                                                    .padding(.bottom, 2)
+                                                Text(completion.subtitle)
+                                                    .kerning(-0.3)
+                                                    .font(.system(size: 14))
+                                                    .foregroundColor(.gray)
+                                            }
+                                            .foregroundColor(.black)
+                                            .padding(.vertical, 12)
                                         }
+                                        .padding(.horizontal, 0)
+                                        Divider()
+                                            .padding(.horizontal, 0)
                                     }
-                                    .listRowInsets(
-                                        EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0)
-                                    )
                                 }
-                            }.frame(minHeight: 100)
+                            }
+                            .frame(minHeight: 100)
                         } else {
                             NotFound()
                         }

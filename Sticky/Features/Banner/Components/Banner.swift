@@ -24,59 +24,68 @@ struct Banner: View {
             badgeType: BadgeType.monthly,
             badges: self.badgeViewModel.monthly
         )
-        let remainMonthlyBadge = (Int(nextMonthlyBadge.badgeValue) ?? 0) * 3600
-            - challengeState.seconds
-        if remainMonthlyBadge <= 0 {
-            nextMonthlyBadge.updated = Date()
-            nextMonthlyBadge.count += 1
-            badgeViewModel.monthly = badgeViewModel.monthly
-            badgeViewModel.badgeQueue.append(nextMonthlyBadge)
-        } else {
-            print("월간 배지 획득 남은 시간: \(remainMonthlyBadge)")
+        var remainMonthlyBadge = 0
+        if nextMonthlyBadge.badgeType != .unknown {
+            remainMonthlyBadge = (Int(nextMonthlyBadge.badgeValue) ?? 0) * 3600
+                - challengeState.seconds
+            if remainMonthlyBadge <= 0 {
+                nextMonthlyBadge.updated = Date()
+                nextMonthlyBadge.count += 1
+                badgeViewModel.monthly = badgeViewModel.monthly
+                badgeViewModel.badgeQueue.append(nextMonthlyBadge)
+            } else {
+                print("월간 배지 획득 남은 시간: \(remainMonthlyBadge)")
+            }
         }
 
         let nextContiousBadge = nextBadge(
             badgeType: BadgeType.continuous,
             badges: self.badgeViewModel.continuous
         )
-        // 연속 배지 획득까지 남은 seconds; 뱃지 필요한 시간 - 챌린지 시간
-        var remainContinuousBadge = nextContiousBadge.badgeValue == "0.5" ? 12 * 3600 : (Int(nextContiousBadge.badgeValue) ?? 0) * 3600 * 24
-        remainContinuousBadge -= challengeState.seconds
-        if remainContinuousBadge <= 0 {
-            nextContiousBadge.updated = Date()
-            nextContiousBadge.count += 1
-            badgeViewModel.continuous = badgeViewModel.continuous
-            badgeViewModel.badgeQueue.append(nextContiousBadge)
-        } else {
-            print("연속 배지 획득 남은 시간: \(remainContinuousBadge)")
+        var remainContinuousBadge = 0
+        if nextContiousBadge.badgeType != .unknown {
+            // 연속 배지 획득까지 남은 seconds; 뱃지 필요한 시간 - 챌린지 시간
+            remainContinuousBadge = nextContiousBadge.badgeValue == "0.5" ? 12 * 3600 : (Int(nextContiousBadge.badgeValue) ?? 0) * 3600 * 24
+            remainContinuousBadge -= challengeState.seconds
+            if remainContinuousBadge <= 0 {
+                nextContiousBadge.updated = Date()
+                nextContiousBadge.count += 1
+                badgeViewModel.continuous = badgeViewModel.continuous
+                badgeViewModel.badgeQueue.append(nextContiousBadge)
+            } else {
+                print("연속 배지 획득 남은 시간: \(remainContinuousBadge)")
+            }
         }
 
         return ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                Button(
-                    action: {
-                        self.bannerDetailPresented = true
-                        self.badgeViewModel.select = nextMonthlyBadge
-                    },
-                    label: {
-                        BannerItem(
-                            image: nextMonthlyBadge.image,
-                            title: nextMonthlyBadge.name,
-                            subtitle: "\(remainTime(remainMonthlyBadge)) 남음"
-                        )
-                    }
-                )
-
-                Button(action: {
-                    self.bannerDetailPresented = true
-                    self.badgeViewModel.select = nextContiousBadge
-                }, label: {
-                    BannerItem(
-                        image: nextContiousBadge.image,
-                        title: nextContiousBadge.name,
-                        subtitle: "\(remainTime(remainContinuousBadge)) 남음"
+                if nextMonthlyBadge.badgeType != .unknown {
+                    Button(
+                        action: {
+                            self.bannerDetailPresented = true
+                            self.badgeViewModel.select = nextMonthlyBadge
+                        },
+                        label: {
+                            BannerItem(
+                                image: nextMonthlyBadge.image,
+                                title: nextMonthlyBadge.name,
+                                subtitle: "\(remainTime(remainMonthlyBadge)) 남음"
+                            )
+                        }
                     )
-                })
+                }
+                if nextContiousBadge.badgeType != .unknown {
+                    Button(action: {
+                        self.bannerDetailPresented = true
+                        self.badgeViewModel.select = nextContiousBadge
+                    }, label: {
+                        BannerItem(
+                            image: nextContiousBadge.image,
+                            title: nextContiousBadge.name,
+                            subtitle: "\(remainTime(remainContinuousBadge)) 남음"
+                        )
+                    })
+                }
 
                 Button(action: { self.mypagePresented = true }) {
                     RoundedRectangle(cornerRadius: 20)

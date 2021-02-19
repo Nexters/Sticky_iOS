@@ -45,6 +45,9 @@ struct EditText: View {
                         }
                     }, label: {
                         Image("ic_close_small")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 20, height: 20)
                     })
                 }
             }
