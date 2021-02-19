@@ -10,25 +10,36 @@ import SwiftUI
 // MARK: - BottomOuting
 
 struct BottomOuting: View {
-    // MARK: Internal
+    @EnvironmentObject var challengeState: ChallengeState
+    @EnvironmentObject var locationManager: LocationManager
+    @Binding var count: Int
+    @Binding var flag: Bool
 
-    var body: some View {
-        VStack(spacing: 16) {
-            Button(action: {
+    @GestureState var isDetectingLongPress = false
+    @State var completedLongPress = false
+
+    var longPress: some Gesture {
+        LongPressGesture(minimumDuration: 5)
+            .updating($isDetectingLongPress) { currentState, gestureState,
+                transaction in
+                gestureState = currentState
+                transaction.animation = Animation.easeIn(duration: 4.0)
+            }
+            .onEnded { finished in
+                self.completedLongPress = finished
                 count = 3
                 flag = true
                 challengeState.type = .running
-            }, label: {
-                GradientRoundedButton(
-                    content: "집 도착 완료",
-                    startColor: Color.black,
-                    endColor: Color.black,
-                    width: 280,
-                    height: 60,
-                    cornerRadius: 16,
-                    fontColor: Color.white
-                )
-            })
+            }
+    }
+
+    var body: some View {
+        VStack(spacing: 16) {
+            RoundedRectangle(cornerRadius: 16)
+                .foregroundColor(self.isDetectingLongPress ? .gray : .black)
+                .frame(width: 280, height: 60)
+                .gesture(longPress)
+                .overlay(Text("집 도착 완료").foregroundColor(.white))
 
             RoundedRectangle(cornerRadius: 16)
                 .foregroundColor(Color.white.opacity(0.3))
@@ -42,20 +53,17 @@ struct BottomOuting: View {
                 )
         }
     }
-
-    // MARK: Private
-
-    @EnvironmentObject private var challengeState: ChallengeState
-    @EnvironmentObject private var locationManager: LocationManager
-    @Binding var count: Int
-    @Binding var flag: Bool
 }
 
 // MARK: - BottomOuting_Previews
 
 struct BottomOuting_Previews: PreviewProvider {
     static var previews: some View {
-        BottomOuting(count: .constant(1), flag: .constant(false))
-            .environmentObject(ChallengeState())
+        ZStack {
+            Color.Background.outing
+                .ignoresSafeArea()
+            BottomOuting(count: .constant(1), flag: .constant(false))
+                .environmentObject(ChallengeState())
+        }
     }
 }
