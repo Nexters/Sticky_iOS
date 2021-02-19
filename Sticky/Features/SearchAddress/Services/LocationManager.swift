@@ -194,9 +194,6 @@ extension LocationManager: CLLocationManagerDelegate {
      */
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         print("LocationManager - Exit: \(self.geofence?.center)")
-        UserDefaults.standard.setValue(self.location.coordinate.latitude, forKey: "whyLatitude")
-        UserDefaults.standard.setValue(self.location.coordinate.longitude, forKey: "whyLongitude")
-        print("Why - latitude : \(self.location.coordinate.latitude), longitude : \(self.location.coordinate.longitude)")
         NotificationCenter.default.post(name: .exitGeofence, object: nil)
     }
 
