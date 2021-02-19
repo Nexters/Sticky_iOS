@@ -20,7 +20,6 @@ struct CardSlide: View {
     // MARK: Internal
 
     @EnvironmentObject var UIState: UIStateModel
-    @EnvironmentObject var challengeState: ChallengeState
     @EnvironmentObject var shareViewModel: ShareViewModel
     @EnvironmentObject var user: User
     @ObservedObject var badgeViewModel: BadgeViewModel
@@ -223,7 +222,7 @@ struct CardSlide: View {
     }
 
     private var level: Int {
-        switch Tier.of(hours: (user.accumulateSeconds + challengeState.timeData.toSeconds()) / 3600).level {
+        switch Tier.of(hours: (user.accumulateSeconds + shareViewModel.seconds.toTimeData().toSeconds()) / 3600).level {
         case 1...3:
             return 1
         case 4...6:
@@ -239,11 +238,11 @@ struct CardSlide: View {
     }
 
     private var isDayTextHidden: Bool {
-        return challengeState.timeData.day > 0 ? false : true
+        return shareViewModel.seconds.toTimeData().day > 0 ? false : true
     }
 
     private var isHourTextHidden: Bool {
-        return challengeState.timeData.hour > 0 ? false : true
+        return shareViewModel.seconds.toTimeData().hour > 0 ? false : true
     }
 
     private func getRandomText() -> String {
@@ -268,7 +267,6 @@ struct CardSlide_Previews: PreviewProvider {
     static var previews: some View {
         CardSlide(badgeViewModel: BadgeViewModel(), items: .constant(items))
             .environmentObject(UIStateModel())
-            .environmentObject(ChallengeState())
             .environmentObject(User())
     }
 }
