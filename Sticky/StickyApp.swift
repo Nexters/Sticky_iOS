@@ -16,7 +16,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        challengeState.type = .notRunning
+        StickyApp.challengeState.type = .notRunning
         print("type앱 종료되요")
     }
 }
@@ -25,6 +25,17 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct StickyApp: App {
+    // MARK: Public
+
+    public static var locationManager = LocationManager()
+    public static var rootViewManager = RootViewManager()
+    public static var user = User()
+    public static var challengeState = ChallengeState()
+    public static var popupStateModel = PopupStateModel()
+    public static var uiStateModel = UIStateModel()
+    public static var locationSearchService = LocationSearchService()
+    public static var location = Location()
+
     // MARK: Internal
 
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appdelegate
@@ -32,29 +43,28 @@ struct StickyApp: App {
     var body: some Scene {
         WindowGroup {
             AppMain()
-                .environmentObject(PopupStateModel())
-                .environmentObject(UIStateModel())
-                .environmentObject(challengeState)
-                .environmentObject(locationManager)
-                .environmentObject(LocationSearchService())
-                .environmentObject(Location())
-                .environmentObject(rootViewManager)
-                .environmentObject(ShareViewModel())
-                .environmentObject(user)
+                .environmentObject(StickyApp.popupStateModel)
+                .environmentObject(StickyApp.uiStateModel)
+                .environmentObject(StickyApp.challengeState)
+                .environmentObject(StickyApp.locationManager)
+                .environmentObject(StickyApp.locationSearchService)
+                .environmentObject(StickyApp.location)
+                .environmentObject(StickyApp.rootViewManager)
+                .environmentObject(StickyApp.user)
         }
         .onChange(of: scenePhase) { newScenePhase in
             switch newScenePhase {
             case .active:
                 print("Why - latitude : \(UserDefaults.standard.double(forKey: "whyLatitude")), longitude : \(UserDefaults.standard.double(forKey: "whyLongitude"))")
-                print("locationManager - ChallengeType \(challengeState.type)")
+                print("locationManager - ChallengeType \(StickyApp.challengeState.type)")
                 print("Active \(String(describing: Main.ChallengeType(rawValue: UserDefaults.standard.integer(forKey: "challengeType"))))")
                 let latitude = UserDefaults.standard.double(forKey: "latitude")
                 let longitude = UserDefaults.standard.double(forKey: "longitude")
                 print("App - latitude: \(latitude)")
                 print("App - longitude: \(longitude)")
                 if latitude != 0, longitude != 0 {
-                    locationManager.challengeType = challengeState.type
-                    locationManager.geofence = CLCircularRegion(
+                    StickyApp.locationManager.challengeType = StickyApp.challengeState.type
+                    StickyApp.locationManager.geofence = CLCircularRegion(
                         center: CLLocationCoordinate2D(
                             latitude: latitude,
                             longitude: longitude
@@ -62,7 +72,7 @@ struct StickyApp: App {
                         radius: 100.0,
                         identifier: "Myhome"
                     )
-                    locationManager.region = MKCoordinateRegion(center: locationManager.geofence!.center, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
+                    StickyApp.locationManager.region = MKCoordinateRegion(center: StickyApp.locationManager.geofence!.center, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
                 }
             case .inactive:
                 print("inActive")
@@ -80,11 +90,4 @@ struct StickyApp: App {
     private var longitude = UserDefaults.standard.double(forKey: "longitude")
 
     @Environment(\.scenePhase) private var scenePhase
-    private var locationManager = LocationManager()
-    private var rootViewManager = RootViewManager()
-    private var user = User()
-    private let key_time = "time"
-    private let key_date = "date"
 }
-
-var challengeState = ChallengeState()
