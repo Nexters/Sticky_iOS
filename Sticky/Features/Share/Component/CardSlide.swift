@@ -64,6 +64,7 @@ struct CardSlide: View {
 
                         // MARK: 뱃지 갯수에 따른 코멘트 변경
 
+                        // 스페셜 2개는 임시
                         let count = countActiveBadges(badges: badgeViewModel.specials + badgeViewModel.monthly + badgeViewModel.continuous)
                         Text(getCommentOfBadgeCard(count: count))
                             .font(Font.system(size: 18))
@@ -252,7 +253,7 @@ struct CardSlide: View {
             return comments[0]
         case 11...14:
             return comments[1]
-        case (special_default + monthly_default + continuous_default).count:
+        case (special_default + monthly_default + continuous_default).count - 2: // 2개는 스페셜 배지 준비 중
             return comments[2]
         default:
             return comments[0]

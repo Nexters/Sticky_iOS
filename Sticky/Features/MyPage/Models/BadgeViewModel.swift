@@ -151,7 +151,7 @@ func nextBadge(
     return badges
         .filter { badge in !badge.active }
         .sorted { Double($0.badgeValue)! < Double($1.badgeValue)! }
-        .first ?? Badge(badgeType: .special, badgeValue: "locked")
+        .first ?? Badge(badgeType: .unknown, badgeValue: "")
 }
 
 /// 이번달 여부 확인
