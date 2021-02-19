@@ -21,6 +21,7 @@ struct CardSlide: View {
 
     @EnvironmentObject var UIState: UIStateModel
     @EnvironmentObject var challengeState: ChallengeState
+    @EnvironmentObject var shareViewModel: ShareViewModel
     @EnvironmentObject var user: User
     @ObservedObject var badgeViewModel: BadgeViewModel
 
@@ -120,7 +121,8 @@ struct CardSlide: View {
     }
 
     private var challengeCard: some View {
-        CardItem(
+        let timeData = shareViewModel.seconds.toTimeData()
+        return CardItem(
             // 카드 UI의 id
             id: 0,
             // 카드 사이의 너비
@@ -141,7 +143,7 @@ struct CardSlide: View {
                             HStack(spacing: 24) {
                                 // Day
                                 VStack {
-                                    Text(String(challengeState.timeData.day))
+                                    Text(String(timeData.day))
                                         .font(.custom("Modak", size: 80))
                                         .frame(height: 64)
                                         .padding(.bottom, 1)
@@ -155,7 +157,7 @@ struct CardSlide: View {
 
                                 // Hour
                                 VStack {
-                                    Text(String(challengeState.timeData.hour))
+                                    Text(String(timeData.hour))
                                         .font(.custom("Modak", size: 80))
                                         .frame(height: 64)
                                         .padding(.bottom, 1)
@@ -170,7 +172,7 @@ struct CardSlide: View {
                                 // Minute
                                 VStack {
                                     StrokeText(
-                                        text: String(challengeState.timeData.minute),
+                                        text: String(timeData.minute),
                                         size: 80,
                                         fontColor: .white)
                                         .frame(height: 64)

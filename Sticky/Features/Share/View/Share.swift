@@ -57,6 +57,11 @@ struct Share: View {
             leading: backButton,
             trailing: downloadButton
         )
+        .onDisappear {
+            if challengeState.type == .notRunning {
+                shareViewModel.seconds = 0
+            }
+        }
     }
 
     // MARK: Private

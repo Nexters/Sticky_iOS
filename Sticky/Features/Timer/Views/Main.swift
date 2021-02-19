@@ -21,6 +21,7 @@ struct Main: View {
 
     @EnvironmentObject private var popupState: PopupStateModel
     @EnvironmentObject private var challengeState: ChallengeState
+    @EnvironmentObject private var shareViewModel: ShareViewModel
     @EnvironmentObject private var locationManager: LocationManager
     @EnvironmentObject private var user: User
     @EnvironmentObject private var rootManager: RootViewManager
@@ -149,6 +150,7 @@ struct Main: View {
     }
 
     func addChallengeTimer() {
+        shareViewModel.seconds += 1
         challengeState.timeData.second += 1
         if challengeState.timeData.minute >= 60 {
             challengeState.timeData.hour += 1
@@ -244,11 +246,13 @@ struct Main: View {
             sharePresented = true
 
             challengeState.type = .notRunning
+            challengeState.timeData = TimeData()
             addAccumulateTime()
 
         case .fail:
             sharePresented = true
             challengeState.type = .notAtHome
+            challengeState.timeData = TimeData()
             addAccumulateTime()
 
         case .outing:
@@ -303,7 +307,13 @@ struct Main: View {
         case .notAtHome:
             view = AnyView(BottomNotAtHome())
         case .running:
-            view = AnyView(BottomTimerRunning(numberOfHeart: $challengeState.numberOfHeart, sharePresented: $sharePresented, popupStyle: $popupState.popupStyle))
+            view = AnyView(
+                BottomTimerRunning(
+                    numberOfHeart: $challengeState.numberOfHeart,
+                    sharePresented: $sharePresented,
+                    popupStyle: $popupState.popupStyle
+                )
+            )
         case .notRunning:
             view = AnyView(BottomTimerNotRunning())
         case .outing:

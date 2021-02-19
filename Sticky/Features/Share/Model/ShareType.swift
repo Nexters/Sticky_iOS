@@ -20,25 +20,3 @@ enum ShareType: String {
     case slide
     case card
 }
-
-// MARK: - ShareViewModel
-
-class ShareViewModel: ObservableObject {
-    // MARK: Lifecycle
-
-    init() {
-        badge = loadBadge(forKey: "shareBadge")
-        seconds = 0
-    }
-
-    // MARK: Internal
-
-    @Published var seconds: Int
-
-    @Published var badge: Badge {
-        didSet {
-            let data = try? encoder.encode(badge)
-            UserDefaults.standard.set(data, forKey: "shareBadge")
-        }
-    }
-}
