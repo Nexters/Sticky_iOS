@@ -15,24 +15,25 @@ struct TierInformation: View {
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var imageName = ""
+
     var body: some View {
-        
-        ScrollView(.vertical){
+        ScrollView(.vertical) {
             Image(imageName)
                 .resizable()
                 .scaledToFit()
         }
-        .onAppear{
+        .onAppear {
             print(Locale.current.regionCode)
-            if Locale.current.regionCode == "KR"{
+            if Locale.current.regionCode == "KR" {
                 imageName = "level_info_KR"
-            }else{
+            } else {
                 imageName = "level_info_EN"
             }
         }
-            .navigationBarBackButtonHidden(true)
-            .navigationBarItems(leading: backButton)
-            .navigationBarTitle("등급정보", displayMode: .inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: backButton)
+        .navigationBarTitle("등급정보", displayMode: .inline)
+        .navigationBarColor(UIColor.white, textColor: UIColor.black)
     }
 
     // MARK: Private

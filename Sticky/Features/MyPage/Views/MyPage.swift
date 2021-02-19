@@ -21,12 +21,16 @@ struct MyPage: View {
     var monthlyButton: some View {
         AnyView(
             HStack {
-                Text("\(badgeViewModel.showCountBadge ? "전체 기간" : "이번 달")")
                 Button(action: {
                     self.showingActionSheet = true
                 }, label: {
+                    Text("\(badgeViewModel.showCountBadge ? "전체 기간" : "이번 달")")
+                        .font(.system(size: 17))
+                        .foregroundColor(.black)
                     Image("slice")
-                        .aspectRatio(contentMode: .fit)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 24, height: 24)
                 })
                     .actionSheet(isPresented: $showingActionSheet, content: {
                         ActionSheet(
@@ -102,6 +106,7 @@ struct MyPage: View {
             leading: backButton,
             trailing: moreButton
         )
+        .navigationBarColor(UIColor.white, textColor: UIColor.black)
     }
 
     var backButton: some View {

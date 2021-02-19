@@ -17,7 +17,7 @@ import Foundation
 
 public class ChallengeState: ObservableObject {
     // MARK: Lifecycle
-    
+
     init() {
         let now = Date()
         if type == .running {

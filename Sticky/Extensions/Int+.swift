@@ -21,4 +21,14 @@ extension Int {
         formatter.allowedUnits = allowedUnits
         return formatter.string(from: TimeInterval(self))!
     }
+
+    func toTimeData() -> TimeData {
+        let time = (
+            day: self / 86400,
+            hours: self / 3600,
+            minutes: (self % 3600) / 60,
+            seconds: (self % 3600) % 60
+        )
+        return TimeData(day: time.day, hour: time.hours, minute: time.minutes, second: time.seconds)
+    }
 }

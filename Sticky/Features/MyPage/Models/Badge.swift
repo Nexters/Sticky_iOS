@@ -84,9 +84,8 @@ class Badge: Codable, Hashable, Identifiable {
                  .special:
                 if badgeType == BadgeType.continuous, badgeValue == "0.5" {
                     return "12 Hours"
-                } else {
-                    return "\(badgeValue) \(badgeType.unit)"
                 }
+                return "\(badgeValue) \(badgeType.unit)"
             case .level:
                 return _name
             }
@@ -152,6 +151,9 @@ extension BadgeType {
     func toString(value: String) -> String {
         switch self {
         case .special:
+            if value.trimmingCharacters(in: .whitespaces) == "welcome" {
+                return "스티키에 오신걸 환영합니다!"
+            }
             return value
         case .monthly:
             return "한달 동안 집에서 보낸 시간\n\(value)을 달성했습니다!"
@@ -172,6 +174,19 @@ extension BadgeType {
             return "Days"
         case BadgeType.level:
             return ""
+        }
+    }
+
+    var alias: String {
+        switch self {
+        case .continuous:
+            return "연속 달성 기록"
+        case .monthly:
+            return "월간 달성 기록"
+        case .special:
+            return "스페셜 기록"
+        case .level:
+            return "레벨"
         }
     }
 }

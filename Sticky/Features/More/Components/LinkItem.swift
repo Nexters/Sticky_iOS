@@ -22,6 +22,7 @@ struct LinkItem: View {
                 .foregroundColor(.black)
         }.frame(height: 60)
     }
+    
 }
 
 // MARK: - LinkItem_Previews

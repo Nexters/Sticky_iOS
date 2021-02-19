@@ -21,9 +21,11 @@ struct Main: View {
 
     @EnvironmentObject private var popupState: PopupStateModel
     @EnvironmentObject private var challengeState: ChallengeState
+    @EnvironmentObject private var shareViewModel: ShareViewModel
     @EnvironmentObject private var locationManager: LocationManager
     @EnvironmentObject private var user: User
-    @StateObject var badgeViewModel = BadgeViewModel()
+    @EnvironmentObject private var rootManager: RootViewManager
+    @StateObject private var badgeViewModel = BadgeViewModel()
 
     @State var sharePresented: Bool = false
     @State var bannerDetailPresented: Bool = false
@@ -102,9 +104,7 @@ struct Main: View {
         }
         .onAppear {
             // 처음 불릴 때, 타이머 동작
-            print("onAppear")
-            if Main.isFirst {
-                Main.isFirst = false
+            if timer == nil, rootManager.hasGeofence {
                 if let badge = getWelcomeBadge(badges: badgeViewModel.specials) {
                     if !badge.active {
                         badge.count += 1
@@ -115,6 +115,10 @@ struct Main: View {
                 }
                 startTimer()
             }
+        }
+        .onDisappear {
+            timer?.invalidate()
+            timer = nil
         }
     }
 
@@ -127,23 +131,26 @@ struct Main: View {
     }
 
     func startTimer() {
-        timer = Timer.scheduledTimer(
-            withTimeInterval: 1.0,
-            repeats: true,
-            block: { _ in
-                showNewBadge = !badgeViewModel.badgeQueue.isEmpty
-                checkLevelUp()
-                if challengeState.type == .running {
-                    addChallengeTimer()
-                } else if challengeState.type == .outing {
-                    addChallengeTimer()
-                    addOutingTimer()
+        if timer == nil {
+            timer = Timer.scheduledTimer(
+                withTimeInterval: 1.0,
+                repeats: true,
+                block: { _ in
+                    showNewBadge = !badgeViewModel.badgeQueue.isEmpty
+                    checkLevelUp()
+                    if challengeState.type == .running {
+                        addChallengeTimer()
+                    } else if challengeState.type == .outing {
+                        addChallengeTimer()
+                        addOutingTimer()
+                    }
                 }
-            }
-        )
+            )
+        }
     }
 
     func addChallengeTimer() {
+        shareViewModel.seconds += 1
         challengeState.timeData.second += 1
         if challengeState.timeData.minute >= 60 {
             challengeState.timeData.hour += 1
@@ -239,11 +246,13 @@ struct Main: View {
             sharePresented = true
 
             challengeState.type = .notRunning
+            challengeState.timeData = TimeData()
             addAccumulateTime()
 
         case .fail:
             sharePresented = true
             challengeState.type = .notAtHome
+            challengeState.timeData = TimeData()
             addAccumulateTime()
 
         case .outing:
@@ -267,9 +276,9 @@ struct Main: View {
         let hours = (user.accumulateSeconds + challengeState.timeData.toSeconds()) / 3600
         switch challengeState.type {
         case .outing:
-            color = Color.GrayScale._500
+            color = Color.GrayScale._200
         case .notAtHome:
-            color = Color.GrayScale._500
+            color = Color.GrayScale._200
 
         default:
             let level = Tier.of(hours: hours).level
@@ -298,7 +307,13 @@ struct Main: View {
         case .notAtHome:
             view = AnyView(BottomNotAtHome())
         case .running:
-            view = AnyView(BottomTimerRunning(numberOfHeart: $challengeState.numberOfHeart, sharePresented: $sharePresented, popupStyle: $popupState.popupStyle))
+            view = AnyView(
+                BottomTimerRunning(
+                    numberOfHeart: $challengeState.numberOfHeart,
+                    sharePresented: $sharePresented,
+                    popupStyle: $popupState.popupStyle
+                )
+            )
         case .notRunning:
             view = AnyView(BottomTimerNotRunning())
         case .outing:
