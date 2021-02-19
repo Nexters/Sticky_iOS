@@ -19,13 +19,14 @@ struct Main: View {
         case outing
     }
 
-    @EnvironmentObject private var popupState: PopupStateModel
-    @EnvironmentObject private var challengeState: ChallengeState
-    @EnvironmentObject private var shareViewModel: ShareViewModel
-    @EnvironmentObject private var locationManager: LocationManager
     @EnvironmentObject private var user: User
-    @EnvironmentObject private var rootManager: RootViewManager
+    @EnvironmentObject private var challengeState: ChallengeState
+    @StateObject private var shareViewModel = ShareViewModel()
     @StateObject private var badgeViewModel = BadgeViewModel()
+
+    @EnvironmentObject private var popupState: PopupStateModel
+    @EnvironmentObject private var locationManager: LocationManager
+    @EnvironmentObject private var rootManager: RootViewManager
 
     @State var sharePresented: Bool = false
     @State var bannerDetailPresented: Bool = false
@@ -44,17 +45,22 @@ struct Main: View {
                 NavigationLink(
                     destination: Share(
                         shareType: ShareType.slide,
+                        shareViewModel: shareViewModel,
                         badgeViewModel: badgeViewModel
                     ),
                     isActive: $sharePresented
                 ) { EmptyView() }
+
                 NavigationLink(
-                    destination: MyPage(badgeViewModel: badgeViewModel),
+                    destination: MyPage(
+                        shareViewModel: shareViewModel,
+                        badgeViewModel: badgeViewModel
+                    ),
                     isActive: $mypagePresented
                 ) { EmptyView() }
+
                 NavigationLink(
-                    destination: NewItemShare(badgeQueue: $badgeViewModel.badgeQueue, seconds:
-                        user.accumulateSeconds + user.thisMonthAccumulateSeconds),
+                    destination: NewItemShare(badgeQueue: $badgeViewModel.badgeQueue, seconds: user.accumulateSeconds),
                     isActive: $showNewBadge
                 ) { EmptyView() }
 
@@ -150,6 +156,7 @@ struct Main: View {
     }
 
     func addChallengeTimer() {
+        user.accumulateSeconds += 1
         shareViewModel.seconds += 1
         challengeState.timeData.second += 1
         if challengeState.timeData.minute >= 60 {
@@ -183,8 +190,6 @@ struct Main: View {
                         popupState.popupStyle = .failDuringOuting
                         popupState.isPresented = true
                         challengeState.type = .notAtHome
-                        // 누적 시간 저장
-                        addAccumulateTime()
                     }
 
                 } else {
@@ -197,21 +202,10 @@ struct Main: View {
         }
     }
 
-    func addAccumulateTime() {
-        print("[누적시간 저장]")
-        let seconds = Int(challengeState.startDate.timeIntervalSinceNow) * -1
-        print("챌린지 시간: \(seconds)")
-        user.accumulateSeconds += seconds
-        user.thisMonthAccumulateSeconds += seconds
-        print("내 정보:\(user.accumulateSeconds)")
-        print("내 정보:\(user.thisMonthAccumulateSeconds)")
-    }
-
     /// 레벨업 체크
     func checkLevelUp() {
         let tier = Tier(level: user.level)
-        let seconds = user.accumulateSeconds + challengeState.timeData.toSeconds()
-        let remains = tier.next() - seconds
+        let remains = tier.next() - user.accumulateSeconds
         if tier.next() == -1 {
             return
         }
@@ -244,16 +238,13 @@ struct Main: View {
         switch popupState.popupStyle {
         case .exit:
             sharePresented = true
-
             challengeState.type = .notRunning
             challengeState.timeData = TimeData()
-            addAccumulateTime()
 
         case .fail:
             sharePresented = true
             challengeState.type = .notAtHome
             challengeState.timeData = TimeData()
-            addAccumulateTime()
 
         case .outing:
             flag = true
@@ -273,7 +264,7 @@ struct Main: View {
 
     private func setColor() -> Color {
         var color: Color
-        let hours = (user.accumulateSeconds + challengeState.timeData.toSeconds()) / 3600
+        let hours = user.accumulateSeconds / 3600
         switch challengeState.type {
         case .outing:
             color = Color.GrayScale._200

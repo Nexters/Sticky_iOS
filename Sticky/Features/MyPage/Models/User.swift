@@ -30,11 +30,4 @@ public class User: ObservableObject {
             UserDefaults.standard.set(accumulateSeconds, forKey: "accumulateSeconds")
         }
     }
-
-    // 이번 달 누적 시간
-    @Published var thisMonthAccumulateSeconds: Int = UserDefaults.standard.integer(forKey: "thisMonthAccumulateSeconds") {
-        didSet {
-            UserDefaults.standard.set(thisMonthAccumulateSeconds, forKey: "thisMonthAccumulateSeconds")
-        }
-    }
 }

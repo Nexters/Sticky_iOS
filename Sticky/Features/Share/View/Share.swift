@@ -11,23 +11,22 @@ import SwiftUI
 // MARK: - Share
 
 struct Share: View {
-    // MARK: Lifecycle
-
-    init(shareType: ShareType, badgeViewModel: BadgeViewModel) {
-        self.shareType = shareType
-        self.badgeViewModel = badgeViewModel
-    }
-
     // MARK: Internal
+
+//    init(shareType: ShareType, badgeViewModel: BadgeViewModel, ) {
+//        self.shareType = shareType
+//        self.badgeViewModel = badgeViewModel
+//    }
 
     @State var bgColor: LinearGradient = Color.Sticky.blue_bg
     var shareType: ShareType
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @EnvironmentObject var shareViewModel: ShareViewModel
     @EnvironmentObject var UIState: UIStateModel
     @EnvironmentObject var user: User
     @EnvironmentObject var challengeState: ChallengeState
+
+    @ObservedObject var shareViewModel: ShareViewModel
     @ObservedObject var badgeViewModel: BadgeViewModel
 
     var body: some View {
@@ -86,7 +85,6 @@ struct Share: View {
     }
 
     private func setBackgroundColor(type: BadgeType) -> AnyView {
-        print("\(UIState.activeCard)asdasd")
         switch shareType {
         case .slide:
             return AnyView(setColor().ignoresSafeArea())
@@ -94,7 +92,6 @@ struct Share: View {
         default:
             switch type {
             case .level:
-
                 bgColor = Color.Sticky.blue_bg
                 return
                     AnyView(
@@ -118,11 +115,7 @@ struct Share: View {
 
     private func setColor() -> Color {
         var color: Color
-        let hours = (user.accumulateSeconds + challengeState.timeData.toSeconds()) / 3600
-
-        let level = Tier.of(hours: hours).level
-
-        switch level {
+        switch user.level {
         case 0...3:
             color = Color.Background.blue
         case 4...6:
@@ -144,7 +137,10 @@ struct Share: View {
         print("setCardView")
         switch shareType {
         case .slide:
-            view = AnyView(CardSlideView(badgeViewModel: badgeViewModel))
+            view = AnyView(CardSlideView(
+                badgeViewModel: badgeViewModel,
+                shareViewModel: shareViewModel
+            ))
 
         case .card:
             let badge = shareViewModel.badge
@@ -186,8 +182,12 @@ struct Share: View {
 
 struct Share_Previews: PreviewProvider {
     static var previews: some View {
-        Share(shareType: ShareType.card, badgeViewModel: BadgeViewModel())
-            .environmentObject(ShareViewModel())
-            .environmentObject(UIStateModel())
+        Share(
+            shareType: ShareType.card,
+            shareViewModel: ShareViewModel(),
+            badgeViewModel: BadgeViewModel()
+        )
+        .environmentObject(ShareViewModel())
+        .environmentObject(UIStateModel())
     }
 }
