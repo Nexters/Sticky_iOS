@@ -51,6 +51,7 @@ endif
 
 release:
 	sed -i ".bak" "s/MARKETING_VERSION = .*/MARKETING_VERSION = $(shell npx next-standard-version);/g" ${PROJECT_NAME}.xcodeproj/project.pbxproj
+	sed -i ".bak" "s/CURRENT_PROJECT_VERSION = .*/CURRENT_PROJECT_VERSION = ${GITHUB_RUN_NUMBER};/g" ${PROJECT_NAME}.xcodeproj/project.pbxproj
 .PHONY: release
 
 # 마지막 tag로부터 현재까지의 changelog 및 버전 확인 용
