@@ -44,28 +44,16 @@ class LocationManager: NSObject, ObservableObject {
     let notificationCenter = UNUserNotificationCenter.current()
     let objectWillChange = PassthroughSubject<Void, Never>()
     @Published var region: MKCoordinateRegion?
-//    MKCoordinateRegion(
-//        center: CLLocationCoordinate2D(latitude: 37.5173209, longitude: 127.0473887),
-//        span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
-//    )
     @Published var isAlways: Bool = false
     var challengeType: Main.ChallengeType?
 
+    var exitNum = 0
+
     var geofence: CLCircularRegion? {
         willSet {
-            print("LocationManager - geofence\(newValue) willSet")
-//            if newValue!.contains(self.location.coordinate), !(self.geofence?.contains(self.location.coordinate) ?? false) {
-//                // newValue내에 존재 && 이전Value내에 존재하지 X
-//                print("LocationManager - geofence enter")
-//                NotificationCenter.default.post(name: .enterGeofence, object: nil)
-//            } else if !newValue!.contains(self.location.coordinate), self.geofence?.contains(self.location.coordinate) ?? false {
-//                print("LocationManager - geofence exit")
-//                NotificationCenter.default.post(name: .exitGeofence, object: nil)
-//            }
+            print("LocationManager - geofence\(String(describing: newValue)) willSet")
         }
     }
-    
-    var exitNum = 0
 
     @Published var status: CLAuthorizationStatus? {
         willSet { self.objectWillChange.send() }
@@ -73,31 +61,30 @@ class LocationManager: NSObject, ObservableObject {
 
     @Published var location = CLLocation() {
         willSet {
-            
             print("LocationManager - location\(newValue) willSet")
 
             guard let isContainAfterSet = self.geofence?.contains(newValue.coordinate) else { return }
-            
-            if !isContainAfterSet{
-                //변경된 위치가 exit 구역
-                print("Why - exitNum += 1 exitNum : \(exitNum), location: \(newValue.coordinate)")
-                exitNum += 1
-            }else{
-                //변경된 위치가 enter 구역
+
+            if !isContainAfterSet {
+                // 변경된 위치가 exit 구역
+                print("Why - exitNum += 1 exitNum : \(self.exitNum), location: \(newValue.coordinate)")
+                self.exitNum += 1
+            } else {
+                // 변경된 위치가 enter 구역
                 print("Why - enter 구역임")
-                exitNum = 0
+                self.exitNum = 0
             }
-            
+
             print("LocationManager - location : isContainAfterSet \(isContainAfterSet)")
-            
+
             if isContainAfterSet {
                 // newValue내에 존재 && 이전Value내에 존재하지 X
                 print("LocationManager - geofence enter : ")
                 NotificationCenter.default.post(name: .enterGeofence, object: nil)
-            } else if !isContainAfterSet, exitNum >= 10 {
-                //exit Notification 발생
+            } else if !isContainAfterSet, self.exitNum >= 10 {
+                // exit Notification 발생
                 print("LocationManager - geofence exit")
-                exitNum = 0
+                self.exitNum = 0
                 NotificationCenter.default.post(name: .exitGeofence, object: nil)
             }
 
@@ -119,11 +106,11 @@ class LocationManager: NSObject, ObservableObject {
     }
 
     func restartManager() {
-        print("LocationManager - Restart LocationManager: geofence : \(geofence)")
+        print("LocationManager - Restart LocationManager: geofence : \(String(describing: geofence))")
         guard let geofence = self.geofence else { return }
         self.locationManager.stopMonitoring(for: geofence)
         self.locationManager.startMonitoring(for: geofence)
-        
+
         self.locationManager.requestLocation()
     }
 
@@ -162,7 +149,7 @@ extension LocationManager: CLLocationManagerDelegate {
             print("LocationManager - 변경된 location이 없습니다")
             return
         }
-        
+
         self.location = location
         self.region?.center = CLLocationCoordinate2D(
             latitude: location.coordinate.latitude,
@@ -176,7 +163,7 @@ extension LocationManager: CLLocationManagerDelegate {
 
     /// 영역 모니터링 시작할 때
     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
-        print("Start monitoring: \(self.geofence?.center)")
+        print("Start monitoring: \(String(describing: self.geofence?.center))")
         self.setGeofenceMyHome(region: self.region!)
     }
 
@@ -184,7 +171,7 @@ extension LocationManager: CLLocationManagerDelegate {
      챌린지 종료 카운트다운 초기화
      */
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        print("LocationManager - Enter: \(self.geofence?.center)")
+        print("LocationManager - Enter: \(String(describing: self.geofence?.center))")
         NotificationCenter.default.post(name: .enterGeofence, object: nil)
     }
 
@@ -193,7 +180,7 @@ extension LocationManager: CLLocationManagerDelegate {
      - 현재 위치에서 벗어남을 감지하고 n초 후 챌린지 종료 카운트 다운 및 경고
      */
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        print("LocationManager - Exit: \(self.geofence?.center)")
+        print("LocationManager - Exit: \(String(describing: self.geofence?.center))")
         NotificationCenter.default.post(name: .exitGeofence, object: nil)
     }
 

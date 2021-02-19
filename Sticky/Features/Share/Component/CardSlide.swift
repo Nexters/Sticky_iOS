@@ -33,7 +33,6 @@ struct CardSlide: View {
     let widthOfHiddenCards: CGFloat = 40 /// UIScreen.main.bounds.width - 10
     // 카드의 Height
     let cardHeight: CGFloat = 368 // UIScreen.main.bounds.height * 0.5
-    let badgeList = ["monthly_10", "monthly_10", "monthly_10"]
 
     var body: some View {
         // 각 카드 사이의 너비
@@ -65,13 +64,13 @@ struct CardSlide: View {
 
                         // MARK: 뱃지 갯수에 따른 코멘트 변경
 
-                        Text("벌써 절반 넘게 모았어요!")
+                        let count = countActiveBadges(badges: badgeViewModel.specials + badgeViewModel.monthly + badgeViewModel.continuous)
+                        Text(getCommentOfBadgeCard(count: count))
                             .font(Font.system(size: 18))
                             .foregroundColor(.white)
                             .frame(width: 216, height: 48)
 
-                        let badges = badgeViewModel.specials + badgeViewModel.monthly + badgeViewModel.continuous
-                        Text("\(countActiveBadges(badges: badges))")
+                        Text("\(count)")
                             .frame(width: 200, height: 64, alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/)
                             .font(.custom("Modak", size: 88))
                             .padding(.top, 8)
@@ -243,6 +242,21 @@ struct CardSlide: View {
 
     private var isHourTextHidden: Bool {
         return shareViewModel.seconds.toTimeData().hour > 0 ? false : true
+    }
+
+    private func getCommentOfBadgeCard(count: Int) -> String {
+        let comments = ["파이팅 조금만 더 모아보세요.", "우와, 벌써 절반정도 모았어요!", "배지를 전부 모았어요. 대단해요!"]
+
+        switch count {
+        case 0...10:
+            return comments[0]
+        case 11...14:
+            return comments[1]
+        case (special_default + monthly_default + continuous_default).count:
+            return comments[2]
+        default:
+            return comments[0]
+        }
     }
 
     private func getRandomText() -> String {

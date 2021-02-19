@@ -11,12 +11,13 @@ import SwiftUI
 
 struct OutingCount: View {
     @Binding var count: Int
+
     var body: some View {
         ZStack {
-            Color.Palette.negative
+            Color.Background.outing
                 .ignoresSafeArea()
             Text("\(count)")
-                .font(.custom("Modak", size: 180))
+                .font(.custom("Modak", size: 96))
                 .foregroundColor(.white)
                 .bold()
         }

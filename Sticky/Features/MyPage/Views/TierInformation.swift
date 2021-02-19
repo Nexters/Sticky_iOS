@@ -23,7 +23,7 @@ struct TierInformation: View {
                 .scaledToFit()
         }
         .onAppear {
-            print(Locale.current.regionCode)
+            print(Locale.current.regionCode ?? "")
             if Locale.current.regionCode == "KR" {
                 imageName = "level_info_KR"
             } else {
