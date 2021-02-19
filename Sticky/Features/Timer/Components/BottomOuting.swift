@@ -13,28 +13,27 @@ struct BottomOuting: View {
     // MARK: Internal
 
     var body: some View {
-        VStack {
+        VStack(spacing: 16) {
             Button(action: {
                 count = 3
                 flag = true
                 challengeState.type = .running
             }, label: {
                 GradientRoundedButton(
-                    content: "귀가완료",
+                    content: "집 도착 완료",
                     startColor: Color.black,
                     endColor: Color.black,
-                    width: 130,
-                    height: 56,
+                    width: 280,
+                    height: 60,
                     cornerRadius: 16.0,
                     fontColor: Color.white
                 )
             })
-                .padding(.bottom, 40)
 
             GradientRoundedButton(content: """
             외출시간 동안은 나가도 기록이 유지됩니다.
-            집에 돌아오면 귀가 버튼을 5초간 눌러주세요.
-            """, startColor: Color.gray.opacity(0.5), endColor: Color.gray.opacity(0.5), width: 328, height: 60, cornerRadius: 16, fontColor: Color.white)
+            집에 돌아오면 귀가 버튼을 눌러주세요.
+            """, startColor: Color.gray.opacity(0.5), endColor: Color.gray.opacity(0.5), width: 328, height: 72, cornerRadius: 16, fontColor: Color.white)
                 .multilineTextAlignment(.center)
         }
     }
