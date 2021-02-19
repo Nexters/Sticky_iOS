@@ -66,7 +66,7 @@ struct MyPage: View {
 
             VStack(alignment: .leading, spacing: 20) {
                 Summary(
-                    seconds: user.accumulateSeconds + challengeState.timeData.toSeconds(),
+                    seconds: user.accumulateSeconds,
                     selection: $navSelection
                 )
                 .padding(.bottom, 15)

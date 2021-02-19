@@ -222,7 +222,7 @@ struct CardSlide: View {
     }
 
     private var level: Int {
-        switch Tier.of(hours: (user.accumulateSeconds + shareViewModel.seconds.toTimeData().toSeconds()) / 3600).level {
+        switch Tier.of(hours: user.accumulateSeconds / 3600).level {
         case 1...3:
             return 1
         case 4...6:

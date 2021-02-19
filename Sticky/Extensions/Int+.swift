@@ -25,7 +25,7 @@ extension Int {
     func toTimeData() -> TimeData {
         let time = (
             day: self / 86400,
-            hours: self / 3600,
+            hours: (self % 86400) / 3600,
             minutes: (self % 3600) / 60,
             seconds: (self % 3600) % 60
         )

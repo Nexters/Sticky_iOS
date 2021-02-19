@@ -86,7 +86,6 @@ struct Share: View {
     }
 
     private func setBackgroundColor(type: BadgeType) -> AnyView {
-        print("\(UIState.activeCard)asdasd")
         switch shareType {
         case .slide:
             return AnyView(setColor().ignoresSafeArea())
@@ -94,7 +93,6 @@ struct Share: View {
         default:
             switch type {
             case .level:
-
                 bgColor = Color.Sticky.blue_bg
                 return
                     AnyView(
@@ -118,11 +116,7 @@ struct Share: View {
 
     private func setColor() -> Color {
         var color: Color
-        let hours = (user.accumulateSeconds + challengeState.timeData.toSeconds()) / 3600
-
-        let level = Tier.of(hours: hours).level
-
-        switch level {
+        switch user.level {
         case 0...3:
             color = Color.Background.blue
         case 4...6:

@@ -13,11 +13,12 @@ struct Summary: View {
     /// 누적 시간
     var seconds: Int
     @Binding var selection: ShareType?
+    @EnvironmentObject var user: User
     @EnvironmentObject var shareViewModel: ShareViewModel
 
     var body: some View {
-        let tier = Tier.of(hours: seconds / 3600)
-        let remainNextLevel = tier.next() - seconds
+        let tier = Tier(level: user.level)
+        let remainNextLevel = tier.next() - user.accumulateSeconds
         return VStack(alignment: .trailing) {
             HStack(alignment: .top) {
                 Spacer()
