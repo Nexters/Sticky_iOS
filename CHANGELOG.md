@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.20.5](https://github.com/Nexters/Sticky_iOS/compare/v1.20.4...v1.20.5) (2021-02-19)
+
+
+### Bug Fixes
+
+* **banner:** 획득할 배지가 없을 때 예외 처리 ([8291471](https://github.com/Nexters/Sticky_iOS/commit/8291471be9264feb6b05edeaab7bebebf1e0fb9c))
+* **search-address:** 주소 검색 결과 리스트 디자인 수정 ([3302cf7](https://github.com/Nexters/Sticky_iOS/commit/3302cf75b6722a01a05276d92d72cc94df8db40e))
+* **share:** 더이상 획득할 배지가 없을 경우 예외처리 ([aad6731](https://github.com/Nexters/Sticky_iOS/commit/aad6731a960b30ae3448d3c3dd1ed3849d5fff78))
+
 ### [1.20.4](https://github.com/Nexters/Sticky_iOS/compare/v1.20.3...v1.20.4) (2021-02-19)
 
 
