@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.20.2](https://github.com/Nexters/Sticky_iOS/compare/v1.20.1...v1.20.2) (2021-02-19)
+
+
+### Bug Fixes
+
+* **share-card:** 공유 화면 시간 연동 버그 수정 ([db98f83](https://github.com/Nexters/Sticky_iOS/commit/db98f83ca933d5a6fc2029df2f89404561ff0366))
+* 공유 화면 시간관련 버그 수정 ([47f9ecd](https://github.com/Nexters/Sticky_iOS/commit/47f9ecdc6eca8e7ae4609c5592bfdeca788c86c5))
+* **share-card:** challenge state -> share view model로 변경 ([e546586](https://github.com/Nexters/Sticky_iOS/commit/e5465868f5a431fe708f70903ec88438d70e26bf))
+
 ### [1.20.1](https://github.com/Nexters/Sticky_iOS/compare/v1.20.0...v1.20.1) (2021-02-19)
 
 
