@@ -111,14 +111,6 @@ struct Main: View {
         .onAppear {
             // 처음 불릴 때, 타이머 동작
             if timer == nil, rootManager.hasGeofence {
-                if let badge = getWelcomeBadge(badges: badgeViewModel.specials) {
-                    if !badge.active {
-                        badge.count += 1
-                        badge.updated = Date()
-                        badgeViewModel.badgeQueue.append(badge)
-                        badgeViewModel.specials = badgeViewModel.specials
-                    }
-                }
                 startTimer()
             }
         }
@@ -300,7 +292,7 @@ struct Main: View {
                 )
             )
         case .notRunning:
-            view = AnyView(BottomTimerNotRunning())
+            view = AnyView(BottomTimerNotRunning(badgeViewModel: badgeViewModel))
         case .outing:
             view = AnyView(BottomOuting(count: $countTime, flag: $flag))
         }
