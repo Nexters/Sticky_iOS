@@ -10,9 +10,11 @@ import SwiftUI
 // MARK: - TimerView
 
 struct TimerView: View {
-    @Binding var time: TimeData
+//    @Binding var time: TimeData
+    @Binding var seconds: Int
 
     var body: some View {
+        let time = seconds.toTimeData()
         VStack {
             Text("\(time.day) day")
                 .font(.custom("Modak", size: 40))
@@ -42,10 +44,10 @@ struct TimerView: View {
 
 struct TimerView_Previews: PreviewProvider {
     struct TimerViewWrapper: View {
-        @State var time = TimeData()
+        @State var time = 0
 
         var body: some View {
-            TimerView(time: $time)
+            TimerView(seconds: $time)
         }
     }
 

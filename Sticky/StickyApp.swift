@@ -8,26 +8,27 @@
 import MapKit
 import SwiftUI
 
-// MARK: - StickyApp
+// MARK: - AppDelegate
 
-class AppDelegate: NSObject, UIApplicationDelegate{
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         return true
     }
-    
+
     func applicationWillTerminate(_ application: UIApplication) {
         challengeState.type = .notRunning
         print("type앱 종료되요")
     }
 }
 
+// MARK: - StickyApp
+
 @main
 struct StickyApp: App {
     // MARK: Internal
 
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appdelegate
-    
+
     var body: some Scene {
         WindowGroup {
             AppMain()
@@ -47,18 +48,6 @@ struct StickyApp: App {
                 print("Why - latitude : \(UserDefaults.standard.double(forKey: "whyLatitude")), longitude : \(UserDefaults.standard.double(forKey: "whyLongitude"))")
                 print("locationManager - ChallengeType \(challengeState.type)")
                 print("Active \(Main.ChallengeType(rawValue: UserDefaults.standard.integer(forKey: "challengeType")))")
-                // TODO: 현재 챌린지가 진행중인 상태라면 조건문 필요
-//                if let date = UserDefaults.standard.object(forKey: "startDate") {
-//                    if let date = date as? Date {
-//                        // 우선은 앱에 다시 들어오면 재시작하게끔 설정
-//                        challengeState.type = .running
-//                        let components = dateCompareToNow(date: date)
-//                        challengeState.timeData.day = components?.day ?? 0
-//                        challengeState.timeData.hour = components?.hour ?? 0
-//                        challengeState.timeData.minute = components?.minute ?? 0
-//                        challengeState.timeData.second = components?.second ?? 0
-//                    }
-//                }
                 let latitude = UserDefaults.standard.double(forKey: "latitude")
                 let longitude = UserDefaults.standard.double(forKey: "longitude")
                 print("App - latitude: \(latitude)")
@@ -109,4 +98,5 @@ struct StickyApp: App {
     private let key_time = "time"
     private let key_date = "date"
 }
+
 var challengeState = ChallengeState()

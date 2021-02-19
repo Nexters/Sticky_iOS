@@ -25,7 +25,7 @@ struct Banner: View {
             badges: self.badgeViewModel.monthly
         )
         let remainMonthlyBadge = (Int(nextMonthlyBadge.badgeValue) ?? 0) * 3600
-            - challengeState.timeData.toSeconds()
+            - challengeState.seconds
         if remainMonthlyBadge <= 0 {
             nextMonthlyBadge.updated = Date()
             nextMonthlyBadge.count += 1
@@ -41,7 +41,7 @@ struct Banner: View {
         )
         // 연속 배지 획득까지 남은 seconds; 뱃지 필요한 시간 - 챌린지 시간
         var remainContinuousBadge = nextContiousBadge.badgeValue == "0.5" ? 12 * 3600 : (Int(nextContiousBadge.badgeValue) ?? 0) * 3600 * 24
-        remainContinuousBadge -= challengeState.timeData.toSeconds()
+        remainContinuousBadge -= challengeState.seconds
         if remainContinuousBadge <= 0 {
             nextContiousBadge.updated = Date()
             nextContiousBadge.count += 1

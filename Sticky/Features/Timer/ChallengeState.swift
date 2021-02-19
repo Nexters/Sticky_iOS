@@ -21,13 +21,8 @@ public class ChallengeState: ObservableObject {
     init() {
         let now = Date()
         if type == .running {
-            let nowComponents = now.compareTo(date: startDate)
-
-            timeData.day = nowComponents.day ?? 0
-            timeData.hour = nowComponents.hour ?? 0
-            timeData.minute = nowComponents.minute ?? 0
-            timeData.second = nowComponents.second ?? 0
-            UserDefaults.standard.set(timeData.toSeconds(), forKey: "shareSeconds")
+            let seconds = now.compareTo(date: startDate).toSeconds()
+            UserDefaults.standard.set(seconds, forKey: "shareSeconds")
         }
         if type == .outing {
             let outingComponents = now.compareTo(date: outingDate)
@@ -38,19 +33,16 @@ public class ChallengeState: ObservableObject {
             if outingSeconds < totalOutingTime {
                 print("외출 중인데 아직 20분 안지남")
 
-                let nowComponents = now.compareTo(date: startDate)
+                seconds = now.compareTo(date: startDate).toSeconds()
 
                 outingTimeDate.day = outingComponents.day ?? 0
                 outingTimeDate.hour = outingComponents.hour ?? 0
                 outingTimeDate.minute = 19 - (outingComponents.minute ?? 0)
                 outingTimeDate.second = 59 - (outingComponents.second ?? 0)
 
-                timeData.day = nowComponents.day ?? 0
-                timeData.hour = nowComponents.hour ?? 0
-                timeData.minute = nowComponents.minute ?? 0 - (outingComponents.minute ?? 0)
-                timeData.second = nowComponents.second ?? 0 - (outingComponents.second ?? 0)
+                seconds -= outingTimeDate.toSeconds()
             } else {
-                self.type = .notAtHome
+                type = .notAtHome
                 print("외출했는데 20분 지났")
             }
         }
@@ -58,7 +50,7 @@ public class ChallengeState: ObservableObject {
 
     // MARK: Internal
 
-    @Published var timeData = TimeData()
+    @Published var seconds = 0
     @Published var outingTimeDate = TimeData(minute: 20)
 
     @Published var numberOfHeart: Int = UserDefaults.standard.integer(forKey: "numberOfHeart") {
