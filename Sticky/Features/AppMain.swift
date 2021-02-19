@@ -35,7 +35,7 @@ struct AppMain: View {
                 print("LocationManager - AppMain enter")
                 if challengeState.type == .notAtHome {
                     print("집 밖에 있다가 들어감")
-                    challengeState.timeData = TimeData(day: 0, hour: 0, minute: 0, second: 0)
+                    challengeState.seconds = 0
                     challengeState.type = .notRunning
                 }
             })

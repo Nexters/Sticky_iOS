@@ -11,8 +11,9 @@ import SwiftUI
 
 struct BottomTimerNotRunning: View {
     // MARK: Internal
-    
+
     @EnvironmentObject var locationManager: LocationManager
+
     var body: some View {
         VStack {
 //                NavigationLink(destination: MyPage()) {
@@ -26,7 +27,7 @@ struct BottomTimerNotRunning: View {
 //                })
 
             Button(action: {
-                self.challengeState.timeData = TimeData()
+                self.challengeState.seconds = 0
                 self.challengeState.numberOfHeart = 3
                 self.challengeState.type = .running
                 locationManager.resetGeofence()
