@@ -42,6 +42,7 @@
 		BB8292CE25BD597200077D8C /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8292CD25BD597200077D8C /* SearchBar.swift */; };
 		BB8292D425BD59A200077D8C /* LocationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8292D325BD59A200077D8C /* LocationSearchService.swift */; };
 		BB85A2EC25DF5B6400532301 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB85A2EB25DF5B6400532301 /* LaunchScreen.storyboard */; };
+		BB85A30125DF67D300532301 /* ShareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB85A30025DF67D300532301 /* ShareViewModel.swift */; };
 		BBAC0F3125C696B900FB81D7 /* LocationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC0F3025C696B800FB81D7 /* LocationPermission.swift */; };
 		BBB1EBF225AF3C2100F5EA37 /* StickyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EBF125AF3C2100F5EA37 /* StickyApp.swift */; };
 		BBB1EBF625AF3C2100F5EA37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB1EBF525AF3C2100F5EA37 /* Assets.xcassets */; };
@@ -150,6 +151,7 @@
 		BB8292CD25BD597200077D8C /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		BB8292D325BD59A200077D8C /* LocationSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
 		BB85A2EB25DF5B6400532301 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BB85A30025DF67D300532301 /* ShareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewModel.swift; sourceTree = "<group>"; };
 		BBAC0F3025C696B800FB81D7 /* LocationPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermission.swift; sourceTree = "<group>"; };
 		BBB1EBEE25AF3C2100F5EA37 /* Sticky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sticky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBB1EBF125AF3C2100F5EA37 /* StickyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyApp.swift; sourceTree = "<group>"; };
@@ -620,6 +622,7 @@
 			children = (
 				EB63F52125B82C2300151A05 /* Card.swift */,
 				BB546BEF25C83E8F00241DF3 /* ShareType.swift */,
+				BB85A30025DF67D300532301 /* ShareViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -905,6 +908,7 @@
 				BBB1EC4B25B077E500F5EA37 /* Color.swift in Sources */,
 				BB0A592925BA50D8001F529A /* Summary.swift in Sources */,
 				BBB1EBF225AF3C2100F5EA37 /* StickyApp.swift in Sources */,
+				BB85A30125DF67D300532301 /* ShareViewModel.swift in Sources */,
 				BBC66F3225C578B6007687D7 /* Location.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1081,7 +1085,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sticky/Preview Content\"";
-				DEVELOPMENT_TEAM = M75SXEJ86F;
+				DEVELOPMENT_TEAM = 787Q6972XA;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Sticky/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1090,11 +1094,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.20.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Stikky;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.ios.18th.Stikky;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1109,7 +1113,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sticky/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 787Q6972XA;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Sticky/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1118,11 +1122,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.20.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Stikky;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.ios.18th.Stikky;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
