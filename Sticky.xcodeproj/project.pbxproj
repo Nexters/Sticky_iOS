@@ -41,6 +41,7 @@
 		BB77D5C325D92B89002BD70A /* NewItemShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77D5C225D92B89002BD70A /* NewItemShare.swift */; };
 		BB8292CE25BD597200077D8C /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8292CD25BD597200077D8C /* SearchBar.swift */; };
 		BB8292D425BD59A200077D8C /* LocationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8292D325BD59A200077D8C /* LocationSearchService.swift */; };
+		BB85A2EC25DF5B6400532301 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB85A2EB25DF5B6400532301 /* LaunchScreen.storyboard */; };
 		BBAC0F3125C696B900FB81D7 /* LocationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC0F3025C696B800FB81D7 /* LocationPermission.swift */; };
 		BBB1EBF225AF3C2100F5EA37 /* StickyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EBF125AF3C2100F5EA37 /* StickyApp.swift */; };
 		BBB1EBF625AF3C2100F5EA37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB1EBF525AF3C2100F5EA37 /* Assets.xcassets */; };
@@ -148,6 +149,7 @@
 		BB77D5C225D92B89002BD70A /* NewItemShare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemShare.swift; sourceTree = "<group>"; };
 		BB8292CD25BD597200077D8C /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		BB8292D325BD59A200077D8C /* LocationSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
+		BB85A2EB25DF5B6400532301 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BBAC0F3025C696B800FB81D7 /* LocationPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermission.swift; sourceTree = "<group>"; };
 		BBB1EBEE25AF3C2100F5EA37 /* Sticky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sticky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBB1EBF125AF3C2100F5EA37 /* StickyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyApp.swift; sourceTree = "<group>"; };
@@ -498,6 +500,7 @@
 				BBB1EC6625B07B0A00F5EA37 /* String+localize.swift */,
 				BBB1EC4A25B077E500F5EA37 /* Color.swift */,
 				BBB1EBF725AF3C2100F5EA37 /* Preview Content */,
+				BB85A2EB25DF5B6400532301 /* LaunchScreen.storyboard */,
 			);
 			path = Sticky;
 			sourceTree = "<group>";
@@ -757,6 +760,7 @@
 				BBB1EBF925AF3C2100F5EA37 /* Preview Assets.xcassets in Resources */,
 				BBB1EBF625AF3C2100F5EA37 /* Assets.xcassets in Resources */,
 				BBBC768125DA32D400E72F29 /* tada.json in Resources */,
+				BB85A2EC25DF5B6400532301 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1086,11 +1090,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.20.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Sticky;
-				MARKETING_VERSION = 1.19.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Stikky;
-				MARKETING_VERSION = 1.20.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Sticky;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1109,7 +1109,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sticky/Preview Content\"";
-				DEVELOPMENT_TEAM = 46A8TRH8G6;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Sticky/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1118,11 +1118,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.20.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Sticky;
-				MARKETING_VERSION = 1.19.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Stikky;
-				MARKETING_VERSION = 1.20.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.18th.adng.Sticky;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
