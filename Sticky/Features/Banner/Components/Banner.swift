@@ -25,7 +25,7 @@ struct Banner: View {
             badges: self.badgeViewModel.monthly
         )
         let remainMonthlyBadge = (Int(nextMonthlyBadge.badgeValue) ?? 0) * 3600
-            - (challengeState.timeData.toSeconds() + user.thisMonthAccumulateSeconds)
+            - challengeState.timeData.toSeconds()
         if remainMonthlyBadge <= 0 {
             nextMonthlyBadge.updated = Date()
             nextMonthlyBadge.count += 1

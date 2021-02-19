@@ -27,6 +27,7 @@ public class ChallengeState: ObservableObject {
             timeData.hour = nowComponents.hour ?? 0
             timeData.minute = nowComponents.minute ?? 0
             timeData.second = nowComponents.second ?? 0
+            UserDefaults.standard.set(timeData.toSeconds(), forKey: "shareSeconds")
         }
         if type == .outing {
             let outingComponents = now.compareTo(date: outingDate)
