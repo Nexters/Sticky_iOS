@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.20.1](https://github.com/Nexters/Sticky_iOS/compare/v1.20.0...v1.20.1) (2021-02-19)
+
+
+### Bug Fixes
+
+* 수출 규정 관련 설정 처리 ([3399323](https://github.com/Nexters/Sticky_iOS/commit/3399323550c2259d471867989b01b21479d46642))
+* 앱 종료시 챌린지 상태 -> notRunning ([b38a8f0](https://github.com/Nexters/Sticky_iOS/commit/b38a8f054303dd9c787cddab80cf37d94495a1c3))
+* 외출하기 ui ([c38a491](https://github.com/Nexters/Sticky_iOS/commit/c38a49194a700f987e8cb2525f86e18c6f0b9e52))
+* **challenge-time:** 챌린지 종료 후 타이머 초기화 ([6d66e17](https://github.com/Nexters/Sticky_iOS/commit/6d66e1790755504f4f561b252c1bddc9791dc96d))
+* **launch-screen:** 이미지 늘어나는 버그로 인해 스토리보드로 변경 ([8ad691d](https://github.com/Nexters/Sticky_iOS/commit/8ad691df53fef2fde4bb7e9ec2d95adcd67d60fb))
+* **mypage:** 마이페이지 디자인 qa 반영 ([5a65c2f](https://github.com/Nexters/Sticky_iOS/commit/5a65c2f7dcece3db56b998a3c52afcdc01408885))
+* **navbar:** 네비게이션 바 커스텀 ([05e94a3](https://github.com/Nexters/Sticky_iOS/commit/05e94a3ee475ff37b33cc872b686264f14750c46))
+* **navbar:** 네비게이션바 커스텀 ([3ac4f1b](https://github.com/Nexters/Sticky_iOS/commit/3ac4f1b7cb146cd90d9120cce0a1d9f35d7d017f))
+* **navbar:** 라이센스 네비게이션 바 수정 ([5876de4](https://github.com/Nexters/Sticky_iOS/commit/5876de4742b74fef341ced0e0037605ef5b27dba))
+* **share:** share card view의badge 백그라운드 처리 시 사라지는 버그 수정 ([9ee7a2c](https://github.com/Nexters/Sticky_iOS/commit/9ee7a2cddfb8728f6c6c55a0b278f817c138c6fb))
+* **share:** 공유 디자인 qa 반영 ([6917bf4](https://github.com/Nexters/Sticky_iOS/commit/6917bf46143f429bcee5ec46633712747263e373))
+* **special-first:** 스페셜 뱃지 최초 사용 디자인 qa 반영 ([2260b94](https://github.com/Nexters/Sticky_iOS/commit/2260b94822797eca50209e537c37dcc32e0f74be))
+* image size 오류 수정, 라이센스 화면 생성 ([011c99e](https://github.com/Nexters/Sticky_iOS/commit/011c99ed6ad1ed2b8abf4bed24b45757ebd52840))
+* ui, timer leak 수정 ([a272136](https://github.com/Nexters/Sticky_iOS/commit/a272136fc158c7285f3433c3a21b269a7b5e7d04))
+* 라이센스 좌우 패딩 ([9367eed](https://github.com/Nexters/Sticky_iOS/commit/9367eed87d2e619775529a97f3be928652ae3587))
+
 ## [1.20.0](https://github.com/Nexters/Sticky_iOS/compare/v1.19.1...v1.20.0) (2021-02-18)
 
 
