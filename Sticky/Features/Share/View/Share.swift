@@ -14,11 +14,6 @@ struct Share: View {
     // MARK: Lifecycle
 
     init(shareType: ShareType, badgeViewModel: BadgeViewModel) {
-        let newNavAppearance = UINavigationBarAppearance()
-        newNavAppearance.configureWithTransparentBackground()
-        newNavAppearance.backgroundColor = .clear
-        UINavigationBar.appearance()
-            .standardAppearance = newNavAppearance
         self.shareType = shareType
         self.badgeViewModel = badgeViewModel
     }
@@ -47,8 +42,13 @@ struct Share: View {
                 setCardView(shareType: shareType)
 
                 Spacer()
-                ShareButtons(bgColor: $bgColor, shareId: 0)
-                    .padding(.bottom, 36)
+
+                ShareButtons(
+                    textColor: shareType == .card ? .white : .black,
+                    bgColor: $bgColor,
+                    shareId: 0
+                )
+                .padding(.bottom, 36)
             }
         }
         .navigationBarTitle("", displayMode: .inline)
@@ -57,6 +57,11 @@ struct Share: View {
             leading: backButton,
             trailing: downloadButton
         )
+        .onDisappear {
+            if challengeState.type == .notRunning {
+                shareViewModel.seconds = 0
+            }
+        }
     }
 
     // MARK: Private
@@ -136,6 +141,7 @@ struct Share: View {
 
     private func setCardView(shareType: ShareType) -> AnyView {
         var view: AnyView
+        print("setCardView")
         switch shareType {
         case .slide:
             view = AnyView(CardSlideView(badgeViewModel: badgeViewModel))
@@ -146,20 +152,30 @@ struct Share: View {
             let title = badge.name
             var value = ""
             switch badge.badgeType {
-            case BadgeType.special:
-                value = ""
             case BadgeType.continuous,
-                 BadgeType.monthly:
+                 BadgeType.monthly,
+                 BadgeType.special:
                 value = badge.name
             case BadgeType.level:
                 value = "\(shareViewModel.seconds.ToDaysHoursMinutes())"
             }
             let description = badge.badgeType.toString(value: value)
-            view = AnyView(ShareCardView(
-                image: image,
-                title: title,
-                description: description
-            ))
+            view = AnyView(VStack {
+                ShareCardView(
+                    image: image,
+                    title: title,
+                    description: description
+                )
+                HStack {
+                    Text("나의 ")
+                        .kerning(-0.3) + Text(shareViewModel.badge.badgeType.alias).bold()
+                        .kerning(-0.3) + Text("을 공유합니다")
+                        .kerning(-0.3)
+                }
+                .font(.system(size: 14))
+                .foregroundColor(.white)
+                .padding(.top, 17)
+            })
         }
 
         return view

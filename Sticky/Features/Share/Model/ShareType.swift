@@ -20,19 +20,3 @@ enum ShareType: String {
     case slide
     case card
 }
-
-// MARK: - ShareViewModel
-
-class ShareViewModel: ObservableObject {
-    // MARK: Lifecycle
-
-    init() {
-        badge = Badge(badgeType: BadgeType.monthly, badgeValue: "10")
-        seconds = 0
-    }
-
-    // MARK: Internal
-
-    @Published var badge: Badge
-    @Published var seconds: Int
-}

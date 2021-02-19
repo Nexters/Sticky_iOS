@@ -21,18 +21,14 @@ struct AppMain: View {
     @EnvironmentObject var locationManager: LocationManager
     @EnvironmentObject var popupState: PopupStateModel
 
-//    init() {
-//        let newNavAppearance = UINavigationBarAppearance()
-//        newNavAppearance.configureWithTransparentBackground()
-//        newNavAppearance.backgroundColor = .clear
-//        UINavigationBar.appearance()
-//            .standardAppearance = newNavAppearance
-//    }
-
     var body: some View {
         getRootView()
             .environment(\.rootPresentationMode, self.$isActive)
             .onAppear {
+                let newNavAppearance = UINavigationBarAppearance()
+                newNavAppearance.configureWithTransparentBackground()
+                newNavAppearance.backgroundColor = .clear
+                UINavigationBar.appearance().standardAppearance = newNavAppearance
                 locationManager.restartManager()
             }
             .onReceive(NotificationCenter.default.publisher(for: .enterGeofence), perform: { _ in

@@ -8,7 +8,11 @@
 import Foundation
 
 let special_default = ["welcome", "locked", "locked"].map { keyword in
-    Badge(badgeType: .special, badgeValue: keyword)
+    Badge(
+        badgeType: .special,
+        badgeValue: keyword,
+        _name: keyword == "welcome" ? "스티키에 오신걸 환영합니다" : ""
+    )
 }
 
 let monthly_default = ["10", "30", "50", "100", "150", "300", "500", "700", "720"].map { hours in
@@ -29,6 +33,22 @@ private func loadBadges(
         do {
             let badges = try decoder.decode([Badge].self, from: data)
             return badges
+        } catch {
+            print(error.localizedDescription)
+            return default_
+        }
+    }
+    return default_
+}
+
+func loadBadge(
+    forKey: String,
+    default_: Badge = Badge(badgeType: .monthly, badgeValue: "10")
+) -> Badge {
+    if let data = UserDefaults.standard.value(forKey: forKey) as? Data {
+        do {
+            let badge = try decoder.decode(Badge.self, from: data)
+            return badge
         } catch {
             print(error.localizedDescription)
             return default_

@@ -18,6 +18,7 @@ struct ShareCardView: View {
     var body: some View {
         GeometryReader { gr in
             RoundedRectangle(cornerRadius: 40)
+                .shadow(color: Color.black.opacity(0.16), radius: 4, x: 0, y: 4)
                 .foregroundColor(.white)
                 .overlay(
                     VStack {
@@ -34,7 +35,7 @@ struct ShareCardView: View {
                             .multilineTextAlignment(.center)
                             .frame(width: 224)
                         Spacer()
-                        Text("sticky")
+                        Text("stikky")
                             .font(.custom("Modak", size: 16))
                             .foregroundColor(.gray)
                             .opacity(2.0)
@@ -62,7 +63,6 @@ struct ShareCardView: View {
                 })
         }
         .frame(width: 264, height: 364)
-        .shadow(color: Color.black.opacity(0.16), radius: 4, x: 0, y: 4)
     }
 }
 
