@@ -13,6 +13,7 @@ struct BottomTimerNotRunning: View {
     // MARK: Internal
 
     @EnvironmentObject var locationManager: LocationManager
+    @StateObject var badgeViewModel: BadgeViewModel
 
     var body: some View {
         VStack {
@@ -31,6 +32,14 @@ struct BottomTimerNotRunning: View {
                 self.challengeState.numberOfHeart = 3
                 self.challengeState.type = .running
                 locationManager.resetGeofence()
+                if let badge = getWelcomeBadge(badges: badgeViewModel.specials) {
+                    if !badge.active {
+                        badge.count += 1
+                        badge.updated = Date()
+                        badgeViewModel.badgeQueue.append(badge)
+                        badgeViewModel.specials = badgeViewModel.specials
+                    }
+                }
             }) {
                 GradientRoundedButton(
                     content: "시작하기",
@@ -55,6 +64,6 @@ struct BottomTimerNotRunning: View {
 
 struct TimerNotRunning_Previews: PreviewProvider {
     static var previews: some View {
-        BottomTimerNotRunning()
+        BottomTimerNotRunning(badgeViewModel: BadgeViewModel())
     }
 }
