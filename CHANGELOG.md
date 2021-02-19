@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.20.4](https://github.com/Nexters/Sticky_iOS/compare/v1.20.3...v1.20.4) (2021-02-19)
+
+
+### Bug Fixes
+
+* **init:** 초기화 기능 구현 ([c078d78](https://github.com/Nexters/Sticky_iOS/commit/c078d7838f662fb5201cbff3ea3fe69f909451a6))
+* **mypage-badge:** 배지 아이템 디자인 간격 조절 ([112d137](https://github.com/Nexters/Sticky_iOS/commit/112d137d330e9dd6c3e9d6df01b078803ab41fae))
+* **outing:** 외출 기능 UI 수정 ([55d8746](https://github.com/Nexters/Sticky_iOS/commit/55d8746fbc182a3cabc43b88a3ff0871e025ada9))
+* **outing:** 외출 타이머 화면, long press 종료 처리 ([2e83cac](https://github.com/Nexters/Sticky_iOS/commit/2e83cacdc5f8f7b06d91e83900251a6845a62b08))
+* **share-badge:** 받은 배지 개수별 문구 적용 ([59ebcb3](https://github.com/Nexters/Sticky_iOS/commit/59ebcb37c457b84964d823d33df0a4c44bc63acd))
+* **timer:** 시간 처리 로직 수정 ([4c7c1cd](https://github.com/Nexters/Sticky_iOS/commit/4c7c1cdfeb399d24d6bdffb19083307b292dcad4))
+* **welcome-badge:** 챌린지 첫 시작 시 welcome 배지 획득 처리 ([cdb77e6](https://github.com/Nexters/Sticky_iOS/commit/cdb77e642445922bc66a7808104641b8ea9bd95d))
+
 ### [1.20.3](https://github.com/Nexters/Sticky_iOS/compare/v1.20.2...v1.20.3) (2021-02-19)
 
 

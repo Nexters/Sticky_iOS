@@ -1083,7 +1083,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 49;
+				CURRENT_PROJECT_VERSION = 50;
 				DEVELOPMENT_ASSET_PATHS = "\"Sticky/Preview Content\"";
 				DEVELOPMENT_TEAM = 787Q6972XA;
 				ENABLE_PREVIEWS = YES;
@@ -1093,7 +1093,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.20.3;
+				MARKETING_VERSION = 1.20.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.ios.18th.Stikky;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1111,7 +1111,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 49;
+				CURRENT_PROJECT_VERSION = 50;
 				DEVELOPMENT_ASSET_PATHS = "\"Sticky/Preview Content\"";
 				DEVELOPMENT_TEAM = 787Q6972XA;
 				ENABLE_PREVIEWS = YES;
@@ -1121,7 +1121,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.20.3;
+				MARKETING_VERSION = 1.20.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.ios.18th.Stikky;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
