@@ -13,7 +13,7 @@ struct BadgeItem: View {
     var badge: Badge
     @Binding var selection: ShareType?
     @Binding var showCountBadge: Bool
-    @EnvironmentObject var shareViewModel: ShareViewModel
+    @StateObject var shareViewModel: ShareViewModel
 
     var body: some View {
         Button(action: {
@@ -63,7 +63,8 @@ struct BadgeItem_Previews: PreviewProvider {
             BadgeItem(
                 badge: Badge(badgeType: BadgeType.monthly, badgeValue: "10"),
                 selection: .constant(ShareType.card),
-                showCountBadge: .constant(true)
+                showCountBadge: .constant(true),
+                shareViewModel: ShareViewModel()
             )
         }
         .environmentObject(ShareViewModel())
