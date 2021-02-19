@@ -14,7 +14,7 @@ struct Summary: View {
     var seconds: Int
     @Binding var selection: ShareType?
     @EnvironmentObject var user: User
-    @EnvironmentObject var shareViewModel: ShareViewModel
+    @StateObject var shareViewModel: ShareViewModel
 
     var body: some View {
         let tier = Tier(level: user.level)
@@ -91,8 +91,7 @@ struct Summary_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Color.GrayScale._100.ignoresSafeArea()
-            Summary(seconds: 10, selection: .constant(ShareType.card))
-                .environmentObject(ShareViewModel())
+            Summary(seconds: 10, selection: .constant(ShareType.card), shareViewModel: ShareViewModel())
                 .border(Color.black)
         }
     }
