@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.20.3](https://github.com/Nexters/Sticky_iOS/compare/v1.20.2...v1.20.3) (2021-02-19)
+
+
+### Bug Fixes
+
+* **mypage-badge:** 마이페이지 배지 선택 시 이미지 버그 수정 ([8efc2a9](https://github.com/Nexters/Sticky_iOS/commit/8efc2a9181c9e27ad4c2d4f4c5f9ae4d38adfed1))
+
 ### [1.20.2](https://github.com/Nexters/Sticky_iOS/compare/v1.20.1...v1.20.2) (2021-02-19)
 
 
