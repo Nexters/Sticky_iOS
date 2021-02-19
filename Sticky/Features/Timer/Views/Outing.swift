@@ -21,24 +21,24 @@ struct Outing: View {
     @State var isAnimated = false
     var body: some View {
         ZStack {
-            Color.Palette.negative
+            Color.Background.outing
                 .ignoresSafeArea()
             VStack {
                 ZStack {
                     Circle()
-                        .foregroundColor(.pink)
+                        .foregroundColor(Color.Background.outingAnimation)
                         .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.width * 0.8)
                         .scaleEffect(isAnimated ? 3 : 0.5)
                         .animation(circleAnimation)
                     
                     VStack {
                         Text("외출중")
-                            .font(.custom("Modak", size: 20))
+                            .font(.custom("AppleSDGothicNeo", size: 17))
                             .foregroundColor(.white)
                             .bold()
                         HStack {
                             Text("\(challengeState.outingTimeDate.minute)")
-                                .font(.custom("Modak", size: 80))
+                                .font(.custom("Modak", size: 96))
                                 .foregroundColor(.white)
                                 .bold()
                             VStack {
@@ -51,7 +51,6 @@ struct Outing: View {
                                 .foregroundColor(.white)
                                 .bold()
                         }
-                        
                     }
                 }
                 

@@ -84,6 +84,12 @@ extension Color {
         static let yellow = Color("sticky-timer-bg-yellow").opacity(0.2)
         static let green = Color("sticky-timer-bg-green").opacity(0.2)
         static let red = Color("sticky-timer-bg-red").opacity(0.2)
+        static let outing = LinearGradient(
+            gradient: Gradient(colors: [Color("outing-bg-start"), Color("outing-bg-end")]),
+            startPoint: .top,
+            endPoint: .bottom
+        )
+        static let outingAnimation = Color("outing-animation").opacity(0.1)
     }
 
     enum TextIconLight {
