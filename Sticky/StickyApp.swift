@@ -10,10 +10,24 @@ import SwiftUI
 
 // MARK: - StickyApp
 
+class AppDelegate: NSObject, UIApplicationDelegate{
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        return true
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        challengeState.type = .notRunning
+        print("type앱 종료되요")
+    }
+}
+
 @main
 struct StickyApp: App {
     // MARK: Internal
 
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appdelegate
+    
     var body: some Scene {
         WindowGroup {
             AppMain()
@@ -89,10 +103,10 @@ struct StickyApp: App {
     private var longitude = UserDefaults.standard.double(forKey: "longitude")
 
     @Environment(\.scenePhase) private var scenePhase
-    private var challengeState = ChallengeState()
     private var locationManager = LocationManager()
     private var rootViewManager = RootViewManager()
     private var user = User()
     private let key_time = "time"
     private let key_date = "date"
 }
+var challengeState = ChallengeState()
