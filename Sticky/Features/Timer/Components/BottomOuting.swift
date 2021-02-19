@@ -25,16 +25,21 @@ struct BottomOuting: View {
                     endColor: Color.black,
                     width: 280,
                     height: 60,
-                    cornerRadius: 16.0,
+                    cornerRadius: 16,
                     fontColor: Color.white
                 )
             })
 
-            GradientRoundedButton(content: """
-            외출시간 동안은 나가도 기록이 유지됩니다.
-            집에 돌아오면 귀가 버튼을 눌러주세요.
-            """, startColor: Color.gray.opacity(0.5), endColor: Color.gray.opacity(0.5), width: 328, height: 72, cornerRadius: 16, fontColor: Color.white)
-                .multilineTextAlignment(.center)
+            RoundedRectangle(cornerRadius: 16)
+                .foregroundColor(Color.white.opacity(0.3))
+                .frame(width: 280, height: 72)
+                .overlay(
+                    Text("외출 시간 동안은 나가도 기록이 유지됩니다.\n집에 돌아오면 귀가 버튼을 5초간 눌러주세요.")
+                        .kerning(-0.3)
+                        .foregroundColor(.white)
+                        .font(.system(size: 14))
+                        .multilineTextAlignment(.center)
+                )
         }
     }
 

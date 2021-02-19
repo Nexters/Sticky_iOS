@@ -32,15 +32,10 @@ public class ChallengeState: ObservableObject {
 
             if outingSeconds < totalOutingTime {
                 print("외출 중인데 아직 20분 안지남")
-
-                seconds = now.compareTo(date: startDate).toSeconds()
-
                 outingTimeDate.day = outingComponents.day ?? 0
                 outingTimeDate.hour = outingComponents.hour ?? 0
                 outingTimeDate.minute = 19 - (outingComponents.minute ?? 0)
                 outingTimeDate.second = 59 - (outingComponents.second ?? 0)
-
-                seconds -= outingTimeDate.toSeconds()
             } else {
                 type = .notAtHome
                 print("외출했는데 20분 지났")
