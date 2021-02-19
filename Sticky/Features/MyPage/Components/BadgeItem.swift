@@ -25,7 +25,7 @@ struct BadgeItem: View {
             VStack {
                 ZStack {
                     Image(badge.image)
-                        .frame(width: 79, height: 79)
+                        .frame(width: 96, height: 96)
                         .foregroundColor(Color.Palette.negative)
                     ZStack {
                         Circle()
@@ -40,12 +40,12 @@ struct BadgeItem: View {
                     .offset(x: 30, y: -35)
                     .opacity(1.0)
                 }
-                .frame(width: 99, height: 99)
+                .frame(width: 96, height: 96)
 
                 Text("\(badge.name)")
                     .font(.system(size: 17))
                     .bold()
-                    .padding(.top, 6)
+                    .padding(.top, 4)
                 Text("\(badge.updated?.toString() ?? "")")
                     .font(.system(size: 14))
                     .foregroundColor(Color.GrayScale._500)
@@ -61,7 +61,7 @@ struct BadgeItem_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             BadgeItem(
-                badge: Badge(badgeType: BadgeType.monthly, badgeValue: "10"),
+                badge: Badge(badgeType: BadgeType.monthly, badgeValue: "10", updated: Date()),
                 selection: .constant(ShareType.card),
                 showCountBadge: .constant(true),
                 shareViewModel: ShareViewModel()
