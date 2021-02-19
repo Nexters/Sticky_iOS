@@ -74,7 +74,8 @@ struct MyPage: View {
             VStack(alignment: .leading, spacing: 20) {
                 Summary(
                     seconds: user.accumulateSeconds,
-                    selection: $navSelection
+                    selection: $navSelection,
+                    shareViewModel: shareViewModel
                 )
                 .padding(.bottom, 15)
                 Divider()
@@ -84,7 +85,8 @@ struct MyPage: View {
                     subtitle: "특별한 기록을 달성하면 받을 수 있어요.",
                     badges: badgeViewModel.specials,
                     selection: $navSelection,
-                    showCountBadge: .constant(false)
+                    showCountBadge: .constant(false),
+                    shareViewModel: shareViewModel
                 )
                 BadgePanel(
                     title: "월간 달성",
@@ -92,14 +94,16 @@ struct MyPage: View {
                     trailing: monthlyButton as? AnyView,
                     badges: badgeViewModel.monthly,
                     selection: $navSelection,
-                    showCountBadge: $badgeViewModel.showCountBadge
+                    showCountBadge: $badgeViewModel.showCountBadge,
+                    shareViewModel: shareViewModel
                 )
                 BadgePanel(
                     title: "연속 달성",
                     subtitle: "멈추지 않고 이어서 기록된 시간을 기준으로 합니다.",
                     badges: badgeViewModel.continuous,
                     selection: $navSelection,
-                    showCountBadge: .constant(false)
+                    showCountBadge: .constant(false),
+                    shareViewModel: shareViewModel
                 )
 
                 Spacer()
