@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "level_info_EN.png",
+      "filename" : "Level info_EN.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "level_info_EN-1.png",
+      "filename" : "Level info_EN-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "level_info_EN-2.png",
+      "filename" : "Level info_EN-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
