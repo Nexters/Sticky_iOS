@@ -1,0 +1,13 @@
+/* 
+  infoPlist.strings
+  Sticky
+
+  Created by deo on 2021/02/20.
+  
+*/
+
+NSLocationAlwaysAndWhenInUseUsageDescription = "내 위치 확인을 위해 권한이 필요합니다.";
+NSLocationAlwaysUsageDescription = "내 위치 확인을 위해 권한이 필요합니다.";
+NSLocationWhenInUseUsageDescription = "내 위치 확인을 위해 권한이 필요합니다.";
+NSPhotoLibraryUsageDescription = "내 위치 확인을 위해 권한이 필요합니다.";
+
