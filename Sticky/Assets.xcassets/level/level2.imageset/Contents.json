@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "level2.png",
+      "filename" : "Class=Purple, Number=2@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "level2@2x.png",
+      "filename" : "Class=Purple, Number=2@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "level2@3x.png",
+      "filename" : "Class=Purple, Number=2@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
