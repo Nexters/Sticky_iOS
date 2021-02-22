@@ -43,6 +43,7 @@
 		BB8292D425BD59A200077D8C /* LocationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8292D325BD59A200077D8C /* LocationSearchService.swift */; };
 		BB85A2EC25DF5B6400532301 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB85A2EB25DF5B6400532301 /* LaunchScreen.storyboard */; };
 		BB85A30125DF67D300532301 /* ShareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB85A30025DF67D300532301 /* ShareViewModel.swift */; };
+		BB85A3E125E0A3AC00532301 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB85A3E325E0A3AC00532301 /* InfoPlist.strings */; };
 		BBAC0F3125C696B900FB81D7 /* LocationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAC0F3025C696B800FB81D7 /* LocationPermission.swift */; };
 		BBB1EBF225AF3C2100F5EA37 /* StickyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1EBF125AF3C2100F5EA37 /* StickyApp.swift */; };
 		BBB1EBF625AF3C2100F5EA37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB1EBF525AF3C2100F5EA37 /* Assets.xcassets */; };
@@ -152,6 +153,9 @@
 		BB8292D325BD59A200077D8C /* LocationSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
 		BB85A2EB25DF5B6400532301 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB85A30025DF67D300532301 /* ShareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewModel.swift; sourceTree = "<group>"; };
+		BB85A3D525E0A31400532301 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BB85A3E225E0A3AC00532301 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BB85A3E725E0A3AD00532301 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BBAC0F3025C696B800FB81D7 /* LocationPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermission.swift; sourceTree = "<group>"; };
 		BBB1EBEE25AF3C2100F5EA37 /* Sticky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sticky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBB1EBF125AF3C2100F5EA37 /* StickyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyApp.swift; sourceTree = "<group>"; };
@@ -499,6 +503,7 @@
 				EB63F51B25B8257C00151A05 /* Colors.xcassets */,
 				BBB1EC5B25B079F700F5EA37 /* Localizable.strings */,
 				BBB1EBFA25AF3C2100F5EA37 /* Info.plist */,
+				BB85A3E325E0A3AC00532301 /* InfoPlist.strings */,
 				BBB1EC6625B07B0A00F5EA37 /* String+localize.swift */,
 				BBB1EC4A25B077E500F5EA37 /* Color.swift */,
 				BBB1EBF725AF3C2100F5EA37 /* Preview Content */,
@@ -758,6 +763,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBB1EC5925B079F700F5EA37 /* Localizable.strings in Resources */,
+				BB85A3E125E0A3AC00532301 /* InfoPlist.strings in Resources */,
 				EB63F51C25B8257C00151A05 /* Colors.xcassets in Resources */,
 				BB05AB7E25C6EE2400E34717 /* Modak.ttf in Resources */,
 				BBB1EBF925AF3C2100F5EA37 /* Preview Assets.xcassets in Resources */,
@@ -945,10 +951,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		BB85A3E325E0A3AC00532301 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BB85A3E225E0A3AC00532301 /* en */,
+				BB85A3E725E0A3AD00532301 /* ko */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		BBB1EC5B25B079F700F5EA37 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				BBB1EC5F25B07A2B00F5EA37 /* ko */,
+				BB85A3D525E0A31400532301 /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

@@ -1,0 +1,12 @@
+/* 
+  infoPlist.strings
+  Sticky
+
+  Created by deo on 2021/02/20.
+  
+*/
+
+NSLocationAlwaysAndWhenInUseUsageDescription = "We need access to your location to show you how many accumulate times at position.";
+NSLocationAlwaysUsageDescription = "We need access to your location to show you how many accumulate times at position.";
+NSLocationWhenInUseUsageDescription = "We need access to your location to show you how many accumulate times at position.";
+NSPhotoLibraryUsageDescription = "We need access to your photo library to capture image for sharing";
