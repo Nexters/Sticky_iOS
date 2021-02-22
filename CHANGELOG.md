@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.20.6](https://github.com/Nexters/Sticky_iOS/compare/v1.20.5...v1.20.6) (2021-02-22)
+
+
+### Bug Fixes
+
+* 위치 권한 강제 제거, 위치 권한 요청 문구 수정 ([62d1c67](https://github.com/Nexters/Sticky_iOS/commit/62d1c67f0b777d2e629df07c43d5be60864e8dff))
+* **location:** 백그라운드 지속 활성화 ([8dda837](https://github.com/Nexters/Sticky_iOS/commit/8dda837b01e8aa8db2532337b02365b2742804cb))
+* **permission:** 앨범 권한 요청 메시지 수정 ([84af2cf](https://github.com/Nexters/Sticky_iOS/commit/84af2cf24a8e19eb9182276e859187fc05934d6d))
+* **tier:** 캐릭터 이미지 업데이트 ([b184168](https://github.com/Nexters/Sticky_iOS/commit/b184168832025c8e86822a53b6eb8f04b7609b15))
+* **tier-info, localization:** 등급정보 수정, 권한 요청 다국어처리 ([b3db8ac](https://github.com/Nexters/Sticky_iOS/commit/b3db8ac4cd4b247b67cb1c11a7aeb82244f025b7))
+
 ### [1.20.5](https://github.com/Nexters/Sticky_iOS/compare/v1.20.4...v1.20.5) (2021-02-19)
 
 
