@@ -6,8 +6,8 @@
   
 */
 
-NSLocationAlwaysAndWhenInUseUsageDescription = "내 위치 확인을 위해 권한이 필요합니다.";
-NSLocationAlwaysUsageDescription = "내 위치 확인을 위해 권한이 필요합니다.";
-NSLocationWhenInUseUsageDescription = "내 위치 확인을 위해 권한이 필요합니다.";
+NSLocationAlwaysAndWhenInUseUsageDescription = "위치에 누적 된 시간을 측정하려면 위치 접근 권한이 필요합니다.";
+NSLocationAlwaysUsageDescription = "위치에 누적 된 시간을 측정하려면 위치 접근 권한이 필요합니다.";
+NSLocationWhenInUseUsageDescription = "위치에 누적 된 시간을 측정하려면 위치 접근 권한이 필요합니다.";
 NSPhotoLibraryUsageDescription = "내 화면 캡처를 위해 권한이 필요합니다.";
 

@@ -39,7 +39,7 @@ struct SearchAddress: View {
                     EditText(
                         input: $locationSearchService.searchQuery,
                         placeholder:
-                        locationManager.checkLocationStatus() ? "도로명, 건물명 또는 지번으로 검색" : "위치 정보를 항상으로 체크해주세요.",
+                        "도로명, 건물명 또는 지번으로 검색",
                         accentColor: .white
                     )
                     .padding(.bottom, 8)
@@ -54,7 +54,7 @@ struct SearchAddress: View {
                             text: "현재 위치로 주소 찾기",
                             borderWidth: 2.0,
                             borderColor: Color.Border.primary,
-                            fontColor: locationManager.checkLocationStatus() ? Color.TextIconLight.primary : Color.GrayScale._300,
+                            fontColor: Color.TextIconLight.primary,
                             icon: "here",
                             cornerRadius: 16.0
                         )
@@ -105,7 +105,6 @@ struct SearchAddress: View {
                 Spacer()
             }
         }
-        .allowsHitTesting(locationManager.checkLocationStatus()) // 항상 처리 확인
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: backButton)
         .navigationBarTitle("", displayMode: .inline)

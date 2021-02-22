@@ -61,10 +61,10 @@ struct AppMain: View {
     @State private var isActive: Bool = true
 
     private func getRootView() -> AnyView {
-        if rootViewManager.hasGeofence, locationManager.checkLocationStatus() {
+        if rootViewManager.hasGeofence {
             return AnyView(Main())
         } else {
-            return AnyView(LocationPermission())
+            return AnyView(Onboarding(type: 0))
         }
     }
 }
