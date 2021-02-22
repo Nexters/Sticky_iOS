@@ -24,9 +24,9 @@ struct LocationPermission: View {
                     Spacer()
                     Image("logo-blue")
                         .resizable()
-                        .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, maxWidth: /*@START_MENU_TOKEN@*/ .infinity/*@END_MENU_TOKEN@*/,
-                               minHeight: 0, maxHeight: /*@START_MENU_TOKEN@*/ .infinity/*@END_MENU_TOKEN@*/,
-                               alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/)
+                        .frame(minWidth: 0, maxWidth:  .infinity,
+                               minHeight: 0, maxHeight:  .infinity,
+                               alignment:  .center)
                         .scaledToFit()
 
                     Text("""
