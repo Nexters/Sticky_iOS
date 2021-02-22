@@ -26,7 +26,7 @@ class LocationManager: NSObject, ObservableObject {
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.startUpdatingLocation()
         self.locationManager.allowsBackgroundLocationUpdates = true
-//        self.locationManager.pausesLocationUpdatesAutomatically = false
+        self.locationManager.pausesLocationUpdatesAutomatically = false
         self.locationManager.activityType = .other
 //        self.locationManager.showsBackgroundLocationIndicator = false
         self.notificationCenter.delegate = self
